@@ -42,7 +42,7 @@ ecrans = [
     ('|*Quelqu’un*| joue dehors.', 'Je prouve : je dis « quelqu’un ».'),
     ('|On| frappe ! → *Quelqu’un* frappe !', 'on remplace une personne qu’on ne nomme pas.')],
    Q('Écoute ! ___ frappe.', W, 'Quelqu’un frappe : c’est un pronom.', fill='circ'),
-   [C('<On> mange à midi.', 'Clique sur le pronom.', 'Quel mot remplace des personnes ?'),
+   [C('<On> mange à midi.', 'Clique sur le pronom.', 'Lequel de ces mots remplace des personnes ?'),
     Q('Le soir, ___ regarde un film.', W, 'Quelqu’un regarde un film.', fill='circ'),
     C('Ce matin, <on> se lève tôt.', 'Clique sur le pronom.', 'Qui se lève tôt ?')]),
  E('on', 'sv', 'on : le verbe au singulier', 'girl', 'Avec on, le verbe se conjugue comme avec il.',

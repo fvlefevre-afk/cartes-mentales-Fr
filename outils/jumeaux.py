@@ -1,11 +1,11 @@
 import json,re,sys,os
 S=os.path.join(os.path.dirname(os.path.abspath(__file__)),'sortie')  # vérifie les leçons H2 à H7 fabriquées dans sortie/
-F={ 'H2':[r'ont',r'la',r'l’a',r'l’as',r'ou',r'l\'a'],
-    'H3':[r'se',r'ses',r'a',r'c’est',r's’est'],
-    'H4':[r'est',r'où',r'mes'],
-    'H5':[r'là',r'l’a',r'l’as',r's’est',r'ses',r'ces'],
-    'H6':[r'sont',r'ces',r'mais',r'c’est',r's’est'],
-    'H7':[r'ce',r'cet',r'cette',r'c’est',r'ces',r'ses']}
+F={ 'H2':[r'quel',r'quelle',r'quels',r'quelles',r'ont',r'la',r'l’a',r'l’as',r'ou',r'l\'a'],
+    'H3':[r's’en',r'se',r'ses',r'a',r'c’est',r's’est'],
+    'H4':[r'dont',r'est',r'où',r'mes'],
+    'H5':[r'donc',r'là',r'l’a',r'l’as',r's’est',r'ses',r'ces'],
+    'H6':[r'qu’elle',r'qu’elles',r'sont',r'ces',r'mais',r'c’est',r's’est'],
+    'H7':[r'sans',r'ce',r'cet',r'cette',r'c’est',r'ces',r'ses']}
 def strings(o):
     if isinstance(o,str): yield o
     elif isinstance(o,dict):

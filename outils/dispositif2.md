@@ -89,6 +89,21 @@ Corrigé sur une page séparée, sans consigne d'autocorrection. Aucun mot rép�
 - **Dispositif 1 bis (Homophones)** : les homophones grammaticaux restent en H, pas en O.
 - Les jeux du pack CM1/CM2 sur le genre et le nombre, les accords dans le GN et l'accord sujet-verbe relèvent de la grammaire (G3, G5).
 
+# 8. En CM2 : les mêmes ceintures, approfondies
+
+Les ceintures O1 à O6 existent aussi en CM2, avec le même numéro, la même couleur et la même notion. L’observation et la trace écrite sont communes ; le CM2 ajoute un écran et des exercices, avec des mots plus difficiles, et passe son propre test (parcours inchangé, réussite 6/6). La carte mentale est complétée par un encadré « En CM2, j’apprends aussi ».
+
+| N° | Couleur | Tronc commun (CM1) | En plus en CM2 |
+|---|---|---|---|
+| O1 | Blanche | m devant m, b, p | Les préfixes em-, im- (emporter, impossible, immangeable) |
+| O2 | Rose | Lettres finales muettes | Des familles moins évidentes (accroc → accrocher, respect → respecter, fusil → fusiller) |
+| O3 | Jaune | Le son [s] : s, ss, c, ç | t devant -ion (attention, opération) |
+| O4 | Orange | Le son [k] : c, qu, k | ch et cc (chorale, orchestre, accord, occuper) |
+| O5 | Verte | Le son [g] : g, gu, ge | Les verbes en -guer : le u reste (nous naviguons, il conjuguait) |
+| O6 | Bleue | ill / y ; oi / oy | -eil / -eille, -ail / -aille, -ueil après c ou g (accueil, orgueil) |
+
+Le programme 2025 garde en CM2 le même objectif qu’en CM1 : écrire correctement les mots fréquents en s’appuyant sur les régularités et la formation des mots. Cahier de progrès : parcours C de la fiche « O - cahier de progrès ».
+
 # Points à trancher
 
 - **Créneau** : l'ancienne version ne prévoyait pas de créneau dédié. Le parcours à ceintures demande 30 min pour l'entraînement collectif et 15 min par fiche : à placer, par exemple, à côté de la dictée hebdomadaire.

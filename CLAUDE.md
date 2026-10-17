@@ -25,10 +25,12 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   (variable `ENSEIGNANT` dans le bloc PÉRIODES), sans rien enregistrer ni changer pour les élèves.
 - Sommaire par classe : boutons CE2 / CM1 / CM2 (adresse `#niveau=CE2`…). Une leçon sans champ `niveau`
   est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
-- CM2 : pour l'instant, chaque leçon CM2 est une copie de la leçon CM1 du même numéro (liste `CM2_COPIE`),
-  avec sa propre progression ; l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`).
-  Pour une vraie leçon CM2 : entrée `id:'XX-CM2', code:'XX', niveau:'CM2'` dans TRACES (+ LESSONS, PLUS, IMG) ;
-  elle remplace alors la copie. Écarts CM1 → CM2 : `programmes/ecarts-CM1-CM2.md`.
+- CM2 : mêmes numéros, mêmes couleurs, mêmes notions qu'en CM1 (choix de l'enseignante, octobre 2026).
+  Une leçon CM2 (id `XX-CM2`, code affiché `XX`) = la leçon CM1 + les écrans de `CM2_PLUS` (étiquette « CM2 »,
+  placés après le dernier écran de leur section) + un encadré « En CM2, j'apprends aussi » sous la carte.
+  Fabriqués par `outils/lecons/cm2_ajouts.py`, mis dans le site par `outils/inserer_cm2.py`. Liste : `CM2_COPIE` ;
+  l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`). C6 (plus-que-parfait, rouge) et
+  C7 (passé simple, violette) n'existent qu'en CM2 (`outils/lecons/c6_c7_cm2.py`). Détail : `programmes/ecarts-CM1-CM2.md`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils
@@ -43,6 +45,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Chaque mot s'ancre dans sa classe grammaticale et se prouve par une manipulation (« Je prouve »),
   jamais par un « truc » appris par cœur.
 - Les paires ne se retrouvent qu'en H8 (transfert), une fois les deux côtés validés.
+- Mots ajoutés en CM2 : qu'elle (H2), sans (H3), donc (H4), dont (H5), quel/quelle (H6), s'en (H7) ;
+  leurs jumeaux restent dans une autre ceinture. Vérifier avec `outils/jumeaux.py`.
 
 ## Orthographe (Dispositif 2 — version à ceintures)
 

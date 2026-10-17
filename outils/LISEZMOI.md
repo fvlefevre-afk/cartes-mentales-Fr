@@ -24,6 +24,14 @@ Tout ce qui est fabriqué va dans `sortie/`, qui n'est pas enregistré dans le d
 
 Les leçons G1, G2, G3, H1, V1 et V2 ont été faites autrement, avant ces outils : elles se modifient directement dans `index.html`.
 
+## Les leçons CM2
+
+- Une leçon CM2 = la leçon CM1 + des écrans en plus. Ils sont écrits dans `lecons/cm2_ajouts.py`
+  (un appel `lecon('G3', [points de l'encadré], E(...), ...)` par leçon ; la section `sec` doit exister dans la leçon CM1).
+- `python3 lecons/cm2_ajouts.py` puis `python3 inserer_cm2.py` les met dans le site.
+- C6 et C7 (CM2 seulement) : `python3 lecons/c6_c7_cm2.py` puis `python3 inserer.py C6-CM2 C7-CM2`.
+- Tester : `python3 tester.py G3-CM2`.
+
 ## Les marques dans les étapes animées
 
 `[sujet]` `(verbe)` `^déterminant^` `~adjectif~` `%surligné en jaune%` `#mot inconnu#` `|entouré|` `*apparition*`
@@ -36,6 +44,11 @@ Dans le texte d'un exercice, `[ ]`, `( )` et `< >` deviennent des mots à clique
 - `python3 cahiers.py G H C V O` met à jour la partie CM1 (parcours B) des fiches de ces familles.
 - `python3 cahiers.py 2026` met à jour le tableau CM1 des cahiers « 2026 » (grammaire, conjugaison).
 - Puis refaire le PDF : `soffice --headless --convert-to pdf "Cahier de progrès cm1/O - cahier de progrès.odt"`.
+
+## Les dispositifs
+
+- `python3 ajout_docx.py "<dispositif>.docx" dispositifs_cm2/G.md` ajoute (ou remplace) la partie « En CM2 » à la fin d'un dispositif,
+  avec les styles du document. Textes : `dispositifs_cm2/` (G, H, C, V, S = Structure des ceintures).
 
 ## Le dispositif 2 (orthographe)
 

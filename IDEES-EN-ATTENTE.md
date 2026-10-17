@@ -23,14 +23,11 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## CM2 (voir `programmes/ecarts-CM1-CM2.md`)
 
-- [ ] **Refaire les leçons CM2 selon le cahier de progrès (parcours C)** : nouvelles leçons (G2, C1 à C5, H9, V2, V4,
-  V5, V7, V8) et écrans à ajouter aux autres. Par quoi commencer ?
-- [ ] **Numéros et couleurs CM2** : suivre ceux du cahier CM2 (ex. C2 = accord du participe passé), même s'ils
-  diffèrent du CM1 ?
-- [ ] **C8 et H8 en CM2** : absents du cahier CM2. Les retirer ou les garder ?
-- [ ] **Notions du programme CM2 sans ceinture** : conjonctions de subordination, accord du participe passé avec le COD,
-  forme négative aux temps composés.
-- [ ] **Orthographe en CM2** : garder O1 à O6 en révision, ou créer des ceintures CM2 ?
+- [ ] **Test CM2** : proposition écrite dans les dispositifs : 3 items sur le tronc commun + 3 items sur l'ajout CM2. D'accord ?
+- [ ] **donc (H4) et dont (H5)** sont tous deux en période 4 : garder, ou décaler H5 ?
+- [ ] **Documents triple niveau** « Structure des ceintures — CE2-CM1-CM2 » et « Dispositif 3 — CE2-CM1-CM2 » :
+  cités dans les dispositifs mais absents du dépôt. Les ajouter pour que je mette à jour leur partie CM2 ?
+- [ ] **CE2** : faire de même (mêmes numéros que le CM1, notions plus simples) ?
 
 ## Réglages du site
 
