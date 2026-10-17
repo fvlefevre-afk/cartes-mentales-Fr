@@ -20,3 +20,11 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Accès enseignant (provisoire) : l'adresse du site suivie de `?enseignant` ouvre toutes les périodes
   (variable `ENSEIGNANT` dans le bloc PÉRIODES), sans rien enregistrer ni changer pour les élèves.
 - Pas de noms d'élèves dans le dépôt : il est public.
+
+## Homophones (Dispositif 1 bis — voir « Documents explicatifs des dispositifs »)
+
+- Règle non négociable : jamais deux mots d'une même paire jumelle dans la même ceinture (H1 à H7).
+  Le jumeau n'est jamais proposé comme choix ni comme réponse, et n'apparaît pas dans les phrases.
+- Chaque mot s'ancre dans sa classe grammaticale et se prouve par une manipulation (« Je prouve »),
+  jamais par un « truc » appris par cœur.
+- Les paires ne se retrouvent qu'en H8 (transfert), une fois les deux côtés validés.
