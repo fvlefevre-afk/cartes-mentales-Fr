@@ -68,7 +68,13 @@ def set_table(s, tname, rows, extra=None):
         new.append(row_open + ''.join(cs) + '</table:table-row>')
     first = tab.index(trs[1]); last = tab.index(trs[-1]) + len(trs[-1])
     tab = tab[:first] + ''.join(new) + tab[last:]
-    return s[:a] + tab + s[b:]
+    s = s[:a] + tab + s[b:]
+    # 8 ceintures ou plus : lignes moins hautes pour que le tableau tienne sur une page
+    m = re.search(r'table:style-name="([^"]+)"', row_open)
+    if m and len(rows) >= 8:
+        h = round(19.3 / len(rows), 3)
+        s = re.sub(r'(<style:style style:name="' + re.escape(m.group(1)) + r'"[^>]*><style:table-row-properties style:min-row-height=")[0-9.]+cm', lambda x: x.group(1) + f'{h}cm', s)
+    return s
 
 def table_after(s, marker):
     """Parcours A, B, C = 1er, 2e, 3e tableau du document"""
