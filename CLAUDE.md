@@ -27,6 +27,11 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
+## Outils
+
+- Le dossier `outils/` contient les programmes qui fabriquent les cartes, les écrans, les exercices et les fiches
+  du cahier de progrès. Mode d'emploi : `outils/LISEZMOI.md`.
+
 ## Homophones (Dispositif 1 bis — voir « Documents explicatifs des dispositifs »)
 
 - Règle non négociable : jamais deux mots d'une même paire jumelle dans la même ceinture (H1 à H7).
