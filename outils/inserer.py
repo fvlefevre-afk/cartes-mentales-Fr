@@ -2,7 +2,7 @@
 Usage :  python3 inserer.py O1 O2 ...
 Lit sortie/O1.json et sortie/O1_carte.jpeg (fabriqués par un script de lecons/).
 Une leçon déjà présente est remplacée ; une nouvelle est ajoutée à la fin de sa liste."""
-import json, base64, os, sys
+import json, base64, os, re, sys
 D = os.path.dirname(os.path.abspath(__file__))
 P = os.path.join(D, '..', 'index.html')
 SORTIE = os.path.join(D, 'sortie')
@@ -23,8 +23,9 @@ for i in ids:
     else:
         k = line_of('/* ================= À venir')
         L[k:k] = [f'/* ================= {i} ================= */', tr]
-    le = f'{i}:' + json.dumps(data[i]['lesson'], ensure_ascii=False)
-    k = line_of(i + ':{')
+    key = i if re.fullmatch(r'[A-Za-z_]\w*', i) else json.dumps(i)   # « C6-CM2 » doit être entre guillemets
+    le = f'{key}:' + json.dumps(data[i]['lesson'], ensure_ascii=False)
+    k = line_of(key + ':{')
     if k is not None:
         L[k] = le + (',' if L[k].rstrip().endswith(',') else '')
     else:

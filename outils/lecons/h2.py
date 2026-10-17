@@ -82,8 +82,8 @@ ecrans = [
  E('att', 'attention', 'Les pièges', 'girl', 'Attention au verbe avec on, et aux accents !',
    [('[On] (jou*e*). · [On] (fini*t*).', 'Avec on, le verbe est au singulier.'),
     ('|là|-bas · voi|là| · celui-|là|', 'Ces mots gardent l’accent.')],
-   Q('', ['On danse.', 'On dansent.', 'On dansez.'], 'On se conjugue comme il.', 'Quelle phrase est bien écrite ?'),
-   [Q('', ['Voilà mon frère.', 'Voila mon frère.'], 'Voilà garde l’accent.', 'Quelle phrase est bien écrite ?'),
-    Q('', ['Mes amis sont là-bas.', 'Mes amis sont labas.'], 'Là-bas : accent et trait d’union.', 'Quelle phrase est bien écrite ?')]),
+   Q('', ['On danse.', 'On dansent.', 'On dansez.'], 'On se conjugue comme il.', 'Laquelle est bien écrite ?'),
+   [Q('', ['Voilà mon frère.', 'Voila mon frère.'], 'Voilà garde l’accent.', 'Laquelle est bien écrite ?'),
+    Q('', ['Mes amis sont là-bas.', 'Mes amis sont labas.'], 'Là-bas : accent et trait d’union.', 'Laquelle est bien écrite ?')]),
 ]
 save('H2', {'id': 'H2', 'f': 'H', 'ceinture': 'Rose', 'titre': 'on, là, où', 'sous': 'le pronom on · là et où', 'lesson': True}, sections, ecrans, zones)
