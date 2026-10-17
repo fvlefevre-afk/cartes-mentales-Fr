@@ -154,6 +154,11 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 [hidden]{display:none!important}
 .map{position:relative;border-radius:.6rem;overflow:hidden;box-shadow:0 2px 10px rgba(30,42,68,.12);background:#fff}
 .map img{display:block;width:100%;height:auto}
+.map,.mapw{container-type:inline-size}
+.mapw{position:relative}
+.chip2{position:absolute;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:.18cqw solid #3b7dd8;background:#eaf2fd;color:#1f4f9c;border-radius:1.15cqw;font-family:Poppins,"Segoe UI",system-ui,sans-serif;font-weight:500;line-height:1;white-space:nowrap;pointer-events:none}
+.chip2.main{border:0;background:#fefefe;color:#1f2a44;font-family:"Comic Sans MS","Comic Neue",cursive;font-weight:400}
+.chip2.nu{border:0;border-radius:.3cqw;background:rgb(208,237,251);color:#1f2a44}
 .zone{position:absolute;border-radius:1rem;border:3px solid transparent;transition:border-color .2s,background .2s}
 .zone:hover,.zone:focus-visible{border-color:var(--z);background:color-mix(in srgb,var(--z) 8%,transparent);outline:0}
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
@@ -620,12 +625,12 @@ function navBar(p,m,n){
 }
 function renderLessonMap(t){
   const L=LESSONS[t.id], f=fam(t.f);
-  document.title=t.id+' — '+t.titre;
+  document.title=code(t)+' — '+t.titre;
   const first=sid=>L.ecrans.findIndex(e=>e.sec===sid);
   main.innerHTML=`<div class="sheet lesson" style="--fam:${f.couleur}">
     <div class="crumbs"><a href="#">Sommaire</a> › ${esc(f.nom)}</div>
     <div class="head">${belt(t)}<div><h2>${esc(t.titre)}</h2><div class="meta">Clique sur une partie de la carte pour découvrir la leçon.</div></div></div>
-    <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(t.id)} : ${esc(t.titre)}">
+    <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))} : ${esc(t.titre)}">${chipCM2(t)}
       ${L.sections.map((s,k)=>{const z=s.zone,d=secDone(L,t.id,s.id);return `<a class="zone" href="#t=${t.id}/${first(s.id)}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
     </div>
     <div class="map-path no-print">${L.sections.map((s,k)=>{const d=secDone(L,t.id,s.id);return `<a href="#t=${t.id}/${first(s.id)}" style="--z:${s.couleur}"><span class="num${d?' done':''}">${d?'✓':k+1}</span>${esc(s.nom)}</a>`;}).join('<span class="arrow">›</span>')}</div>
@@ -636,12 +641,12 @@ function renderLessonMap(t){
 
 function renderLessonScreen(t,i){
   const L=LESSONS[t.id], e=L.ecrans[i], s=L.sections.find(x=>x.id===e.sec), f=fam(t.f), P=prog(t.id), im=IMG[t.id];
-  document.title=t.id+' — '+e.titre;
+  document.title=code(t)+' — '+e.titre;
   const inSec=L.ecrans.map((x,k)=>[x,k]).filter(([x])=>x.sec===e.sec);
   const avatar=e.guide==='duo'?`<img class="duo" src="${im.duo}" alt="">`:`<img src="${im[e.guide]||Object.values(im)[1]}" alt="">`;
   const secName=id=>L.sections.find(x=>x.id===id).nom;
   main.innerHTML=`<div class="sheet lesson" style="--fam:${f.couleur};--z:${s.couleur}">
-    <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(t.id)} — la carte</a> › ${esc(s.nom)}</div>
+    <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › ${esc(s.nom)}</div>
     <div class="scr-head"><span class="picto">${PICTO[e.picto]||''}</span><h2>${esc(e.titre)}</h2>
       <span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p></div>
@@ -662,7 +667,7 @@ function renderLessonScreen(t,i){
   function next(){ if(!$('#atoi').hidden) return; if(st<e.steps.length-1){st++;show();} else startAtoi(); }
   nb.addEventListener('click',next);
   $('#stage').addEventListener('click',()=>{ if(st<e.steps.length-1) next(); });
-  document.onkeydown=ev=>{ if(!/^#t=[A-Z]\d\//.test(location.hash)) return; if((ev.key===' '||ev.key==='ArrowRight')&&!/BUTTON|A/.test(ev.target.tagName)){ev.preventDefault();next();} };
+  document.onkeydown=ev=>{ if(!/^#t=[A-Z]\d+(-CM2)?\//.test(location.hash)) return; if((ev.key===' '||ev.key==='ArrowRight')&&!/BUTTON|A/.test(ev.target.tagName)){ev.preventDefault();next();} };
   show();
 
   function startAtoi(){
@@ -736,6 +741,18 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(edits));}catch(e){to
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2600);}
 
 const fam=id=>FAMILLES.find(f=>f.id===id);
+/* ---------- CM2 : copie provisoire des leçons du CM1 ----------
+   Tant qu'une leçon CM2 n'a pas son propre contenu, elle reprend celle du CM1 (même carte, mêmes écrans),
+   avec sa propre progression. L'étiquette « … — CM1 » de la carte est recouverte par « CM2 » (CHIP_CM2).
+   Pour donner un contenu propre à une leçon CM2 : ajouter dans TRACES une entrée id:'XX-CM2', code:'XX',
+   niveau:'CM2' (+ LESSONS, PLUS, IMG) ; elle remplace alors la copie. */
+const CM2_COPIE=["G1", "G2", "G3", "G4", "G5", "G6", "G7", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "C1", "C2", "C3", "C4", "C5", "C8", "V1", "V2", "V3", "V4", "V5", "V6", "O1", "O2", "O3", "O4", "O5", "O6"];
+const CHIP_CM2={"G3": [13, 9, 302, 47, "Grammaire — G3 — CM2", "", 20], "G4": [13, 9, 303, 47, "Grammaire — G4 — CM2", "", 20], "G5": [13, 9, 303, 47, "Grammaire — G5 — CM2", "", 20], "G6": [13, 9, 303, 47, "Grammaire — G6 — CM2", "", 20], "G7": [13, 9, 302, 47, "Grammaire — G7 — CM2", "", 20], "H2": [13, 9, 319, 47, "Homophones — H2 — CM2", "", 20], "H3": [13, 9, 320, 47, "Homophones — H3 — CM2", "", 20], "H4": [13, 9, 321, 47, "Homophones — H4 — CM2", "", 20], "H5": [13, 9, 320, 47, "Homophones — H5 — CM2", "", 20], "H6": [13, 9, 321, 47, "Homophones — H6 — CM2", "", 20], "H7": [13, 9, 319, 47, "Homophones — H7 — CM2", "", 20], "H8": [13, 9, 320, 47, "Homophones — H8 — CM2", "", 20], "C1": [13, 9, 309, 47, "Conjugaison — C1 — CM2", "", 20], "C2": [13, 9, 313, 47, "Conjugaison — C2 — CM2", "", 20], "C3": [13, 9, 313, 47, "Conjugaison — C3 — CM2", "", 20], "C4": [13, 9, 315, 47, "Conjugaison — C4 — CM2", "", 20], "C5": [13, 9, 314, 47, "Conjugaison — C5 — CM2", "", 20], "C8": [13, 9, 314, 47, "Conjugaison — C8 — CM2", "", 20], "V3": [13, 9, 307, 47, "Vocabulaire — V3 — CM2", "", 20], "V4": [13, 9, 308, 47, "Vocabulaire — V4 — CM2", "", 20], "V5": [13, 9, 307, 47, "Vocabulaire — V5 — CM2", "", 20], "V6": [13, 9, 307, 47, "Vocabulaire — V6 — CM2", "", 20], "O1": [13, 9, 311, 47, "Orthographe — O1 — CM2", "", 20], "O2": [13, 9, 315, 47, "Orthographe — O2 — CM2", "", 20], "O3": [13, 9, 316, 47, "Orthographe — O3 — CM2", "", 20], "O4": [13, 9, 317, 47, "Orthographe — O4 — CM2", "", 20], "O5": [13, 9, 317, 47, "Orthographe — O5 — CM2", "", 20], "O6": [13, 9, 317, 47, "Orthographe — O6 — CM2", "", 20], "G2": [10, 15, 336, 52, "Grammaire — G2 — CM2", "", 22], "H1": [11, 8, 418, 57, "Homophones — H1 — CM2", "", 28], "V1": [9, 6, 413, 59, "Vocabulaire — V1 — CM2", "", 28], "G1": [1288, 840, 70, 42, "CM2", "main", 28], "V2": [800, 450, 60, 34, "CM2", "nu", 25]};
+CM2_COPIE.forEach(id=>{const id2=id+'-CM2',t=TRACES.find(x=>x.id===id);if(!t||TRACES.some(x=>x.id===id2))return;
+  TRACES.push(Object.assign({},t,{id:id2,code:id,niveau:'CM2',copieDe:id}));LESSONS[id2]=LESSONS[id];IMG[id2]=IMG[id];});
+const code=t=>t.code||t.id; /* le code affiché (G1), même pour la leçon CM2 (id G1-CM2) */
+function chipCM2(t){if((t.niveau||'CM1')!=='CM2')return '';const c=t.copieDe?CHIP_CM2[t.copieDe]:null;if(!c)return '';
+  return `<span class="chip2 ${c[5]}" style="left:${c[0]/14}%;top:${c[1]/9.33}%;width:${c[2]/14}%;height:${c[3]/9.33}%;font-size:${c[6]/14}cqw">${esc(c[4])}</span>`;}
 const byId=id=>TRACES.find(t=>t.id===id);
 const order=FAMILLES.flatMap(f=>TRACES.filter(t=>t.f===f.id));
 const htmlOf=t=>edits[t.id]!=null?edits[t.id]:(t.html||'');
@@ -747,13 +764,13 @@ const PERIODE_CEINTURE={G1:1,G2:1,G3:2,G4:2,G5:3,G6:3,G7:4,H1:1,H2:3,H3:3,H4:4,H
 /* PROVISOIRE : toutes les leçons interactives (cartes mentales) sont ouvertes, quelle que soit la période.
    Pour remettre le blocage par période, passer TOUTES_LES_CARTES à false. */
 const TOUTES_LES_CARTES=true;
-const ouverte=t=>(TOUTES_LES_CARTES&&!!t.lesson)||(PERIODE_CEINTURE[t.id]||1)<=PERIODE_EN_COURS;
+const ouverte=t=>(TOUTES_LES_CARTES&&!!t.lesson)||(PERIODE_CEINTURE[t.id]||PERIODE_CEINTURE[code(t)]||1)<=PERIODE_EN_COURS;
 const visibleTrace=t=>hasTrace(t)&&ouverte(t);
 
 function belt(t){
   const bg=t.ceinture?BELT[t.ceinture]:'#fff';
   const dark=['Bleue','Violette','Marron','Verte'].includes(t.ceinture);
-  return `<span class="belt" style="background:${bg};${dark?'color:#fff;':''}" title="${t.ceinture?'Ceinture '+esc(t.ceinture):''}">${esc(t.id)}</span>`;
+  return `<span class="belt" style="background:${bg};${dark?'color:#fff;':''}" title="${t.ceinture?'Ceinture '+esc(t.ceinture):''}">${esc(code(t))}</span>`;
 }
 function renderConj(root){
   root.querySelectorAll('.conj[data-verbs]').forEach(el=>{
@@ -802,7 +819,7 @@ function renderToc(){
 
 /* ---------- Page d'une trace ---------- */
 function traceSheet(t,withNav){
-  if(t.lesson){const f=fam(t.f);return `<div class="sheet" style="--fam:${f.couleur}"><div class="head">${belt(t)}<div><h2>${esc(t.titre)}</h2><div class="meta">${esc(f.nom)} — ceinture ${esc(t.id)}</div></div></div><img class="print-map" src="${IMG[t.id].carte}" alt="Carte mentale ${esc(t.id)}">${t.html?`<div class="body">${t.html}</div>`:''}</div>`;}
+  if(t.lesson){const f=fam(t.f);return `<div class="sheet" style="--fam:${f.couleur}"><div class="head">${belt(t)}<div><h2>${esc(t.titre)}</h2><div class="meta">${esc(f.nom)} — ceinture ${esc(code(t))} — ${esc(t.niveau||'CM1')}</div></div></div><div class="mapw"><img class="print-map" src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))}">${chipCM2(t)}</div>${t.html?`<div class="body">${t.html}</div>`:''}</div>`;}
   const f=fam(t.f), seq=order.filter(x=>visibleTrace(x)||x===t), i=seq.indexOf(t), prev=seq[i-1], next=seq[i+1];
   const content=htmlOf(t);
   return `<div class="sheet" style="--fam:${f.couleur}">
@@ -886,7 +903,7 @@ function insertBox(body,kind){
 
 function renderAll(){
   document.title='Traces écrites — toutes les ceintures';
-  const list=order.filter(hasTrace);
+  const list=order.filter(t=>hasTrace(t)&&niveauDe(t)===niveauChoisi());
   main.innerHTML=`<div class="sheet no-print" style="min-height:0"><div class="crumbs"><a href="#">Sommaire</a></div><p>${list.length} traces prêtes à imprimer, une par page. Les traces à venir ne sont pas imprimées.</p></div>`+list.map(t=>traceSheet(t,false)).join('');
   renderConj(main);
 }
@@ -906,7 +923,7 @@ function setEditing(on){
   editing=on;document.body.classList.toggle('editing',on);
   const b=$('#editBtn');b.classList.toggle('on',on);b.textContent=on?'Terminer':'Modifier';b.setAttribute('aria-pressed',on);
   const body=main.querySelector('.sheet .body');
-  const cur=byId((location.hash.match(/^#t=([A-Z]\d)/)||[])[1]);
+  const cur=byId((location.hash.match(/^#t=([A-Z]\d+(?:-CM2)?)/)||[])[1]);
   if(on&&cur&&cur.lesson){toast('Les leçons interactives ne se modifient pas ici.');}
   if(!location.hash.startsWith('#t=')) render();
   if(location.hash.startsWith('#t=')&&body){ if(on) body.setAttribute('contenteditable','true'); else {body.removeAttribute('contenteditable');render();} }

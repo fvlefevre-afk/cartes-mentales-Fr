@@ -21,6 +21,17 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **Cahier « conjugaison 2026 – A REFAIRE »** : la partie CM1 a été remise à jour (C1 à C5 et C8).
   Les parties CE2 et CM2 n'ont pas été touchées. Faut-il aussi les revoir ?
 
+## CM2 (voir `programmes/ecarts-CM1-CM2.md`)
+
+- [ ] **Refaire les leçons CM2 selon le cahier de progrès (parcours C)** : nouvelles leçons (G2, C1 à C5, H9, V2, V4,
+  V5, V7, V8) et écrans à ajouter aux autres. Par quoi commencer ?
+- [ ] **Numéros et couleurs CM2** : suivre ceux du cahier CM2 (ex. C2 = accord du participe passé), même s'ils
+  diffèrent du CM1 ?
+- [ ] **C8 et H8 en CM2** : absents du cahier CM2. Les retirer ou les garder ?
+- [ ] **Notions du programme CM2 sans ceinture** : conjonctions de subordination, accord du participe passé avec le COD,
+  forme négative aux temps composés.
+- [ ] **Orthographe en CM2** : garder O1 à O6 en révision, ou créer des ceintures CM2 ?
+
 ## Réglages du site
 
 - [ ] **Blocage par période** : toutes les leçons sont ouvertes provisoirement (`TOUTES_LES_CARTES=true`).

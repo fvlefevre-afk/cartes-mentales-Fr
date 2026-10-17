@@ -25,6 +25,10 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   (variable `ENSEIGNANT` dans le bloc PÉRIODES), sans rien enregistrer ni changer pour les élèves.
 - Sommaire par classe : boutons CE2 / CM1 / CM2 (adresse `#niveau=CE2`…). Une leçon sans champ `niveau`
   est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
+- CM2 : pour l'instant, chaque leçon CM2 est une copie de la leçon CM1 du même numéro (liste `CM2_COPIE`),
+  avec sa propre progression ; l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`).
+  Pour une vraie leçon CM2 : entrée `id:'XX-CM2', code:'XX', niveau:'CM2'` dans TRACES (+ LESSONS, PLUS, IMG) ;
+  elle remplace alors la copie. Écarts CM1 → CM2 : `programmes/ecarts-CM1-CM2.md`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils
