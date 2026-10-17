@@ -21,10 +21,6 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **Cahier « conjugaison 2026 – A REFAIRE »** : la partie CM1 a été remise à jour (C1 à C5 et C8).
   Les parties CE2 et CM2 n'ont pas été touchées. Faut-il aussi les revoir ?
 
-## CM2 / CE2
-
-- [ ] **CE2** : faire de même (mêmes numéros que le CM1, notions plus simples) ?
-
 ## Réglages du site
 
 - [ ] **Blocage par période** : toutes les leçons sont ouvertes provisoirement (`TOUTES_LES_CARTES=true`).

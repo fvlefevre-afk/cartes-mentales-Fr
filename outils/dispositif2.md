@@ -104,6 +104,22 @@ Les ceintures O1 à O6 existent aussi en CM2, avec le même numéro, la même co
 
 Le programme 2025 garde en CM2 le même objectif qu’en CM1 : écrire correctement les mots fréquents en s’appuyant sur les régularités et la formation des mots. Cahier de progrès : parcours C de la fiche « O - cahier de progrès ».
 
+# 9. En CE2 : les mêmes ceintures, en plus simple
+
+Les ceintures O1 à O6 existent aussi au CE2, avec le même numéro, la même couleur et la même notion, avec des mots plus simples. L’observation et la trace écrite sont communes ; un encadré « Au CE2, je retiens » complète la carte mentale. Test : 6 items sur le contenu CE2, réussite 6/6.
+
+| N° | Couleur | Au CE2 |
+|---|---|---|
+| O1 | Blanche | m devant m, b, p |
+| O2 | Rose | Lettres finales muettes : la famille m’aide (beau → beauté) |
+| O3 | Jaune | Le son [s] : s, ss, c, ç |
+| O4 | Orange | Le son [k] : c, qu, k |
+| O5 | Verte | Le son [g] : g, gu, ge |
+| O6 | Bleue | ill ; oi (sans y ni oy) |
+| O7 | Violette | CE2 seulement : les sons [o] (o, au, eau), [é] (é, er, ez), [è] (è, ê, ai, ei) et les accents |
+
+O7 répond au programme du cycle 2 (CE2), qui demande de transcrire les sons qui s’écrivent de plusieurs façons (/o/, /é/, /è/, /an/, /s/) et de tenir compte des accents. Cahier de progrès : parcours A de la fiche « O - cahier de progrès ».
+
 # Points à trancher
 
 - **Créneau** : l'ancienne version ne prévoyait pas de créneau dédié. Le parcours à ceintures demande 30 min pour l'entraînement collectif et 15 min par fiche : à placer, par exemple, à côté de la dictée hebdomadaire.

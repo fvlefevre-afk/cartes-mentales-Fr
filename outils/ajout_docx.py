@@ -56,10 +56,13 @@ for n, a in re.findall(r'<w:num w:numId="(\d+)"[^>]*>\s*<w:abstractNumId w:val="
 end = doc.rfind('<w:sectPr')
 # ancienne version de la même partie : on la retire
 paras = [m for m in re.finditer(r'<w:p\b[^>]*>(?:(?!</w:p>).)*?<w:pStyle w:val="Heading1"/>.*?</w:p>', doc, re.S)]
-for m in paras:
+ins = end
+for k, m in enumerate(paras):
     if re.sub(r'<[^>]+>', '', m.group(0)).strip() == title:
-        doc = doc[:m.start()] + doc[end:]; end = m.start(); break
-doc = doc[:end] + build(md, bullet) + doc[end:]
+        # on retire la partie jusqu'au titre de niveau 1 suivant (ou la fin), puis on remet la nouvelle au même endroit
+        stop = paras[k + 1].start() if k + 1 < len(paras) else end
+        doc = doc[:m.start()] + doc[stop:]; ins = m.start(); break
+doc = doc[:ins] + build(md, bullet) + doc[ins:]
 open(p, 'w', encoding='utf-8').write(doc)
 out = doc_path + '.tmp'
 with zipfile.ZipFile(out, 'w') as z:

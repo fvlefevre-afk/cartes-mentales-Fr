@@ -32,6 +32,14 @@ Les leçons G1, G2, G3, H1, V1 et V2 ont été faites autrement, avant ces outil
 - C6 et C7 (CM2 seulement) : `python3 lecons/c6_c7_cm2.py` puis `python3 inserer.py C6-CM2 C7-CM2`.
 - Tester : `python3 tester.py G3-CM2`.
 
+## Les leçons CE2
+
+- Une leçon CE2 = la leçon CM1 sans certains écrans (`retirer` : numéros des écrans CM1, à partir de 0) + des écrans CE2.
+  Tout est dans `lecons/ce2_ajouts.py` (`lecon('G6', [encadré], [écrans retirés], E(...), titre='…')`).
+- `python3 lecons/ce2_ajouts.py` puis `python3 inserer_cm2.py CE2`.
+- C6, C7, O7 (CE2 seulement) : `python3 lecons/ce2_seulement.py` puis `python3 inserer.py C6-CE2 C7-CE2 O7-CE2`.
+- Vue d'ensemble des trois niveaux : `python3 vue_trois_niveaux.py` refait `programmes/ceintures-trois-niveaux.html`.
+
 ## Les marques dans les étapes animées
 
 `[sujet]` `(verbe)` `^déterminant^` `~adjectif~` `%surligné en jaune%` `#mot inconnu#` `|entouré|` `*apparition*`
@@ -48,7 +56,8 @@ Dans le texte d'un exercice, `[ ]`, `( )` et `< >` deviennent des mots à clique
 ## Les dispositifs
 
 - `python3 ajout_docx.py "<dispositif>.docx" dispositifs_cm2/G.md` ajoute (ou remplace) la partie « En CM2 » à la fin d'un dispositif,
-  avec les styles du document. Textes : `dispositifs_cm2/` (G, H, C, V, S = Structure des ceintures, D5, D6, D7, D7a, D7b, EDL = vue d'ensemble).
+  avec les styles du document. Textes : `dispositifs_cm2/` et `dispositifs_ce2/` (G, H, C, V, S = Structure des ceintures, D5, D6, D7, D7a, D7b, EDL = vue d'ensemble).
+- Les fiches du cahier de progrès : `python3 cahiers.py G H C V O 2026` remplit les parcours A (CE2), B (CM1) et C (CM2).
 
 ## Le dispositif 2 (orthographe)
 

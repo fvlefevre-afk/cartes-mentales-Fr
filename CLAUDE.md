@@ -19,7 +19,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Modèle pour une nouvelle leçon : G1 à G7, H1 à H8, V1 à V6, C1 à C8, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
   Chaque document a une partie « En CM2 » à la fin (pas de document séparé pour le CM2) ; textes dans
-  `outils/dispositifs_cm2/`, ajoutés avec `outils/ajout_docx.py`. Test CM2 : 3 items tronc commun + 3 items ajout CM2.
+  `outils/dispositifs_cm2/`, ajoutés avec `outils/ajout_docx.py`. Test CM2 : 3 items tronc commun + 3 items ajout CM2. Partie « En CE2 » aussi (`outils/dispositifs_ce2/`) ; test CE2 : 6 items CE2.
 - Ouverture par période : `PERIODE_FICHIER` (en haut du fichier) et `PERIODE_CEINTURE`.
 - PROVISOIRE : `TOUTES_LES_CARTES=true` ouvre toutes les leçons interactives à tout le monde, quelle que
   soit la période. Repasser à `false` pour remettre le blocage par période.
@@ -33,6 +33,11 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   Fabriqués par `outils/lecons/cm2_ajouts.py`, mis dans le site par `outils/inserer_cm2.py`. Liste : `CM2_COPIE` ;
   l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`). C6 (plus-que-parfait, rouge) et
   C7 (passé simple, violette) n'existent qu'en CM2 (`outils/lecons/c6_c7_cm2.py`). Détail : `programmes/ecarts-CM1-CM2.md`.
+- CE2 : mêmes numéros, mêmes couleurs, mêmes notions, en plus simple. Une leçon CE2 (id `XX-CE2`) = la leçon CM1
+  sans les écrans listés dans `retirer`, + les écrans de `CE2_PLUS` (étiquette « CE2 ») + un encadré « Au CE2, je retiens » ;
+  les zones de la carte sans écran sont masquées. Fabriqués par `outils/lecons/ce2_ajouts.py`, mis dans le site par
+  `outils/inserer_cm2.py CE2`. Pas de H7 au CE2. Ceintures CE2 seulement : C6 et C7 (verbes irréguliers, sortis de C1-C5),
+  O7 (sons « o », « é », « è » et accents) — `outils/lecons/ce2_seulement.py`. Vue d'ensemble : `programmes/ceintures-trois-niveaux.html`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils
@@ -49,6 +54,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Les paires ne se retrouvent qu'en H8 (transfert), une fois les deux côtés validés.
 - Mots ajoutés en CM2 : qu'elle (H2), sans (H3), donc (H4), dont (H5), quel/quelle (H6), s'en (H7) ;
   leurs jumeaux restent dans une autre ceinture. Vérifier avec `outils/jumeaux.py`.
+- Au CE2 : un seul mot par ceinture (H1 avoir/être, H2 on, H3 à, H4 et, H5 c'est, H6 son), jamais son jumeau ;
+  H8 reprend les paires a/à, ont/on, est/et, sont/son.
 
 ## Orthographe (Dispositif 2 — version à ceintures)
 

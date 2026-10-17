@@ -74,3 +74,10 @@ Les 8 ceintures de l'ancien parcours C sont toutes reprises dans ces 6 ceintures
 | O4 | ch, cc |
 | O5 | verbes en -guer |
 | O6 | -eil / -eille, -ueil |
+
+## Et le CE2
+
+Même principe pour le CE2 (décision du 17 octobre 2026), d'après le programme du cycle 2 : même numéro, même couleur, même notion, en plus simple. Tableau complet des trois niveaux : `ceintures-trois-niveaux.html`.
+- Pas de H7 au CE2 ; un seul mot par ceinture d'homophones.
+- C1 à C5 au CE2 : être, avoir, 1er groupe. Les verbes irréguliers ont deux ceintures CE2 : C6 (présent) et C7 (futur, imparfait, passé composé).
+- O7 (CE2 seulement) : les sons « o », « é », « è » et les accents.
