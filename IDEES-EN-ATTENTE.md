@@ -12,6 +12,15 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **G7 – écran « Avec avoir, c'est différent »** : ajouté pour éviter que les élèves accordent partout.
   Le garder, ou le réserver à C4 (passé composé avec avoir) ?
 
+## Orthographe (Dispositif 2, nouvelle version à ceintures)
+
+- [ ] **Créneau** : où placer les 30 min d'entraînement collectif et les fiches (par exemple à côté de la dictée) ?
+- [ ] **Ceinture O7 (Marron)** : ajouter une ceinture de transfert en dictée, comme H8 et C8 ?
+- [ ] **Jeux du pack sans ceinture** : noms en [e] / [té] (Ortho Mémo), mots en ac / af / ap (Les tournesols) :
+  les laisser hors ceintures, ou en faire des ceintures ?
+- [ ] **Cahier « conjugaison 2026 – A REFAIRE »** : la partie CM1 a été remise à jour (C1 à C5 et C8).
+  Les parties CE2 et CM2 n'ont pas été touchées. Faut-il aussi les revoir ?
+
 ## Réglages du site
 
 - [ ] **Blocage par période** : toutes les leçons sont ouvertes provisoirement (`TOUTES_LES_CARTES=true`).

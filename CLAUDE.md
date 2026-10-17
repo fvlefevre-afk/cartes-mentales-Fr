@@ -16,7 +16,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.
 - Une leçon interactive = une entrée dans `TRACES` (avec `lesson:true`), une entrée dans `LESSONS`
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG`.
-- Modèle pour une nouvelle leçon : G1 à G7, H1 à H8, V1 à V6, C1 à C8 (carte mentale 1400×933 px, zones cliquables numérotées).
+- Modèle pour une nouvelle leçon : G1 à G7, H1 à H8, V1 à V6, C1 à C8, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
 - Ouverture par période : `PERIODE_FICHIER` (en haut du fichier) et `PERIODE_CEINTURE`.
 - PROVISOIRE : `TOUTES_LES_CARTES=true` ouvre toutes les leçons interactives à tout le monde, quelle que
@@ -32,3 +32,11 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Chaque mot s'ancre dans sa classe grammaticale et se prouve par une manipulation (« Je prouve »),
   jamais par un « truc » appris par cœur.
 - Les paires ne se retrouvent qu'en H8 (transfert), une fois les deux côtés validés.
+
+## Orthographe (Dispositif 2 — version à ceintures)
+
+- Rubrique « Orthographe » du site : ceintures O1 à O6, avec test de validation comme les autres dispositifs.
+- Code couleur : %…% surligne en jaune les lettres étudiées, |…| entoure la lettre qui décide (celle qui suit).
+- Les exercices complètent le mot avec `fill:'hl'` (la lettre choisie apparaît surlignée, collée au mot).
+- Pas de termes savants pour les élèves (« le son », « la lettre », « devant », « un mot de la même famille »).
+- Cahier de progrès : `Cahier de progrès cm1/O - cahier de progrès.odt` (CM1 = parcours B dans les cahiers).
