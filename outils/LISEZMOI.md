@@ -48,7 +48,7 @@ Dans le texte d'un exercice, `[ ]`, `( )` et `< >` deviennent des mots à clique
 ## Les dispositifs
 
 - `python3 ajout_docx.py "<dispositif>.docx" dispositifs_cm2/G.md` ajoute (ou remplace) la partie « En CM2 » à la fin d'un dispositif,
-  avec les styles du document. Textes : `dispositifs_cm2/` (G, H, C, V, S = Structure des ceintures).
+  avec les styles du document. Textes : `dispositifs_cm2/` (G, H, C, V, S = Structure des ceintures, D5, D6, D7, D7a, D7b, EDL = vue d'ensemble).
 
 ## Le dispositif 2 (orthographe)
 

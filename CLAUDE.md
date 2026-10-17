@@ -18,6 +18,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG`.
 - Modèle pour une nouvelle leçon : G1 à G7, H1 à H8, V1 à V6, C1 à C8, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
+  Chaque document a une partie « En CM2 » à la fin (pas de document séparé pour le CM2) ; textes dans
+  `outils/dispositifs_cm2/`, ajoutés avec `outils/ajout_docx.py`. Test CM2 : 3 items tronc commun + 3 items ajout CM2.
 - Ouverture par période : `PERIODE_FICHIER` (en haut du fichier) et `PERIODE_CEINTURE`.
 - PROVISOIRE : `TOUTES_LES_CARTES=true` ouvre toutes les leçons interactives à tout le monde, quelle que
   soit la période. Repasser à `false` pour remettre le blocage par période.

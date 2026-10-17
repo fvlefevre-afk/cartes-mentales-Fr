@@ -21,12 +21,8 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **Cahier « conjugaison 2026 – A REFAIRE »** : la partie CM1 a été remise à jour (C1 à C5 et C8).
   Les parties CE2 et CM2 n'ont pas été touchées. Faut-il aussi les revoir ?
 
-## CM2 (voir `programmes/ecarts-CM1-CM2.md`)
+## CM2 / CE2
 
-- [ ] **Test CM2** : proposition écrite dans les dispositifs : 3 items sur le tronc commun + 3 items sur l'ajout CM2. D'accord ?
-- [ ] **donc (H4) et dont (H5)** sont tous deux en période 4 : garder, ou décaler H5 ?
-- [ ] **Documents triple niveau** « Structure des ceintures — CE2-CM1-CM2 » et « Dispositif 3 — CE2-CM1-CM2 » :
-  cités dans les dispositifs mais absents du dépôt. Les ajouter pour que je mette à jour leur partie CM2 ?
 - [ ] **CE2** : faire de même (mêmes numéros que le CM1, notions plus simples) ?
 
 ## Réglages du site

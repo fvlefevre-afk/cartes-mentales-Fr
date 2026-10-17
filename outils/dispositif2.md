@@ -91,7 +91,7 @@ Corrigé sur une page séparée, sans consigne d'autocorrection. Aucun mot rép�
 
 # 8. En CM2 : les mêmes ceintures, approfondies
 
-Les ceintures O1 à O6 existent aussi en CM2, avec le même numéro, la même couleur et la même notion. L’observation et la trace écrite sont communes ; le CM2 ajoute un écran et des exercices, avec des mots plus difficiles, et passe son propre test (parcours inchangé, réussite 6/6). La carte mentale est complétée par un encadré « En CM2, j’apprends aussi ».
+Les ceintures O1 à O6 existent aussi en CM2, avec le même numéro, la même couleur et la même notion. L’observation et la trace écrite sont communes ; le CM2 ajoute un écran et des exercices, avec des mots plus difficiles, et passe son propre test (parcours inchangé, réussite 6/6 ; chaque version compte 3 items sur le tronc commun et 3 items sur l’ajout CM2). La carte mentale est complétée par un encadré « En CM2, j’apprends aussi ».
 
 | N° | Couleur | Tronc commun (CM1) | En plus en CM2 |
 |---|---|---|---|
