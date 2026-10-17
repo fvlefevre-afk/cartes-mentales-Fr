@@ -7,6 +7,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Toujours travailler directement sur la branche `main`.
 - Ne jamais créer de branche ni de pull request : faire les commits sur `main` et les pousser directement.
 - Répondre en français à l'enseignante, avec des mots simples (pas de jargon technique).
+- Noter dans `IDEES-EN-ATTENTE.md` les propositions restées sans réponse, et retirer celles qui sont tranchées.
 
 ## Le site
 
