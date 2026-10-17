@@ -34,7 +34,8 @@ Les leçons G1, G2, G3, H1, V1 et V2 ont été faites autrement, avant ces outil
 
 ## Les leçons CE2
 
-- Une leçon CE2 = la leçon CM1 sans certains écrans (`retirer` : numéros des écrans CM1, à partir de 0) + des écrans CE2.
+- Une leçon CE2 = la leçon CM1 sans certains écrans (`retirer` : numéros des écrans CM1 au 17/10/2026, voir `lecons/titres_cm1_ref.json`,
+  ou directement les titres des écrans ; le site compare les titres, donc ajouter un écran au CM1 ne décale rien) + des écrans CE2.
   Tout est dans `lecons/ce2_ajouts.py` (`lecon('G6', [encadré], [écrans retirés], E(...), titre='…')`).
 - `python3 lecons/ce2_ajouts.py` puis `python3 inserer_cm2.py CE2`.
 - C6, C7, O7 (CE2 seulement) : `python3 lecons/ce2_seulement.py` puis `python3 inserer.py C6-CE2 C7-CE2 O7-CE2`.

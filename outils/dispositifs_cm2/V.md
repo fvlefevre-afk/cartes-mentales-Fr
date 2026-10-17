@@ -13,6 +13,6 @@ Depuis octobre 2026, chaque ceinture CM2 porte le même numéro, la même couleu
 | V3 | Jaune | Préfixes et suffixes fréquents | Racines latines et grecques ; classement des préfixes et suffixes par sens |
 | V4 | Orange | Familles de mots | Mots simples, dérivés et composés |
 | V5 | Verte | Synonymes et contraires | Le champ lexical |
-| V6 | Bleue | Les homonymes | La polysémie : un mot, plusieurs sens |
+| V6 | Bleue | Les homonymes ; un mot, plusieurs sens | La polysémie : le mot et la notion, d’une discipline à l’autre |
 
 L’ancien cahier CM2 comptait 8 ceintures : leurs contenus sont tous repris ci-dessus (dérivation et mots composés en V4, classement par sens en V3, dictionnaire en V2, champ lexical en V5, polysémie en V6). Programme 2025 (CM2) couvert : utiliser des dictionnaires, contexte et morphologie, polysémie, relations morphologiques et sémantiques.

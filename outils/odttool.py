@@ -56,7 +56,7 @@ def set_table(s, tname, rows, extra=None):
         cs[0] = f'{open_tag}<text:p text:style-name="{cst}">{esc(r[4] if len(r) > 4 else color)}</text:p></table:table-cell>'
         open_tag = re.match(r'<table:table-cell[^>]*>', cs[1]).group(0)
         pst = re.search(r"<text:(?:p|h) text:style-name=\"([^\"]+)\"", cs[1]).group(1)
-        inner = (f'<text:span text:style-name="TClaudeB">{esc(code)}</text:span><text:span text:style-name="TClaudeN"> - {esc(text)}</text:span>' if code else '')
+        inner = (f'<text:span text:style-name="TClaudeB">{esc(code)}</text:span><text:span text:style-name="TClaudeN"> - {esc(text)}</text:span>' if code else (f'<text:span text:style-name="TClaudeN">{esc(text)}</text:span>' if text else ''))
         cs[1] = f'{open_tag}<text:p text:style-name="{pst}">{inner}</text:p></table:table-cell>'
         if extra is not None and len(r) > 3 and r[3] is not None:
             i = extra

@@ -8,12 +8,12 @@ Depuis octobre 2026, chaque ceinture CE2 porte le même numéro, la même couleu
 
 | N° | Couleur | Au CE2 | Ce que le CM1 ajoute | Période |
 |---|---|---|---|---|
-| G1 | Blanche | Sujet et verbe ; « qui est-ce qui ? » ; remplacer le sujet par un pronom | Sujet composé, sujet après le verbe, verbes d’état | P1 |
+| G1 | Blanche | Sujet et verbe ; « qui est-ce qui ? » ; remplacer le sujet par un pronom | Sujet composé, sujet après le verbe, verbes d’état ; encadrement « c’est… qui » | P1 |
 | G2 | Rose | 3 types de phrase ; formes négative et exclamative ; ponctuation ; guillemets du dialogue | 3 façons d’interroger ; ne… jamais, ne… plus ; élision | P1 |
 | G3 | Jaune | Groupe nominal ; accords en genre et en nombre ; pluriels en -x et -aux ; féminins qui s’entendent | — | P2 |
-| G4 | Orange | Nom commun et nom propre, déterminant, adjectif, verbe, pronom sujet, adverbe ; variable ou invariable | Possessifs et démonstratifs, pronoms compléments, conjonctions ; verbe ou nom | P2 |
+| G4 | Orange | Nom commun et nom propre, déterminant, adjectif, verbe, pronom sujet, adverbe ; variable ou invariable | Possessifs et démonstratifs, pronoms compléments, conjonctions ; nature et fonction ; verbe ou nom | P2 |
 | G5 | Verte | Accord sujet-verbe dans les cas simples | Sujet loin du verbe ou après ; 2e groupe | P3 |
-| G6 | Bleue | Groupe sujet et groupe verbal ; déplacer, supprimer, ajouter, remplacer | COD, COI, compléments circonstanciels | P3 |
+| G6 | Bleue | Groupe sujet et groupe verbal ; déplacer, supprimer, ajouter, remplacer | COD, COI ; compléments circonstanciels repérés sans les classer | P3 |
 | G7 | Violette | Chaîne des accords : groupe nominal et sujet-verbe | Participe passé avec être | P4 |
 
 Programme du cycle 2 (CE2) couvert : phrase simple (groupe sujet, verbe, compléments sans les distinguer), types et formes, classes de mots dont le nom propre et l’adverbe, ponctuation et discours rapporté, accords dans le groupe nominal (-x, -al/-aux, féminins qui s’entendent), relation sujet-verbe. Les compléments circonstanciels sont réservés au cycle 3 : la version CE2 de G6 ne les nomme pas.

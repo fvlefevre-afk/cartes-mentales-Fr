@@ -6,22 +6,22 @@ DARK = {'Bleue','Rouge','Violette','Marron','Verte'}
 # (code, couleur, période, CE2, CM1, CM2)  CE2 : texte, ou ('—', raison) si absent, ou ('?', texte) si à décider
 FAM = [
  ('G','Grammaire','#2456a6',[
-  ('G1','Blanche',1,'Sujet et verbe ; « qui est-ce qui ? » ; remplacer le sujet par il, elle, ils','Sujet composé, sujet après le verbe, verbes d’état','Sujet inversé, prouvé avec « c’est… qui »'),
+  ('G1','Blanche',1,'Sujet et verbe ; « qui est-ce qui ? » ; remplacer le sujet par il, elle, ils','Sujet composé, sujet après le verbe, verbes d’état ; encadrement « c’est… qui »','Sujet inversé, prouvé avec « c’est… qui »'),
   ('G2','Rose',1,'3 types de phrase ; formes négative et exclamative ; ponctuation . ! ? ; guillemets du dialogue','3 façons d’interroger ; ne… jamais, ne… plus ; élision','Phrase simple ou complexe ; mots qui relient'),
   ('G3','Jaune',2,'Groupe nominal ; accords réguliers ; pluriels en -x, -al/-aux ; féminins qui s’entendent (lecteur → lectrice)','Nom noyau, adjectif ; féminins qui changent davantage','Complément du nom ; épithète ou attribut'),
-  ('G4','Orange',2,'Nom commun et propre, déterminant, adjectif, verbe, pronom sujet, adverbe (très, bien, -ment) ; variable ou invariable','Possessifs, démonstratifs, pronoms compléments, conjonctions de coordination ; verbe ou nom','Prépositions ; conjonctions de subordination ; le, la, les : déterminant ou pronom'),
+  ('G4','Orange',2,'Nom commun et propre, déterminant, adjectif, verbe, pronom sujet, adverbe (très, bien, -ment) ; variable ou invariable','Articles définis et indéfinis, possessifs, démonstratifs, pronoms compléments, conjonctions de coordination ; nature et fonction ; verbe ou nom','Prépositions ; conjonctions de subordination ; le, la, les : déterminant ou pronom ; pronoms compléments (me, te, lui, leur…)'),
   ('G5','Verte',3,'Accord sujet-verbe dans les cas simples','Sujet loin du verbe ou après ; petit mot devant le verbe ; 2e groupe','Sujet inversé dans les questions ; accord de l’attribut'),
-  ('G6','Bleue',3,'Groupe sujet et groupe verbal ; déplacer, supprimer, ajouter, remplacer (sans nommer les compléments)','COD et COI ; compléments circonstanciels ; tests','Préposition du COI ; compléments de temps, de lieu, de cause ; attribut ou complément'),
+  ('G6','Bleue',3,'Groupe sujet et groupe verbal ; déplacer, supprimer, ajouter, remplacer (sans nommer les compléments)','COD et COI ; compléments circonstanciels repérés sans les classer ; tests','Préposition du COI ; compléments de temps, de lieu, de cause ; attribut ou complément'),
   ('G7','Violette',4,'Chaîne des accords : groupe nominal et sujet-verbe','Participe passé avec être','Attribut du sujet dans la chaîne')]),
  ('H','Homophones','#b3261e',[
-  ('H1','Blanche',1,'ai, as, a, ont, es, est, sont','—','Verbe placé avant le sujet'),
-  ('H2','Rose',3,'on (je prouve : il)','là, où','qu’elle(s)'),
-  ('H3','Jaune',3,'à (il ne change pas)','ce, cet, cette, ces','sans'),
-  ('H4','Orange',4,'et (je prouve : et puis)','ou, mais','donc'),
-  ('H5','Verte',4,'c’est (je prouve : c’était) ; ce n’est pas','la','dont'),
-  ('H6','Bleue',5,'son (je prouve : mon)','ses, mes','quel(s), quelle(s)'),
-  ('H7','Violette',5,('—','pas en CE2'),'se ; s’est','s’en'),
-  ('H8','Marron',5,'Transfert des paires du CE2 : a/à, on/ont, et/est, son/sont','Transfert de toutes les paires du CM1','+ sans/s’en, donc/dont, quel/qu’elle')]),
+  ('H1','Blanche',1,('—','pas au CE2'),'ai, as, a, ont, es, est, sont','Verbe placé avant le sujet'),
+  ('H2','Rose',3,('—','pas au CE2'),'on ; là, où','qu’elle(s)'),
+  ('H3','Jaune',3,('—','pas au CE2'),'ce, cet, cette, ces ; à','sans'),
+  ('H4','Orange',4,('—','pas au CE2'),'et, ou, mais','donc'),
+  ('H5','Verte',4,('—','pas au CE2'),'la ; c’est','dont'),
+  ('H6','Bleue',5,('—','pas au CE2'),'son, ses, mes','quel(s), quelle(s)'),
+  ('H7','Violette',5,('—','pas au CE2'),'se ; s’est','s’en'),
+  ('H8','Marron',5,('—','pas au CE2'),'Transfert de toutes les paires','+ sans/s’en, donc/dont, quel/qu’elle')]),
  ('C','Conjugaison','#7b3fa0',[
   ('C1','Blanche',1,'Présent : être, avoir, 1er groupe ; radical, terminaison, infinitif','2e groupe, verbes irréguliers ; radicaux qui changent','Radicaux qui changent au 3e groupe'),
   ('C2','Jaune',2,'Futur : être, avoir, 1er groupe','2e groupe, verbes irréguliers','Marque du temps et marque de personne'),
@@ -37,7 +37,7 @@ FAM = [
   ('V3','Jaune',2,'Préfixes dé-, mal-, in-, re- et suffixes -eur, -ier, -ette','Plus de préfixes et de suffixes ; je comprends un mot','Racines latines et grecques ; classement par sens'),
   ('V4','Orange',2,'Familles de mots (port, portuaire, aéroport)','La famille m’aide à écrire','Mots simples, dérivés, composés'),
   ('V5','Verte',3,'Synonymes, contraires, degrés de sens (crainte, peur, épouvante) ; niveaux de langue','Même classe de mots ; préfixe pour le contraire','Champ lexical'),
-  ('V6','Bleue',3,'Sens propre et sens figuré (souffler ses bougies, souffler une réponse)','Homonymes','Polysémie')]),
+  ('V6','Bleue',3,'Sens propre et sens figuré (souffler ses bougies, souffler une réponse)','Homonymes ; un mot, plusieurs sens','La polysémie, d’une discipline à l’autre')]),
  ('O','Orthographe','#1e8a5a',[
   ('O1','Blanche',1,'m devant m, b, p (mots simples)','m devant m, b, p','Préfixes em-, im-'),
   ('O2','Rose',2,'Lettres muettes : la famille m’aide (beau → beauté)','Lettres muettes, le féminin m’aide','Familles moins évidentes'),
@@ -134,8 +134,8 @@ td.decider {{ background:var(--amber); color:var(--ink); }}
 <div class="legende"><span><i style="background:var(--ce2)"></i>CE2 : la version la plus simple</span><span><i style="background:var(--cm1)"></i>CM1 : ce qu’il ajoute au CE2</span><span><i style="background:var(--cm2)"></i>CM2 : ce qu’il ajoute au CM1</span></div>
 </header>
 <div class="bilan">
-<div><b>32</b><span>ceintures communes aux trois classes</span></div>
-<div><b>1</b><span>commune au CM1 et au CM2 seulement (H7)</span></div>
+<div><b>25</b><span>ceintures communes aux trois classes</span></div>
+<div><b>8</b><span>communes au CM1 et au CM2 seulement : les homophones H1 à H8 (hors programme du CE2)</span></div>
 <div><b>3</b><span>propres au CE2 : C6, C7 (verbes irréguliers) et O7 (sons et accents)</span></div>
 <div><b>2</b><span>propres au CM2 : C6 (plus-que-parfait) et C7 (passé simple)</span></div>
 </div>
@@ -146,7 +146,7 @@ td.decider {{ background:var(--amber); color:var(--ink); }}
 <ol>
 <li><b>C6 et C7</b> n’ont pas le même contenu au CE2 et au CM2 : ce sont les deux seules ceintures où les niveaux se séparent. C7 garde un fil commun, « les verbes irréguliers ».</li>
 <li><b>Au CE2</b>, les verbes irréguliers s’écrivent avec le tableau de conjugaison affiché jusqu’aux ceintures C6 et C7.</li>
-<li><b>Homophones au CE2</b> : un seul mot par ceinture, jamais son jumeau ; les paires se retrouvent en H8.</li>
+<li><b>Homophones</b> : pas de ceinture au CE2, car le programme du cycle 2 ne les prévoit pas ; ils commencent au CM1.</li>
 <li><b>Tests</b> : 6/6 ; au CE2, 6 items sur le contenu CE2 ; au CM2, 3 items communs + 3 items CM2.</li>
 </ol>
 </aside>

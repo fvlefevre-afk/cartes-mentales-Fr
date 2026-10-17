@@ -36,7 +36,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - CE2 : mêmes numéros, mêmes couleurs, mêmes notions, en plus simple. Une leçon CE2 (id `XX-CE2`) = la leçon CM1
   sans les écrans listés dans `retirer`, + les écrans de `CE2_PLUS` (étiquette « CE2 ») + un encadré « Au CE2, je retiens » ;
   les zones de la carte sans écran sont masquées. Fabriqués par `outils/lecons/ce2_ajouts.py`, mis dans le site par
-  `outils/inserer_cm2.py CE2`. Pas de H7 au CE2. Ceintures CE2 seulement : C6 et C7 (verbes irréguliers, sortis de C1-C5),
+  `outils/inserer_cm2.py CE2`. Pas d'homophones au CE2. `retirer` : numéros d'écrans CM1 au 17/10/2026
+  (`outils/lecons/titres_cm1_ref.json`) ou titres d'écrans ; le site compare les titres. Ceintures CE2 seulement : C6 et C7 (verbes irréguliers, sortis de C1-C5),
   O7 (sons « o », « é », « è » et accents) — `outils/lecons/ce2_seulement.py`. Vue d'ensemble : `programmes/ceintures-trois-niveaux.html`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
@@ -54,8 +55,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Les paires ne se retrouvent qu'en H8 (transfert), une fois les deux côtés validés.
 - Mots ajoutés en CM2 : qu'elle (H2), sans (H3), donc (H4), dont (H5), quel/quelle (H6), s'en (H7) ;
   leurs jumeaux restent dans une autre ceinture. Vérifier avec `outils/jumeaux.py`.
-- Au CE2 : un seul mot par ceinture (H1 avoir/être, H2 on, H3 à, H4 et, H5 c'est, H6 son), jamais son jumeau ;
-  H8 reprend les paires a/à, ont/on, est/et, sont/son.
+- Pas de ceintures d'homophones au CE2 (hors programme du cycle 2, décision d'octobre 2026) : elles commencent au CM1.
 
 ## Orthographe (Dispositif 2 — version à ceintures)
 

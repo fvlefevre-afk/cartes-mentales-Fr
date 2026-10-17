@@ -18,4 +18,3 @@ Au CE2, l’écrit long est un texte d’une dizaine de lignes, préparé au bro
 
 - Grammaire : phrases déclaratives, interrogatives, impératives ; guillemets du dialogue (G2) ; accords dans le groupe nominal et sujet-verbe (G3, G5, G7).
 - Conjugaison : récit au présent, au futur, à l’imparfait ou au passé composé ; les verbes irréguliers avec le tableau affiché jusqu’à C6 et C7.
-- Homophones : a / à, ont / on, est / et, sont / son en relecture une fois H8 validée.

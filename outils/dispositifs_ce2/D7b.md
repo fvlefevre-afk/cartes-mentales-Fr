@@ -9,5 +9,4 @@ Les gammes d’écriture gardent leur format (une à cinq phrases, une contraint
 | Réécrire une phrase au pluriel | G3, G5, G7 |
 | Enrichir une phrase en ajoutant des mots | G6 |
 | Réécrire une phrase au passé composé ou au futur | C2, C4 |
-| Décrire un objet avec « c’est » | H5 |
 | Employer un mot au sens propre et au sens figuré | V6 |

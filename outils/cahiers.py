@@ -32,5 +32,6 @@ for fam in args:
             def fn(s, fam=fam):
                 s = set_table(s, table_after(s, 'Parcours B'), DATA[fam])
                 if fam in DATA_CE2: s = set_table(s, table_after(s, 'Parcours A'), DATA_CE2[fam])
+                elif fam == 'H': s = set_table(s, table_after(s, 'Parcours A'), [('blanche', '', 'Pas de ceinture d’homophones au CE2 : le programme du cycle 2 ne les prévoit pas. Les homophones commencent au CM1.', None, '—')])
                 return set_table(s, table_after(s, 'Parcours C'), DATA_CM2[fam]) if fam in DATA_CM2 else s
             rewrite_odt(d + name, d + name, fn); print('maj', name)

@@ -1,4 +1,4 @@
-"""Leçons CE2 : la leçon CM1 du même numéro, sans les écrans trop difficiles (« retirer » : numéros des écrans CM1),
+"""Leçons CE2 : la leçon CM1 du même numéro, sans les écrans trop difficiles (« retirer » : numéros des écrans CM1 au 17/10/2026, ou titres),
 avec des écrans propres au CE2 (étiquette « CE2 », placés après le dernier écran de leur section)
 et un encadré « Au CE2, je retiens » sous la carte.
 Lancer :  python3 lecons/ce2_ajouts.py   puis   python3 inserer_cm2.py CE2"""
@@ -8,12 +8,16 @@ from lhelp import E, Q, C, SV, V
 
 OUT = {}
 H = 'hl'
+REF = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'titres_cm1_ref.json')))
 
 
 def lecon(lid, points, retirer=(), *ecrans, titre=None):
     ec = []
     for e in ecrans:
         e = dict(e); e['plus'] = e.pop('_plus'); e['ce2'] = True; ec.append(e)
+    # les numéros d'écrans renvoient à la leçon CM1 telle qu'elle était le 17 octobre 2026 (titres_cm1_ref.json) :
+    # on les change en titres, pour que l'ajout plus tard d'écrans au CM1 ne décale rien
+    retirer = [REF[lid][i] if isinstance(i, int) else i for i in retirer]
     html = ('<div class="cm2-box ce2"><h3>Au CE2, je retiens</h3><ul>'
             + ''.join(f'<li>{p}</li>' for p in points) + '</ul></div>')
     OUT[lid] = {'html': html, 'retirer': list(retirer), 'ecrans': ec}
@@ -22,7 +26,7 @@ def lecon(lid, points, retirer=(), *ecrans, titre=None):
 
 # =============================================================== GRAMMAIRE
 lecon('G1', ['Une phrase a un <b>sujet</b> et un <b>verbe</b>.', 'Je trouve le sujet avec <b>« qui est-ce qui ? »</b>.',
-             'Je peux remplacer le sujet par <b>il, elle, ils, elles</b>.'], [3, 7, 8])
+             'Je peux remplacer le sujet par <b>il, elle, ils, elles</b>.'], [3, 7, 8, 'J’encadre avec « c’est… qui »'])
 
 lecon('G2', ['3 types de phrase : <b>déclarative</b> (.), <b>interrogative</b> (?), <b>impérative</b>.',
              'Les formes <b>négative</b> (ne… pas) et <b>exclamative</b> (!).', 'Les <b>guillemets</b> montrent les paroles d’un personnage.'], [1, 5],
@@ -42,7 +46,7 @@ lecon('G3', ['Le groupe nominal : <b>déterminant + nom</b>, parfois un <b>adjec
              'Les féminins qui s’entendent : lecteur → lectrice, joyeux → joyeuse.'])
 
 lecon('G4', ['Les classes de mots : <b>nom</b> (commun ou propre), <b>déterminant</b>, <b>adjectif</b>, <b>verbe</b>, <b>pronom sujet</b>, <b>adverbe</b>.',
-             'Certains mots changent (variables), d’autres jamais (invariables) : très, bien, demain, doucement.'], [2, 3, 5, 7, 9, 10],
+             'Certains mots changent (variables), d’autres jamais (invariables) : très, bien, demain, doucement.'], [2, 3, 5, 7, 9, 10, 'Nature ou fonction ?'],
  E('gn', 'etiquette', 'Nom commun, nom propre', 'girl', 'Le nom propre désigne une personne ou un lieu précis ; il a une majuscule.',
    [('une |ville| · |Paris|', 'ville : nom commun ; Paris : nom propre.'),
     ('un |chien| · |Médor|', 'Le nom propre prend une majuscule.')],
@@ -87,79 +91,7 @@ lecon('G7', ['La chaîne des accords : le <b>groupe nominal</b> s’accorde, pui
    Q('Mes cousin joue.', ['Mes cousins jouent.', 'Mes cousins joue.', 'Mes cousin jouent.'], 'Le groupe nominal, puis le verbe.', 'Quelle est la bonne correction ?'),
    [Q('Les petite souris mange.', ['Les petites souris mangent.', 'Les petites souris mange.', 'Les petite souris mangent.'], 'Le groupe nominal, puis le verbe.', 'Quelle est la bonne correction ?')]))
 
-# =============================================================== HOMOPHONES (un seul mot par ceinture au CE2 ; jamais son jumeau)
-lecon('H1', ['Les verbes <b>avoir</b> (ai, as, a, ont) ; les verbes <b>être</b> (es, est, sont), au présent.', 'Je prouve avec « hier » : avait, était.'], [5])
-
-lecon('H2', ['<b>on</b> désigne quelqu’un, comme <b>il</b>. Je prouve : je remplace par « il ».'], [2, 3, 4, 5],
- E('on', 'coche', 'Je prouve : on → il', 'girl', 'Pour prouver « on », je le remplace par « il ».',
-   [('|On| joue dans la cour.', ''), ('|Il| joue dans la cour.', 'Je prouve : je remplace par « il ».')],
-   Q('', ['Je remplace par « il ».', 'Je remplace par « avec ».'], 'on désigne quelqu’un, comme il.', 'Comment je prouve « on » dans « On chante » ?'),
-   [Q('', ['On joue.', 'On jouent.'], 'on, comme il : le verbe au singulier.', 'Quelle phrase est bien écrite ?'),
-    Q('', ['On part demain.', 'On partent demain.'], 'on, comme il : le verbe au singulier.', 'Quelle phrase est bien écrite ?')]),
- E('on', 'loupe', 'Je repère on', 'boy', 'on désigne quelqu’un : une ou plusieurs personnes.',
-   [('|On| frappe à la porte.', 'on : quelqu’un frappe.'), ('Quelqu’un frappe à la porte.', 'on désigne une ou plusieurs personnes.')],
-   C('Le matin, <on> se lève tôt.', 'Clique sur « on ».', 'Il désigne quelqu’un.'),
-   [C('Ce soir, <on> mange des crêpes.', 'Clique sur « on ».', 'Il désigne quelqu’un.'),
-    C('Dans la cour, <on> joue au ballon.', 'Clique sur « on ».', 'Il désigne quelqu’un.')]), titre='on')
-
-lecon('H3', ['<b>à</b> est un petit mot qui ne change jamais, devant un lieu ou un moment : à l’école, à midi.'], [0, 1, 2, 5, 6],
- E('a', 'point', 'à devant un lieu, un moment', 'boy', 'à se place devant un lieu ou un moment.',
-   [('Je vais |à| l’école.', 'à devant un lieu.'), ('Je mange |à| midi.', 'à devant un moment.'), ('un moulin |à| vent', '')],
-   Q('Le film commence ___ huit heures.', ['à', 'dans', 'sous'], 'Un moment précis.', 'Complète.', fill='circ'),
-   [Q('Il habite ___ Marseille.', ['à', 'sur', 'sous'], 'Un lieu.', 'Complète.', fill='circ'),
-    Q('Nous rentrons ___ midi.', ['à', 'sous', 'dans'], 'Un moment précis.', 'Complète.', fill='circ')]),
- E('a', 'loupe', 'Je repère à', 'girl', 'à est un petit mot devant un lieu, un moment ou un moyen.',
-   [('Je vais |à| la piscine |à| vélo.', 'à : devant un lieu, devant un moyen.')],
-   C('Nous allons <à> la plage.', 'Clique sur « à ».', 'Le petit mot devant un lieu.'),
-   [C('Il rentre <à> midi.', 'Clique sur « à ».', 'Le petit mot devant un moment.'),
-    C('Je mange une glace <à> la fraise.', 'Clique sur « à ».', 'Le petit mot devant « la fraise ».')]), titre='à')
-
-lecon('H4', ['<b>et</b> relie deux mots ou deux idées. Je prouve : je peux dire <b>« et puis »</b>.'], [1, 2, 4, 5],
- E('et', 'wagon', 'Je prouve : et puis', 'girl', 'et ajoute : je peux le remplacer par « et puis ».',
-   [('du pain |et| du fromage', 'et ajoute.'), ('du pain |et puis| du fromage', 'Je prouve : je peux dire « et puis ».')],
-   Q('', ['et ajoute un mot ou une idée.', 'et montre un lieu.', 'et remplace le sujet.'], 'Pense à « et puis ».', 'À quoi sert « et » ?'),
-   [Q('Il fait beau ___ chaud.', ['et', 'à'], 'J’ajoute une idée : et puis.', 'Complète.', fill='circ'),
-    Q('J’ai un crayon ___ une gomme.', ['et', 'on'], 'J’ajoute un mot : et puis.', 'Complète.', fill='circ')]),
- E('et', 'loupe', 'Je repère et', 'boy', 'et relie deux mots ou deux idées.',
-   [('Léa |et| Tom jouent.', 'et relie deux noms.'), ('Il rit |et| il chante.', 'et relie deux idées.')],
-   C('Je prends un livre <et> un cahier.', 'Clique sur « et ».', 'Il relie deux mots.'),
-   [C('Le chat dort <et> le chien joue.', 'Clique sur « et ».', 'Il relie deux idées.'),
-    C('Il fait froid <et> il pleut.', 'Clique sur « et ».', 'Il relie deux idées.')]), titre='et')
-
-lecon('H5', ['<b>c’est</b> = cela est ; il s’écrit avec une apostrophe. Je prouve : <b>c’était</b>.', 'À la forme négative : <b>ce n’est pas</b>.'], [0, 1, 4, 5],
- E('cest', 'etiquette', 'J’écris c’est', 'girl', 'c’est s’écrit avec une apostrophe : c’ + est.',
-   [('|C’est| mon ami.', 'c’ + est : une apostrophe.'), ('|Cela est| mon ami.', 'c’est veut dire « cela est ».')],
-   Q('', ['C’est un chat.', 'Cest un chat.', 'C est un chat.'], 'N’oublie pas l’apostrophe.', 'Quelle phrase est bien écrite ?'),
-   [Q('', ['C’est l’heure.', 'Cest l’heure.', 'C est l’heure.'], 'N’oublie pas l’apostrophe.', 'Quelle phrase est bien écrite ?')]),
- E('mix', 'non', 'À la forme négative', 'boy', 'À l’écrit, la négation de « c’est » est « ce n’est pas ».',
-   [('|C’est| mon livre.', ''), ('|Ce n’est pas| mon livre.', 'À l’écrit : ce n’est pas.')],
-   Q('', ['Ce n’est pas ma trousse.', 'C’est pas ma trousse.'], 'À l’écrit, on garde « ne ».', 'Quelle phrase est bien écrite ?'),
-   [Q('', ['Ce n’est pas grave.', 'C’est pas grave.'], 'À l’écrit, on garde « ne ».', 'Quelle phrase est bien écrite ?')]), titre='c’est')
-
-lecon('H6', ['<b>son</b> est un déterminant : à lui, à elle. Je prouve : <b>mon</b> ; au pluriel, <b>ses</b>.'], [1, 2, 3, 4, 5],
- E('son', 'remplacer', 'Je prouve : mon, ses', 'girl', 'son est devant un nom : je peux dire « mon », ou « ses » au pluriel.',
-   [('|son| vélo', 'son, devant un nom : à lui, à elle.'), ('|mon| vélo', 'Je prouve : je remplace par « mon ».'), ('|ses| vélos', 'Au pluriel : ses.')],
-   Q('Léo range ___ cartable.', ['son', 'ses'], 'Un seul cartable.', 'Complète.', fill='circ'),
-   [Q('Léa promène ___ chien.', ['son', 'ses'], 'Un seul chien.', 'Complète.', fill='circ'),
-    Q('Il range ___ jouets.', ['ses', 'son'], 'Plusieurs jouets.', 'Complète.', fill='circ')]),
- E('acc', 'loupe', 'Je repère son', 'boy', 'son est un déterminant : il est devant un nom.',
-   [('Tom range |son| sac.', 'son : devant un nom, à lui.'), ('Léa range |son| sac.', 'À elle aussi : son.')],
-   C('Le chien mange <son> os.', 'Clique sur « son ».', 'Le déterminant devant « os ».'),
-   [C('Ma voisine arrose <son> jardin.', 'Clique sur « son ».', 'Le déterminant devant « jardin ».'),
-    C('Le roi pose <son> épée.', 'Clique sur « son ».', 'Le déterminant devant « épée ».')]), titre='son')
-
-lecon('H8', ['Les paires du CE2 : <b>a / à</b>, <b>ont / on</b>, <b>est / et</b>, <b>sont / son</b>. Pour chaque mot, je fais la preuve.'], [0, 1, 2, 3, 5],
- E('verbes', 'liste', 'Les quatre paires du CE2', 'boy', 'Pour chaque mot, je fais la preuve.',
-   [('|a| ou |à|', 'a → avait ; à ne change pas.'), ('|ont| ou |on|', 'ont → avaient ; on → il.'),
-    ('|est| ou |et|', 'est → était ; et → et puis.'), ('|sont| ou |son|', 'sont → étaient ; son → mon.')],
-   Q('Léa ___ un chat.', ['a', 'à'], 'Je prouve : « avait ».', 'Complète.', fill='circ'),
-   [Q('___ joue dehors.', ['On', 'Ont'], 'Je prouve : « il ».', 'Complète.', fill='circ'),
-    Q('Le ciel est bleu ___ le soleil brille.', ['et', 'est'], 'Je prouve : « et puis ».', 'Complète.', fill='circ'),
-    Q('Mes amis ___ contents.', ['sont', 'son'], 'Je prouve : « étaient ».', 'Complète.', fill='circ')]),
- E('relire', 'coche', 'Je corrige une phrase', 'girl', 'Je repère les mots qui se prononcent pareil, puis je fais la preuve.',
-   [('Léo à faim et il et fatigué.', 'Il y a des erreurs !'), ('Léo |a| faim et il |est| fatigué.', 'avait faim · était fatigué.')],
-   Q('Les enfants on fini leur goûter.', ['Les enfants ont fini leur goûter.', 'Les enfants on fini leur goûter.'], 'Je prouve : avaient fini.', 'Quelle est la bonne correction ?'),
-   [Q('Il va a l’école.', ['Il va à l’école.', 'Il va a l’école.'], 'à ne change pas : il allait à l’école.', 'Quelle est la bonne correction ?')]))
+# Pas de ceintures d'homophones au CE2 : le programme du cycle 2 ne les prévoit pas (décision d'octobre 2026).
 
 # =============================================================== CONJUGAISON (les verbes irréguliers sont en C6 et C7 au CE2)
 lecon('C1', ['Le présent d’<b>être</b>, d’<b>avoir</b> et des verbes du <b>1er groupe</b> (-er).', 'Le verbe a un <b>radical</b> et une <b>terminaison</b> ; je retrouve son <b>infinitif</b>.',
@@ -208,7 +140,7 @@ lecon('V5', ['Les <b>synonymes</b> (même sens) et les <b>contraires</b>.', 'Des
    [Q('', ['familier', 'courant', 'soutenu'], 'Entre copains.', '« un bouquin » est du langage…'),
     Q('', ['soutenu', 'courant', 'familier'], 'Dans un livre, un discours.', '« un ouvrage », pour un livre, est du langage…')]))
 
-lecon('V6', ['Un mot peut avoir un <b>sens propre</b> (le sens de base) et un <b>sens figuré</b> (une image).', 'Un même mot peut avoir plusieurs sens : la phrase m’aide.'], [0, 1, 2, 4],
+lecon('V6', ['Un mot peut avoir un <b>sens propre</b> (le sens de base) et un <b>sens figuré</b> (une image).', 'Un même mot peut avoir plusieurs sens : la phrase m’aide.'], [0, 1, 2, 4, 'Un mot, plusieurs sens'],
  E('def', 'bulle', 'Sens propre, sens figuré', 'girl', 'Un mot peut avoir un sens de base et un sens imagé.',
    [('Je |souffle| mes bougies.', 'sens propre : le sens de base.'), ('Je |souffle| la réponse à mon voisin.', 'sens figuré : une image.'),
     ('La pluie |inonde| la cave. · Le soleil |inonde| la pièce.', '')],

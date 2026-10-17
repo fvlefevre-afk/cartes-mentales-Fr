@@ -13,6 +13,6 @@ Depuis octobre 2026, chaque ceinture CE2 porte le même numéro, la même couleu
 | V3 | Jaune | Préfixes dé-, mal-, in-, re- ; suffixes -eur, -ier, -ette | -able, -ment ; les pièges |
 | V4 | Orange | Familles de mots ; nom, verbe, adjectif de la même famille | — |
 | V5 | Verte | Synonymes, contraires, degrés de sens (crainte, peur, épouvante) ; niveaux de langue | Même classe de mots ; préfixe pour le contraire |
-| V6 | Bleue | Sens propre et sens figuré ; un mot, plusieurs sens | Les homonymes |
+| V6 | Bleue | Sens propre et sens figuré ; un mot, plusieurs sens | Les homonymes ; la polysémie dans les disciplines |
 
 Programme du cycle 2 (CE2) couvert : termes génériques et spécifiques, dictionnaire adapté, préfixes et suffixes, dérivation et classes de mots, synonymie et gradation, niveaux de langue, sens propre et sens figuré, polysémie. Les expressions et les réseaux de mots (6 corpus par période) relèvent du carnet de mots (Dispositif 5).
