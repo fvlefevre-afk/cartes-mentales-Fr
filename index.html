@@ -104,6 +104,11 @@ h3.sub{margin:1.6rem 0 .6rem;color:var(--fam);font-size:1.2rem}
 /* Sommaire */
 .toc-title{margin:0 0 .3rem;font-size:2.1rem;color:var(--ink)}
 .intro{color:var(--soft);margin:0 0 1.2rem;font-size:.95rem}
+.niveaux{display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1.4rem}
+.niveaux a{flex:1 1 0;min-width:0;text-align:center;text-decoration:none;font-weight:700;font-size:1.25rem;padding:.65rem 1rem;border-radius:1rem;border:3px solid #2456a6;color:#2456a6;background:#fff}
+.niveaux a.on{background:#2456a6;color:#fff}
+.niveaux a small{display:block;font-weight:500;font-size:.75rem;opacity:.85}
+.avenir{padding:1.4rem;border:2px dashed #b8c2d6;border-radius:1rem;color:var(--soft);text-align:center;font-size:1.05rem}
 .fam{margin:1.4rem 0 .4rem}
 .fam h3{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .6rem;font-size:1.35rem;color:var(--c)}
 .fam h3 small{font-size:.8rem;color:var(--soft);font-weight:400}
@@ -768,15 +773,22 @@ function renderConj(root){
 }
 
 /* ---------- Sommaire ---------- */
+const NIVEAUX=['CE2','CM1','CM2'];
+const niveauDe=t=>t.niveau||'CM1'; /* toutes les leçons actuelles sont de CM1 */
+function niveauChoisi(){const m=location.hash.match(/^#niveau=(CE2|CM1|CM2)$/);if(m){try{localStorage.setItem('niveau',m[1]);}catch(e){}return m[1];}
+  try{const v=localStorage.getItem('niveau');if(NIVEAUX.includes(v))return v;}catch(e){}return 'CM1';}
 function renderToc(){
-  document.title='Leçons interactives — ceintures de français CM1';
+  const niv=niveauChoisi();
+  document.title='Leçons interactives — ceintures de français '+niv;
   document.body.style.removeProperty('--fam');
   main.innerHTML=`<div class="sheet">
   <h2 class="toc-title">Sommaire</h2>
   <p class="intro">Les leçons de chaque ceinture, à relire avant l'entraînement ou le test.</p>
-  ${FAMILLES.map(f=>`<section class="fam" style="--c:${f.couleur}">
+  <nav class="niveaux" aria-label="Choisir sa classe">${NIVEAUX.map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;return `<a href="#niveau=${n}" class="${n===niv?'on':''}"${n===niv?' aria-current="page"':''}>${n}<small>${k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>
+  ${!TRACES.some(t=>niveauDe(t)===niv)?`<p class="avenir">Les leçons de ${niv} arrivent bientôt.</p>`:''}
+  ${FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv)).map(f=>`<section class="fam" style="--c:${f.couleur}">
     <h3>${esc(f.nom)}</h3>
-    <div class="tiles">${TRACES.filter(t=>t.f===f.id).map(t=>{
+    <div class="tiles">${TRACES.filter(t=>t.f===f.id&&niveauDe(t)===niv).map(t=>{
       const open=ouverte(t), ok=hasTrace(t)&&open;
       if(!ok) return `<span class="tile todo" style="--c:${f.couleur}">${belt(t)}<span class="name">${esc(t.titre)}<span class="state">à venir</span></span></span>`;
       const st=t.lesson?'leçon interactive':ok?(edits[t.id]!=null?'modifiée':''):'à venir';

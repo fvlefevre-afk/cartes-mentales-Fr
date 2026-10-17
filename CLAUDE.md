@@ -23,6 +23,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   soit la période. Repasser à `false` pour remettre le blocage par période.
 - Accès enseignant (provisoire) : l'adresse du site suivie de `?enseignant` ouvre toutes les périodes
   (variable `ENSEIGNANT` dans le bloc PÉRIODES), sans rien enregistrer ni changer pour les élèves.
+- Sommaire par classe : boutons CE2 / CM1 / CM2 (adresse `#niveau=CE2`…). Une leçon sans champ `niveau`
+  est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Homophones (Dispositif 1 bis — voir « Documents explicatifs des dispositifs »)
