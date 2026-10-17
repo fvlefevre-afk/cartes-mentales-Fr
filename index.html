@@ -257,12 +257,16 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
  var KEY='classe-cm1-periode-debloquee';
  var CODES={2:'aecyqv',3:'j2buf6',4:'1rgg1v5',5:'1kc7esh'};
  function h(s){s=String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');s='cm1\u00b7'+s;var x=2166136261;for(var i=0;i<s.length;i++){x^=s.charCodeAt(i);x=Math.imul(x,16777619)>>>0;}return x.toString(36);}
- function base(){return typeof window.__PERIODE_CLASSE==='number'?window.__PERIODE_CLASSE:PERIODE_FICHIER;}
+ /* ACCÈS ENSEIGNANT (provisoire) : l'adresse du site suivie de ?enseignant ouvre toutes les périodes,
+    sans rien changer pour les élèves (rien n'est enregistré sur l'appareil). */
+ var ENSEIGNANT=/[?&]enseignant(=|&|$)/i.test(location.search);
+ function base(){if(ENSEIGNANT)return 5;return typeof window.__PERIODE_CLASSE==='number'?window.__PERIODE_CLASSE:PERIODE_FICHIER;}
  function deb(){try{return Number(localStorage.getItem(KEY))||0;}catch(e){return 0;}}
  window.ClassePeriode={base:base,debloquee:deb,
   effective:function(){return Math.min(5,Math.max(base(),deb()));},
   essayer:function(code){var hc=h(code);for(var p=5;p>=2;p--){if(CODES[p]===hc){try{localStorage.setItem(KEY,String(Math.max(p,deb())));}catch(e){return -1;}return p;}}return 0;},
-  reverrouiller:function(){try{localStorage.removeItem(KEY);}catch(e){}}};
+  reverrouiller:function(){try{localStorage.removeItem(KEY);}catch(e){}},
+  enseignant:ENSEIGNANT};
  window.addEventListener('storage',function(e){if(e.key===KEY)location.reload();});
 })();
 </script>
@@ -951,6 +955,7 @@ load();render();
  var b=document.createElement('button');b.type='button';b.id='perBtn';
  var eff=P.effective();
  b.textContent='Période '+eff;b.title='Débloquer une nouvelle période avec un code';
+ if(P.enseignant){b.textContent='Accès enseignant';b.title='Toutes les périodes sont ouvertes';}
  toc.parentNode.insertBefore(b,toc);
  var dlg=document.getElementById('perDlg'),inp=document.getElementById('perCode'),msg=document.getElementById('perMsg');
  function open(){

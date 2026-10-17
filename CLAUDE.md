@@ -15,4 +15,6 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG`.
 - Modèle pour une nouvelle leçon : G1, G2, G3 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Ouverture par période : `PERIODE_FICHIER` (en haut du fichier) et `PERIODE_CEINTURE`.
+- Accès enseignant (provisoire) : l'adresse du site suivie de `?enseignant` ouvre toutes les périodes
+  (variable `ENSEIGNANT` dans le bloc PÉRIODES), sans rien enregistrer ni changer pour les élèves.
 - Pas de noms d'élèves dans le dépôt : il est public.
