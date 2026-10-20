@@ -34,7 +34,6 @@ Ce parcours C a été renuméroté sur le CM1 : cahiers de progrès, dispositifs
 | C5 | accord avec le sujet inversé |
 | C6 | CM2 seulement : plus-que-parfait (rouge) |
 | C7 | CM2 seulement : passé simple du 2e groupe et des verbes irréguliers (violette) |
-| C8 | tous les temps du CM2 |
 
 ## Homophones
 
@@ -47,9 +46,8 @@ Ce parcours C a été renuméroté sur le CM1 : cahiers de progrès, dispositifs
 | H5 | dont |
 | H6 | quel(s), quelle(s) |
 | H7 | s'en |
-| H8 | les paires du CM2 |
 
-L'ancienne ceinture H9 (dont, qu'elle) disparaît : ces deux mots sont placés en H5 et en H2, ce qui permet à H8 de reprendre toutes les paires.
+L'ancienne ceinture H9 (dont, qu'elle) disparaît : ces deux mots sont placés en H5 et en H2. Ceintures de révision retirées le 20/10/2026 (choix de l’enseignante) : plus de C8 ni de H8 ; la révision se fait dans l’entraînement spiralé de chaque ceinture.
 
 ## Vocabulaire
 

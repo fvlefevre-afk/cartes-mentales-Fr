@@ -123,5 +123,4 @@ O7 répond au programme du cycle 2 (CE2), qui demande de transcrire les sons qui
 # Points à trancher
 
 - **Créneau** : l'ancienne version ne prévoyait pas de créneau dédié. Le parcours à ceintures demande 30 min pour l'entraînement collectif et 15 min par fiche : à placer, par exemple, à côté de la dictée hebdomadaire.
-- **Ceinture de transfert** : une ceinture O7 (Marron) de transfert en dictée, sur le modèle de H8 et de C8, pourrait clore la série.
 - **Compétences du pack sans ceinture** : les noms en [e] / [té] (Ortho Mémo) et les mots en ac / af / ap (Les tournesols) restent hors ceintures.

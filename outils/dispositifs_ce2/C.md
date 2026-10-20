@@ -17,7 +17,6 @@ Au CE2, les verbes irréguliers sont séparés des autres : C1 à C5 portent sur
 | C5 | Bleue | Passé composé avec être (verbes de déplacement) | P4 |
 | C6 | Rouge | Verbes irréguliers au présent (CE2 seulement) | P4 |
 | C7 | Violette | Verbes irréguliers au futur, à l’imparfait, au passé composé (CE2 seulement) | P5 |
-| C8 | Marron | Révision de tous les temps du CE2 | P5 |
 
 C6 et C7 n’ont pas le même contenu au CE2 et au CM2 (au CM2 : plus-que-parfait et passé simple). C7 garde un fil commun : « les verbes irréguliers » dans les deux classes. Le CM1 n’a ni C6 ni C7.
 Programme du cycle 2 (CE2) couvert : présent, imparfait, futur, passé composé d’être, d’avoir, du 1er groupe et des 8 verbes irréguliers ; radical, terminaison, infinitif. Le 2e groupe n’est pas au programme du CE2.

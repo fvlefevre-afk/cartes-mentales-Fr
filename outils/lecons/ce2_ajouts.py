@@ -106,7 +106,6 @@ lecon('C2', ['Le futur d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b
 lecon('C3', ['L’imparfait d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chantais, nous chantions.', 'Les verbes irréguliers à l’imparfait : ceinture C7.'], [3, 5, 6])
 lecon('C4', ['Le passé composé avec <b>avoir</b> : avoir au présent + participe passé (j’ai chanté).'], [4])
 lecon('C5', ['Le passé composé avec <b>être</b> pour les verbes de déplacement : je suis parti, il est arrivé.'], [2, 4])
-lecon('C8', ['Je révise les temps du CE2 : présent, futur, imparfait, passé composé, verbes irréguliers compris.'], [2, 4], titre='Révision')
 
 # =============================================================== VOCABULAIRE
 lecon('V1', ['Le <b>mot générique</b> (le mot-étiquette) regroupe des <b>mots précis</b>.'])

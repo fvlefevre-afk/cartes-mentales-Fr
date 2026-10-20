@@ -8,6 +8,6 @@ Depuis octobre 2026, chaque ceinture CM2 porte le même numéro, la même couleu
 
 ## Ce qui change pour le CM2
 
-- G1 à G7, H1 à H8, V1 à V6, C1 à C5 et C8, O1 à O6 : mêmes numéros, mêmes couleurs, mêmes notions qu’en CM1, avec un ajout CM2 (voir la partie « En CM2 » de chaque dispositif).
+- G1 à G7, H1 à H7, V1 à V6, C1 à C5, O1 à O6 : mêmes numéros, mêmes couleurs, mêmes notions qu’en CM1, avec un ajout CM2 (voir la partie « En CM2 » de chaque dispositif).
 - C6 (plus-que-parfait, rouge) et C7 (passé simple, violette) : ceintures du CM2 seulement.
 - Ce document et chaque dispositif contiennent leur propre partie « En CM2 » : il n’y a pas de document séparé pour le CM2.

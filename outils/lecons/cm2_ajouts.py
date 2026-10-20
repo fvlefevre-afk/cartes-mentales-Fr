@@ -217,16 +217,6 @@ lecon('H7', ['<b>s’en</b> = se + en, devant un verbe : <i>il s’en va</i>. Je
    [Q('Elle ___ souvient très bien.', ['s’en', 'se'], 'Je prouve : « je m’en souviens ».', 'Complète.', fill='circ'),
     Q('Mon frère ___ moque.', ['s’en', 's’est'], 'Je prouve : « je m’en moque ».', 'Complète.', fill='circ')]))
 
-lecon('H8', ['Les nouvelles paires du CM2 : <b>sans / s’en</b>, <b>donc / dont</b>, <b>quel / qu’elle</b>.'],
- E('autres', 'liste', 'Les paires du CM2', 'boy', 'Pour chaque mot, je fais la preuve.',
-   [('|sans| ou |s’en|', 'sans → avec ; s’en → je m’en.'),
-    ('|donc| ou |dont|', 'donc → alors ; dont → de + le nom.'),
-    ('|quel| ou |qu’elle|', 'quel → quelle, quels ; qu’elle → qu’il.')],
-   Q('Il part ___ dire au revoir.', ['sans', 's’en'], 'Je prouve : « avec ».', 'Complète.', fill='circ'),
-   [Q('Elle ___ souvient.', ['s’en', 'sans'], 'Je prouve : « je m’en souviens ».', 'Complète.', fill='circ'),
-    Q('Je pense ___ a raison.', ['qu’elle', 'quelle'], 'Je prouve : « qu’il ».', 'Complète.', fill='circ'),
-    Q('C’est le livre ___ je rêvais.', ['dont', 'donc'], 'Je rêvais de ce livre.', 'Complète.', fill='circ')]))
-
 # =============================================================== VOCABULAIRE
 lecon('V1', ['Le mot-étiquette s’appelle aussi <b>mot générique</b> ; les mots précis sont des <b>mots spécifiques</b>.',
              'Un mot peut être spécifique et générique à la fois : <i>véhicule → voiture → cabriolet</i>.'],
@@ -363,14 +353,6 @@ lecon('C5', ['Avec être, le participe s’accorde avec le sujet, même quand le
    Q('Dans la cour sont ___ les filles.', ['entrées', 'entré', 'entrés'], 'Le sujet « les filles » est après le verbe.', 'Complète.', fill='v'),
    [Q('Quand est ___ ta tante ?', ['partie', 'parti', 'parties'], 'Le sujet « ta tante » est après le verbe.', 'Complète.', fill='v'),
     Q('Au loin sont ___ les bateaux.', ['apparus', 'apparu', 'apparues'], 'Le sujet « les bateaux » est après le verbe.', 'Complète.', fill='v')]))
-
-lecon('C8', ['Deux temps de plus : le <b>plus-que-parfait</b> (C6) et le <b>passé simple</b> (C3 et C7).'],
- E('reperes', 'horloge', 'Les temps du CM2', 'boy', 'Je reconnais aussi le plus-que-parfait et le passé simple.',
-   [('il |avait chanté|', 'avoir à l’imparfait + participe passé : le plus-que-parfait.'),
-    ('il |chanta|', 'Un seul mot : le passé simple.')],
-   Q('Elles étaient parties.', ['le plus-que-parfait', 'le passé composé', 'l’imparfait'], 'Auxiliaire à l’imparfait + participe passé.', 'Quel temps ?'),
-   [Q('Il arriva.', ['le passé simple', 'l’imparfait', 'le futur'], 'Un seul mot, terminaison en -a.', 'Quel temps ?'),
-    Q('Nous avons fini.', ['le passé composé', 'le plus-que-parfait', 'le passé simple'], 'Auxiliaire au présent + participe passé.', 'Quel temps ?')]))
 
 # =============================================================== ORTHOGRAPHE
 lecon('O1', ['Les préfixes <b>en-</b> et <b>in-</b> deviennent <b>em-</b> et <b>im-</b> devant m, b, p : emporter, impossible, immangeable.'],

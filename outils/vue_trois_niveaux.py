@@ -20,8 +20,7 @@ FAM = [
   ('H4','Orange',4,('—','pas au CE2'),'et, ou, mais','donc'),
   ('H5','Verte',4,('—','pas au CE2'),'la ; c’est','dont'),
   ('H6','Bleue',5,('—','pas au CE2'),'son, ses, mes','quel(s), quelle(s)'),
-  ('H7','Violette',5,('—','pas au CE2'),'se ; s’est','s’en'),
-  ('H8','Marron',5,('—','pas au CE2'),'Transfert de toutes les paires','+ sans/s’en, donc/dont, quel/qu’elle')]),
+  ('H7','Violette',5,('—','pas au CE2'),'se ; s’est','s’en')]),
  ('C','Conjugaison','#7b3fa0',[
   ('C1','Blanche',1,'Présent : être, avoir, 1er groupe ; radical, terminaison, infinitif','2e groupe, verbes irréguliers ; radicaux qui changent','Radicaux qui changent au 3e groupe'),
   ('C2','Jaune',2,'Futur : être, avoir, 1er groupe','2e groupe, verbes irréguliers','Marque du temps et marque de personne'),
@@ -29,8 +28,7 @@ FAM = [
   ('C4','Verte',3,'Passé composé avec avoir','Forme négative','Accord avec le COD placé avant'),
   ('C5','Bleue',4,'Passé composé avec être (verbes de déplacement)','Accord avec le sujet','Accord avec le sujet inversé'),
   ('C6','Rouge',4,'Verbes irréguliers au présent (CE2 seulement)',('—','pas en CM1'),'Plus-que-parfait (CM2 seulement)'),
-  ('C7','Violette',5,'Verbes irréguliers au futur, à l’imparfait, au passé composé (CE2 seulement)',('—','pas en CM1'),'Passé simple : 2e groupe et verbes irréguliers (CM2 seulement)'),
-  ('C8','Marron',5,'Révision de tous les temps du CE2','Révision de C1 à C5','Tous les temps du CM2')]),
+  ('C7','Violette',5,'Verbes irréguliers au futur, à l’imparfait, au passé composé (CE2 seulement)',('—','pas en CM1'),'Passé simple : 2e groupe et verbes irréguliers (CM2 seulement)')]),
  ('V','Vocabulaire','#d9730d',[
   ('V1','Blanche',1,'Mot générique et mots précis','Mot-étiquette, échelle des mots','Les termes « générique » et « spécifique »'),
   ('V2','Rose',1,'Mot inconnu : indices, puis vérification dans un dictionnaire adapté','Méthode en 4 étapes, sans dictionnaire','Le dictionnaire : ordre alphabétique, choix du sens'),
@@ -134,8 +132,8 @@ td.decider {{ background:var(--amber); color:var(--ink); }}
 <div class="legende"><span><i style="background:var(--ce2)"></i>CE2 : la version la plus simple</span><span><i style="background:var(--cm1)"></i>CM1 : ce qu’il ajoute au CE2</span><span><i style="background:var(--cm2)"></i>CM2 : ce qu’il ajoute au CM1</span></div>
 </header>
 <div class="bilan">
-<div><b>25</b><span>ceintures communes aux trois classes</span></div>
-<div><b>8</b><span>communes au CM1 et au CM2 seulement : les homophones H1 à H8 (hors programme du CE2)</span></div>
+<div><b>24</b><span>ceintures communes aux trois classes</span></div>
+<div><b>7</b><span>communes au CM1 et au CM2 seulement : les homophones H1 à H7 (hors programme du CE2)</span></div>
 <div><b>3</b><span>propres au CE2 : C6, C7 (verbes irréguliers) et O7 (sons et accents)</span></div>
 <div><b>2</b><span>propres au CM2 : C6 (plus-que-parfait) et C7 (passé simple)</span></div>
 </div>

@@ -7,7 +7,7 @@ Le principe général est le même au CE2. Les ceintures CE2 portent le même nu
 | 1 — Grammaire | G1 à G7 |
 | 1 bis — Homophones | aucune (hors programme du cycle 2) |
 | 2 — Orthographe lexicale | O1 à O6 ; O7 (sons « o », « é », « è » et accents) au CE2 seulement |
-| 3 — Conjugaison | C1 à C5 (être, avoir, 1er groupe) et C8 ; C6 et C7 (verbes irréguliers) au CE2 seulement |
+| 3 — Conjugaison | C1 à C5 (être, avoir, 1er groupe) ; C6 et C7 (verbes irréguliers) au CE2 seulement |
 | 4 — Vocabulaire | V1 à V6 |
 
 - Tests : 6 items sur le contenu CE2, réussite 6/6.

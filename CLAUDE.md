@@ -16,7 +16,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.
 - Une leçon interactive = une entrée dans `TRACES` (avec `lesson:true`), une entrée dans `LESSONS`
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG`.
-- Modèle pour une nouvelle leçon : G1 à G7, H1 à H8, V1 à V6, C1 à C8, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
+- Modèle pour une nouvelle leçon : G1 à G7, H1 à H7, V1 à V6, C1 à C7, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
   Chaque document a une partie « En CM2 » à la fin (pas de document séparé pour le CM2) ; textes dans
   `outils/dispositifs_cm2/`, ajoutés avec `outils/ajout_docx.py`. Test CM2 : 3 items tronc commun + 3 items ajout CM2. Partie « En CE2 » aussi (`outils/dispositifs_ce2/`) ; test CE2 : 6 items CE2.
@@ -58,7 +58,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   Le jumeau n'est jamais proposé comme choix ni comme réponse, et n'apparaît pas dans les phrases.
 - Chaque mot s'ancre dans sa classe grammaticale et se prouve par une manipulation (« Je prouve »),
   jamais par un « truc » appris par cœur.
-- Les paires ne se retrouvent qu'en H8 (transfert), une fois les deux côtés validés.
+- Plus de ceinture de transfert H8 (ni de C8 en conjugaison), retirées le 20/10/2026, choix de l'enseignante :
+  les paires ne se retrouvent dans aucune ceinture ; la révision se fait dans l'entraînement spiralé de chaque ceinture.
 - Mots ajoutés en CM2 : qu'elle (H2), sans (H3), donc (H4), dont (H5), quel/quelle (H6), s'en (H7) ;
   leurs jumeaux restent dans une autre ceinture. Vérifier avec `outils/jumeaux.py`.
 - Pas de ceintures d'homophones au CE2 (hors programme du cycle 2, décision d'octobre 2026) : elles commencent au CM1.
