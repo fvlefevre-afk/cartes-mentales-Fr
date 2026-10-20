@@ -20,11 +20,17 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
   Chaque document a une partie « En CM2 » à la fin (pas de document séparé pour le CM2) ; textes dans
   `outils/dispositifs_cm2/`, ajoutés avec `outils/ajout_docx.py`. Test CM2 : 3 items tronc commun + 3 items ajout CM2. Partie « En CE2 » aussi (`outils/dispositifs_ce2/`) ; test CE2 : 6 items CE2.
-- Ouverture par période : `PERIODE_FICHIER` (en haut du fichier) et `PERIODE_CEINTURE`.
-- PROVISOIRE : `TOUTES_LES_CARTES=true` ouvre toutes les leçons interactives à tout le monde, quelle que
-  soit la période. Repasser à `false` pour remettre le blocage par période.
-- Accès enseignant (provisoire) : l'adresse du site suivie de `?enseignant` ouvre toutes les périodes
-  (variable `ENSEIGNANT` dans le bloc PÉRIODES), sans rien enregistrer ni changer pour les élèves.
+- **Ouverture des leçons au fur et à mesure (20/10/2026, comme le site de maths)** : une leçon s'ouvre à la date de sa ceinture
+  pour sa classe et le reste ensuite. Dates prévues : `OUVERTURE_PREVUE` dans `index.html` = premier jour de la période de la ceinture
+  (colonne « Période » du fichier « Langue - ceintures » du tableau de bord), calculé par `node outils/ouvertures_site.mjs ../ressources`
+  (à relancer après tout changement de ce fichier). Progression réelle : fichier `ouvertures.json` à côté de `index.html` (fabriqué par le
+  tableau de bord, Planning › Français (année), bouton « Leçons ouvertes sur le site de français »), prioritaire. Leçon fermée : « s'ouvrira le … » ;
+  pastille « nouveau » pendant 7 jours. Plus de codes de période ni de `?enseignant`.
+  Accès enseignant : bouton 🔑 du bandeau et mot de passe, le même que sur le site de maths (connu de l'enseignante, jamais écrit dans le dépôt ;
+  empreinte `MDP_ENS`, à recalculer avec `empreinteEns("…")` sur les deux sites pour le changer) : tout s'ouvre jusqu'à la fermeture de l'onglet.
+- Bandeau (comme le site de maths) : Sommaire et titre à gauche ; ◀ ceinture de la leçon ▶ au centre (sur le sommaire : nombre de leçons ouvertes) ;
+  classe (CE2 / CM1 / CM2, `data-classe` : sur une leçon, ouvre la leçon du même code dans cette classe) et impression à droite.
+  ◀ ▶ ne parcourent que les leçons ouvertes de la classe (`parcours()`). L'adresse `#G1` (lien du tableau de bord) ouvre la leçon G1 de la classe choisie.
 - Sommaire par classe : boutons CE2 / CM1 / CM2 (adresse `#niveau=CE2`…). Une leçon sans champ `niveau`
   est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
 - CM2 : mêmes numéros, mêmes couleurs, mêmes notions qu'en CM1 (choix de l'enseignante, octobre 2026).

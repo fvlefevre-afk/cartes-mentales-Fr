@@ -23,10 +23,36 @@ button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--etiq);outline-offset:2px}
 
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink);color:#fff;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.6rem 1rem}
-.bar h1{margin:0 auto 0 0;font-size:1.1rem;cursor:pointer}
+.bar h1{margin:0;white-space:nowrap;font-size:1.1rem;cursor:pointer}
+.bar h1:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .bar button{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff;border-radius:.5rem;padding:.3rem .8rem;font-size:.88rem;cursor:pointer}
 .bar button:hover{background:rgba(255,255,255,.12)}
 .bar button.on{background:var(--etiq);border-color:var(--etiq)}
+.bar button:disabled{opacity:.35;cursor:default;background:transparent}
+/* bandeau (20/10/2026, comme le site de maths) : Sommaire et titre · ◀ ceinture de la leçon ▶ · classe, accès enseignant, impression */
+.bar-centre{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:0}
+.bar-lecon{display:inline-flex;align-items:center;gap:.45rem;background:#fff;color:var(--ink);border-radius:999px;padding:.2rem .85rem;font-size:.9rem;min-width:0;max-width:36rem}
+.bar-lecon:empty{display:none}
+.bar-lecon b{white-space:nowrap}.bar-lecon span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-lecon i{width:.85rem;height:.85rem;border-radius:50%;border:1px solid #9aa3b5;flex:none}
+.bar-etat{font-size:.9rem;text-align:center}
+.bar-niv{display:inline-flex;border:1.5px solid rgba(255,255,255,.55);border-radius:.5rem;overflow:hidden}
+.bar .bar-niv button{border:0;border-radius:0;padding:.3rem .7rem}
+.bar .bar-niv button[aria-pressed="true"]{background:var(--etiq)}
+body.au-sommaire #prec,body.au-sommaire #suiv,body.au-sommaire #barLecon{display:none}
+body:not(.au-sommaire) #barEtat{display:none}
+@media (max-width:760px){.bar h1{display:none}.bar-centre{order:3;flex-basis:100%}.bar-lecon span{display:none}}
+#ensDlg{border:0;border-radius:14px;padding:20px 24px;max-width:min(24rem,92vw);box-shadow:0 18px 50px rgba(20,30,60,.3);font-family:var(--font);color:var(--ink)}
+#ensDlg::backdrop{background:rgba(20,30,60,.45)}#ensDlg h2{margin:0 0 .4rem;font-size:1.25rem}#ensDlg p{margin:0 0 .7rem;line-height:1.4}
+#ensDlg label{display:block;font-weight:700;margin-bottom:.3rem}#ensMdp{width:100%;box-sizing:border-box;font:inherit;font-size:1.15rem;padding:.4rem .6rem;border:2px solid #b9c2d4;border-radius:10px}
+#ensMsg{min-height:1.4em;color:#b3261e;font-weight:700}
+.ens-actions{display:flex;justify-content:flex-end;gap:.6rem}
+.ens-actions button{font:inherit;font-weight:700;border-radius:10px;padding:.45rem 1rem;cursor:pointer;background:#fff;color:var(--ink);border:2px solid #b9c2d4}
+.ens-actions button#ensOk{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media print{#ensDlg{display:none}}
+.nouveau{display:inline-block;margin-left:.4rem;background:var(--etiq);color:#fff;border-radius:999px;padding:0 .5rem;font-size:.72rem;font-weight:700;vertical-align:middle}
+.ferme-msg{max-width:34rem;margin:3rem auto;text-align:center;font-size:1.15rem;line-height:1.5}
+.ferme-msg .gros{font-size:3rem;display:block}
 .menu{position:relative}
 .menu-list{position:absolute;right:0;top:calc(100% + .4rem);background:#fff;color:var(--ink);border-radius:.6rem;box-shadow:0 8px 24px rgba(20,30,60,.25);padding:.4rem;min-width:16rem;display:none}
 .menu-list.open{display:block}
@@ -264,39 +290,26 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
-<script>
-/* ===== PÉRIODES =====
-   PERIODE_FICHIER : période ouverte pour tout le monde (1 à 5) — à changer à chaque nouvelle période.
-   Dans « Classe CM1 tout en un », c'est le réglage commun en haut du fichier qui compte.
-   Un élève peut aussi débloquer une période avec le code que lui donne l'enseignant (bouton « Période »). */
-(function(){
- var PERIODE_FICHIER=1;
- var KEY='classe-cm1-periode-debloquee';
- var CODES={2:'aecyqv',3:'j2buf6',4:'1rgg1v5',5:'1kc7esh'};
- function h(s){s=String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');s='cm1\u00b7'+s;var x=2166136261;for(var i=0;i<s.length;i++){x^=s.charCodeAt(i);x=Math.imul(x,16777619)>>>0;}return x.toString(36);}
- /* ACCÈS ENSEIGNANT (provisoire) : l'adresse du site suivie de ?enseignant ouvre toutes les périodes,
-    sans rien changer pour les élèves (rien n'est enregistré sur l'appareil). */
- var ENSEIGNANT=/[?&]enseignant(=|&|$)/i.test(location.search);
- function base(){if(ENSEIGNANT)return 5;return typeof window.__PERIODE_CLASSE==='number'?window.__PERIODE_CLASSE:PERIODE_FICHIER;}
- function deb(){try{return Number(localStorage.getItem(KEY))||0;}catch(e){return 0;}}
- window.ClassePeriode={base:base,debloquee:deb,
-  effective:function(){return Math.min(5,Math.max(base(),deb()));},
-  essayer:function(code){var hc=h(code);for(var p=5;p>=2;p--){if(CODES[p]===hc){try{localStorage.setItem(KEY,String(Math.max(p,deb())));}catch(e){return -1;}return p;}}return 0;},
-  reverrouiller:function(){try{localStorage.removeItem(KEY);}catch(e){}},
-  enseignant:ENSEIGNANT};
- window.addEventListener('storage',function(e){if(e.key===KEY)location.reload();});
-})();
-</script>
 </head>
 <body>
 <header class="bar">
-  <h1 id="home" tabindex="0" title="Revenir au sommaire">Leçons interactives — ceintures de français</h1>
-  <button id="tocBtn" type="button">Sommaire</button>
+  <button id="tocBtn" type="button">☰ Sommaire</button>
+  <h1 id="home" tabindex="0" title="Revenir au sommaire">Ceintures de français</h1>
+  <div class="bar-centre">
+    <button id="prec" type="button" aria-label="Leçon précédente">◀</button>
+    <span id="barLecon" class="bar-lecon"></span>
+    <button id="suiv" type="button" aria-label="Leçon suivante">▶</button>
+    <span id="barEtat" class="bar-etat" role="status"></span>
+  </div>
+  <div class="bar-niv" role="group" aria-label="Classe">
+    <button type="button" data-classe="CE2">CE2</button><button type="button" data-classe="CM1">CM1</button><button type="button" data-classe="CM2">CM2</button>
+  </div>
+  <button id="ensBtn" type="button" title="Accès enseignant" aria-label="Accès enseignant">🔑</button>
   <div class="menu">
-    <button id="menuBtn" type="button" aria-haspopup="true" aria-expanded="false">Fichier</button>
+    <button id="menuBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Imprimer" aria-label="Imprimer">🖨</button>
     <div class="menu-list" id="menuList" role="menu">
       <button type="button" data-act="print" role="menuitem">Imprimer cette page</button>
-      <button type="button" data-act="printall" role="menuitem">Imprimer toutes les traces</button>
+      <button type="button" data-act="printall" role="menuitem">Imprimer toutes les leçons ouvertes</button>
     </div>
   </div>
 </header>
@@ -689,7 +702,7 @@ function renderLessonScreen(t,i){
   function next(){ if(!$('#atoi').hidden) return; if(st<e.steps.length-1){st++;show();} else startAtoi(); }
   nb.addEventListener('click',next);
   $('#stage').addEventListener('click',()=>{ if(st<e.steps.length-1) next(); });
-  document.onkeydown=ev=>{ if(!/^#t=[A-Z]\d+(-CM2)?\//.test(location.hash)) return; if((ev.key===' '||ev.key==='ArrowRight')&&!/BUTTON|A/.test(ev.target.tagName)){ev.preventDefault();next();} };
+  document.onkeydown=ev=>{ if(!/^#t=[A-Z]\d+(-CM2|-CE2)?\//.test(location.hash)) return; if((ev.key===' '||ev.key==='ArrowRight')&&!/BUTTON|A/.test(ev.target.tagName)){ev.preventDefault();next();} };
   show();
 
   function startAtoi(){
@@ -792,14 +805,27 @@ const byId=id=>TRACES.find(t=>t.id===id);
 const order=FAMILLES.flatMap(f=>TRACES.filter(t=>t.f===f.id));
 const htmlOf=t=>edits[t.id]!=null?edits[t.id]:(t.html||'');
 const hasTrace=t=>!!t.lesson||!!htmlOf(t).trim();
-/* Période en cours : réglée en haut du fichier (PERIODE_FICHIER) ou débloquée par code */
-const PERIODE_EN_COURS=window.ClassePeriode?window.ClassePeriode.effective():1;
-/* Période où chaque ceinture s'ouvre (Dispositif étude de la langue CM1) */
-const PERIODE_CEINTURE={G1:1,G2:1,G3:2,G4:2,G5:3,G6:3,G7:4,H1:1,H2:3,H3:3,H4:4,H5:4,H6:5,H7:5,H8:5,C1:1,C2:2,C3:2,C4:3,C5:4,C8:5,V1:1,V2:1,V3:2,V4:2,V5:3,V6:3,O1:1,O2:2,O3:2,O4:3,O5:4,O6:4,'C6-CM2':4,'C7-CM2':5,'C6-CE2':4,'C7-CE2':5,'O7-CE2':2};
-/* PROVISOIRE : toutes les leçons interactives (cartes mentales) sont ouvertes, quelle que soit la période.
-   Pour remettre le blocage par période, passer TOUTES_LES_CARTES à false. */
-const TOUTES_LES_CARTES=true;
-const ouverte=t=>(TOUTES_LES_CARTES&&!!t.lesson)||(PERIODE_CEINTURE[t.id]||PERIODE_CEINTURE[code(t)]||1)<=PERIODE_EN_COURS;
+/* Ouverture des leçons au fur et à mesure (20/10/2026, comme le site de maths) : une ceinture s'ouvre à sa date et le reste ensuite.
+   Date : ouvertures.json (fabriqué par le tableau de bord d'après la progression réelle de la classe, Planning › Français (année),
+   déposé à côté de index.html), sinon OUVERTURE_PREVUE (premier jour de la période de la ceinture, outils/ouvertures_site.mjs).
+   Une leçon (G1, G1-CE2, G1-CM2…) s'ouvre avec la ceinture de son code pour sa classe. */
+/* OUVERTURE_PREVUE : date d'ouverture prévue de chaque ceinture, par classe (outils/ouvertures_site.mjs, ne pas modifier à la main) */
+const OUVERTURE_PREVUE={"CE2":{"G1":"2026-09-01","G2":"2026-09-01","G3":"2026-11-02","G4":"2026-11-02","G5":"2027-01-04","G6":"2027-01-04","G7":"2027-03-08","O1":"2026-09-01","O2":"2026-11-02","O3":"2026-11-02","O7":"2026-11-02","O4":"2027-01-04","O5":"2027-03-08","O6":"2027-03-08","V1":"2026-09-01","V2":"2026-09-01","V3":"2026-11-02","V4":"2026-11-02","V5":"2027-01-04","V6":"2027-01-04","C1":"2026-09-01","C2":"2026-11-02","C3":"2026-11-02","C4":"2027-01-04","C5":"2027-03-08","C6":"2027-03-08","C7":"2027-05-03","C8":"2027-05-03"},"CM1":{"G1":"2026-09-01","G2":"2026-09-01","G3":"2026-11-02","G4":"2026-11-02","G5":"2027-01-04","G6":"2027-01-04","G7":"2027-03-08","H1":"2026-09-01","O1":"2026-09-01","O2":"2026-11-02","O3":"2026-11-02","H2":"2027-01-04","H3":"2027-01-04","O4":"2027-01-04","H4":"2027-03-08","H5":"2027-03-08","O5":"2027-03-08","O6":"2027-03-08","H6":"2027-05-03","H7":"2027-05-03","H8":"2027-05-03","V1":"2026-09-01","V2":"2026-09-01","V3":"2026-11-02","V4":"2026-11-02","V5":"2027-01-04","V6":"2027-01-04","C1":"2026-09-01","C2":"2026-11-02","C3":"2026-11-02","C4":"2027-01-04","C5":"2027-03-08","C8":"2027-05-03"},"CM2":{"G1":"2026-09-01","G2":"2026-09-01","G3":"2026-11-02","G4":"2026-11-02","G5":"2027-01-04","G6":"2027-01-04","G7":"2027-03-08","H1":"2026-09-01","O1":"2026-09-01","O2":"2026-11-02","O3":"2026-11-02","H2":"2027-01-04","H3":"2027-01-04","O4":"2027-01-04","H4":"2027-03-08","H5":"2027-03-08","O5":"2027-03-08","O6":"2027-03-08","H6":"2027-05-03","H7":"2027-05-03","H8":"2027-05-03","V1":"2026-09-01","V2":"2026-09-01","V3":"2026-11-02","V4":"2026-11-02","V5":"2027-01-04","V6":"2027-01-04","C1":"2026-09-01","C2":"2026-11-02","C3":"2026-11-02","C4":"2027-01-04","C5":"2027-03-08","C6":"2027-03-08","C7":"2027-05-03","C8":"2027-05-03"}};
+/* fin OUVERTURE_PREVUE */
+/* Accès enseignant : bouton 🔑 du bandeau et mot de passe, le même que sur le site de maths (empreinte MDP_ENS : pour changer le mot de passe,
+   calculer empreinteEns("nouveau mot") dans la console et remplacer MDP_ENS ici et sur le site de maths) ; valable jusqu'à la fermeture
+   de l'onglet (sessionStorage), rien n'est enregistré pour les élèves. */
+const MDP_ENS="f915477c";
+const empreinteEns=m=>{let x=2166136261;for(const c of "maths-ens·"+String(m).trim().toLowerCase()){x^=c.charCodeAt(0);x=Math.imul(x,16777619)>>>0;}return x.toString(16);};
+const ENSEIGNANT=(()=>{try{return sessionStorage.getItem("francais-enseignant")===MDP_ENS;}catch(e){return false;}})();
+try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
+let OUVERTURE_REELLE=null;   /* ouvertures.json : {maj, CE2:{code:date}, CM1:{…}, CM2:{…}} */
+const isoJour=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const AUJ=isoJour(new Date());
+const dateOuverture=t=>{const n=niveauDe(t),c=code(t);return ((OUVERTURE_REELLE||{})[n]||{})[c]||(OUVERTURE_PREVUE[n]||{})[c]||'';};
+const ouverte=t=>{if(ENSEIGNANT)return true;const d=dateOuverture(t);return !!d&&d<=AUJ;};
+const nouvelle=t=>{const d=dateOuverture(t);return !ENSEIGNANT&&!!d&&d<=AUJ&&(new Date(AUJ)-new Date(d))/864e5<7;};
+const dateLongue=iso=>new Date(iso+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
 const visibleTrace=t=>hasTrace(t)&&ouverte(t);
 
 function belt(t){
@@ -842,9 +868,9 @@ function renderToc(){
     <h3>${esc(f.nom)}</h3>
     <div class="tiles">${TRACES.filter(t=>t.f===f.id&&niveauDe(t)===niv).sort((a,b)=>code(a).localeCompare(code(b),'fr',{numeric:true})).map(t=>{
       const open=ouverte(t), ok=hasTrace(t)&&open;
-      if(!ok) return `<span class="tile todo" style="--c:${f.couleur}">${belt(t)}<span class="name">${esc(t.titre)}<span class="state">à venir</span></span></span>`;
+      if(!ok){const d=hasTrace(t)&&dateOuverture(t);return `<span class="tile todo" style="--c:${f.couleur}">${belt(t)}<span class="name">${esc(t.titre)}<span class="state">${d?"s'ouvrira le "+dateLongue(d):'à venir'}</span></span></span>`;}
       const st=t.lesson?'leçon interactive':ok?(edits[t.id]!=null?'modifiée':''):'à venir';
-      return `<a class="tile${ok?'':' todo'}" href="#t=${t.id}" style="--c:${f.couleur}">${belt(t)}<span class="name">${esc(t.titre)}<span class="state">${st}</span></span></a>`;
+      return `<a class="tile${ok?'':' todo'}" href="#t=${t.id}" style="--c:${f.couleur}">${belt(t)}<span class="name">${esc(t.titre)}${nouvelle(t)?'<span class="nouveau">nouveau</span>':''}<span class="state">${st}</span></span></a>`;
     }).join('')}</div></section>`).join('')}
   <div class="legend"><strong>Le code couleur</strong>
     <span><span class="s">sujet</span></span><span><span class="v">verbe</span></span><span>radical + <span class="t">terminaison</span></span>
@@ -938,17 +964,36 @@ function insertBox(body,kind){
 
 function renderAll(){
   document.title='Traces écrites — toutes les ceintures';
-  const list=order.filter(t=>hasTrace(t)&&niveauDe(t)===niveauChoisi());
+  const list=order.filter(t=>visibleTrace(t)&&niveauDe(t)===niveauChoisi());
   main.innerHTML=`<div class="sheet no-print" style="min-height:0"><div class="crumbs"><a href="#">Sommaire</a></div><p>${list.length} traces prêtes à imprimer, une par page. Les traces à venir ne sont pas imprimées.</p></div>`+list.map(t=>traceSheet(t,false)).join('');
   renderConj(main);
 }
 
 /* ---------- Routage ---------- */
+/* leçons ouvertes de la classe, dans l'ordre du sommaire (◀ ▶ du bandeau) */
+const ordreSommaire=n=>FAMILLES.flatMap(f=>TRACES.filter(t=>t.f===f.id&&niveauDe(t)===n).sort((a,b)=>code(a).localeCompare(code(b),'fr',{numeric:true})));
+const parcours=n=>ordreSommaire(n).filter(visibleTrace);
+/* adresse #G1 (lien du tableau de bord vers une ceinture) : la leçon de ce code pour la classe choisie */
+function leconDuCode(c,n){return TRACES.find(t=>code(t)===c&&niveauDe(t)===n)||TRACES.find(t=>t.id===c);}
+function majBandeau(t){const n=t?niveauDe(t):niveauChoisi(),som=!t;
+  document.body.classList.toggle('au-sommaire',som);$('#tocBtn').disabled=som&&!location.hash.startsWith('#t=');
+  document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.classe===n)));
+  if(som){const C=TRACES.filter(x=>hasTrace(x)&&niveauDe(x)===n),k=C.filter(ouverte).length;
+    $('#barEtat').textContent=ENSEIGNANT?`Accès enseignant : les ${C.length} leçons de ${n} sont ouvertes`
+     :`🔓 ${k} leçon${k>1?'s':''} ouverte${k>1?'s':''} sur ${C.length}`+(OUVERTURE_REELLE&&OUVERTURE_REELLE.maj?` · progression de la classe au ${new Date(OUVERTURE_REELLE.maj+'T12:00').toLocaleDateString('fr-FR')}`:'');return;}
+  const dark=['Bleue','Violette','Marron','Verte','Noire'].includes(t.ceinture);
+  $('#barLecon').innerHTML=`<i style="background:${t.ceinture?BELT[t.ceinture]:'#fff'}"></i><b>${esc(code(t))}</b><span>· ${esc(t.titre)}</span>`;
+  const P=parcours(n),i=P.indexOf(t);$('#prec').disabled=i<=0;$('#suiv').disabled=i<0||i>=P.length-1;}
 function render(){
   const h=location.hash;
-  if(h==='#tout'){renderAll();return;}
-  if(h.startsWith('#t=')){const [id,sc]=decodeURIComponent(h.slice(3)).split('/');const t=byId(id);if(t&&ouverte(t)){renderTrace(t,sc!=null?+sc:null);scrollTo(0,0);return;}}
-  renderToc();
+  if(h==='#tout'){renderAll();majBandeau(null);return;}
+  const m=h.match(/^#([A-Z]\d+)$/);if(m){const t=leconDuCode(m[1],niveauChoisi());if(t){location.replace('#t='+t.id);return;}}
+  if(h.startsWith('#t=')){const [id,sc]=decodeURIComponent(h.slice(3)).split('/');const t=byId(id);
+    if(t&&ouverte(t)){try{localStorage.setItem('niveau',niveauDe(t));}catch(e){}renderTrace(t,sc!=null?+sc:null);majBandeau(t);scrollTo(0,0);return;}
+    if(t){const d=dateOuverture(t);document.title=code(t)+' — '+t.titre;
+      main.innerHTML=`<div class="sheet" style="min-height:0"><div class="ferme-msg"><span class="gros">🔒</span>Cette leçon n'est pas encore ouverte${d?` : elle s'ouvrira le <b>${dateLongue(d)}</b>`:''}.<br><a href="#">Revenir au sommaire</a></div></div>`;
+      majBandeau(null);scrollTo(0,0);return;}}
+  renderToc();majBandeau(null);
 }
 window.addEventListener('hashchange',render);
 function go(h){if(location.hash===h)render();else location.hash=h;}
@@ -965,6 +1010,24 @@ function setEditing(on){
   else if(on&&!(cur&&cur.lesson)) toast('Ouvrez une trace pour la modifier.');
 }
 $('#home').addEventListener('click',()=>go('#'));
+const allerA=k=>{const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]);if(!cur)return;const P=parcours(niveauDe(cur)),i=P.indexOf(cur);if(i>=0&&P[i+k])go('#t='+P[i+k].id);};
+$('#prec').addEventListener('click',()=>allerA(-1));$('#suiv').addEventListener('click',()=>allerA(1));
+/* classe choisie dans le bandeau : sommaire de la classe ; sur une leçon, la leçon du même code dans cette classe si elle est ouverte */
+document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.addEventListener('click',()=>{const n=b.dataset.classe;try{localStorage.setItem('niveau',n);}catch(e){}
+  const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]),t=cur&&TRACES.find(x=>code(x)===code(cur)&&niveauDe(x)===n);
+  if(t&&ouverte(t))go('#t='+t.id);else go('#niveau='+n);}));
+/* bouton 🔑 : mot de passe → toutes les leçons ouvertes jusqu'à la fermeture de l'onglet ; en mode enseignant, il permet d'en sortir */
+(()=>{const b=$('#ensBtn');if(ENSEIGNANT){b.textContent='🔑 Enseignant';b.classList.add('on');b.title='Quitter le mode enseignant';}
+ const dlg=document.createElement('dialog');dlg.id='ensDlg';dlg.innerHTML=`<form method="dialog"><h2>Accès enseignant</h2><p>Toutes les leçons s'ouvrent sur cet onglet, jusqu'à ce que vous le fermiez. Rien ne change pour les élèves.</p>
+  <label for="ensMdp">Mot de passe</label><input id="ensMdp" type="password" autocomplete="off"><p id="ensMsg" role="status"></p>
+  <div class="ens-actions"><button value="non" formnovalidate>Annuler</button><button id="ensOk" value="ok">Ouvrir</button></div></form>`;document.body.appendChild(dlg);
+ const ok=e=>{e.preventDefault();if(empreinteEns($('#ensMdp').value)===MDP_ENS){try{sessionStorage.setItem('francais-enseignant',MDP_ENS);}catch(x){}location.reload();}
+  else{$('#ensMsg').textContent="Ce n'est pas le bon mot de passe.";$('#ensMdp').select();}};
+ $('#ensOk').onclick=ok;$('#ensMdp').addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')ok(e);});
+ b.onclick=()=>{if(ENSEIGNANT){if(confirm('Quitter le mode enseignant ? Seules les leçons ouvertes resteront visibles.')){try{sessionStorage.removeItem('francais-enseignant');}catch(x){}location.reload();}return;}
+  $('#ensMdp').value='';$('#ensMsg').textContent='';dlg.showModal();setTimeout(()=>$('#ensMdp').focus(),50);};})();
+/* progression réelle de la classe (tableau de bord) : ouvertures.json à côté de index.html, s'il existe */
+if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;render();}}).catch(()=>{});
 $('#tocBtn').addEventListener('click',()=>go('#'));
 $('#home').addEventListener('keydown',e=>{if(e.key==='Enter')go('#');});
 const menuBtn=$('#menuBtn'),menuList=$('#menuList');
@@ -992,69 +1055,6 @@ if($('#fileIn'))$('#fileIn').addEventListener('change',e=>{
   r.readAsText(f);
 });
 load();render();
-})();
-</script>
-<dialog id="perDlg" aria-labelledby="perTitre">
- <h2 id="perTitre">Débloquer une période</h2>
- <p id="perTxt"></p>
- <label for="perCode">Code donné par ton enseignant</label>
- <input id="perCode" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false">
- <p id="perMsg" role="status" aria-live="polite"></p>
- <div class="per-actions"><button type="button" id="perAnnuler" class="per-sec">Annuler</button><button type="button" id="perOk" class="per-pri">Débloquer</button></div>
- <button type="button" id="perReset" class="per-lien" hidden>Revenir à la période de départ</button>
-</dialog>
-<style>
-#perDlg{border:0;border-radius:14px;padding:22px 24px;max-width:min(26rem,92vw);box-shadow:0 18px 50px rgba(20,30,60,.3);font-family:"Andika","Verdana","Trebuchet MS",sans-serif;color:#1f2a44;background:#fff}
-#perDlg::backdrop{background:rgba(20,30,60,.45)}
-#perDlg h2{margin:0 0 .5rem;font-size:1.3rem;font-family:inherit;color:#1f2a44}
-#perDlg p{margin:0 0 .8rem;font-size:1rem;line-height:1.4}
-#perDlg label{display:block;font-weight:700;font-size:.92rem;margin-bottom:.3rem}
-#perCode{width:100%;box-sizing:border-box;font:inherit;font-size:1.3rem;letter-spacing:.12em;text-transform:uppercase;padding:.45rem .7rem;border:2px solid #b9c2d4;border-radius:10px}
-#perCode:focus{outline:3px solid #9db4f5;border-color:#1f2a44}
-#perMsg{min-height:1.4em;margin:.5rem 0 0;font-weight:700}
-#perMsg.ko{color:#b3261e}#perMsg.ok{color:#2e7d32}
-.per-actions{display:flex;justify-content:flex-end;gap:.6rem;margin-top:.6rem}
-.per-actions button{font:inherit;font-weight:700;border-radius:10px;padding:.45rem 1rem;cursor:pointer}
-.per-pri{background:#1f2a44;color:#fff;border:2px solid #1f2a44}
-.per-sec{background:#fff;color:#1f2a44;border:2px solid #b9c2d4}
-.per-lien{font:inherit;font-size:.85rem;background:none;border:0;color:#5b6479;text-decoration:underline;cursor:pointer;margin-top:.9rem;padding:0}
-@media print{#perDlg{display:none}}
-</style>
-<script>
-(function(){
- var P=window.ClassePeriode; if(!P)return;
- var toc=document.getElementById('tocBtn'); if(!toc)return;
- var b=document.createElement('button');b.type='button';b.id='perBtn';
- var eff=P.effective();
- b.textContent='Période '+eff;b.title='Débloquer une nouvelle période avec un code';
- if(P.enseignant){b.textContent='Accès enseignant';b.title='Toutes les périodes sont ouvertes';}
- toc.parentNode.insertBefore(b,toc);
- var dlg=document.getElementById('perDlg'),inp=document.getElementById('perCode'),msg=document.getElementById('perMsg');
- function open(){
-  document.getElementById('perTxt').textContent=eff>=5?'Toutes les périodes sont ouvertes.':'Tu es en période '+eff+'. Pour ouvrir la suite, entre le code que ton enseignant t’a donné.';
-  document.getElementById('perReset').hidden=!(P.debloquee()>P.base());
-  msg.textContent='';msg.className='';inp.value='';
-  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
-  setTimeout(function(){inp.focus();},50);
- }
- function close(){if(dlg.close)dlg.close();else dlg.removeAttribute('open');}
- function ok(){
-  var v=inp.value.trim(); if(!v){inp.focus();return;}
-  var p=P.essayer(v);
-  if(p>0){
-   if(p<=eff){msg.textContent='Ce code ouvre la période '+p+' : elle est déjà ouverte.';msg.className='ok';return;}
-   msg.textContent='Bravo ! La période '+p+' est débloquée.';msg.className='ok';
-   setTimeout(function(){location.reload();},900);
-  }else if(p<0){msg.textContent='Ce navigateur ne peut pas enregistrer le déblocage.';msg.className='ko';}
-  else{msg.textContent='Ce code n’est pas le bon. Vérifie avec ton enseignant.';msg.className='ko';inp.select();}
- }
- b.addEventListener('click',open);
- document.getElementById('perAnnuler').addEventListener('click',close);
- document.getElementById('perOk').addEventListener('click',ok);
- inp.addEventListener('keydown',function(e){e.stopPropagation();if(e.key==='Enter'){e.preventDefault();ok();}});
- document.getElementById('perReset').addEventListener('click',function(){
-  if(!confirm('Revenir à la période '+P.base()+' ? Les périodes débloquées avec un code seront refermées sur cet appareil.'))return;
-  P.reverrouiller();location.reload();});
 })();
 </script>
 <script>

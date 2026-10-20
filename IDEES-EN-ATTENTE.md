@@ -23,9 +23,6 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## Réglages du site
 
-- [ ] **Blocage par période** : toutes les leçons sont ouvertes provisoirement (`TOUTES_LES_CARTES=true`).
-  Quand faut-il remettre le blocage par période ?
-- [ ] **Accès enseignant provisoire** (`?enseignant` à la fin de l'adresse) : le garder ou le retirer ?
 - [ ] **Alléger la page** : ranger les images des cartes mentales dans un dossier `images/` au lieu de les
   intégrer dans `index.html` (page plus légère, cartes remplaçables à la main).
 
@@ -38,10 +35,6 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
-- [ ] **Ouverture au fur et à mesure** : chaque leçon s'ouvre à sa date (dates prévues + fichier `ouvertures.json` fabriqué
-  par le tableau de bord), pastille « nouveau » 7 jours, page fermée « s'ouvrira le … », accès enseignant par bouton 🔑 et
-  mot de passe. Remplacerait `TOUTES_LES_CARTES`, `PERIODE_FICHIER` et `?enseignant`.
-- [ ] **Même bandeau que les maths** : Sommaire, ◀ ceinture ▶ (seulement les leçons ouvertes de la classe), CE2 / CM1 / CM2, 🖨.
 - [ ] **Codes en double** : C6 et C7 n'ont pas le même sens au CE2 (verbes irréguliers) et au CM2 (plus-que-parfait,
   passé simple). En maths, un même code = une même compétence dans les trois classes. Renuméroter ?
 - [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,

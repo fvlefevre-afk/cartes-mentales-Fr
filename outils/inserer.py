@@ -44,4 +44,4 @@ for i in ids: PL[i] = data[i]['plus']
 L[k] = 'const PLUS=' + json.dumps(PL, ensure_ascii=False) + ';'
 open(P, 'w', encoding='utf-8').write('\n'.join(L))
 print('mis dans le site :', ', '.join(ids))
-print('Penser : nouvelle famille → FAMILLES ; période → PERIODE_CEINTURE (dans index.html).')
+print('Penser : nouvelle famille → FAMILLES ; date d’ouverture → node outils/ouvertures_site.mjs ../ressources (OUVERTURE_PREVUE dans index.html).')
