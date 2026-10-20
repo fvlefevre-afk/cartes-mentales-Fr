@@ -35,3 +35,15 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **Supprimer l'ancien dépôt** resté sur le compte `gigi75lefevre-collab`, pour ne pas confondre les deux.
 - [ ] **Autoriser le site education.gouv.fr** dans les réglages de Claude (rubrique Capacités), pour que Claude
   puisse télécharger lui-même les documents officiels.
+
+## Faire comme sur le site de maths (proposition du 20/10/2026)
+
+- [ ] **Ouverture au fur et à mesure** : chaque leçon s'ouvre à sa date (dates prévues + fichier `ouvertures.json` fabriqué
+  par le tableau de bord), pastille « nouveau » 7 jours, page fermée « s'ouvrira le … », accès enseignant par bouton 🔑 et
+  mot de passe. Remplacerait `TOUTES_LES_CARTES`, `PERIODE_FICHIER` et `?enseignant`.
+- [ ] **Même bandeau que les maths** : Sommaire, ◀ ceinture ▶ (seulement les leçons ouvertes de la classe), CE2 / CM1 / CM2, 🖨.
+- [ ] **Codes en double** : C6 et C7 n'ont pas le même sens au CE2 (verbes irréguliers) et au CM2 (plus-que-parfait,
+  passé simple). En maths, un même code = une même compétence dans les trois classes. Renuméroter ?
+- [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,
+  les cahiers de progrès et le fichier « Langue - ceintures » du tableau de bord.
+- [ ] **Test automatique de toutes les leçons** aux trois niveaux, et un fichier `RESUME.md` pour reprendre le travail.
