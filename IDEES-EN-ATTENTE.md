@@ -35,8 +35,14 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
-- [ ] **Codes en double** : C6 et C7 n'ont pas le même sens au CE2 (verbes irréguliers) et au CM2 (plus-que-parfait,
-  passé simple). En maths, un même code = une même compétence dans les trois classes. Renuméroter ?
+- [ ] **Codes en double C6 / C7** (question posée le 20/10/2026, en attente de réponse) : le Dispositif 3 (conjugaison CM1)
+  réserve C6 (plus-que-parfait) et C7 (passé simple) au CM2 ; ce sont donc les deux ceintures CE2 « verbes irréguliers »
+  qui doivent changer de code. Le tableau de bord n'accepte que des codes à un chiffre (`RE_CODE_LANGUE`, 04) : seul C9 est libre.
+  Choix proposés : (1, recommandé) C9 irréguliers au présent (noire) + C10 irréguliers aux autres temps (argent), codes à 2 chiffres
+  acceptés dans le tableau de bord ; (2) une seule ceinture CE2 C9 « Les verbes irréguliers » ; (3) irréguliers travaillés dans
+  C1, C2, C3 du CE2, comme au CM1. À changer ensuite : site (C6-CE2, C7-CE2, `outils/lecons/ce2_seulement.py`), cahier de progrès C
+  (trois niveaux et cm1), `outils/dispositifs_ce2/C.md`, `programmes/ceintures-trois-niveaux.html`, « Langue - ceintures-1.odt »
+  (ligne C6 / C7 « CE2, CM2 ») du tableau de bord.
 - [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,
   les cahiers de progrès et le fichier « Langue - ceintures » du tableau de bord.
 - [ ] **Test automatique de toutes les leçons** aux trois niveaux, et un fichier `RESUME.md` pour reprendre le travail.
