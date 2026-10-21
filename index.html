@@ -981,7 +981,8 @@ function majBandeau(t){const n=t?niveauDe(t):niveauChoisi(),som=!t;
 function render(){
   const h=location.hash;
   if(h==='#tout'){renderAll();majBandeau(null);return;}
-  const m=h.match(/^#([A-Z]\d+)$/);if(m){const t=leconDuCode(m[1],niveauChoisi());if(t){location.replace('#t='+t.id);return;}}
+  /* lien du tableau de bord : « #G1 » (classe choisie) ou « #G1&niveau=CE2 » ; une ceinture absente de la classe choisie ouvre celle d'une autre classe (21/10/2026) */
+  const m=h.match(/^#([A-Z]\d+)(?:&niveau=(CE2|CM1|CM2))?$/);if(m){const n=niveauChoisi(),t=leconDuCode(m[1],m[2]||n)||leconDuCode(m[1],n)||TRACES.find(x=>code(x)===m[1]&&hasTrace(x));if(t){location.replace('#t='+t.id);return;}}
   if(h.startsWith('#t=')){const [id,sc]=decodeURIComponent(h.slice(3)).split('/');const t=byId(id);
     if(t&&ouverte(t)){try{localStorage.setItem('niveau',niveauDe(t));}catch(e){}renderTrace(t,sc!=null?+sc:null);majBandeau(t);scrollTo(0,0);return;}
     if(t){const d=dateOuverture(t);document.title=code(t)+' — '+t.titre;

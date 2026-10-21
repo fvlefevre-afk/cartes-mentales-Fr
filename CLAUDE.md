@@ -30,7 +30,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   empreinte `MDP_ENS`, à recalculer avec `empreinteEns("…")` sur les deux sites pour le changer) : tout s'ouvre jusqu'à la fermeture de l'onglet.
 - Bandeau (comme le site de maths) : Sommaire et titre à gauche ; ◀ ceinture de la leçon ▶ au centre (sur le sommaire : nombre de leçons ouvertes) ;
   classe (CE2 / CM1 / CM2, `data-classe` : sur une leçon, ouvre la leçon du même code dans cette classe) et impression à droite.
-  ◀ ▶ ne parcourent que les leçons ouvertes de la classe (`parcours()`). L'adresse `#G1` (lien du tableau de bord) ouvre la leçon G1 de la classe choisie.
+  ◀ ▶ ne parcourent que les leçons ouvertes de la classe (`parcours()`). L'adresse `#G1` (lien du tableau de bord) ouvre la leçon G1 de la classe choisie ; `#G1&niveau=CE2` celle de cette classe ;
+  une ceinture absente de la classe demandée ouvre la leçon d'une autre classe qui l'a (21/10/2026).
 - Sommaire par classe : boutons CE2 / CM1 / CM2 (adresse `#niveau=CE2`…). Une leçon sans champ `niveau`
   est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
 - CM2 : mêmes numéros, mêmes couleurs, mêmes notions qu'en CM1 (choix de l'enseignante, octobre 2026).
