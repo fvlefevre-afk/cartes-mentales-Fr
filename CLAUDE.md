@@ -11,13 +11,15 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 
 ## Le site
 
-- Tout le site tient dans `index.html` (images des cartes mentales intégrées en base64 dans l'objet `IMG`).
+- Le site tient dans `index.html` ; les images (cartes mentales `images/<id>.jpg`, personnages `images/fille*.jpg`, `images/garcon*.jpg`, `duo.jpg`)
+  sont dans le dossier `images/` : l'objet `IMG` ne garde que leur chemin (page allégée de 11,7 Mo à 0,4 Mo, 23/10/2026).
+  Une carte se remplace à la main en gardant le même nom de fichier (1400×933 px).
 - Écrans animés : §…§ colore une terminaison en violet (conjugaison).
 - G6 : compléments d’objet en indigo (#5e35b1), compléments circonstanciels en marron (#8d5524), sur la carte et dans les écrans
   (classe `lecon-G6`), pour ne pas reprendre le vert de l’adjectif ni l’orange du déterminant (choix de l’enseignante, 23/10/2026).
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.
 - Une leçon interactive = une entrée dans `TRACES` (avec `lesson:true`), une entrée dans `LESSONS`
-  (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG`.
+  (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG` (chemin vers `images/`).
 - Modèle pour une nouvelle leçon : G1 à G7, H1 à H7, V1 à V6, C1 à C7, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
   Chaque document a une partie « En CM2 » à la fin (pas de document séparé pour le CM2) ; textes dans

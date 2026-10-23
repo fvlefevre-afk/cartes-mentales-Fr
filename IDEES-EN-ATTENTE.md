@@ -3,11 +3,6 @@
 Propositions faites pendant le travail, auxquelles il n'a pas encore été répondu.
 Rayer ou supprimer une ligne une fois la décision prise.
 
-## Réglages du site
-
-- [ ] **Alléger la page** : ranger les images des cartes mentales dans un dossier `images/` au lieu de les
-  intégrer dans `index.html` (page plus légère, cartes remplaçables à la main).
-
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
 - [ ] **Codes en double C6 / C7** (en attente de réponse) : le Dispositif 3 (conjugaison CM1) réserve C6 (plus-que-parfait)
