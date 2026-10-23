@@ -13,6 +13,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 
 - Tout le site tient dans `index.html` (images des cartes mentales intégrées en base64 dans l'objet `IMG`).
 - Écrans animés : §…§ colore une terminaison en violet (conjugaison).
+- G6 : compléments d’objet en indigo (#5e35b1), compléments circonstanciels en marron (#8d5524), sur la carte et dans les écrans
+  (classe `lecon-G6`), pour ne pas reprendre le vert de l’adjectif ni l’orange du déterminant (choix de l’enseignante, 23/10/2026).
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.
 - Une leçon interactive = une entrée dans `TRACES` (avec `lesson:true`), une entrée dans `LESSONS`
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG`.

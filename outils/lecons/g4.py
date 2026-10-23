@@ -32,7 +32,6 @@ boxes = [
  dict(id='conj', col='turquoise', geom=BCx, title='Les mots qui relient', style='padding-top:50px', html='''
   <p class="txt">Les <b>conjonctions de coordination</b> relient deux mots ou deux parties de phrase.</p>
   <div class="ex big" style="font-size:21px;padding:6px 4px;white-space:nowrap">mais · ou · et · donc · or · ni · car</div>
-  <p class="small" style="margin:6px 0 4px;text-align:center"><i>« Mais où est donc Ornicar ? »</i></p>
   <p class="txt" style="text-align:center">Il pleut <span class="rond">mais</span> je sors.</p>'''),
  dict(id='inv', col='rose', geom=BRx, title='Variable ou invariable ?', style='padding-top:50px', html='''
   <p class="txt"><b>Variables</b> (ils changent) : nom, déterminant, adjectif, verbe, pronom.</p>
@@ -139,10 +138,10 @@ E('verbe', 'loupe', 'Verbe ou nom ?', 'boy', 'Un même mot peut être un verbe o
  E('conj', 'mots', 'Les mots qui relient', 'girl', 'mais, ou, et, donc, or, ni, car relient des mots ou des phrases.',
    ['Je voulais sortir. Il pleuvait.',
     ('Je voulais sortir |*mais*| il pleuvait.', 'mais relie les deux parties.'),
-    ('mais · ou · et · donc · or · ni · car', '« Mais où est donc Ornicar ? »')],
+    ('mais · ou · et · donc · or · ni · car', 'Les 7 mots qui relient.')],
    Q('Tu veux du lait ___ du jus ?', ['ou', 'mais', 'car'], 'Il faut choisir entre les deux.', fill='circ'),
    [Q('J’ai un chat ___ un chien.', ['et', 'car', 'or'], 'J’ai les deux.', fill='circ'),
-    Q('', ['mais, ou, et', 'très, bien, vite', 'le, la, les'], 'Mais où est donc Ornicar ?', 'Quelle liste contient seulement des conjonctions ?')]),
+    Q('', ['mais, ou, et', 'très, bien, vite', 'le, la, les'], 'mais, ou, et relient des mots ou des phrases.', 'Quelle liste contient seulement des conjonctions ?')]),
  E('conj', 'ampoule', 'Choisir le bon mot', 'girl', 'Chaque mot qui relie a un sens.',
    [('Il est fatigué |car| il a couru.', 'car : la cause (= parce que)'),
     ('Il a couru, |donc| il est fatigué.', 'donc : la conséquence'),

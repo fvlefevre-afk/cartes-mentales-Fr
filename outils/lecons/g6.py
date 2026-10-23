@@ -7,37 +7,37 @@ boxes = [
  dict(id='phrase', col='turquoise', geom=TL, title='Sujet, verbe… et plus', avatar=('girl', 322, 122), html='''
   <p class="txt" style="padding-right:100px">Une phrase a un <span class="s">sujet</span> et un <span class="v">verbe</span>.</p>
   <p class="txt" style="padding-right:100px">Elle peut avoir des <b>compléments</b>.</p>
-  <div class="ex" style="font-size:21px;margin-top:14px;line-height:1.5"><span class="d">Ce matin,</span> <span class="s">Léa</span> <span class="v">mange</span> <span class="a">une pomme</span> <span class="d">dans la cuisine</span>.</div>'''),
- dict(id='cod', col='vert', geom=TC, title='Le complément d’objet', hstyle='font-size:28px', html='''
+  <div class="ex" style="font-size:21px;margin-top:14px;line-height:1.5"><span class="cc">Ce matin,</span> <span class="s">Léa</span> <span class="v">mange</span> <span class="co">une pomme</span> <span class="cc">dans la cuisine</span>.</div>'''),
+ dict(id='cod', col='indigo', geom=TC, title='Le complément d’objet', hstyle='font-size:28px', html='''
   <ul style="font-size:19px;line-height:1.3">
    <li>Il complète le verbe : <b style="white-space:nowrap">quoi ? à qui ?</b></li>
    <li>On ne peut <b>ni le supprimer, ni le déplacer</b>.</li></ul>
-  <div class="ex" style="font-size:19px;line-height:1.4;margin-top:6px"><span class="s">Tom</span> <span class="v">lance</span> <span class="a">le ballon</span>. <span class="arrow">→</span> <b>COD</b><br><span class="s">Il</span> <span class="v">parle</span> <span class="a">à sa mère</span>. <span class="arrow">→</span> <b>COI</b></div>
+  <div class="ex" style="font-size:19px;line-height:1.4;margin-top:6px"><span class="s">Tom</span> <span class="v">lance</span> <span class="co">le ballon</span>. <span class="arrow">→</span> <b>COD</b><br><span class="s">Il</span> <span class="v">parle</span> <span class="co">à sa mère</span>. <span class="arrow">→</span> <b>COI</b></div>
   <p style="margin:4px 0 0;font-size:16px">COI : avec un petit mot (<b>à</b>, <b>de</b>) après le verbe.</p>'''),
- dict(id='cc', col='orange', geom=TR, title='Compléments circonstanciels', hstyle='font-size:25px', avatar=('boy', 1250, 122), html='''
+ dict(id='cc', col='marron', geom=TR, title='Compléments circonstanciels', hstyle='font-size:25px', avatar=('boy', 1250, 122), html='''
   <ul style="font-size:20px;padding-right:96px">
    <li>Ils disent <b>où</b>, <b>quand</b>, <b>comment</b>.</li>
    <li>On peut les <b>supprimer</b> et les <b>déplacer</b>.</li></ul>
-  <div class="ex" style="font-size:20px;line-height:1.5"><span class="d">hier</span> <span class="arrow">→</span> quand ?<br><span class="d">dans le parc</span> <span class="arrow">→</span> où ?<br><span class="d">joyeusement</span> <span class="arrow">→</span> comment ?</div>'''),
+  <div class="ex" style="font-size:20px;line-height:1.5"><span class="cc">hier</span> <span class="arrow">→</span> quand ?<br><span class="cc">dans le parc</span> <span class="arrow">→</span> où ?<br><span class="cc">joyeusement</span> <span class="arrow">→</span> comment ?</div>'''),
  dict(id='tests', col='violet', geom=(18, 568, 560, 350), title='Les tests', style='padding-top:52px', html='''
   <p class="txt"><b>1. Je supprime :</b></p>
   <div class="ex" style="font-size:20px;margin:0 0 6px"><span class="barre">Ce matin,</span> <span class="s">les élèves</span> <span class="v">chantent</span> <span class="barre">dans la cour</span>.</div>
   <p class="txt" style="font-size:18px">La phrase a encore du sens.</p>
   <p class="txt"><b>2. Je déplace :</b></p>
-  <div class="ex" style="font-size:20px;margin:0"><span class="d">Dans la cour,</span> <span class="s">les élèves</span> <span class="v">chantent</span>.</div>'''),
+  <div class="ex" style="font-size:20px;margin:0"><span class="cc">Dans la cour,</span> <span class="s">les élèves</span> <span class="v">chantent</span>.</div>'''),
  dict(id='att', col='rouge', geom=(612, 568, 770, 350), title='Attention !', style='padding-top:52px', html='''
   <ul style="font-size:20px;line-height:1.45">
-   <li>En début de phrase, le complément circonstanciel est suivi<br>d’une <span class="e">virgule</span> : <span class="d">Le matin<span class="e">,</span></span> les oiseaux chantent.</li>
+   <li>En début de phrase, le complément circonstanciel est suivi<br>d’une <span class="e">virgule</span> : <span class="cc">Le matin<span class="e">,</span></span> les oiseaux chantent.</li>
    <li>Une phrase peut avoir <b>plusieurs</b> compléments.</li>
    <li>Sans le complément d’objet, il manque quelque chose :<br><span class="s">Tom</span> <span class="v">lance</span>… quoi ?</li></ul>'''),
 ]
-legend = '<span class="s">sujet</span> · <span class="v">verbe</span> · <span class="a">compl. d’objet</span> · <span class="d">compl. circonstanciel</span>'
+legend = '<span class="s">sujet</span> · <span class="v">verbe</span> · <span class="co">compl. d’objet</span> · <span class="cc">compl. circonstanciel</span>'
 out, zones = build('G6', 'Les<br>compléments', 'Grammaire — G6 — CM1', legend, boxes, title_size=38, legend_pos='right:18px;top:470px')
 
 sections = [
  {'id': 'phrase', 'nom': 'Sujet, verbe… et plus', 'couleur': '#00838f'},
- {'id': 'cod', 'nom': 'Le complément d’objet', 'couleur': '#23845a'},
- {'id': 'cc', 'nom': 'Les compléments circonstanciels', 'couleur': '#e67e22'},
+ {'id': 'cod', 'nom': 'Le complément d’objet', 'couleur': '#5e35b1'},
+ {'id': 'cc', 'nom': 'Les compléments circonstanciels', 'couleur': '#8d5524'},
  {'id': 'tests', 'nom': 'Les tests', 'couleur': '#7b3fa0'},
  {'id': 'att', 'nom': 'Attention !', 'couleur': '#c62828'},
 ]

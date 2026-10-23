@@ -13,6 +13,8 @@ svg.bg{position:absolute;inset:0}
 .big{font-size:27px;text-align:center}
 .d{color:#d9730d;font-weight:700}
 .a{color:#23845a;font-weight:700}
+.co{color:#5e35b1;font-weight:700} /* complément d'objet (G6) */
+.cc{color:#8d5524;font-weight:700} /* complément circonstanciel (G6) */
 .n{color:#1f5fc4;font-weight:700;border:3px solid #1f5fc4;border-radius:20px;padding:0 8px}
 .e{color:#c62828;font-weight:700;background:#ffe066;border-radius:5px;padding:0 2px}
 .lab{display:flex;justify-content:center;gap:0;font-size:15px;margin-top:-2px}

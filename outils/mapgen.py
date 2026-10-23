@@ -11,6 +11,8 @@ PAL = {  # couleur: (bordure, fond, fond du titre)
     'rouge': ('#c62828', '#fff3f2', '#fbd5d2'),
     'turquoise': ('#00838f', '#eaf7f8', '#cdeef1'),
     'rose': ('#c2185b', '#fdf0f5', '#fbe0ea'),
+    'indigo': ('#5e35b1', '#f3effc', '#e0d7f6'),  # compléments d'objet (G6)
+    'marron': ('#8d5524', '#faf3ec', '#eedccb'),  # compléments circonstanciels (G6)
 }
 # Positions standard (comme G3)
 TL = (18, 86, 430, 330)
