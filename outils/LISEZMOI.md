@@ -19,7 +19,8 @@ Tout ce qui est fabriqué va dans `sortie/`, qui n'est pas enregistré dans le d
 3. Regarder l'image de la carte dans `sortie/`.
 4. La mettre dans le site : `python3 inserer.py O1` (remplace la leçon si elle existe déjà ; la carte est copiée dans `images/O1.jpg`).
    Pour une nouvelle matière, ajouter aussi la famille dans `FAMILLES` et la période dans `PERIODE_CEINTURE` (dans `index.html`).
-5. Tester : `python3 tester.py O1` joue toutes les animations et tous les exercices.
+5. Tester : `python3 tester.py O1` joue toutes les animations et tous les exercices ; `python3 tester.py tout` teste toutes les leçons
+   des trois classes (`tout CE2` : une classe). Réponse attendue : « TOUT EST BON ».
 6. Homophones : `python3 jumeaux.py` vérifie qu'aucun jumeau interdit n'apparaît dans H2 à H7 (il lit `sortie/`, donc il faut avoir relancé les scripts h2 à h7).
 
 Les leçons G1, G2, G3, H1, V1 et V2 ont été faites autrement, avant ces outils : elles se modifient directement dans `index.html`.

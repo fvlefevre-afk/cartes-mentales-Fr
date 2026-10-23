@@ -54,6 +54,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 
 ## Outils
 
+- Pour reprendre le travail : lire `RESUME.md` (où en est-on) puis `IDEES-EN-ATTENTE.md`.
+- Avant chaque envoi qui touche aux leçons : `python3 outils/tester.py tout` doit répondre « TOUT EST BON ».
 - Le dossier `outils/` contient les programmes qui fabriquent les cartes, les écrans, les exercices et les fiches
   du cahier de progrès. Mode d'emploi : `outils/LISEZMOI.md`.
 

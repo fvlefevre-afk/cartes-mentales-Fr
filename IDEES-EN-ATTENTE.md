@@ -12,5 +12,6 @@ Rayer ou supprimer une ligne une fois la décision prise.
   `outils/lecons/ce2_seulement.py` (carte), cahiers de progrès C, `outils/dispositifs_ce2/C.md`, `outils/vue_trois_niveaux.py`,
   « Langue - ceintures-1.odt » du tableau de bord (ligne C6 / C7 « CE2, CM2 »), `PROG_LANGUE` (17k, objectif ec4 → C6 C7).
 - [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,
-  les cahiers de progrès et le fichier « Langue - ceintures » du tableau de bord.
-- [ ] **Test automatique de toutes les leçons** aux trois niveaux, et un fichier `RESUME.md` pour reprendre le travail.
+  les cahiers de progrès et le fichier « Langue - ceintures » du tableau de bord (en attente de réponse ; à faire après C6 / C7).
+  Vu le 23/10/2026 : dans le tableau de bord, les fiches de conjugaison CE2 et CM2 (`C_FICHES`, `17d-suivi-evaluations.js`)
+  suivent encore l'ancienne numérotation (ex. fiche « C6 » CE2 = passé composé avec avoir, alors que C6 CE2 = irréguliers au présent).
