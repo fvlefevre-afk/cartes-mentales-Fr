@@ -120,7 +120,7 @@ Les ceintures O1 à O6 existent aussi au CE2, avec le même numéro, la même co
 
 O7 répond au programme du cycle 2 (CE2), qui demande de transcrire les sons qui s’écrivent de plusieurs façons (/o/, /é/, /è/, /an/, /s/) et de tenir compte des accents. Cahier de progrès : parcours A de la fiche « O - cahier de progrès ».
 
-# Points à trancher
+# Décisions
 
-- **Créneau** : l'ancienne version ne prévoyait pas de créneau dédié. Le parcours à ceintures demande 30 min pour l'entraînement collectif et 15 min par fiche : à placer, par exemple, à côté de la dictée hebdomadaire.
-- **Compétences du pack sans ceinture** : les noms en [e] / [té] (Ortho Mémo) et les mots en ac / af / ap (Les tournesols) restent hors ceintures.
+- **Créneau** : l'entraînement collectif (30 min) et les fiches (15 min chacune) se font dans les 3 créneaux d'orthographe de la semaine : mardi, jeudi et vendredi (organisation de l'année 2026-2027, choix de l'enseignante, 23/10/2026).
+- **Compétences du pack sans ceinture** : les noms en [e] / [té] (Ortho Mémo) et les mots en ac / af / ap (Les tournesols) restent hors ceintures (choix de l'enseignante, 23/10/2026).

@@ -16,7 +16,7 @@ for fam in args:
             for c, code, txt in data:
                 out.append((c, code, txt, ', '.join(codes), c.capitalize())); codes.append(code)
             return out
-        for name, f in [('Ceintures de grammaire et orth gram 2026 - cahier de progrès.odt', 'G'), ('Ceintures de conjugaison 2026 - cahier de progrès A REFAIRE.odt', 'C')]:
+        for name, f in [('Ceintures de grammaire et orth gram 2026 - cahier de progrès.odt', 'G'), ('Ceintures de conjugaison 2026 - cahier de progrès.odt', 'C')]:
             # Tableau2 = CE2, Tableau1 = CM1, Tableau3 = CM2
             fn = lambda s, f=f: set_table(set_table(set_table(s, 'Tableau1', rows(DATA[f]), extra=3), 'Tableau3', rows(DATA_CM2[f]), extra=3), 'Tableau2', rows(DATA_CE2[f]), extra=3)
             rewrite_odt(CM1 + name, CM1 + name, fn); print('maj', name)

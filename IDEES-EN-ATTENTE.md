@@ -3,14 +3,6 @@
 Propositions faites pendant le travail, auxquelles il n'a pas encore été répondu.
 Rayer ou supprimer une ligne une fois la décision prise.
 
-## Orthographe (Dispositif 2, nouvelle version à ceintures)
-
-- [ ] **Créneau** : où placer les 30 min d'entraînement collectif et les fiches (par exemple à côté de la dictée) ?
-- [ ] **Jeux du pack sans ceinture** : noms en [e] / [té] (Ortho Mémo), mots en ac / af / ap (Les tournesols) :
-  les laisser hors ceintures, ou en faire des ceintures ?
-- [ ] **Cahier « conjugaison 2026 – A REFAIRE »** : la partie CM1 a été remise à jour (C1 à C5).
-  Les parties CE2 et CM2 n'ont pas été touchées. Faut-il aussi les revoir ?
-
 ## Réglages du site
 
 - [ ] **Alléger la page** : ranger les images des cartes mentales dans un dossier `images/` au lieu de les
