@@ -27,8 +27,10 @@ FAM = [
   ('C3','Orange',2,'Imparfait : être, avoir, 1er groupe','2e groupe, verbes irréguliers ; radical de « nous »','Passé simple d’être, d’avoir, du 1er groupe'),
   ('C4','Verte',3,'Passé composé avec avoir','Forme négative','Accord avec le COD placé avant'),
   ('C5','Bleue',4,'Passé composé avec être (verbes de déplacement)','Accord avec le sujet','Accord avec le sujet inversé'),
-  ('C6','Rouge',4,'Verbes irréguliers au présent (CE2 seulement)',('—','pas en CM1'),'Plus-que-parfait (CM2 seulement)'),
-  ('C7','Violette',5,'Verbes irréguliers au futur, à l’imparfait, au passé composé (CE2 seulement)',('—','pas en CM1'),'Passé simple : 2e groupe et verbes irréguliers (CM2 seulement)')]),
+  ('C6','Rouge',4,'Verbes irréguliers au présent','Les mêmes verbes, au présent (comme au CE2)',('—','pas en CM2')),
+  ('C7','Violette',5,'Verbes irréguliers au futur, à l’imparfait, au passé composé','Les mêmes verbes, aux mêmes temps (comme au CE2)',('—','pas en CM2')),
+  ('C8','Rouge',4,('—','pas au CE2'),('—','pas en CM1'),'Plus-que-parfait (CM2 seulement)'),
+  ('C9','Violette',5,('—','pas au CE2'),('—','pas en CM1'),'Passé simple : 2e groupe et verbes irréguliers (CM2 seulement)')]),
  ('V','Vocabulaire','#d9730d',[
   ('V1','Blanche',1,'Mot générique et mots précis','Mot-étiquette, échelle des mots','Les termes « générique » et « spécifique »'),
   ('V2','Rose',1,'Mot inconnu : indices, puis vérification dans un dictionnaire adapté','Méthode en 4 étapes, sans dictionnaire','Le dictionnaire : ordre alphabétique, choix du sens'),
@@ -134,15 +136,16 @@ td.decider {{ background:var(--amber); color:var(--ink); }}
 <div class="bilan">
 <div><b>24</b><span>ceintures communes aux trois classes</span></div>
 <div><b>7</b><span>communes au CM1 et au CM2 seulement : les homophones H1 à H7 (hors programme du CE2)</span></div>
-<div><b>3</b><span>propres au CE2 : C6, C7 (verbes irréguliers) et O7 (sons et accents)</span></div>
-<div><b>2</b><span>propres au CM2 : C6 (plus-que-parfait) et C7 (passé simple)</span></div>
+<div><b>2</b><span>communes au CE2 et au CM1 seulement : C6 et C7 (verbes irréguliers)</span></div>
+<div><b>1</b><span>propre au CE2 : O7 (sons et accents)</span></div>
+<div><b>2</b><span>propres au CM2 : C8 (plus-que-parfait) et C9 (passé simple)</span></div>
 </div>
 <nav class="fam" aria-label="Matières">{nav}</nav>
 {sections}
 <aside class="questions">
 <h3>À savoir</h3>
 <ol>
-<li><b>C6 et C7</b> n’ont pas le même contenu au CE2 et au CM2 : ce sont les deux seules ceintures où les niveaux se séparent. C7 garde un fil commun, « les verbes irréguliers ».</li>
+<li><b>C6 et C7</b> (les verbes irréguliers) sont communes au CE2 et au CM1 ; le CM2 a ses propres ceintures, <b>C8</b> (plus-que-parfait) et <b>C9</b> (passé simple). Numérotation du 27/10/2026, la même que dans le tableau de bord.</li>
 <li><b>Au CE2</b>, les verbes irréguliers s’écrivent avec le tableau de conjugaison affiché jusqu’aux ceintures C6 et C7.</li>
 <li><b>Homophones</b> : pas de ceinture au CE2, car le programme du cycle 2 ne les prévoit pas ; ils commencent au CM1.</li>
 <li><b>Tests</b> : 6/6 ; au CE2, 6 items sur le contenu CE2 ; au CM2, 3 items communs + 3 items CM2.</li>

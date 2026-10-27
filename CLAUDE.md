@@ -20,7 +20,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.
 - Une leçon interactive = une entrée dans `TRACES` (avec `lesson:true`), une entrée dans `LESSONS`
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG` (chemin vers `images/`).
-- Modèle pour une nouvelle leçon : G1 à G7, H1 à H7, V1 à V6, C1 à C7, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
+- Modèle pour une nouvelle leçon : G1 à G7, H1 à H7, V1 à V6, C1 à C9, O1 à O7 (carte mentale 1400×933 px, zones cliquables numérotées).
 - Les dispositifs de l’enseignante font référence : les lire avant de créer une ceinture. Depuis le 27/10/2026 ils sont dans le dépôt `ressources`
   (branche `branche-propre`) : « Documents explicatifs des dispositifs ce2-cm1-cm2 » (Structure des ceintures EDL, avec la page « Principes » ; dispositifs 5 à 7b ;
   un seul jeu pour la classe à trois niveaux et la classe de CM1 seul) et « Fichiers à déposer/Étude de la langue … » (dispositifs d’étude de la langue,
@@ -44,14 +44,14 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   Une leçon CM2 (id `XX-CM2`, code affiché `XX`) = la leçon CM1 + les écrans de `CM2_PLUS` (étiquette « CM2 »,
   placés après le dernier écran de leur section) + un encadré « En CM2, j'apprends aussi » sous la carte.
   Fabriqués par `outils/lecons/cm2_ajouts.py`, mis dans le site par `outils/inserer_cm2.py`. Liste : `CM2_COPIE` ;
-  l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`). C6 (plus-que-parfait, rouge) et
-  C7 (passé simple, violette) n'existent qu'en CM2 (`outils/lecons/c6_c7_cm2.py`). Détail : `programmes/ecarts-CM1-CM2.md`.
+  l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`). C8 (plus-que-parfait, rouge) et
+  C9 (passé simple, violette) n'existent qu'en CM2 (`outils/lecons/c8_c9_cm2.py`, ids `C8-CM2`, `C9-CM2` ; anciens codes C6 et C7 jusqu'au 27/10/2026, numérotation du tableau de bord). Détail : `programmes/ecarts-CM1-CM2.md`.
 - CE2 : mêmes numéros, mêmes couleurs, mêmes notions, en plus simple. Une leçon CE2 (id `XX-CE2`) = la leçon CM1
   sans les écrans listés dans `retirer`, + les écrans de `CE2_PLUS` (étiquette « CE2 ») + un encadré « Au CE2, je retiens » ;
   les zones de la carte sans écran sont masquées. Fabriqués par `outils/lecons/ce2_ajouts.py`, mis dans le site par
   `outils/inserer_cm2.py CE2`. Pas d'homophones au CE2. `retirer` : numéros d'écrans CM1 au 17/10/2026
-  (`outils/lecons/titres_cm1_ref.json`) ou titres d'écrans ; le site compare les titres. Ceintures CE2 seulement : C6 et C7 (verbes irréguliers, sortis de C1-C5),
-  O7 (sons « o », « é », « è » et accents) — `outils/lecons/ce2_seulement.py`. Vue d'ensemble : `programmes/ceintures-trois-niveaux.html`.
+  (`outils/lecons/titres_cm1_ref.json`) ou titres d'écrans ; le site compare les titres. Ceintures du CE2 : C6 et C7 (verbes irréguliers, sortis de C1-C5) ; au CM1 aussi (27/10/2026) : mêmes leçons, ids `C6` et `C7` (carte « … — CM1 »), fabriquées avec les
+  leçons CE2 par `outils/lecons/ce2_seulement.py`. CE2 seulement : O7 (sons « o », « é », « è » et accents). Vue d'ensemble : `programmes/ceintures-trois-niveaux.html`.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils

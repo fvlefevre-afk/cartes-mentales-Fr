@@ -7,7 +7,7 @@ Le principe général est le même en CM2 (enseignement collectif, entraînement
 | 1 — Grammaire | G1 à G7, approfondies |
 | 1 bis — Homophones | H1 à H7, avec qu’elle, sans, donc, dont, quel, s’en |
 | 2 — Orthographe lexicale | O1 à O6, avec des mots plus difficiles |
-| 3 — Conjugaison | C1 à C5, approfondies ; C6 (plus-que-parfait) et C7 (passé simple) en CM2 seulement |
+| 3 — Conjugaison | C1 à C5, approfondies ; C8 (plus-que-parfait) et C9 (passé simple) en CM2 seulement |
 | 4 — Vocabulaire | V1 à V6, approfondies |
 
 - Tests : réussite 6/6 ; pour le CM2, chaque version compte 3 items sur le tronc commun et 3 items sur l’ajout CM2.

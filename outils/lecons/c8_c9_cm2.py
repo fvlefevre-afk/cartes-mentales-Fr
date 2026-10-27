@@ -1,5 +1,5 @@
-"""Ceintures CM2 seulement : C6 (plus-que-parfait) et C7 (passé simple : 2e groupe et verbes irréguliers).
-Identifiants sur le site : C6-CM2 et C7-CM2 (code affiché : C6, C7)."""
+"""Ceintures CM2 seulement : C8 (plus-que-parfait) et C9 (passé simple : 2e groupe et verbes irréguliers).
+Identifiants sur le site : C8-CM2 et C9-CM2 (code affiché : C8, C9). Anciens codes C6 et C7 jusqu'au 27/10/2026."""
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from mapgen import build, TL, TC, TR
@@ -13,7 +13,7 @@ BR = (612, 568, 770, 350)
 legend = '<span class="s">sujet</span> · <span class="v">auxiliaire</span> · <span class="t">terminaison</span>'
 SEC = lambda *l: [{'id': i, 'nom': n, 'couleur': c} for (i, n), c in zip(l, ['#1f5fc4', '#23845a', '#7b3fa0', '#e67e22', '#c62828'])]
 
-# ================================================================ C6
+# ================================================================ C8
 boxes = [
  dict(id='quand', col='bleu', geom=TL, title='Encore avant', avatar=('girl', 322, 122), html=f'''
   <p class="txt" style="padding-right:100px">Le plus-que-parfait dit ce qui s’est passé <b>avant</b> une autre action passée.</p>
@@ -32,7 +32,7 @@ boxes = [
    <li>Passé composé : auxiliaire au <b>présent</b> → j’{V("ai")} mangé.<br>Plus-que-parfait : à l’<b>imparfait</b> → j’{V("avais")} mangé.</li>
    <li>Négation : ne… pas encadre l’auxiliaire → je <b>n’</b>{V("avais")} <b>pas</b> mangé.</li></ul>'''),
 ]
-out, zones = build('C6-CM2', 'Le plus-que-<br>parfait', 'Conjugaison — C6 — CM2', legend, boxes, title_size=36, legend_pos='right:18px;top:470px')
+out, zones = build('C8-CM2', 'Le plus-que-<br>parfait', 'Conjugaison — C8 — CM2', legend, boxes, title_size=36, legend_pos='right:18px;top:470px')
 sections = SEC(('quand', 'Encore avant'), ('forme', 'Deux parties'), ('avoir', 'avoir à l’imparfait'), ('etre', 'Avec être, j’accorde'), ('att', 'Attention !'))
 ecrans = [
  E('quand', 'horloge', 'Encore avant', 'girl', 'Le plus-que-parfait dit ce qui s’est passé avant une autre action passée.',
@@ -75,9 +75,9 @@ ecrans = [
    [Q('Ils sont tombés.', ['le passé composé', 'le plus-que-parfait'], 'L’auxiliaire est au présent.', 'Quel temps ?'),
     Q('Tu avais crié.', ['le plus-que-parfait', 'le passé composé'], 'L’auxiliaire est à l’imparfait.', 'Quel temps ?')]),
 ]
-save('C6-CM2', {'id': 'C6-CM2', 'code': 'C6', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Rouge', 'titre': 'Le plus-que-parfait', 'sous': 'avoir ou être à l’imparfait + participe passé', 'lesson': True}, sections, ecrans, zones)
+save('C8-CM2', {'id': 'C8-CM2', 'code': 'C8', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Rouge', 'titre': 'Le plus-que-parfait', 'sous': 'avoir ou être à l’imparfait + participe passé', 'lesson': True}, sections, ecrans, zones)
 
-# ================================================================ C7
+# ================================================================ C9
 boxes = [
  dict(id='ps', col='bleu', geom=TL, title='Le passé simple', avatar=('girl', 322, 122), html=f'''
   <p class="txt" style="padding-right:100px">Le temps du <b>récit</b>, surtout avec il et ils.</p>
@@ -94,7 +94,7 @@ boxes = [
    <li><i>il finit</i>, <i>il dit</i> : présent ou passé simple ? <b>La phrase m’aide</b> (hier, soudain…).</li></ul>'''),
 ]
 legend = '<span class="t">terminaison</span>'
-out, zones = build('C7-CM2', 'Le passé<br>simple', 'Conjugaison — C7 — CM2', legend, boxes, title_size=38, sub='2e groupe et verbes irréguliers', legend_pos='right:18px;top:470px')
+out, zones = build('C9-CM2', 'Le passé<br>simple', 'Conjugaison — C9 — CM2', legend, boxes, title_size=38, sub='2e groupe et verbes irréguliers', legend_pos='right:18px;top:470px')
 sections = SEC(('ps', 'Le passé simple'), ('g2', '2e groupe : -is, -it'), ('i', 'Des verbes en i'), ('u', 'Des verbes en u, en in'), ('att', 'Attention !'))
 ecrans = [
  E('ps', 'horloge', 'Le passé simple', 'girl', 'Le passé simple raconte les actions d’un récit.',
@@ -132,4 +132,4 @@ ecrans = [
    [Q('Le roi ___ : « Silence ! »', ['dit', 'disa', 'dut'], 'dire → il dit.', 'Complète avec « dire » au passé simple.', fill='v'),
     Q('Ils ___ : « Bravo ! »', ['dirent', 'disèrent', 'durent'], 'dire → ils dirent.', 'Complète avec « dire » au passé simple.', fill='v')]),
 ]
-save('C7-CM2', {'id': 'C7-CM2', 'code': 'C7', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Violette', 'titre': 'Le passé simple', 'sous': '2e groupe et verbes irréguliers', 'lesson': True}, sections, ecrans, zones)
+save('C9-CM2', {'id': 'C9-CM2', 'code': 'C9', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Violette', 'titre': 'Le passé simple', 'sous': '2e groupe et verbes irréguliers', 'lesson': True}, sections, ecrans, zones)

@@ -1,6 +1,8 @@
 """Ceintures CE2 seulement : C6 (verbes irréguliers au présent), C7 (verbes irréguliers au futur, à l'imparfait,
-au passé composé), O7 (les sons « o », « é », « è » et les accents). Identifiants : C6-CE2, C7-CE2, O7-CE2."""
-import os, sys, re
+au passé composé), O7 (les sons « o », « é », « è » et les accents). Identifiants : C6-CE2, C7-CE2, O7-CE2.
+Depuis le 27/10/2026, C6 et C7 existent aussi au CM1 (mêmes leçons, identifiants C6 et C7, carte « … — CM1 ») : les verbes irréguliers
+sont en C6 et C7 au CE2 ET au CM1 ; le CM2 a C8 et C9 (lecons/c8_c9_cm2.py)."""
+import os, sys, re, copy
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from mapgen import build, TL, TC, TR
 from lhelp import *
@@ -82,7 +84,12 @@ ecrans = [
    [Q('', ['Ils vont au parc.', 'Ils allent au parc.'], 'ils vont.', 'Quelle phrase est bien écrite ?'),
     Q('', ['Tu peux entrer.', 'Tu peus entrer.'], 'tu peux : un x.', 'Quelle phrase est bien écrite ?')]),
 ]
+
+# même leçon pour le CM1 (27/10/2026) : identifiant C6, carte « Conjugaison — C6 — CM1 »
+_cm1_sections, _cm1_ecrans = copy.deepcopy(sections), copy.deepcopy(ecrans)
+_out, _zones = build('C6', 'Les verbes<br>irréguliers', 'Conjugaison — C6 — CM1', legend, boxes, title_size=36, sub='au présent', legend_pos='right:18px;top:470px')
 save('C6-CE2', {'id': 'C6-CE2', 'code': 'C6', 'niveau': 'CE2', 'f': 'C', 'ceinture': 'Rouge', 'titre': 'Les verbes irréguliers au présent', 'sous': 'aller, faire, dire, venir, pouvoir, vouloir, voir, prendre', 'lesson': True}, sections, ecrans, zones)
+save('C6', {'id': 'C6', 'code': 'C6', 'f': 'C', 'ceinture': 'Rouge', 'titre': 'Les verbes irréguliers au présent', 'sous': 'aller, faire, dire, venir, pouvoir, vouloir, voir, prendre', 'lesson': True}, _cm1_sections, _cm1_ecrans, _zones)
 
 # ================================================================ C7 : verbes irréguliers aux autres temps
 boxes = [
@@ -135,7 +142,12 @@ ecrans = [
    Q('', ['Je pourrai venir.', 'Je pourai venir.', 'Je pouvrai venir.'], 'pouvoir au futur : deux r.', 'Quelle phrase est bien écrite ?'),
    [Q('', ['Il a pris son sac.', 'Il a prit son sac.'], 'prendre → pris.', 'Quelle phrase est bien écrite ?')]),
 ]
+
+# même leçon pour le CM1 (27/10/2026) : identifiant C7, carte « Conjugaison — C7 — CM1 »
+_cm1_sections, _cm1_ecrans = copy.deepcopy(sections), copy.deepcopy(ecrans)
+_out, _zones = build('C7', 'Les verbes<br>irréguliers', 'Conjugaison — C7 — CM1', legend, boxes, title_size=36, sub='futur, imparfait, passé composé', legend_pos='right:18px;top:470px')
 save('C7-CE2', {'id': 'C7-CE2', 'code': 'C7', 'niveau': 'CE2', 'f': 'C', 'ceinture': 'Violette', 'titre': 'Les verbes irréguliers aux autres temps', 'sous': 'futur, imparfait, passé composé', 'lesson': True}, sections, ecrans, zones)
+save('C7', {'id': 'C7', 'code': 'C7', 'f': 'C', 'ceinture': 'Violette', 'titre': 'Les verbes irréguliers aux autres temps', 'sous': 'futur, imparfait, passé composé', 'lesson': True}, _cm1_sections, _cm1_ecrans, _zones)
 
 
 # ================================================================ O7 : les sons « o », « é », « è » et les accents

@@ -18,6 +18,6 @@ La démarche en dix étapes ne change pas. Les situations d’écriture du CM2 a
 ## Interaction avec l’étude de la langue (CM2)
 
 - Grammaire : phrase complexe (G2), complément du nom et attribut (G3, G7), sujet inversé après des paroles rapportées (G1, G5).
-- Conjugaison : un récit au passé peut être écrit à l’imparfait et au passé simple une fois C3 validée ; C6 (plus-que-parfait) et C7 (passé simple des verbes irréguliers) enrichissent les récits.
+- Conjugaison : un récit au passé peut être écrit à l’imparfait et au passé simple une fois C3 validée ; C8 (plus-que-parfait) et C9 (passé simple des verbes irréguliers) enrichissent les récits.
 - Homophones : les paires du CM2 (sans / s’en, donc / dont, quel / qu’elle) entrent dans la relecture une fois les deux ceintures de la paire validées.
 - Vocabulaire : champ lexical (V5) pour créer une ambiance, polysémie (V6), dictionnaire (V2).

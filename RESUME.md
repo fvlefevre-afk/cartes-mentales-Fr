@@ -7,17 +7,18 @@ Deux dépôts : celui-ci (`fvlefevre-afk/cartes-mentales-Fr`, branche `main`, si
 Répondre à l'enseignante en français, avec des mots simples. Dépôt public : jamais de noms d'élèves, jamais le mot de passe enseignant.
 
 ## L'essentiel
-- **Site des leçons interactives de français**, trois classes : CE2 (27 leçons), CM1 (31), CM2 (33).
+- **Site des leçons interactives de français**, trois classes : CE2 (27 leçons), CM1 (33), CM2 (33).
   Une leçon = une carte mentale cliquable + des écrans animés + des exercices « À toi ! ».
 - **Ceintures** : G (grammaire), H (homophones, CM1 et CM2 seulement), C (conjugaison), V (vocabulaire), O (orthographe).
   Même code, même couleur, même notion dans les trois classes ; le CE2 en plus simple, le CM2 avec des écrans en plus.
-  Exceptions : C6 et C7 (contenu différent au CE2 et au CM2, voir « En attente »), O7 (CE2 seulement).
+  Exceptions (numérotation du 27/10/2026, la même que dans le tableau de bord) : C6 et C7 (verbes irréguliers) au CE2 et au CM1 seulement, C8 et C9 (plus-que-parfait, passé simple) au CM2 seulement, O7 (CE2 seulement).
 - **Leçons CE2 et CM2 fabriquées à partir du CM1** : modifier une leçon CM1 change aussi ses versions CE2 et CM2.
 - **Ouverture au fil de l'année** : chaque leçon s'ouvre à la date de sa ceinture (dates du tableau de bord) ; bouton 🔑 pour tout ouvrir.
 - **Images** dans `images/` (cartes `G4.jpg`…, personnages) ; `index.html` ne garde que leur chemin (page de 0,4 Mo).
 
 ## Décisions de l'enseignante
 - 20/10/2026 : ceintures de transfert H8 et C8 retirées ; leçons ouvertes au fur et à mesure, comme en maths.
+- 27/10/2026 : codes de conjugaison alignés sur le tableau de bord : C6 et C7 (verbes irréguliers) au CE2 et au CM1, C8 et C9 (CM2 seulement : plus-que-parfait, passé simple) ; cartes, leçons, cahiers de progrès et dates d'ouverture refaits.
 - 23/10/2026 :
   - G4 : phrase « Mais où est donc Ornicar ? » retirée (elle montrait où / est à côté de ou / et).
   - G6 : compléments d'objet en indigo, compléments circonstanciels en marron (plus le vert de l'adjectif ni l'orange du déterminant).
@@ -48,6 +49,5 @@ Répondre à l'enseignante en français, avec des mots simples. Dépôt public :
 - Il faut Playwright pour Python, de la même version que le Chromium installé (dans les sessions Claude : `pip install playwright==1.63.0`).
 
 ## En attente (détail dans `IDEES-EN-ATTENTE.md`)
-- Codes en double C6 / C7 : au CE2 ce sont les verbes irréguliers, au CM2 le plus-que-parfait et le passé simple.
 - Un fichier de référence unique des ceintures (comme en maths). Vu le 23/10/2026 : dans le tableau de bord, les fiches de conjugaison
   CE2 et CM2 (`C_FICHES`, `17d-suivi-evaluations.js`) suivent encore l'ancienne numérotation.

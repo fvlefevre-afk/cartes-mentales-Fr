@@ -32,8 +32,8 @@ Ce parcours C a été renuméroté sur le CM1 : cahiers de progrès, dispositifs
 | C3 | passé simple d'être, d'avoir et du 1er groupe (les temps du récit) |
 | C4 | accord du participe passé avec le COD placé avant |
 | C5 | accord avec le sujet inversé |
-| C6 | CM2 seulement : plus-que-parfait (rouge) |
-| C7 | CM2 seulement : passé simple du 2e groupe et des verbes irréguliers (violette) |
+| C8 | CM2 seulement : plus-que-parfait (rouge) |
+| C9 | CM2 seulement : passé simple du 2e groupe et des verbes irréguliers (violette) |
 
 ## Homophones
 
@@ -77,7 +77,7 @@ Les 8 ceintures de l'ancien parcours C sont toutes reprises dans ces 6 ceintures
 
 Même principe pour le CE2 (décision du 17 octobre 2026), d'après le programme du cycle 2 : même numéro, même couleur, même notion, en plus simple. Tableau complet des trois niveaux : `ceintures-trois-niveaux.html`.
 - Pas de ceintures d'homophones au CE2 : le programme du cycle 2 ne les prévoit pas.
-- C1 à C5 au CE2 : être, avoir, 1er groupe. Les verbes irréguliers ont deux ceintures CE2 : C6 (présent) et C7 (futur, imparfait, passé composé).
+- C1 à C5 au CE2 : être, avoir, 1er groupe. Les verbes irréguliers ont deux ceintures, au CE2 et au CM1 : C6 (présent) et C7 (futur, imparfait, passé composé).
 - O7 (CE2 seulement) : les sons « o », « é », « è » et les accents.
 
 ## Vérification avec les programmes (17 octobre 2026)

@@ -30,7 +30,7 @@ Les leçons G1, G2, G3, H1, V1 et V2 ont été faites autrement, avant ces outil
 - Une leçon CM2 = la leçon CM1 + des écrans en plus. Ils sont écrits dans `lecons/cm2_ajouts.py`
   (un appel `lecon('G3', [points de l'encadré], E(...), ...)` par leçon ; la section `sec` doit exister dans la leçon CM1).
 - `python3 lecons/cm2_ajouts.py` puis `python3 inserer_cm2.py` les met dans le site.
-- C6 et C7 (CM2 seulement) : `python3 lecons/c6_c7_cm2.py` puis `python3 inserer.py C6-CM2 C7-CM2`.
+- C8 et C9 (CM2 seulement ; ex-C6 et C7) : `python3 lecons/c8_c9_cm2.py` puis `python3 inserer.py C8-CM2 C9-CM2`.
 - Tester : `python3 tester.py G3-CM2`.
 
 ## Les leçons CE2
@@ -39,7 +39,7 @@ Les leçons G1, G2, G3, H1, V1 et V2 ont été faites autrement, avant ces outil
   ou directement les titres des écrans ; le site compare les titres, donc ajouter un écran au CM1 ne décale rien) + des écrans CE2.
   Tout est dans `lecons/ce2_ajouts.py` (`lecon('G6', [encadré], [écrans retirés], E(...), titre='…')`).
 - `python3 lecons/ce2_ajouts.py` puis `python3 inserer_cm2.py CE2`.
-- C6, C7, O7 (CE2 seulement) : `python3 lecons/ce2_seulement.py` puis `python3 inserer.py C6-CE2 C7-CE2 O7-CE2`.
+- C6, C7 (CE2 et CM1), O7 (CE2 seulement) : `python3 lecons/ce2_seulement.py` puis `python3 inserer.py C6-CE2 C7-CE2 O7-CE2 C6 C7` (C6 et C7 sans suffixe = la même leçon pour le CM1).
 - Vue d'ensemble des trois niveaux : `python3 vue_trois_niveaux.py` refait `programmes/ceintures-trois-niveaux.html`.
 
 ## Les marques dans les étapes animées

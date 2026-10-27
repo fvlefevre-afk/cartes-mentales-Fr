@@ -8,8 +8,8 @@ Les gammes d’écriture gardent leur format (une à cinq phrases, une contraint
 | Enrichir des noms avec un complément du nom | G3 |
 | Décrire un personnage avec des attributs du sujet (être, sembler, devenir) | G7 |
 | Rapporter une parole avec le sujet après le verbe (« Viens ! » dit sa mère.) | G1, G5 |
-| Raconter en trois phrases au passé simple et à l’imparfait | C3, C7 |
-| Dire ce qui s’était passé avant, au plus-que-parfait | C6 |
+| Raconter en trois phrases au passé simple et à l’imparfait | C3, C9 |
+| Dire ce qui s’était passé avant, au plus-que-parfait | C8 |
 | Écrire quatre phrases dans un même champ lexical | V5 |
 | Employer un mot dans deux sens différents | V6 |
 

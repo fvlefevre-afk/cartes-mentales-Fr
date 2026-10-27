@@ -6,7 +6,7 @@ Depuis octobre 2026, chaque ceinture CM2 porte le même numéro, la même couleu
 - **Parcours** : inchangé (Structure des ceintures) ; test ciblé A/B/C, réussite 6/6. Pour le CM2, chaque version du test compte 3 items sur le tronc commun et 3 items sur l’ajout CM2.
 - **Cahier de progrès** : parcours C des fiches CE2-CM1-CM2, renuméroté sur le CM1.
 
-Ceintures actives en CM2 : C1 à C7. C6 et C7, réservées au CM2 par le §1, sont désormais produites.
+Ceintures actives en CM2 : C1 à C5, C8 et C9. C8 et C9 (ex-C6 et C7 jusqu'au 27/10/2026, numérotation du tableau de bord), réservées au CM2, sont produites ; C6 et C7 sont les verbes irréguliers du CE2 et du CM1.
 
 | N° | Couleur | Tronc commun (CM1) | En plus en CM2 | Période |
 |---|---|---|---|---|
@@ -15,8 +15,8 @@ Ceintures actives en CM2 : C1 à C7. C6 et C7, réservées au CM2 par le §1, so
 | C3 | Orange | Imparfait | Passé simple d’être, d’avoir et du 1er groupe : les temps du récit | P2 |
 | C4 | Verte | Passé composé avec avoir ; forme négative | Accord du participe passé avec le COD placé avant | P3 |
 | C5 | Bleue | Passé composé avec être ; accord avec le sujet | Accord avec le sujet inversé | P4 |
-| C6 | Rouge | — (CM2 seulement) | Plus-que-parfait : avoir ou être à l’imparfait + participe passé ; forme négative | P4 |
-| C7 | Violette | — (CM2 seulement) | Passé simple : 2e groupe et verbes irréguliers (faire, aller, dire, venir, pouvoir, voir, vouloir, prendre) | P5 |
+| C8 | Rouge | — (CM2 seulement) | Plus-que-parfait : avoir ou être à l’imparfait + participe passé ; forme négative | P4 |
+| C9 | Violette | — (CM2 seulement) | Passé simple : 2e groupe et verbes irréguliers (faire, aller, dire, venir, pouvoir, voir, vouloir, prendre) | P5 |
 
-Couleurs de C6 et C7 : rouge et violette, dans l’ordre de la palette (… bleue, rouge, violette, marron).
+Couleurs de C8 et C9 : rouge et violette, dans l’ordre de la palette (… bleue, rouge, violette, marron).
 Programme 2025 (CM2) couvert ainsi : passé simple et plus-que-parfait (être, avoir, 1er et 2e groupes, verbes irréguliers listés), temps composés en deux parties, accord du participe passé avec être et avec le COD, forme négative aux temps composés, marques de temps et de personne, radicaux variables.
