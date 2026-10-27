@@ -11,7 +11,7 @@ H = 'hl'
 REF = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'titres_cm1_ref.json')))
 
 
-def lecon(lid, points, retirer=(), *ecrans, titre=None):
+def lecon(lid, points, retirer=(), *ecrans, titre=None, mots=None):
     ec = []
     for e in ecrans:
         e = dict(e); e['plus'] = e.pop('_plus'); e['ce2'] = True; ec.append(e)
@@ -22,6 +22,7 @@ def lecon(lid, points, retirer=(), *ecrans, titre=None):
             + ''.join(f'<li>{p}</li>' for p in points) + '</ul></div>')
     OUT[lid] = {'html': html, 'retirer': list(retirer), 'ecrans': ec}
     if titre: OUT[lid]['titre'] = titre
+    if mots: OUT[lid]['mots'] = [list(m) for m in mots]   # [ancien, nouveau] remplacés dans les textes de la leçon CE2
 
 
 # =============================================================== GRAMMAIRE
@@ -43,7 +44,8 @@ lecon('G2', ['3 types de phrase : <b>déclarative</b> (.), <b>interrogative</b> 
    [Q('', ['Il dit : « Bonjour. »', 'Il dit « Bonjour. » :', 'Il dit : Bonjour.'], 'Deux-points, puis guillemets.', 'Quelle phrase est bien écrite ?')]))
 
 lecon('G3', ['Le groupe nominal : <b>déterminant + nom</b>, parfois un <b>adjectif</b>.', 'Les accords : -e au féminin, -s au pluriel ; -x et -aux (un cheval → des chevaux).',
-             'Les féminins qui s’entendent : lecteur → lectrice, joyeux → joyeuse.'])
+             'Les féminins qui s’entendent : lecteur → lectrice, joyeux → joyeuse.'],
+      mots=[('Le nom noyau, c’est le nom du GN.', 'Le nom, c’est le mot le plus important du GN.'), ('nom noyau', 'nom'), ('noyau', 'nom')])   # au CE2 : « nom » (27/10/2026) ; carte propre : lecons/g3_cartes.py (G3-CE2)
 
 lecon('G4', ['Les classes de mots : <b>nom</b> (commun ou propre), <b>déterminant</b>, <b>adjectif</b>, <b>verbe</b>, <b>pronom sujet</b>, <b>adverbe</b>.',
              'Certains mots changent (variables), d’autres jamais (invariables) : très, bien, demain, doucement.'], [2, 3, 5, 7, 9, 10, 'Nature ou fonction ?'],
