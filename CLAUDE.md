@@ -21,9 +21,11 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Une leçon interactive = une entrée dans `TRACES` (avec `lesson:true`), une entrée dans `LESSONS`
   (sections avec `zone` en % sur la carte + écrans), des exercices en plus dans `PLUS`, et une carte dans `IMG` (chemin vers `images/`).
 - Modèle pour une nouvelle leçon : G1 à G7, H1 à H7, V1 à V6, C1 à C7, O1 à O6 (carte mentale 1400×933 px, zones cliquables numérotées).
-- Les dispositifs de l’enseignante (dossier « Documents explicatifs des dispositifs ») font référence : les lire avant de créer une ceinture.
-  Chaque document a une partie « En CM2 » à la fin (pas de document séparé pour le CM2) ; textes dans
-  `outils/dispositifs_cm2/`, ajoutés avec `outils/ajout_docx.py`. Test CM2 : 3 items tronc commun + 3 items ajout CM2. Partie « En CE2 » aussi (`outils/dispositifs_ce2/`) ; test CE2 : 6 items CE2.
+- Les dispositifs de l’enseignante font référence : les lire avant de créer une ceinture. Depuis le 27/10/2026 ils sont dans le dépôt `ressources`
+  (branche `branche-propre`) : « Documents explicatifs des dispositifs ce2-cm1-cm2 » (Structure des ceintures EDL, avec la page « Principes » ; dispositifs 5 à 7b ;
+  un seul jeu pour la classe à trois niveaux et la classe de CM1 seul) et « Fichiers à déposer/Étude de la langue … » (dispositifs d’étude de la langue,
+  plannings annuels). L’ancien dossier « Documents explicatifs des dispositifs » de ce dépôt est retiré ; les parties « En CM2 » / « En CE2 » ajoutées
+  à ces anciens documents restent en texte dans `outils/dispositifs_cm2/` et `outils/dispositifs_ce2/` (`outils/ajout_docx.py`). Test CM2 : 3 items tronc commun + 3 items ajout CM2. Partie « En CE2 » aussi (`outils/dispositifs_ce2/`) ; test CE2 : 6 items CE2.
 - **Ouverture des leçons au fur et à mesure (20/10/2026, comme le site de maths)** : une leçon s'ouvre à la date de sa ceinture
   pour sa classe et le reste ensuite. Dates prévues : `OUVERTURE_PREVUE` dans `index.html` = premier jour de la période de la ceinture
   (colonne « Période » du fichier « Langue - ceintures » du tableau de bord), calculé par `node outils/ouvertures_site.mjs ../ressources`
@@ -59,7 +61,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - Le dossier `outils/` contient les programmes qui fabriquent les cartes, les écrans, les exercices et les fiches
   du cahier de progrès. Mode d'emploi : `outils/LISEZMOI.md`.
 
-## Homophones (Dispositif 1 bis — voir « Documents explicatifs des dispositifs »)
+## Homophones (Dispositif 1 bis — voir « Structure des ceintures EDL », page « Principes », dépôt `ressources`)
 
 - Règle non négociable : jamais deux mots d'une même paire jumelle dans la même ceinture (H1 à H7).
   Le jumeau n'est jamais proposé comme choix ni comme réponse, et n'apparaît pas dans les phrases.

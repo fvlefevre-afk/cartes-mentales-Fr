@@ -37,7 +37,7 @@ Répondre à l'enseignante en français, avec des mots simples. Dépôt public :
 | `outils/tester.py` | teste les leçons (voir ci-dessous) |
 | `outils/cahiers.py`, `outils/cahiers_donnees.py` | cahiers de progrès |
 | `outils/dispositif2.md`, `outils/dispositifs_ce2/`, `outils/dispositifs_cm2/` | textes des dispositifs (orthographe, parties « En CE2 » et « En CM2 ») |
-| `Documents explicatifs des dispositifs/` | les dispositifs de l'enseignante (référence) |
+| (dépôt `ressources`) `Documents explicatifs des dispositifs ce2-cm1-cm2/` | les dispositifs de l'enseignante (référence ; dossier de ce dépôt retiré le 27/10/2026) |
 | `Cahier de progrès cm1/`, `Cahier de progrès - CE2 - CM1 - CM2/` | cahiers de progrès |
 | `programmes/` | programme du cycle 3, écarts CM1-CM2, vue des trois niveaux |
 
