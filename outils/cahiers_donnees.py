@@ -94,7 +94,7 @@ DATA_CE2 = {
        ('jaune','V3','Préfixes dé-, mal-, in-, re- ; suffixes -eur, -ier, -ette'),
        ('orange','V4','Familles de mots : partie commune ; nom, verbe, adjectif de la même famille'),
        ('verte','V5','Synonymes, contraires, degrés de sens ; niveaux de langue'),
-       ('bleue','V6','Sens propre et sens figuré ; un mot, plusieurs sens')],
+       ('bleue','V6','Les homonymes : même son, autre sens ; un mot, plusieurs sens ; la phrase m’aide')],
  'O': [('blanche','O1','m devant m, b, p'),
        ('rose','O2','Les lettres finales muettes : la famille m’aide (beau → beauté)'),
        ('jaune','O3','Le son [s] : s, ss, c, ç'),

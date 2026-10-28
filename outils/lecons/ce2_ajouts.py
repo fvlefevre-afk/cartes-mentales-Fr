@@ -11,7 +11,7 @@ H = 'hl'
 REF = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'titres_cm1_ref.json')))
 
 
-def lecon(lid, points, retirer=(), *ecrans, titre=None, mots=None):
+def lecon(lid, points, retirer=(), *ecrans, titre=None, mots=None, sous=None, demasquer=None):
     ec = []
     for e in ecrans:
         e = dict(e); e['plus'] = e.pop('_plus'); e['ce2'] = True; ec.append(e)
@@ -22,6 +22,8 @@ def lecon(lid, points, retirer=(), *ecrans, titre=None, mots=None):
             + ''.join(f'<li>{p}</li>' for p in points) + '</ul></div>')
     OUT[lid] = {'html': html, 'retirer': list(retirer), 'ecrans': ec}
     if titre: OUT[lid]['titre'] = titre
+    if sous: OUT[lid]['sous'] = sous                       # sous-titre de la leçon CE2
+    if demasquer: OUT[lid]['demasquer'] = list(demasquer)  # zones de la carte CM1 que la carte propre au CE2 réutilise : pas voilées
     if mots: OUT[lid]['mots'] = [list(m) for m in mots]   # [ancien, nouveau] remplacés dans les textes de la leçon CE2
 
 
@@ -77,7 +79,7 @@ lecon('G6', ['La phrase : le <b>groupe sujet</b> et le <b>groupe verbal</b> (le 
    [('[Le chat] dort.', ''), ('[Il] dort.', 'le chat → il.'), ('[Les filles] jouent. → [Elles] jouent.', 'les filles → elles.')],
    Q('Les enfants courent.', ['Ils courent.', 'Il court.', 'Elles courent.'], 'les enfants → ils.', 'Je remplace le groupe sujet par un pronom :'),
    [Q('Ma sœur chante.', ['Elle chante.', 'Il chante.', 'Elles chantent.'], 'ma sœur → elle.', 'Je remplace le groupe sujet par un pronom :'),
-    Q('Le vent souffle.', ['Il souffle.', 'Elle souffle.', 'Ils soufflent.'], 'le vent → il.', 'Je remplace le groupe sujet par un pronom :')]), titre='Groupe sujet, groupe verbal')
+    Q('Le vent souffle.', ['Il souffle.', 'Elle souffle.', 'Ils soufflent.'], 'le vent → il.', 'Je remplace le groupe sujet par un pronom :')]), titre='Groupe sujet, groupe verbal', sous='la phrase en deux groupes', demasquer=['cod', 'cc'])
 
 lecon('G7', ['La chaîne des accords : le <b>groupe nominal</b> s’accorde, puis le <b>verbe</b> s’accorde avec le sujet.'], [2, 3, 4, 5, 6, 7],
  E('chaine', 'liste', 'Toute la chaîne', 'boy', 'Au pluriel, tout change : déterminant, adjectif, nom et verbe.',
@@ -141,17 +143,7 @@ lecon('V5', ['Les <b>synonymes</b> (même sens) et les <b>contraires</b>.', 'Des
    [Q('', ['familier', 'courant', 'soutenu'], 'Entre copains.', '« un bouquin » est du langage…'),
     Q('', ['soutenu', 'courant', 'familier'], 'Dans un livre, un discours.', '« un ouvrage », pour un livre, est du langage…')]))
 
-lecon('V6', ['Un mot peut avoir un <b>sens propre</b> (le sens de base) et un <b>sens figuré</b> (une image).', 'Un même mot peut avoir plusieurs sens : la phrase m’aide.'], [0, 1, 2, 4, 'Un mot, plusieurs sens'],
- E('def', 'bulle', 'Sens propre, sens figuré', 'girl', 'Un mot peut avoir un sens de base et un sens imagé.',
-   [('Je |souffle| mes bougies.', 'sens propre : le sens de base.'), ('Je |souffle| la réponse à mon voisin.', 'sens figuré : une image.'),
-    ('La pluie |inonde| la cave. · Le soleil |inonde| la pièce.', '')],
-   Q('Le soleil inonde la pièce.', ['le sens figuré', 'le sens propre'], 'Le soleil ne met pas d’eau partout.', 'Ici, « inonde » est au…'),
-   [Q('La rivière inonde le champ.', ['le sens propre', 'le sens figuré'], 'L’eau couvre vraiment le champ.', 'Ici, « inonde » est au…'),
-    Q('Il a un cœur de pierre.', ['le sens figuré', 'le sens propre'], 'Son cœur n’est pas vraiment en pierre.', 'Ici, « de pierre » est au…')]),
- E('pareil', 'etiquette', 'Un mot, plusieurs sens', 'boy', 'Le même mot peut avoir plusieurs sens : la phrase m’aide.',
-   [('une |souris| grise', 'un petit animal'), ('la |souris| de l’ordinateur', 'un objet')],
-   Q('Je clique avec la souris.', ['un objet pour l’ordinateur', 'un petit animal'], 'Lis toute la phrase.', 'Ici, « souris » veut dire…'),
-   [Q('Le chat chasse une souris.', ['un petit animal', 'un objet pour l’ordinateur'], 'Lis toute la phrase.', 'Ici, « souris » veut dire…')]), titre='Sens propre, sens figuré')
+lecon('V6', ['Les <b>homonymes</b> : des mots qui se disent pareil mais n’ont pas le même sens (<i>un verre, un vert, un ver</i>).', 'Je regarde la phrase pour choisir le bon mot ; un même mot peut aussi avoir plusieurs sens.'], ['Homonyme ou synonyme ?'])
 
 # =============================================================== ORTHOGRAPHE
 lecon('O1', ['Devant <b>m, b, p</b>, j’écris <b>m</b> : une jambe, un pompier.'])
