@@ -43,12 +43,10 @@ def branch(b):
     return f'<path d="M{sx:.0f} {sy:.0f} Q{mx:.0f} {sy:.0f} {ex:.0f} {ey:.0f}" stroke="{col}"/>'
 
 
-# Cartes partagées entre plusieurs classes : l'étiquette dit les niveaux concernés au lieu de « CM1 » (04/11/2026, demande de l'enseignante :
-# « garde le nom du domaine, la lettre et le numéro de ceinture, et écris CE2 - CM1 - CM2 »). Les cartes qui ont une version par niveau
-# (C6, C7, G2, G3, G6-CE2, C8-CM2…) gardent leur niveau.
-TOUS_NIVEAUX = 'CE2 - CM1 - CM2'
-CHIP_NIVEAUX = {**{c: TOUS_NIVEAUX for c in ('C1', 'C2', 'C3', 'C4', 'C5', 'G4', 'G5', 'G7', 'O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'V3', 'V4', 'V5', 'V6')},
-                **{c: 'CM1 - CM2' for c in ('H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'G6')}}
+# Étiquette des cartes : toujours « CM1 » (04/11/2026, demande de l'enseignante : « plus aucune mention de CE2 ni de CM2 » dans les cartes du dossier
+# cm1 simple niveau ; remplace l'étiquette « CE2 - CM1 - CM2 » / « CM1 - CM2 » des cartes partagées entre classes, mise le même jour). Les cartes qui ont
+# une version par niveau (C6, C7, G2, G3, G6-CE2, C8-CM2…) gardent leur niveau.
+CHIP_NIVEAUX = {}
 
 
 def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='right:18px;top:12px'):
