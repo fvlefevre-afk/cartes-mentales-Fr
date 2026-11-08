@@ -49,7 +49,16 @@ body:not(.au-sommaire) #barEtat{display:none}
 .ens-actions{display:flex;justify-content:flex-end;gap:.6rem}
 .ens-actions button{font:inherit;font-weight:700;border-radius:10px;padding:.45rem 1rem;cursor:pointer;background:#fff;color:var(--ink);border:2px solid #b9c2d4}
 .ens-actions button#ensOk{background:var(--ink);color:#fff;border-color:var(--ink)}
-@media print{#ensDlg{display:none}}
+#regDlg{border:0;border-radius:14px;padding:18px 22px;width:min(46rem,94vw);max-height:90vh;box-shadow:0 18px 50px rgba(20,30,60,.3);font-family:var(--font);color:var(--ink)}
+#regDlg::backdrop{background:rgba(20,30,60,.45)}#regDlg h2{margin:0 0 .3rem;font-size:1.25rem}#regDlg h3{margin:.9rem 0 .35rem;font-size:1rem}
+.rg-note{margin:0;font-size:.9rem;color:#4a5568}.rg-cl{display:flex;gap:1.2rem;flex-wrap:wrap}.rg-cl label{font-weight:700;display:flex;align-items:center;gap:.35rem}
+.rg-tabs{display:inline-flex;border:1.5px solid #b9c2d4;border-radius:.5rem;overflow:hidden;margin-bottom:.4rem}.rg-tabs button{border:0;background:#fff;color:var(--ink);font:inherit;font-weight:700;padding:.25rem .8rem;cursor:pointer}.rg-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.rg-lst{max-height:38vh;overflow:auto;border:1px solid #d5dbe8;border-radius:10px}.rg-l{display:grid;grid-template-columns:2.6rem 1fr 9.5rem 7rem auto auto;gap:.4rem;align-items:center;padding:.3rem .5rem;border-bottom:1px solid #eef1f6;font-size:.92rem}.rg-l:last-child{border-bottom:0}
+.rg-l em{font-style:normal;color:#9a5b00;font-weight:700;font-size:.85rem}.rg-l em.ok{color:#1b7a3a}.rg-l button,.rg-act button{font:inherit;font-size:.85rem;border:1.5px solid #b9c2d4;background:#fff;color:var(--ink);border-radius:8px;padding:.2rem .55rem;cursor:pointer}
+.rg-etapes{margin:.2rem 0 .6rem 1.1rem;padding:0;font-size:.92rem;line-height:1.45}.rg-act{display:flex;gap:.5rem;flex-wrap:wrap}.rg-act button{font-size:.95rem;font-weight:700;padding:.4rem .8rem}#rgMsg{min-height:1.3em;margin:.5rem 0;color:#1b7a3a;font-weight:700}
+#apercuBn{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;background:#1b2437;color:#fff;border-radius:999px;padding:.5rem 1rem;font-weight:700;display:flex;gap:.8rem;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.35)}#apercuBn button{font:inherit;font-weight:700;border-radius:999px;border:0;padding:.25rem .8rem;cursor:pointer}
+@media(max-width:640px){.rg-l{grid-template-columns:2.4rem 1fr auto;}.rg-l input,.rg-l em{grid-column:2}}
+@media print{#ensDlg,#regDlg,#apercuBn{display:none}}
 .nouveau{display:inline-block;margin-left:.4rem;background:var(--etiq);color:#fff;border-radius:999px;padding:0 .5rem;font-size:.72rem;font-weight:700;vertical-align:middle}
 .ferme-msg{max-width:34rem;margin:3rem auto;text-align:center;font-size:1.15rem;line-height:1.5}
 .ferme-msg .gros{font-size:3rem;display:block}
@@ -823,17 +832,25 @@ const OUVERTURE_PREVUE={"CE2":{"G1":"2026-09-01","G2":"2026-09-01","G3":"2026-11
    de l'onglet (sessionStorage), rien n'est enregistré pour les élèves. */
 const MDP_ENS="6dc786ea";
 const empreinteEns=m=>{let x=2166136261;for(const c of "maths-ens·"+String(m).trim().toLowerCase()){x^=c.charCodeAt(0);x=Math.imul(x,16777619)>>>0;}return x.toString(16);};
-const ENSEIGNANT=(()=>{try{return sessionStorage.getItem("francais-enseignant")===MDP_ENS;}catch(e){return false;}})();
+const ENS_REEL=(()=>{try{return sessionStorage.getItem("francais-enseignant")===MDP_ENS;}catch(e){return false;}})();
+/* aperçu élève : l'enseignante voit le site comme un élève, avec ses réglages non publiés (brouillon de cet onglet) */
+const APERCU=ENS_REEL&&(()=>{try{return sessionStorage.getItem("francais-apercu")==="1";}catch(e){return false;}})();
+const ENSEIGNANT=ENS_REEL&&!APERCU;
+let BROUILLON=(()=>{if(!ENS_REEL)return {};try{return JSON.parse(sessionStorage.getItem("francais-brouillon")||"{}")||{};}catch(e){return {};}})();   /* {classes, dates:{CE2:{code:date|""}}} */
+const garderBrouillon=()=>{try{sessionStorage.setItem("francais-brouillon",JSON.stringify(BROUILLON));}catch(e){}};
 try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
 /* CLASSES_VISIBLES : classes montrées aux élèves (choix de l'enseignante). Pour cacher une classe, la retirer de la liste (ex. ['CM1'] ou ['CM1','CM2']) ;
    avec une seule classe, les boutons CE2 / CM1 / CM2 disparaissent. L'accès enseignant (🔑) montre toujours tout. */
 const CLASSES_VISIBLES=['CE2','CM1','CM2'];
 /* fin CLASSES_VISIBLES */
-const niveauVisible=n=>ENSEIGNANT||CLASSES_VISIBLES.includes(n);
+/* classes montrées : brouillon de l'enseignante, sinon « classes » de ouvertures.json, sinon CLASSES_VISIBLES */
+const classesVis=()=>BROUILLON.classes||(OUVERTURE_REELLE&&Array.isArray(OUVERTURE_REELLE.classes)&&OUVERTURE_REELLE.classes.length?OUVERTURE_REELLE.classes:null)||CLASSES_VISIBLES;
+const niveauVisible=n=>ENSEIGNANT||classesVis().includes(n);
 let OUVERTURE_REELLE=null;   /* ouvertures.json : {maj, CE2:{code:date}, CM1:{…}, CM2:{…}} */
 const isoJour=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const AUJ=isoJour(new Date());
-const dateOuverture=t=>{const n=niveauDe(t),c=code(t);return ((OUVERTURE_REELLE||{})[n]||{})[c]||(OUVERTURE_PREVUE[n]||{})[c]||'';};
+/* date : brouillon, puis ouvertures.json (une date vide = leçon fermée), puis dates prévues */
+const dateOuverture=t=>{const n=niveauDe(t),c=code(t);for(const src of [BROUILLON.dates,OUVERTURE_REELLE]){const r=(src||{})[n];if(r&&typeof r==='object'&&Object.prototype.hasOwnProperty.call(r,c))return r[c]||'';}return (OUVERTURE_PREVUE[n]||{})[c]||'';};
 const ouverte=t=>{if(ENSEIGNANT)return true;if(!niveauVisible(niveauDe(t)))return false;const d=dateOuverture(t);return !!d&&d<=AUJ;};
 const nouvelle=t=>{const d=dateOuverture(t);return !ENSEIGNANT&&!!d&&d<=AUJ&&(new Date(AUJ)-new Date(d))/864e5<7;};
 const dateLongue=iso=>new Date(iso+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
@@ -987,7 +1004,7 @@ const ordreSommaire=n=>FAMILLES.flatMap(f=>TRACES.filter(t=>t.f===f.id&&niveauDe
 const parcours=n=>ordreSommaire(n).filter(visibleTrace);
 /* adresse #G1 (lien du tableau de bord vers une ceinture) : la leçon de ce code pour la classe choisie */
 function leconDuCode(c,n){return TRACES.find(t=>code(t)===c&&niveauDe(t)===n)||TRACES.find(t=>t.id===c);}
-function majBandeau(t){const n=t?niveauDe(t):niveauChoisi(),som=!t;
+function majBandeau(t){majBarNiv();const n=t?niveauDe(t):niveauChoisi(),som=!t;
   document.body.classList.toggle('au-sommaire',som);$('#tocBtn').disabled=som&&!location.hash.startsWith('#t=');
   document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.classe===n)));
   if(som){const C=TRACES.filter(x=>hasTrace(x)&&niveauDe(x)===n),k=C.filter(ouverte).length;
@@ -1023,8 +1040,8 @@ function setEditing(on){
   else if(on&&!(cur&&cur.lesson)) toast('Ouvrez une trace pour la modifier.');
 }
 /* classes cachées : boutons du bandeau retirés (tous retirés s'il n'en reste qu'une) */
-document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>{if(!niveauVisible(b.dataset.classe)||NIV_AFF().length<2)b.style.display='none';});
-if(NIV_AFF().length<2)document.querySelector('.bar-niv').style.display='none';
+function majBarNiv(){const A=NIV_AFF();document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>{b.style.display=A.includes(b.dataset.classe)&&A.length>1?'':'none';});document.querySelector('.bar-niv').style.display=A.length<2?'none':'';}
+majBarNiv();
 $('#home').addEventListener('click',()=>go('#'));
 const allerA=k=>{const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]);if(!cur)return;const P=parcours(niveauDe(cur)),i=P.indexOf(cur);if(i>=0&&P[i+k])go('#t='+P[i+k].id);};
 $('#prec').addEventListener('click',()=>allerA(-1));$('#suiv').addEventListener('click',()=>allerA(1));
@@ -1033,15 +1050,50 @@ document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.addEventListene
   const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]),t=cur&&TRACES.find(x=>code(x)===code(cur)&&niveauDe(x)===n);
   if(t&&ouverte(t))go('#t='+t.id);else go('#niveau='+n);}));
 /* bouton 🔑 : mot de passe → toutes les leçons ouvertes jusqu'à la fermeture de l'onglet ; en mode enseignant, il permet d'en sortir */
-(()=>{const b=$('#ensBtn');if(ENSEIGNANT){b.textContent='🔑 Enseignant';b.classList.add('on');b.title='Quitter le mode enseignant';}
+(()=>{const b=$('#ensBtn');if(ENS_REEL){b.textContent='🔑 Enseignant';b.classList.add('on');b.title='Quitter le mode enseignant';}
  const dlg=document.createElement('dialog');dlg.id='ensDlg';dlg.innerHTML=`<form method="dialog"><h2>Accès enseignant</h2><p>Toutes les leçons s'ouvrent sur cet onglet, jusqu'à ce que vous le fermiez. Rien ne change pour les élèves.</p>
   <label for="ensMdp">Mot de passe</label><input id="ensMdp" type="password" autocomplete="off"><p id="ensMsg" role="status"></p>
   <div class="ens-actions"><button value="non" formnovalidate>Annuler</button><button id="ensOk" value="ok">Ouvrir</button></div></form>`;document.body.appendChild(dlg);
  const ok=e=>{e.preventDefault();if(empreinteEns($('#ensMdp').value)===MDP_ENS){try{sessionStorage.setItem('francais-enseignant',MDP_ENS);}catch(x){}location.reload();}
   else{$('#ensMsg').textContent="Ce n'est pas le bon mot de passe.";$('#ensMdp').select();}};
  $('#ensOk').onclick=ok;$('#ensMdp').addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')ok(e);});
- b.onclick=()=>{if(ENSEIGNANT){if(confirm('Quitter le mode enseignant ? Seules les leçons ouvertes resteront visibles.')){try{sessionStorage.removeItem('francais-enseignant');}catch(x){}location.reload();}return;}
+ b.onclick=()=>{if(ENS_REEL){if(confirm('Quitter le mode enseignant ? Seules les leçons ouvertes resteront visibles.')){try{sessionStorage.removeItem('francais-enseignant');sessionStorage.removeItem('francais-apercu');}catch(x){}location.reload();}return;}
   $('#ensMdp').value='';$('#ensMsg').textContent='';dlg.showModal();setTimeout(()=>$('#ensMdp').focus(),50);};})();
+/* Réglages enseignant (08/11/2026) : classes montrées et date d'ouverture de chaque leçon, dans un brouillon propre à cet onglet ;
+   « Télécharger » / « Copier » fabrique le ouvertures.json complet (classes + dates) à déposer sur La Forge ; « Voir comme un élève » = aperçu avec le brouillon. */
+if(ENS_REEL){(()=>{
+ const ens=$('#ensBtn'),rb=document.createElement('button');rb.id='regBtn';rb.type='button';rb.textContent='⚙ Réglages';rb.title="Classes montrées et dates d'ouverture des leçons";ens.parentNode.insertBefore(rb,ens);
+ const dlg=document.createElement('dialog');dlg.id='regDlg';document.body.appendChild(dlg);let nivReg=NIV_AFF().includes(niveauChoisi())?niveauChoisi():'CM1';
+ const dateCourte=d=>new Date(d+'T12:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
+ const fichier=()=>{const out={maj:AUJ,classes:classesVis()};NIVEAUX.forEach(n=>{out[n]={};ordreSommaire(n).filter(hasTrace).forEach(t=>{out[n][code(t)]=dateOuverture(t);});});return JSON.stringify(out,null,1);};
+ const apres=()=>{garderBrouillon();dessiner();render();};
+ function dessiner(){const A=classesVis(),y=(dlg.querySelector('.rg-lst')||{}).scrollTop||0,L=ordreSommaire(nivReg).filter(hasTrace);
+  dlg.innerHTML=`<h2>Réglages enseignant</h2>
+  <p class="rg-note">Ces choix restent dans cet onglet. Les élèves ne les voient qu'après le dépôt du fichier sur La Forge (en bas).</p>
+  <h3>Classes montrées aux élèves</h3><div class="rg-cl">${NIVEAUX.map(n=>`<label><input type="checkbox" data-rgcl="${n}"${A.includes(n)?' checked':''}> ${n}</label>`).join('')}</div>
+  <h3>Dates d'ouverture des leçons</h3><div class="rg-tabs">${NIVEAUX.map(n=>`<button type="button" data-rgniv="${n}" aria-pressed="${n===nivReg}">${n}</button>`).join('')}</div>
+  <div class="rg-lst">${L.map(t=>{const d=dateOuverture(t),ouv=!!d&&d<=AUJ,c=esc(code(t));return `<div class="rg-l"><b>${c}</b><span>${esc(t.titre)}</span><input type="date" value="${d}" data-rgd="${c}" aria-label="Date d'ouverture de ${c}"><em class="${ouv?'ok':''}">${ouv?'ouverte':d?'ouvre le '+dateCourte(d):'fermée'}</em><button type="button" data-rgo="${c}">Ouvrir</button><button type="button" data-rgf="${c}">Fermer</button></div>`;}).join('')}</div>
+  <h3>Les envoyer aux élèves</h3>
+  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>).</li><li>Sur La Forge, ouvrez le projet, « + » › « Téléverser un fichier », choisissez-le, puis « Commit ».</li><li>Le site se met à jour en 1 à 2 minutes.</li></ol>
+  <div class="rg-act"><button type="button" data-rgdl>⬇ Télécharger ouvertures.json</button><button type="button" data-rgcp>Copier le contenu</button><button type="button" data-rgap>👁 Voir comme un élève</button></div>
+  <p id="rgMsg" role="status"></p>
+  <div class="ens-actions"><button type="button" data-rgraz>Annuler mes changements</button><button type="button" data-rgfin id="ensOk">Fermer</button></div>`;
+  const l=dlg.querySelector('.rg-lst');if(l)l.scrollTop=y;}
+ rb.onclick=()=>{dessiner();dlg.showModal();};
+ dlg.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if('rgniv' in d){nivReg=d.rgniv;dessiner();}
+  else if('rgo' in d||'rgf' in d){const c=d.rgo||d.rgf;BROUILLON.dates=BROUILLON.dates||{};(BROUILLON.dates[nivReg]=BROUILLON.dates[nivReg]||{})[c]='rgo' in d?AUJ:'';apres();}
+  else if('rgdl' in d){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([fichier()],{type:'application/json'}));a.download='ouvertures.json';a.click();$('#rgMsg').textContent='Fichier téléchargé : déposez-le sur La Forge.';}
+  else if('rgcp' in d){const x=fichier();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>{$('#rgMsg').textContent='Contenu copié : sur La Forge, ouvrez ouvertures.json › Modifier › tout remplacer › Commit.';}).catch(()=>{$('#rgMsg').textContent="Copie impossible : utilisez « Télécharger ».";});}
+  else if('rgap' in d){try{sessionStorage.setItem('francais-apercu','1');}catch(x){}location.reload();}
+  else if('rgraz' in d){if(confirm('Annuler tous vos changements non envoyés ?')){BROUILLON={};garderBrouillon();apres();}}
+  else if('rgfin' in d)dlg.close();});
+ dlg.addEventListener('change',e=>{const i=e.target;
+  if(i.dataset.rgcl){const A=NIVEAUX.filter(n=>dlg.querySelector(`[data-rgcl="${n}"]`).checked);if(!A.length){i.checked=true;$('#rgMsg').textContent='Gardez au moins une classe.';return;}BROUILLON.classes=A;if(!A.includes(nivReg))nivReg=A[0];apres();}
+  else if(i.dataset.rgd!=null&&i.type==='date'){BROUILLON.dates=BROUILLON.dates||{};(BROUILLON.dates[nivReg]=BROUILLON.dates[nivReg]||{})[i.dataset.rgd]=i.value;apres();}});
+ if(APERCU){const bn=document.createElement('div');bn.id='apercuBn';bn.innerHTML=`👁 Aperçu élève (avec vos réglages non envoyés) <button type="button">Revenir au mode enseignant</button>`;document.body.appendChild(bn);
+  bn.querySelector('button').onclick=()=>{try{sessionStorage.removeItem('francais-apercu');}catch(x){}location.reload();};}
+})();}
 /* progression réelle de la classe (tableau de bord) : ouvertures.json à côté de index.html, s'il existe */
 if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;render();}}).catch(()=>{});
 $('#tocBtn').addEventListener('click',()=>go('#'));
