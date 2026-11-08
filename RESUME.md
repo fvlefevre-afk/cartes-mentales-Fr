@@ -17,6 +17,11 @@ Répondre à l'enseignante en français, avec des mots simples. Dépôt public :
 - **Images** dans `images/` (cartes `G4.jpg`…, personnages) ; `index.html` ne garde que leur chemin (page de 0,4 Mo).
 
 ## Décisions de l'enseignante
+- 08/11/2026 : phrases de « À toi ! » de G1 jugées trop simples pour le CM1. Trois niveaux d'exercices avec boutons dans l'encadré
+  (« Je démarre » = exercices d'origine, `PLUS` ; « Je m'entraîne » et « Défi » = `NIV_ATOI` dans `index.html`, 4 exercices par écran de G1) ;
+  niveau de départ : CE2 → 1, CM1 → 2, CM2 → 3, puis le dernier choix de l'appareil (`localStorage` `atoi-niveau`). Les autres leçons ne changent pas
+  (un écran sans `niv` n'a pas de boutons) ; à étendre à G2…G7 si l'enseignante est d'accord.
+- 08/11/2026 : carte de rubrique entre la carte principale et les écrans (`renderSectionMap`, `#t=G2/s:neg`) ; « À toi ! » ouvrable directement (`#t=G2/3?atoi`). Voir CLAUDE.md.
 - 20/10/2026 : ceintures de transfert H8 et C8 retirées ; leçons ouvertes au fur et à mesure, comme en maths.
 - 27/10/2026 : codes de conjugaison alignés sur le tableau de bord : C6 et C7 (verbes irréguliers) au CE2 et au CM1, C8 et C9 (CM2 seulement : plus-que-parfait, passé simple) ; cartes, leçons, cahiers de progrès et dates d'ouverture refaits.
 - 23/10/2026 :
