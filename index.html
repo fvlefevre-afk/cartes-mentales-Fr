@@ -25,12 +25,11 @@ button{font:inherit;color:inherit}
 /* bandeau (08/11/2026, refait : clair, arrondi, aux couleurs des cinq familles ; nom et photo de l'école réglables par l'enseignante) */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;padding:.55rem 1rem .7rem;background:rgba(255,255,255,.93);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);color:var(--ink);box-shadow:0 3px 16px rgba(31,42,68,.09)}
 .bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#2456a6 0 20%,#b3261e 20% 40%,#7b3fa0 40% 60%,#d9730d 60% 80%,#1e8a5a 80%)}
-.bar h1{margin:0;display:flex;align-items:center;gap:.65rem;min-width:0;cursor:pointer;border-radius:.9rem;padding:.1rem .5rem .1rem .1rem}
-.bar h1:hover{background:#eef3fc}.bar h1:focus-visible{outline:3px solid var(--etiq);outline-offset:2px}
+.bar h1{margin:0;display:flex;align-items:center;gap:.65rem;min-width:0;border-radius:.9rem;padding:.1rem .5rem .1rem .1rem}
 .bar .logo{width:2.7rem;height:2.7rem;border-radius:.85rem;object-fit:cover;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--line)}
 .bar .ecusson{display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.05rem;background:linear-gradient(135deg,#2456a6,#7b3fa0 55%,#d9730d)}
 .marque-t{display:flex;flex-direction:column;line-height:1.18;min-width:0}
-.marque-t small{font-size:.74rem;font-weight:700;color:var(--soft);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:17rem}.marque-t small:empty{display:none}
+.marque-t small{font-size:.74rem;font-weight:700;color:var(--soft);letter-spacing:.02em;white-space:normal;overflow-wrap:anywhere;max-width:none}.marque-t small:empty{display:none}
 .marque-t b{font-size:1.1rem;white-space:nowrap}
 .bar button{background:#fff;border:1.5px solid var(--line);color:var(--ink);border-radius:999px;padding:.35rem .95rem;font-size:.88rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .15s,border-color .15s}
 .bar button:hover{background:#eef3fc;border-color:#9db6e4}
@@ -50,7 +49,7 @@ button{font:inherit;color:inherit}
 .bar #ensBtn,.bar #menuBtn{min-width:2.4rem;justify-content:center}
 body.au-sommaire #prec,body.au-sommaire #suiv,body.au-sommaire #barLecon,body.au-sommaire #tocBtn{display:none}
 body:not(.au-sommaire) #barEtat{display:none}
-@media (max-width:760px){.marque-t{display:none}.bar-centre{order:3;flex-basis:100%}.bar-lecon span{display:none}}
+@media (max-width:760px){.marque-t b{display:none}.bar-centre{order:3;flex-basis:100%}.bar-lecon span{display:none}}
 /* photo de l'école en tête du sommaire */
 .hero{position:relative;margin:0 0 1.1rem;border-radius:18px;overflow:hidden;height:clamp(9rem,22vw,13.5rem);box-shadow:0 10px 30px rgba(31,42,68,.18);background:#dfe6f3}
 .hero img{width:100%;height:100%;object-fit:cover;display:block}
@@ -329,7 +328,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 <body>
 <header class="bar">
   <button id="tocBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
-  <h1 id="home" tabindex="0" title="Revenir au sommaire"><span class="logo ecusson" aria-hidden="true">Fr</span><span class="marque-t"><small id="ecoleNom"></small><b>Ceintures de français</b></span></h1>
+  <h1 id="home"><span class="logo ecusson" aria-hidden="true">Fr</span><span class="marque-t"><small id="ecoleNom"></small><b>Ceintures de français</b></span></h1>
   <div class="bar-centre">
     <button id="prec" type="button" aria-label="Leçon précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
     <span id="barLecon" class="bar-lecon"></span>
@@ -1083,7 +1082,6 @@ function setEditing(on){
 /* classes cachées : boutons du bandeau retirés (tous retirés s'il n'en reste qu'une) */
 function majBarNiv(){const A=NIV_AFF();document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>{b.style.display=A.includes(b.dataset.classe)&&A.length>1?'':'none';});document.querySelector('.bar-niv').style.display=A.length<2?'none':'';}
 majBarNiv();
-$('#home').addEventListener('click',()=>go('#'));
 const allerA=k=>{const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]);if(!cur)return;const P=parcours(niveauDe(cur)),i=P.indexOf(cur);if(i>=0&&P[i+k])go('#t='+P[i+k].id);};
 $('#prec').addEventListener('click',()=>allerA(-1));$('#suiv').addEventListener('click',()=>allerA(1));
 /* classe choisie dans le bandeau : sommaire de la classe ; sur une leçon, la leçon du même code dans cette classe si elle est ouverte */
@@ -1156,7 +1154,6 @@ if(ENS_REEL){(()=>{
 /* progression réelle de la classe (tableau de bord) : ouvertures.json à côté de index.html, s'il existe */
 if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;render();}}).catch(()=>{});
 $('#tocBtn').addEventListener('click',()=>go('#'));
-$('#home').addEventListener('keydown',e=>{if(e.key==='Enter')go('#');});
 const menuBtn=$('#menuBtn'),menuList=$('#menuList');
 menuBtn.addEventListener('click',e=>{e.stopPropagation();const o=menuList.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o);});
 document.addEventListener('click',()=>{menuList.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');});
