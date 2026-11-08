@@ -825,11 +825,16 @@ const MDP_ENS="f915477c";
 const empreinteEns=m=>{let x=2166136261;for(const c of "maths-ens·"+String(m).trim().toLowerCase()){x^=c.charCodeAt(0);x=Math.imul(x,16777619)>>>0;}return x.toString(16);};
 const ENSEIGNANT=(()=>{try{return sessionStorage.getItem("francais-enseignant")===MDP_ENS;}catch(e){return false;}})();
 try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
+/* CLASSES_VISIBLES : classes montrées aux élèves (choix de l'enseignante). Pour cacher une classe, la retirer de la liste (ex. ['CM1'] ou ['CM1','CM2']) ;
+   avec une seule classe, les boutons CE2 / CM1 / CM2 disparaissent. L'accès enseignant (🔑) montre toujours tout. */
+const CLASSES_VISIBLES=['CE2','CM1','CM2'];
+/* fin CLASSES_VISIBLES */
+const niveauVisible=n=>ENSEIGNANT||CLASSES_VISIBLES.includes(n);
 let OUVERTURE_REELLE=null;   /* ouvertures.json : {maj, CE2:{code:date}, CM1:{…}, CM2:{…}} */
 const isoJour=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const AUJ=isoJour(new Date());
 const dateOuverture=t=>{const n=niveauDe(t),c=code(t);return ((OUVERTURE_REELLE||{})[n]||{})[c]||(OUVERTURE_PREVUE[n]||{})[c]||'';};
-const ouverte=t=>{if(ENSEIGNANT)return true;const d=dateOuverture(t);return !!d&&d<=AUJ;};
+const ouverte=t=>{if(ENSEIGNANT)return true;if(!niveauVisible(niveauDe(t)))return false;const d=dateOuverture(t);return !!d&&d<=AUJ;};
 const nouvelle=t=>{const d=dateOuverture(t);return !ENSEIGNANT&&!!d&&d<=AUJ&&(new Date(AUJ)-new Date(d))/864e5<7;};
 const dateLongue=iso=>new Date(iso+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
 const visibleTrace=t=>hasTrace(t)&&ouverte(t);
@@ -859,8 +864,9 @@ function renderConj(root){
 /* ---------- Sommaire ---------- */
 const NIVEAUX=['CE2','CM1','CM2'];
 const niveauDe=t=>t.niveau||'CM1'; /* toutes les leçons actuelles sont de CM1 */
-function niveauChoisi(){const m=location.hash.match(/^#niveau=(CE2|CM1|CM2)$/);if(m){try{localStorage.setItem('niveau',m[1]);}catch(e){}return m[1];}
-  try{const v=localStorage.getItem('niveau');if(NIVEAUX.includes(v))return v;}catch(e){}return 'CM1';}
+const NIV_AFF=()=>NIVEAUX.filter(niveauVisible);   /* classes montrées (CLASSES_VISIBLES) */
+function niveauChoisi(){const A=NIV_AFF(),m=location.hash.match(/^#niveau=(CE2|CM1|CM2)$/);if(m&&A.includes(m[1])){try{localStorage.setItem('niveau',m[1]);}catch(e){}return m[1];}
+  try{const v=localStorage.getItem('niveau');if(A.includes(v))return v;}catch(e){}return A.includes('CM1')?'CM1':(A[0]||'CM1');}
 function renderToc(){
   const niv=niveauChoisi();
   document.title='Leçons interactives — ceintures de français '+niv;
@@ -868,7 +874,7 @@ function renderToc(){
   main.innerHTML=`<div class="sheet">
   <h2 class="toc-title">Sommaire</h2>
   <p class="intro">Les leçons de chaque ceinture, à relire avant l'entraînement ou le test.</p>
-  <nav class="niveaux" aria-label="Choisir sa classe">${NIVEAUX.map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;return `<a href="#niveau=${n}" class="${n===niv?'on':''}"${n===niv?' aria-current="page"':''}>${n}<small>${k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>
+  ${NIV_AFF().length<2?'':`<nav class="niveaux" aria-label="Choisir sa classe">${NIV_AFF().map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;return `<a href="#niveau=${n}" class="${n===niv?'on':''}"${n===niv?' aria-current="page"':''}>${n}<small>${k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>`}
   ${!TRACES.some(t=>niveauDe(t)===niv)?`<p class="avenir">Les leçons de ${niv} arrivent bientôt.</p>`:''}
   ${FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv)).map(f=>`<section class="fam" style="--c:${f.couleur}">
     <h3>${esc(f.nom)}</h3>
@@ -1016,6 +1022,9 @@ function setEditing(on){
   if(location.hash.startsWith('#t=')&&body){ if(on) body.setAttribute('contenteditable','true'); else {body.removeAttribute('contenteditable');render();} }
   else if(on&&!(cur&&cur.lesson)) toast('Ouvrez une trace pour la modifier.');
 }
+/* classes cachées : boutons du bandeau retirés (tous retirés s'il n'en reste qu'une) */
+document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>{if(!niveauVisible(b.dataset.classe)||NIV_AFF().length<2)b.style.display='none';});
+if(NIV_AFF().length<2)document.querySelector('.bar-niv').style.display='none';
 $('#home').addEventListener('click',()=>go('#'));
 const allerA=k=>{const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]);if(!cur)return;const P=parcours(niveauDe(cur)),i=P.indexOf(cur);if(i>=0&&P[i+k])go('#t='+P[i+k].id);};
 $('#prec').addEventListener('click',()=>allerA(-1));$('#suiv').addEventListener('click',()=>allerA(1));
