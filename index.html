@@ -821,7 +821,7 @@ const OUVERTURE_PREVUE={"CE2":{"G1":"2026-09-01","G2":"2026-09-01","G3":"2026-11
 /* Accès enseignant : bouton 🔑 du bandeau et mot de passe, le même que sur le site de maths (empreinte MDP_ENS : pour changer le mot de passe,
    calculer empreinteEns("nouveau mot") dans la console et remplacer MDP_ENS ici et sur le site de maths) ; valable jusqu'à la fermeture
    de l'onglet (sessionStorage), rien n'est enregistré pour les élèves. */
-const MDP_ENS="f915477c";
+const MDP_ENS="6dc786ea";
 const empreinteEns=m=>{let x=2166136261;for(const c of "maths-ens·"+String(m).trim().toLowerCase()){x^=c.charCodeAt(0);x=Math.imul(x,16777619)>>>0;}return x.toString(16);};
 const ENSEIGNANT=(()=>{try{return sessionStorage.getItem("francais-enseignant")===MDP_ENS;}catch(e){return false;}})();
 try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
