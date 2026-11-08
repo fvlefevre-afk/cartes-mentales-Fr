@@ -52,6 +52,10 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   `outils/inserer_cm2.py CE2`. Pas d'homophones au CE2. `retirer` : numéros d'écrans CM1 au 17/10/2026
   (`outils/lecons/titres_cm1_ref.json`) ou titres d'écrans ; le site compare les titres. Ceintures du CE2 : C6 et C7 (verbes irréguliers, sortis de C1-C5) ; au CM1 aussi (27/10/2026) : mêmes leçons, ids `C6` et `C7` (carte « … — CM1 »), fabriquées avec les
   leçons CE2 par `outils/lecons/ce2_seulement.py`. CE2 seulement : O7 (sons « o », « é », « è » et accents). Vue d'ensemble : `programmes/ceintures-trois-niveaux.html`.
+- **Carte de rubrique (08/11/2026, demande de l'enseignante : navigation plus explicite dans chaque onglet)** : un clic sur une zone de la carte principale (ou sur la
+  barre « 1 › 2 › … » sous la carte) ouvre d'abord une petite carte mentale de la rubrique (`renderSectionMap`, adresse `#t=G2/s:neg`) : au centre le nom de la rubrique,
+  autour un nœud par écran avec « 👀 Je regarde » (écran) et « ✏️ À toi ! » (adresse `#t=G2/3?atoi` : ouvre l'écran avec l'exercice déjà lancé). Les écrans ont un lien
+  vers leur rubrique (fil d'Ariane et bouton 🧭 dans la barre du bas) ; la carte de rubrique a « Rubrique précédente / suivante ». Pour toutes les leçons, sans fichier à fabriquer.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils
