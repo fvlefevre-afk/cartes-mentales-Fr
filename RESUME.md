@@ -20,6 +20,9 @@ Répondre à l'enseignante en français, avec des mots simples. Dépôt public :
 - 08/11/2026 : phrases de « À toi ! » de G1 jugées trop simples pour le CM1. Trois niveaux d'exercices, **sans bouton** (demande de l'enseignante : « plus simple »,
   chaque classe a ses phrases) : CE2 = exercices d'origine (`PLUS`), CM1 = `NIV_ATOI[2]`, CM2 = `NIV_ATOI[3]` dans `index.html` (4 exercices par écran de G1) ; le niveau
   suit la classe de la leçon (`niveauDe(t)`). Les autres leçons ne changent pas (un écran sans `niv` garde ses exercices) ; à étendre à G2…G7 si l'enseignante est d'accord.
+- 09/11/2026 : **G3 à G7** : phrases d'exercice différentes en CE2 / CM1 / CM2 comme G1 et G2 (`NIV_ATOI`, 4 exercices par écran), et un écran ajouté aux rubriques qui n'en avaient qu'un
+  (G4 : « Des adverbes en -ment », « Les mots invariables » ; G5 : « Je vérifie ma phrase » ; G6 : « Ce qui s'ajoute au sujet et au verbe » ; G7 : « Deux adjectifs, un seul noyau », « Le groupe sujet s'accorde », « Je me corrige »).
+  Fabriqués par `outils/lecons/g3_niveaux.py` … `g7_niveaux.py` (bibliothèque `niveaux_lib.py`) ; à ne lancer qu'une fois, ensuite modifier `index.html`. Test : `python3 outils/tester.py G3 G3-CE2 G3-CM2` etc. = TOUT EST BON pour chacune.
 - 08/11/2026 : **G2 enrichie** (demande de l'enseignante) : 18 écrans (au lieu de 7), 2 à 4 par rubrique, et phrases d'exercice selon la classe comme G1
   (CE2 = exercices de base, CM1 = `NIV_ATOI['G2'][2]`, CM2 = `NIV_ATOI['G2'][3]`, 4 exercices par écran). Fabriquée par `outils/lecons/g2_enrichi.py` (à ne lancer
   qu'une fois ; pour modifier une phrase, modifier directement `index.html`). Au CE2, 4 écrans retirés (dont « Je transforme en question » et « La négation au passé ») ; test : `python3 outils/tester.py G2 G2-CE2 G2-CM2` = TOUT EST BON.
