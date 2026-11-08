@@ -323,15 +323,49 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
   body.editing .body[contenteditable]{outline:0}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* ===== Affichage comme le site de maths (08/11/2026) : échelle de texte commune, bandeau, sommaire et leçons qui remplissent la fenêtre ===== */
+:root{--u:clamp(12px,min(1.5dvh,1.1vw),21px);--s1:var(--u);--s2:calc(var(--u)*1.2);--s3:calc(var(--u)*1.55);--s4:calc(var(--u)*2.05)}
+body .marque-t small{font-size:var(--s1);margin-top:.05rem}body .marque-t b{font-size:var(--s2)}
+body .bar .logo{width:calc(var(--u)*2.8);height:calc(var(--u)*2.8)}
+body .bar button,body .bar-lecon,body .bar-etat,body .bar .menu-list button{font-size:var(--s1)}
+body .bar #ensBtn,body .bar #menuBtn{min-width:calc(var(--u)*2.4)}
+body .bar #prec,body .bar #suiv,body .bar #barLecon{display:none !important}
+.bar-serie{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.45rem;min-width:0}
+body .bar .serie-b{width:calc(var(--u)*2.7);height:calc(var(--u)*2.7);padding:0;justify-content:center;border-radius:50%;border:3px solid #fff;background:var(--b);color:var(--t);font-size:var(--s1);font-weight:700;box-shadow:0 0 0 2px #cfd6e4,0 3px 0 rgba(0,0,0,.15);letter-spacing:-.02em}
+body .bar .serie-b:hover:not(:disabled){transform:translateY(-2px);background:var(--b);border-color:#fff;box-shadow:0 0 0 3px #1f2a44,0 5px 0 rgba(0,0,0,.18)}
+body .bar .serie-b.on{background:var(--b);color:var(--t);border-color:#fff;box-shadow:0 0 0 4px #1f2a44,0 4px 0 rgba(0,0,0,.2);transform:scale(1.14)}
+body .bar .serie-b:disabled{background:#eef1f6;color:#8a93a6;border-color:#fff;box-shadow:0 0 0 2px #e1e6f0;opacity:1}
+body.au-sommaire .bar-serie{display:none}
+.hero{height:clamp(5.5rem,14dvh,10rem);margin:0 0 .8rem}.hero small{font-size:var(--s1)}.hero b{font-size:var(--s3)}
+/* sommaire : pleine largeur, fond doux, cartes arrondies */
+body.au-sommaire main,body.mode-plein main{max-width:none;margin:0 auto;padding:8px}
+body.au-sommaire .sheet{background:linear-gradient(160deg,#fff9e0 0%,#f3f8fe 55%,#eaf3fc 100%);border-radius:22px;box-shadow:0 10px 40px rgba(31,42,68,.10);padding:clamp(14px,2.2vw,30px) clamp(14px,2.4vw,32px) 2rem;min-height:calc(100dvh - var(--bh,64px) - 16px)}
+body.au-sommaire .toc-title{font-size:var(--s4)}
+body.au-sommaire .intro{font-size:var(--s2)}
+body.au-sommaire .niveaux a{font-size:var(--s3)}body.au-sommaire .niveaux a small{font-size:var(--s1)}
+body.au-sommaire .fam-btns button{font-size:var(--s2)}body.au-sommaire .fam-btns small{font-size:var(--s1)}
+body.au-sommaire .fam h3{font-size:var(--s3)}
+body.au-sommaire .tiles{grid-template-columns:repeat(auto-fill,minmax(min(100%,calc(var(--u)*17)),1fr));gap:clamp(.45rem,.8vw,.8rem)}
+body.au-sommaire .tile{border-width:0;border-left:6px solid var(--c);border-radius:14px;box-shadow:0 4px 16px rgba(31,42,68,.08);padding:.5rem .8rem}
+body.au-sommaire .tile.todo{border-left:6px dashed #c3c8d4;box-shadow:none;background:rgba(255,255,255,.7)}
+body.au-sommaire a.tile:hover{box-shadow:0 8px 24px rgba(31,42,68,.16);transform:translateY(-2px)}
+body.au-sommaire .tile .name{font-size:var(--s2)}body.au-sommaire .tile .state{font-size:var(--s1)}
+body.au-sommaire .tile .belt{width:calc(var(--u)*2.7);height:calc(var(--u)*2.7);font-size:var(--s1)}
+body.au-sommaire .nouveau{font-size:var(--s1)}
+body.au-sommaire .legend{font-size:var(--s1)}
+/* leçon : le papier remplit la fenêtre (la mise à l'échelle est faite par fitPage) */
+body.mode-plein .sheet.lesson{border-radius:12px}
 </style>
 </head>
 <body>
 <header class="bar">
   <button id="tocBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
-  <h1 id="home"><span class="logo ecusson" aria-hidden="true">Fr</span><span class="marque-t"><small id="ecoleNom"></small><b>Ceintures de français</b></span></h1>
+  <h1 id="home"><span class="logo ecusson" aria-hidden="true">Fr</span><span class="marque-t"><b>Ceintures de français</b><small id="ecoleNom"></small></span></h1>
   <div class="bar-centre">
     <button id="prec" type="button" aria-label="Leçon précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
     <span id="barLecon" class="bar-lecon"></span>
+    <span id="barSerie" class="bar-serie" role="navigation" aria-label="Les ceintures de cette série"></span>
     <button id="suiv" type="button" aria-label="Leçon suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     <span id="barEtat" class="bar-etat" role="status"></span>
   </div>
@@ -1051,7 +1085,12 @@ function majBandeau(t){majBarNiv();majMarque();const n=t?niveauDe(t):niveauChois
      :`🔓 ${k} leçon${k>1?'s':''} ouverte${k>1?'s':''} sur ${C.length}`+(OUVERTURE_REELLE&&OUVERTURE_REELLE.maj?` · progression de la classe au ${new Date(OUVERTURE_REELLE.maj+'T12:00').toLocaleDateString('fr-FR')}`:'');return;}
   const dark=['Bleue','Violette','Marron','Verte','Noire'].includes(t.ceinture);
   $('#barLecon').innerHTML=`<i style="background:${t.ceinture?BELT[t.ceinture]:'#fff'}"></i><b>${esc(code(t))}</b><span>· ${esc(t.titre)}</span>`;
-  const P=parcours(n),i=P.indexOf(t);$('#prec').disabled=i<=0;$('#suiv').disabled=i<0||i>=P.length-1;}
+  const P=parcours(n),i=P.indexOf(t);$('#prec').disabled=i<=0;$('#suiv').disabled=i<0||i>=P.length-1;
+  /* bulles des ceintures de la série (G1, G2, G3…) à la place de ◀ ▶, comme sur le site de maths */
+  const SER=TRACES.filter(x=>x.f===t.f&&niveauDe(x)===n&&hasTrace(x)).sort((a,b)=>code(a).localeCompare(code(b),'fr',{numeric:true}));
+  $('#barSerie').innerHTML=SER.map(x=>{const ouv=ouverte(x),ici=x===t,d=!ouv&&dateOuverture(x);
+    return `<button type="button" class="serie-b${ici?' on':''}" data-t="${x.id}" style="--b:${x.ceinture?BELT[x.ceinture]:'#fff'};--t:${['Bleue','Violette','Marron','Verte','Noire'].includes(x.ceinture)?'#fff':'#1f2a44'}"${ouv?'':' disabled'}${ici?' aria-current="page"':''} title="${esc(ouv?x.titre:(d?"s'ouvrira le "+dateLongue(d):'à venir'))}">${esc(code(x))}</button>`;}).join('');}
+$('#barSerie').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b&&!b.disabled)location.hash='t='+b.dataset.t;});
 function render(){
   const h=location.hash;
   if(h==='#tout'){renderAll();majBandeau(null);return;}
@@ -1182,33 +1221,42 @@ load();render();
 })();
 </script>
 <script>
-/* Agrandissement des leçons et des traces pour remplir l'écran (comme en maths) */
+/* Leçons et traces : le papier remplit la fenêtre, en largeur comme en hauteur (même principe que la mise à l'échelle du site de maths) */
 (function(){
  const main=document.getElementById('main'); if(!main)return;
- const MAX_LECON=1.8, MAX_TRACE=1.35;
+ const MAX_LECON=2.2, MIN_LECON=.55, MAX_TRACE=1.35, LARGEUR_LECON=1000;
  let raf=0;
+ const barre=()=>(document.querySelector('.bar')||{offsetHeight:0}).offsetHeight;
+ function remettre(){
+  main.style.zoom='';main.style.width='';
+  const s=main.querySelector('.sheet');if(s)s.style.minHeight='';
+  document.body.classList.remove('mode-plein');
+  document.documentElement.style.setProperty('--bh',barre()+'px');
+ }
  function fitPage(){
-  main.style.zoom='';
+  remettre();
   const s=main.querySelector('.sheet');
-  if(s)s.style.minHeight='';
   if(!s||!location.hash.startsWith('#t=')||innerWidth<=760)return;
-  const bar=(document.querySelector('.bar')||{offsetHeight:0}).offsetHeight;
-  const w=main.getBoundingClientRect().width;
-  const availW=innerWidth-32, availH=innerHeight-bar-24;
-  let z=availW/w;
   if(s.classList.contains('lesson')){
-    s.style.minHeight='0px';
-    const cs=getComputedStyle(main);
-    const h=s.getBoundingClientRect().height+parseFloat(cs.marginTop)+parseFloat(cs.marginBottom)*0.4;
-    z=Math.min(z,availH/h,MAX_LECON);
-  } else z=Math.min(z,MAX_TRACE);
-  z=Math.max(1,z*0.98);
-  main.style.zoom=z.toFixed(3);
+   document.body.classList.add('mode-plein');
+   main.style.width=LARGEUR_LECON+'px';
+   s.style.minHeight='0px';
+   const cs=getComputedStyle(main), ph=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);
+   const w=main.getBoundingClientRect().width, h=main.getBoundingClientRect().height;
+   const availW=innerWidth, availH=innerHeight-barre();
+   const z=Math.max(MIN_LECON,Math.min(availW/w,availH/h,MAX_LECON))*.99;
+   main.style.zoom=z.toFixed(3);
+   s.style.minHeight=Math.max(0,availH/z-ph-2)+'px';   /* le papier descend jusqu'en bas de la fenêtre */
+  } else {
+   const w=main.getBoundingClientRect().width;
+   main.style.zoom=Math.max(1,Math.min((innerWidth-32)/w,MAX_TRACE)*.98).toFixed(3);
+  }
  }
  function later(){cancelAnimationFrame(raf);raf=requestAnimationFrame(fitPage);}
- new MutationObserver(later).observe(main,{childList:true});
+ new MutationObserver(later).observe(main,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+ main.addEventListener('load',later,true);   /* image de la carte chargée : la hauteur change */
  addEventListener('resize',later); addEventListener('hashchange',later);
- addEventListener('beforeprint',()=>{main.style.zoom='';const s=main.querySelector('.sheet');if(s)s.style.minHeight='';});
+ addEventListener('beforeprint',remettre);
  addEventListener('afterprint',later);
  later();
 })();
