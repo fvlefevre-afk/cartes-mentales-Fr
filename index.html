@@ -825,13 +825,8 @@ function renderLessonScreen(t,i,direct){
   function startAtoi(){
     const box=$('#atoi'); box.hidden=false; nb.hidden=true;
     const base=[e.atoi,...(e.plus||[])], NV=e.niv||null;
-    const NIVS=[[1,'Je démarre'],[2,'Je m’entraîne'],[3,'Défi']];
-    let lvl=1, serie=base;
-    if(NV){
-      lvl=t.niveau==='CE2'?1:t.niveau==='CM2'?3:2;
-      try{const m=+localStorage.getItem('atoi-niveau'); if(m>=1&&m<=3) lvl=m;}catch(_){}
-      serie=lvl>1?NV[lvl]:base;
-    }
+    /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
+    const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie=NV&&lvl>1?NV[lvl]:base;
     const NAME={s:'le sujet',v:'le verbe'}, HINT={s:'Pose la question : « Qui est-ce qui… ? »',v:'Change le moment : « Hier, … » Quel mot change ?'};
     const tok=$('#tok'),ask=$('#ask'),fb=$('#fb'),ch=$('#choices');
     let idx=0,A,tasks,toks,q=0,hits=0;
@@ -885,14 +880,6 @@ function renderLessonScreen(t,i,direct){
         setTimeout(good, k.fill?350:250);
       } else bad(b,k.hint);
     };
-    if(NV){
-      const bar=document.createElement('div'); bar.className='niv-atoi'; bar.setAttribute('role','group'); bar.setAttribute('aria-label','Niveau des exercices');
-      const dessiner=()=>{bar.innerHTML='<span>Niveau :</span>'+NIVS.map(([n,nom])=>`<button type="button" data-niv="${n}" class="${n===lvl?'on':''}" aria-pressed="${n===lvl}">${nom}</button>`).join('');};
-      dessiner(); box.insertBefore(bar,$('#ask'));
-      bar.onclick=ev=>{const b=ev.target.closest('button[data-niv]'); if(!b) return; const n=+b.dataset.niv; if(n===lvl) return;
-        lvl=n; try{localStorage.setItem('atoi-niveau',String(n));}catch(_){}
-        serie=lvl>1?NV[lvl]:base; idx=0; dessiner(); charger();};
-    }
     charger();
     box.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
   }
