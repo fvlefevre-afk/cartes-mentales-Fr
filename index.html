@@ -163,6 +163,12 @@ h3.sub{margin:1.6rem 0 .6rem;color:var(--fam);font-size:1.2rem}
 .niveaux a{flex:1 1 0;min-width:0;text-align:center;text-decoration:none;font-weight:700;font-size:1.25rem;padding:.65rem 1rem;border-radius:1rem;border:3px solid #2456a6;color:#2456a6;background:#fff}
 .niveaux a.on{background:#2456a6;color:#fff}
 .niveaux a small{display:block;font-weight:500;font-size:.75rem;opacity:.85}
+.fam-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.2rem}
+.fam-btns button{font:inherit;font-weight:700;font-size:1.02rem;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;border:2.5px solid var(--c);color:var(--c);background:#fff;transition:background .15s}
+.fam-btns button:hover{background:color-mix(in srgb,var(--c) 10%,#fff)}
+.fam-btns button[aria-pressed="true"]{background:var(--c);color:#fff}
+.fam-btns small{font-weight:600;font-size:.74rem;opacity:.85}
+@media print{.fam-btns{display:none}}
 .avenir{padding:1.4rem;border:2px dashed #b8c2d6;border-radius:1rem;color:var(--soft);text-align:center;font-size:1.05rem}
 .fam{margin:1.4rem 0 .4rem}
 .fam h3{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .6rem;font-size:1.35rem;color:var(--c)}
@@ -910,6 +916,11 @@ const niveauDe=t=>t.niveau||'CM1'; /* toutes les leçons actuelles sont de CM1 *
 const NIV_AFF=()=>NIVEAUX.filter(niveauVisible);   /* classes montrées (CLASSES_VISIBLES) */
 function niveauChoisi(){const A=NIV_AFF(),m=location.hash.match(/^#niveau=(CE2|CM1|CM2)$/);if(m&&A.includes(m[1])){try{localStorage.setItem('niveau',m[1]);}catch(e){}return m[1];}
   try{const v=localStorage.getItem('niveau');if(A.includes(v))return v;}catch(e){}return A.includes('CM1')?'CM1':(A[0]||'CM1');}
+/* une entrée par bouton (Grammaire, Homophones…) : une seule famille de ceintures affichée, ou « Toutes » (choix gardé sur l'appareil) */
+let famChoix=(()=>{try{return localStorage.getItem('famille')||'tout';}catch(e){return 'tout';}})();
+function famBoutons(niv){const F=FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv));if(F.length<2)return '';
+  if(famChoix!=='tout'&&!F.some(f=>f.id===famChoix))famChoix='tout';
+  return `<nav class="fam-btns" aria-label="Choisir une famille de ceintures"><button type="button" data-fam="tout" aria-pressed="${famChoix==='tout'}" style="--c:#1f2a44">Toutes</button>${F.map(f=>{const L=TRACES.filter(t=>t.f===f.id&&niveauDe(t)===niv&&hasTrace(t)),k=L.filter(ouverte).length;return `<button type="button" data-fam="${f.id}" aria-pressed="${famChoix===f.id}" style="--c:${f.couleur}">${esc(f.nom)}<small>${k}/${L.length}</small></button>`;}).join('')}</nav>`;}
 function renderToc(){
   const niv=niveauChoisi();
   document.title='Leçons interactives — ceintures de français '+niv;
@@ -920,7 +931,8 @@ function renderToc(){
   <p class="intro">Les leçons de chaque ceinture, à relire avant l'entraînement ou le test.</p>
   ${NIV_AFF().length<2?'':`<nav class="niveaux" aria-label="Choisir sa classe">${NIV_AFF().map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;return `<a href="#niveau=${n}" class="${n===niv?'on':''}"${n===niv?' aria-current="page"':''}>${n}<small>${k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>`}
   ${!TRACES.some(t=>niveauDe(t)===niv)?`<p class="avenir">Les leçons de ${niv} arrivent bientôt.</p>`:''}
-  ${FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv)).map(f=>`<section class="fam" style="--c:${f.couleur}">
+  ${famBoutons(niv)}
+  ${FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv)&&(famChoix==='tout'||famChoix===f.id)).map(f=>`<section class="fam" style="--c:${f.couleur}">
     <h3>${esc(f.nom)}</h3>
     <div class="tiles">${TRACES.filter(t=>t.f===f.id&&niveauDe(t)===niv).sort((a,b)=>code(a).localeCompare(code(b),'fr',{numeric:true})).map(t=>{
       const open=ouverte(t), ok=hasTrace(t)&&open;
@@ -1027,6 +1039,7 @@ function renderAll(){
 
 /* ---------- Routage ---------- */
 /* leçons ouvertes de la classe, dans l'ordre du sommaire (◀ ▶ du bandeau) */
+main.addEventListener('click',e=>{const b=e.target.closest('[data-fam]');if(!b)return;famChoix=b.dataset.fam;try{localStorage.setItem('famille',famChoix);}catch(x){}renderToc();majBandeau(null);});
 const ordreSommaire=n=>FAMILLES.flatMap(f=>TRACES.filter(t=>t.f===f.id&&niveauDe(t)===n).sort((a,b)=>code(a).localeCompare(code(b),'fr',{numeric:true})));
 const parcours=n=>ordreSommaire(n).filter(visibleTrace);
 /* adresse #G1 (lien du tableau de bord vers une ceinture) : la leçon de ce code pour la classe choisie */
