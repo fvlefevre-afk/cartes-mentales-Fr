@@ -20,6 +20,9 @@ Répondre à l'enseignante en français, avec des mots simples. Dépôt public :
 - 08/11/2026 : phrases de « À toi ! » de G1 jugées trop simples pour le CM1. Trois niveaux d'exercices, **sans bouton** (demande de l'enseignante : « plus simple »,
   chaque classe a ses phrases) : CE2 = exercices d'origine (`PLUS`), CM1 = `NIV_ATOI[2]`, CM2 = `NIV_ATOI[3]` dans `index.html` (4 exercices par écran de G1) ; le niveau
   suit la classe de la leçon (`niveauDe(t)`). Les autres leçons ne changent pas (un écran sans `niv` garde ses exercices) ; à étendre à G2…G7 si l'enseignante est d'accord.
+- 08/11/2026 : **G2 enrichie** (demande de l'enseignante) : 18 écrans (au lieu de 7), 2 à 4 par rubrique, et phrases d'exercice selon la classe comme G1
+  (CE2 = exercices de base, CM1 = `NIV_ATOI['G2'][2]`, CM2 = `NIV_ATOI['G2'][3]`, 4 exercices par écran). Fabriquée par `outils/lecons/g2_enrichi.py` (à ne lancer
+  qu'une fois ; pour modifier une phrase, modifier directement `index.html`). Au CE2, 4 écrans retirés (dont « Je transforme en question » et « La négation au passé ») ; test : `python3 outils/tester.py G2 G2-CE2 G2-CM2` = TOUT EST BON.
 - 08/11/2026 : carte de rubrique entre la carte principale et les écrans (`renderSectionMap`, `#t=G2/s:neg`) ; « À toi ! » ouvrable directement (`#t=G2/3?atoi`). Voir CLAUDE.md.
 - 20/10/2026 : ceintures de transfert H8 et C8 retirées ; leçons ouvertes au fur et à mesure, comme en maths.
 - 27/10/2026 : codes de conjugaison alignés sur le tableau de bord : C6 et C7 (verbes irréguliers) au CE2 et au CM1, C8 et C9 (CM2 seulement : plus-que-parfait, passé simple) ; cartes, leçons, cahiers de progrès et dates d'ouverture refaits.
