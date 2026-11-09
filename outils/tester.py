@@ -18,7 +18,7 @@ fin_annee = datetime.datetime(auj.year + (1 if auj.month >= 7 else 0), 6, 30, 12
 IMAGES_OK = "[...document.querySelectorAll('.sheet img')].every(i=>i.complete&&i.naturalWidth>0)"
 
 with sync_playwright() as p:
-    b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1300, 'height': 900})
+    b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1300, 'height': 900}, reduced_motion='reduce')   # pas d'animation : sinon Playwright juge les boutons « instables »
     pg.clock.set_system_time(fin_annee)
     errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
     manquants = []; pg.on('requestfailed', lambda r: manquants.append(r.url.rsplit('/', 1)[-1]))
@@ -53,6 +53,14 @@ with sync_playwright() as p:
             while True:
                 for _ in range(4):
                     if pg.query_selector('#atoi .after'): break
+                    mots = pg.query_selector_all('#choices .mot')        # « remets les mots dans l'ordre » : data-n = place dans la phrase
+                    if mots:
+                        for k in sorted(int(m.get_attribute('data-n')) for m in mots):
+                            pg.click(f'#choices .mot[data-n="{k}"]:not(.used)'); pg.wait_for_timeout(30)
+                        pg.wait_for_timeout(250); continue
+                    sa = pg.query_selector('#saisie')                      # dictée à trous : la réponse est dans data-attendu
+                    if sa:
+                        sa.fill(sa.get_attribute('data-attendu')); pg.click('#valSaisie'); pg.wait_for_timeout(300); continue
                     ch = pg.query_selector_all('#choices .choice')
                     if ch:
                         for c in ch:

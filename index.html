@@ -317,8 +317,42 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .tk.v{color:var(--verbe);font-weight:700;border-bottom-color:transparent}
 .shake{animation:shake .4s}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.fb{min-height:1.6rem;margin:.6rem 0 0;font-weight:700}
+
 .fb.good{color:#23845a}.fb.bad{color:#b3261e}
+/* À toi ! : personnage qui parle, progression, indices, exercices variés (09/11/2026) */
+.atoi{position:relative}
+.atoi-top{display:flex;align-items:center;justify-content:center;gap:.8rem;flex-wrap:wrap}
+.atoi-outils{display:inline-flex;gap:.4rem}
+.atoi .mini{font:inherit;font-size:.85rem;font-weight:700;border:2px solid var(--z);color:var(--z);background:#fff;border-radius:2rem;padding:.15rem .7rem;cursor:pointer}
+.atoi .mini:hover{background:var(--z);color:#fff}
+.ex-prog{display:flex;justify-content:center;gap:.4rem;margin:.5rem 0 .2rem}
+.ex-prog .pt{min-width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.9rem;background:#e7eaf1;color:#7b8498;border:2px solid transparent}
+.ex-prog .pt.cur{border-color:var(--z);color:var(--z);background:#fff}
+.ex-prog .pt.o1{background:#f2b705;color:#fff;font-size:1.05rem;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.ex-prog .pt.ok{background:#23845a;color:#fff}
+.ex-prog .pt.revu{border-style:dashed}
+.fb-row{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:.5rem;position:relative}
+.fb-av{flex:none;width:3.2rem;height:3.2rem;border-radius:50%;object-fit:cover;border:3px solid var(--z);background:#fff}
+.fb{margin:0;font-weight:700}
+.fb:not(:empty){background:#fff;border:2.5px solid #cfd6e4;border-radius:1rem;padding:.35rem .9rem;text-align:left;max-width:40rem}
+.fb.good:not(:empty){border-color:#23845a}.fb.bad:not(:empty){border-color:#e0a39e}
+.indice-row{display:flex;justify-content:center;margin-top:.4rem}.indice-row:empty{display:none}
+.etoile-pop{position:absolute;left:50%;top:-2.2rem;font-size:2.2rem;pointer-events:none;animation:etoilePop 1s ease-out forwards}
+@keyframes etoilePop{0%{transform:translate(-50%,0) scale(.4);opacity:0}25%{transform:translate(-50%,-1rem) scale(1.3);opacity:1}100%{transform:translate(-50%,-3.2rem) scale(1);opacity:0}}
+.choice.faux{opacity:.45;text-decoration:line-through}
+.choice.montre,.tk.montre,.mot.montre{animation:montre 1s ease-in-out infinite;box-shadow:0 0 0 4px #f2b705}
+@keyframes montre{50%{transform:scale(1.06)}}
+.choice[draggable=true]{cursor:grab}
+.mot,.slot{font:inherit;font-size:1.2rem;background:#fff;border:2.5px solid var(--z);color:var(--ink);border-radius:.7rem;padding:.3rem .8rem;cursor:pointer;margin:.15rem}
+.slot{background:color-mix(in srgb,var(--z) 12%,#fff)}
+.mot.used{visibility:hidden}
+.vide{color:var(--soft);font-style:italic;font-size:1rem}
+.phrase-ok{color:#23845a;font-weight:700}
+.saisie{font:inherit;font-size:1.3rem;border:0;border-bottom:3px solid var(--z);background:#fff;text-align:center;border-radius:.3rem;outline:0}
+.saisie:focus{background:color-mix(in srgb,var(--z) 8%,#fff)}
+.bilan{flex-basis:100%;margin:0;font-weight:800;font-size:1.15rem;color:#8a6500}
+@media print{.atoi-outils,.ex-prog,.fb-row,.indice-row{display:none}}
+@media (prefers-reduced-motion:reduce){.etoile-pop,.choice.montre,.tk.montre,.mot.montre{animation:none}}
 .after{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem}
 .print-map{width:100%;height:auto;display:block}
 .hl{background:#ffe066;border-radius:.25rem;padding:0 .15rem}
@@ -780,7 +814,12 @@ function renderLessonScreen(t,i,direct){
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p></div>
     <div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
     <div class="stage-ctl"><span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">Suivant ▸</button></div>
-    <div class="atoi" id="atoi" hidden><h3>À toi ! <span class="ex-num" id="exNum"></span></h3><p class="ask" id="ask"></p><p class="phrase tokens" id="tok"></p><div class="choices" id="choices"></div><p class="fb" id="fb" aria-live="polite"></p></div>
+    <div class="atoi" id="atoi" hidden>
+      <div class="atoi-top"><h3>À toi ! <span class="ex-num" id="exNum"></span></h3><span class="atoi-outils no-print"><button type="button" id="lireBtn" class="mini" title="Écouter la consigne" aria-label="Écouter la consigne">🔊 Écouter</button><button type="button" id="sonBtn" class="mini" title="Sons de réussite" aria-label="Sons de réussite">🔔</button></span></div>
+      <div class="ex-prog" id="exProg" aria-label="Progression de la série"></div>
+      <p class="ask" id="ask"></p><p class="phrase tokens" id="tok"></p><div class="choices" id="choices"></div>
+      <div class="fb-row"><p class="fb" id="fb" aria-live="polite"></p></div>
+      <div class="indice-row" id="indRow"></div></div>
     ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Précédent',sub:L.ecrans[i-1].titre}:{href:`#t=${t.id}`,top:'Retour',sub:'à la carte'},
       {href:`#t=${t.id}/s:${s.id}`,ico:'🧭',top:s.nom},
       i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant',sub:L.ecrans[i+1].titre}:{href:`#t=${t.id}`,top:'Terminer',sub:'retour à la carte'})}
@@ -805,60 +844,154 @@ function renderLessonScreen(t,i,direct){
     /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
     const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie=NV&&lvl>1?NV[lvl]:base;
     const NAME={s:'le sujet',v:'le verbe'}, HINT={s:'Pose la question : « Qui est-ce qui… ? »',v:'Change le moment : « Hier, … » Quel mot change ?'};
-    const tok=$('#tok'),ask=$('#ask'),fb=$('#fb'),ch=$('#choices');
-    let idx=0,A,tasks,toks,q=0,hits=0;
+    const tok=$('#tok'),ask=$('#ask'),fb=$('#fb'),ch=$('#choices'),indRow=$('#indRow'),prog=$('#exProg'),reduit=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const melange=n=>{const a=[...Array(n).keys()];for(let k=n-1;k>0;k--){const r=Math.floor(Math.random()*(k+1));[a[k],a[r]]=[a[r],a[k]];}return a;};
+    const pick=a=>a[Math.floor(Math.random()*a.length)];
+    /* ---- personnage qui parle, sons, voix (09/11/2026) ---- */
+    const im=IMG[t.id]||{}, g=e.guide, av=g==='duo'?im.duo:(im[g]||Object.values(im)[1]||'');
+    if(av){ const fbAv=document.createElement('img'); fbAv.className='fb-av'; fbAv.alt=''; fbAv.src=av; $('.fb-row').prepend(fbAv); }
+    const say=(m,cls)=>{fb.className='fb'+(cls?' '+cls:'');fb.textContent=m;};
+    const BRAVO=['Bien joué !','Bravo !','Exact !','Super !','Oui, c’est ça !'], ENC=['Presque ! Regarde bien.','Pas tout à fait. Essaie encore !','Oups ! Regarde encore.'];
+    let son=true; try{son=localStorage.getItem('atoi-son')!=='0';}catch(_){}
+    const sonBtn=$('#sonBtn'); const majSon=()=>{sonBtn.textContent=son?'🔔':'🔕';sonBtn.setAttribute('aria-pressed',String(son));}; majSon();
+    sonBtn.onclick=()=>{son=!son;try{localStorage.setItem('atoi-son',son?'1':'0');}catch(_){}majSon();};
+    let ac=null;
+    const bip=notes=>{ if(!son) return; try{ ac=ac||new (window.AudioContext||window.webkitAudioContext)(); let tt=ac.currentTime; notes.forEach(([f,d])=>{const o=ac.createOscillator(),gn=ac.createGain();o.type='sine';o.frequency.value=f;gn.gain.setValueAtTime(.0001,tt);gn.gain.exponentialRampToValueAtTime(.12,tt+.02);gn.gain.exponentialRampToValueAtTime(.0001,tt+d);o.connect(gn);gn.connect(ac.destination);o.start(tt);o.stop(tt+d+.02);tt+=d*.8;}); }catch(_){} };
+    const SON_OK=[[660,.12],[880,.18]], SON_FIN=[[523,.12],[659,.12],[784,.12],[1047,.3]], SON_KO=[[300,.2]];
+    const etoile=()=>{ if(reduit) return; const r=box.querySelector('.fb-row'),s2=document.createElement('span'); s2.className='etoile-pop'; s2.textContent='⭐'; r.appendChild(s2); setTimeout(()=>s2.remove(),1000); };
+    const lireBtn=$('#lireBtn'); if(!('speechSynthesis' in window)) lireBtn.hidden=true;
+    lireBtn.onclick=()=>{ try{ let txt=ask.textContent; if(cur&&cur.t!=='o') txt+=' '+(A.p||'').replace(/___/g,' blanc ').replace(/[\[\](){}<>^~%#|*§]/g,''); speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(txt); u.lang='fr-FR'; u.rate=.9; speechSynthesis.speak(u); }catch(_){} };
+    /* ---- exercices plus variés : remettre les mots dans l'ordre, dictée à trous (ajoutés à la série) ---- */
+    const sansMarque=x=>x.replace(/[\[\](){}<>^~%#|*§]/g,'');
+    const phraseDe=a=>{ const tk=a.tasks;
+      if(tk.length===1&&tk[0].choose){ const k=tk[0],bon=k.choose[k.ok];
+        if(a.p&&(a.p.match(/___/g)||[]).length===1&&!/[\[\](){}<>^~%#|*§]/.test(a.p)) return a.p.replace('___',bon).replace(/\s+/g,' ').trim();
+        if(!a.p&&/bien écrite|bien orthographi|phrase bien/i.test(k.ask||'')) return bon; }
+      if(tk.some(k=>k.click)) return atoiTokens(a.p).map(x=>x.sp!=null?x.sp:x.blank?'':x.t).join('').replace(/\s+/g,' ').trim();
+      return null; };
+    const extras=[];
+    { const mots=x=>x.split(' ').length;
+      for(let k=serie.length-1;k>=0;k--){ const ph=phraseDe(serie[k]); if(ph&&mots(ph)>=4&&mots(ph)<=10&&!/[\/→]/.test(ph)){ extras.push({a:serie[k],t:'o',cible:ph}); break; } }
+      for(let k=0;k<serie.length;k++){ const a=serie[k],tk=a.tasks; if(tk.length===1&&tk[0].choose&&tk[0].fill&&a.p&&(a.p.match(/___/g)||[]).length===1&&!/[\[\](){}<>^~%#|*§]/.test(a.p)){ const bon=tk[0].choose[tk[0].ok]; if(bon.length>=2&&!/\s/.test(bon)){ extras.push({a,t:'s'}); break; } } } }
+    const file=serie.map(a=>({a,t:'n',erreurs:0,fait:false,revu:false})).concat(extras.map(x=>Object.assign({erreurs:0,fait:false,revu:false},x)));
+    let idx=0,cur,A,tasks,toks,q=0,hits=0,errT=0,errEx=0,ok1=0,rep=[],chips=[],cibleMots=[];
+    const hintOf=k=>(k&&(k.hint||HINT[k.click]))||'';
+    const majNum=()=>{ $('#exNum').textContent=file.length>1?`· exercice ${idx+1} sur ${file.length}${cur.revu?' · à revoir':''}${cur.t!=='n'?' · défi':''}`:''; };
+    const majProg=()=>{ majNum(); prog.innerHTML=file.map((x,k)=>`<span class="pt${x.fait?(x.erreurs?' ok':' o1'):''}${k===idx?' cur':''}${x.revu?' revu':''}">${x.fait?(x.erreurs?'✓':'★'):k+1}</span>`).join(''); };
     function charger(){
-      A=serie[idx]; tasks=A.tasks; q=0; hits=0;
-      box.querySelectorAll('.after').forEach(x=>x.remove());
-      fb.className='fb'; fb.textContent='';
-      $('#exNum').textContent=serie.length>1?`· exercice ${idx+1} sur ${serie.length}`:'';
+      cur=file[idx]; A=cur.a; q=0; hits=0; errT=0; errEx=0; rep=[];
+      box.querySelectorAll('.after').forEach(x=>x.remove()); indRow.innerHTML=''; say('');
+      majProg();
+      if(cur.t==='o') return chargerOrdre();
+      if(cur.t==='s') return chargerSaisie();
+      tasks=A.tasks;
       const hasClick=tasks.some(k=>k.click); toks=atoiTokens(A.p||'');
       tok.hidden=!A.p;
       if(hasClick) tok.innerHTML=toks.map((k,n)=>k.sp!=null?k.sp:k.blank?'<span class="blank">&nbsp;</span>':`<button type="button" class="tk" data-n="${n}">${esc(k.t)}</button>`).join('');
       else tok.innerHTML=toks.map(k=>k.sp!=null?k.sp:k.blank?'<span class="blank">&nbsp;</span>':esc(k.t)).join('');
       setTask();
     }
-    function autre(){ if(serie.length<2) return; idx=(idx+1)%serie.length; charger(); }
+    function autre(){
+      if(file.every(x=>x.fait)){ for(let k=file.length-1;k>=0;k--) if(file[k].revu) file.splice(k,1); file.forEach(x=>{x.fait=false;x.erreurs=0;}); ok1=0; idx=0; }
+      else { let n=idx+1; while(n<file.length&&file[n].fait) n++; if(n>=file.length){ n=file.findIndex(x=>!x.fait); } idx=n<0?0:n; }
+      charger();
+    }
     function setTask(){
-      const k=tasks[q]; ch.innerHTML=''; hits=0;
+      const k=tasks[q]; ch.innerHTML=''; hits=0; errT=0; indRow.innerHTML='';
       if(k.click){ ask.innerHTML=k.ask?esc(k.ask):`Clique sur <b class="${k.click}">${NAME[k.click]}</b>.`; }
       else{
         ask.textContent=k.ask||'Choisis la bonne réponse.';
-        ch.innerHTML=melange(k.choose.length).map(n=>`<button type="button" class="choice" data-n="${n}">${esc(k.choose[n])}</button>`).join('');
+        ch.innerHTML=melange(k.choose.length).map(n=>`<button type="button" class="choice" data-n="${n}"${k.fill?' draggable="true"':''}>${esc(k.choose[n])}</button>`).join('');
       }
     }
     function done(){
-      ask.textContent='Bravo ! Exercice réussi.'; fb.textContent=''; ch.innerHTML='';
+      cur.fait=true; cur.erreurs=errEx;
+      if(errEx===0) ok1++; else if(!cur.revu&&cur.t==='n') file.splice(Math.min(idx+3,file.length),0,{a:cur.a,t:'n',erreurs:0,fait:false,revu:true});
+      ask.textContent=''; ch.innerHTML=''; indRow.innerHTML='';
+      const dernier=tasks&&tasks.length?tasks[tasks.length-1]:null;
+      say(errEx===0?pick(['Bravo, du premier coup !','Parfait, du premier coup !','Excellent, sans erreur !']):('Bien joué !'+(hintOf(dernier)?' Je retiens : '+hintOf(dernier):'')),'good');
+      etoile(); bip(file.every(x=>x.fait)?SON_FIN:SON_OK);
       P[i]=1; progSave(t.id);
       const d=$('.dots .cur'); if(d) d.classList.add('ok');
+      majProg();
       const more=document.createElement('div'); more.className='after';
-      const nx=L.ecrans[i+1];
-      more.innerHTML=(serie.length>1?`<button type="button" class="btn go ex-autre">↻ Un autre exercice</button>`:'')+(nx&&nx.sec===e.sec?`<a class="btn ${serie.length>1?'ghost':'go'}" href="#t=${t.id}/${i+1}">Écran suivant ▸</a>`:'');
+      const nx=L.ecrans[i+1], tout=file.every(x=>x.fait);
+      more.innerHTML=(tout?`<p class="bilan">⭐ ${ok1} réussite${ok1>1?'s':''} du premier coup sur ${file.length}</p>`:'')+(file.length>1?`<button type="button" class="btn go ex-autre">${tout?'↻ Recommencer':'↻ Un autre exercice'}</button>`:'')+(nx&&nx.sec===e.sec?`<a class="btn ${file.length>1?'ghost':'go'}" href="#t=${t.id}/${i+1}">Écran suivant ▸</a>`:'');
       box.appendChild(more);
       const b=more.querySelector('.ex-autre'); if(b) b.onclick=autre;
     }
-    function good(){ fb.className='fb good'; fb.textContent='Oui !'; q++; if(q<tasks.length) setTask(); else done(); }
-    function bad(el,h){ if(el){el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');} fb.className='fb bad'; fb.textContent='Pas encore. '+(h||''); }
+    function good(){ const k=tasks&&tasks[q]; say(errT>0?'Oui, c’est ça ! '+(hintOf(k)?'Je retiens : '+hintOf(k):''):(q+1<tasks.length?pick(BRAVO):'Oui !'),'good'); bip(SON_OK); q++; if(q<tasks.length) setTask(); else done(); }
+    function revele(k){
+      if(k.click) tok.querySelectorAll('.tk:not(.found)').forEach(b=>{ if(toks[+b.dataset.n].r===k.click) b.classList.add('montre'); });
+      else if(k.choose){ const c=[...ch.children].find(b=>+b.dataset.n===k.ok); if(c) c.classList.add('montre'); }
+    }
+    function bad(el,k){
+      if(el){el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); if(el.classList.contains('choice')) el.classList.add('faux');}
+      errT++; errEx++; bip(SON_KO);
+      if(errT===1){
+        say(pick(ENC),'bad');
+        indRow.innerHTML='<button type="button" class="btn ghost" id="indBtn">💡 Un indice</button>';
+        $('#indBtn').onclick=()=>{ say('Indice : '+(hintOf(k)||'relis bien la consigne.'),'bad'); indRow.innerHTML=''; };
+      } else {
+        const h=hintOf(k); indRow.innerHTML='';
+        say('Regarde : '+(h?h+' ':'')+(k&&k.choose?`La bonne réponse est « ${k.choose[k.ok]} ».`:'Les mots à trouver sont colorés.'),'bad');
+        if(k) revele(k);
+      }
+    }
+    /* remettre les mots dans l'ordre */
+    function chargerOrdre(){
+      cibleMots=cur.cible.split(' '); ask.textContent='Remets les mots dans l’ordre pour écrire la phrase.'; tok.hidden=false;
+      let ord=melange(cibleMots.length); if(ord.every((n,k)=>n===k)&&ord.length>1) ord.push(ord.shift());
+      chips=ord.map(n=>({n,mot:cibleMots[n],use:false})); rep=[]; rendOrdre();
+    }
+    function rendOrdre(){
+      tok.innerHTML=rep.length?rep.map((c,k)=>`<button type="button" class="slot" data-k="${k}">${esc(c.mot)}</button>`).join(' '):'<span class="vide">Touche les mots dans le bon ordre</span>';
+      ch.innerHTML=chips.map(c=>`<button type="button" class="mot${c.use?' used':''}" data-n="${c.n}">${esc(c.mot)}</button>`).join('');
+    }
+    function verifOrdre(){
+      if(rep.every((c,k)=>c.mot===cibleMots[k])){ tok.innerHTML=`<span class="phrase-ok">${esc(cibleMots.join(' '))}</span>`; ch.innerHTML=''; q=0; tasks=[{}]; say('Oui, la phrase est juste !','good'); bip(SON_OK); done(); }
+      else { bad(null,{hint:'Je commence par la majuscule et je finis par le point.',choose:[cur.cible],ok:0}); const ok2=rep.map((c,k)=>c.mot===cibleMots[k]); setTimeout(()=>{ if(cur.fait) return; rep=[]; chips.forEach(c=>c.use=false); rendOrdre(); if(errT>=2){ const c=chips.find(x=>x.mot===cibleMots[0]); const bt=c&&ch.querySelector(`.mot[data-n="${c.n}"]`); if(bt) bt.classList.add('montre'); } },900); }
+    }
+    /* dictée à trous */
+    function chargerSaisie(){
+      const k=A.tasks[0],bon=k.choose[k.ok]; tasks=A.tasks; ask.textContent='Écris le mot qui manque.'; tok.hidden=false; toks=atoiTokens(A.p);
+      tok.innerHTML=toks.map(x=>x.sp!=null?x.sp:x.blank?`<input id="saisie" class="saisie" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" size="${Math.max(3,bon.length+1)}" data-attendu="${esc(bon)}" aria-label="mot qui manque">`:esc(x.t)).join('');
+      ch.innerHTML='<button type="button" class="btn go" id="valSaisie">Valider ✓</button>';
+      const inp=$('#saisie'); inp.onkeydown=ev=>{ if(ev.key==='Enter'){ev.preventDefault();verifSaisie();} };
+      try{inp.focus({preventScroll:true});}catch(_){}
+    }
+    const norm=x=>x.trim().replace(/'/g,'’').normalize('NFC').toLowerCase();
+    function verifSaisie(){
+      const k=A.tasks[0],bon=k.choose[k.ok],inp=$('#saisie'); if(!inp||cur.fait) return;
+      if(norm(inp.value)===norm(bon)){ const sp=document.createElement('span'); sp.className='blank filled pop '+(k.fill||''); sp.textContent=bon; inp.replaceWith(sp); ch.innerHTML=''; q=0; say('Oui, bien écrit !','good'); bip(SON_OK); done(); }
+      else { bad(inp,k); if(errT>=2) inp.placeholder=bon; inp.focus(); }
+    }
     tok.onclick=ev=>{
+      if(cur.t==='o'){ const sl=ev.target.closest('.slot'); if(!sl||cur.fait) return; const c=rep.splice(+sl.dataset.k,1)[0]; chips.find(x=>x.n===c.n).use=false; rendOrdre(); return; }
       const b=ev.target.closest('.tk'); const k=tasks[q]; if(!b||!k||!k.click) return;
       if(b.classList.contains('found')) return;
       const tk=toks[+b.dataset.n];
       if(tk.r===k.click){
-        b.classList.add('found','pop',k.click==='x'?'hit':k.click);
-        hits++; if(hits>=(k.n||1)) good(); else {fb.className='fb good';fb.textContent='Oui ! Encore un.';}
-      } else bad(b,k.hint||HINT[k.click]);
+        b.classList.remove('montre'); b.classList.add('found','pop',k.click==='x'?'hit':k.click);
+        hits++; if(hits>=(k.n||1)) good(); else {say('Oui ! Encore un.','good'); bip(SON_OK);}
+      } else bad(b,k);
     };
     ch.onclick=ev=>{
+      if(cur.t==='o'){ const m=ev.target.closest('.mot:not(.used)'); if(!m||cur.fait) return; const c=chips.find(x=>x.n===+m.dataset.n); c.use=true; rep.push(c); rendOrdre(); if(rep.length===cibleMots.length) verifOrdre(); return; }
+      if(cur.t==='s'){ if(ev.target.closest('#valSaisie')) verifSaisie(); return; }
       const b=ev.target.closest('.choice'); const k=tasks[q]; if(!b||!k||!k.choose) return;
       if(+b.dataset.n===k.ok){
         b.classList.add('right');
         if(k.fill){ const bl=[...tok.querySelectorAll('.blank')].find(x=>!x.classList.contains('filled')); if(bl){bl.textContent=k.choose[k.ok];bl.classList.add('filled','pop',k.fill);} }
         setTimeout(good, k.fill?350:250);
-      } else bad(b,k.hint);
+      } else bad(b,k);
     };
+    /* glisser un mot sur le blanc (en plus du clic) */
+    ch.ondragstart=ev=>{ const b=ev.target.closest('.choice'); if(b) ev.dataTransfer.setData('text/plain',b.dataset.n); };
+    tok.ondragover=ev=>{ if(ev.target.closest('.blank')) ev.preventDefault(); };
+    tok.ondrop=ev=>{ const bl=ev.target.closest('.blank'); if(!bl) return; ev.preventDefault(); const n=ev.dataTransfer.getData('text/plain'); const b=[...ch.children].find(x=>x.dataset.n===n); if(b) b.click(); };
     charger();
-    box.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
+    box.scrollIntoView({behavior:reduit?'auto':'smooth',block:'nearest'});
   }
 }
 const KEY='traces-ecrites-cm1-v1';

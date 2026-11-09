@@ -58,6 +58,10 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   vers leur rubrique (fil d'Ariane et bouton 🧭 dans la barre du bas) ; la carte de rubrique n’a plus que le bouton « Carte de la leçon » en haut à droite (09/11/2026). Pour toutes les leçons, sans fichier à fabriquer.
 - **Exercices selon la classe (08/11/2026)** : G1 à G7, V1 à V6, H1 à H7, O1 à O6, C1 à C9 ont des phrases différentes en CE2 (exercices de base : `atoi` + `plus`), CM1 (`NIV_ATOI[id][2]`) et CM2 (`NIV_ATOI[id][3]`), sans bouton : le niveau suit la classe de la leçon (`niveauDe(t)`). Un écran sans `niv` garde les mêmes exercices pour tous. À étendre aux autres leçons si l'enseignante le demande.
 - Carte de rubrique, présentation (09/11/2026) : bandeau d'accueil avec le personnage et des étoiles de progression (une par écran réussi), étapes en liste avec grosse pastille numérotée, gros bouton « Je regarde » et petit « À toi ! » ; l'étape à faire est mise en avant (`.suivant`), les étapes réussies en vert (`.fait`).
+- **« À toi ! » (09/11/2026)** : moteur `startAtoi` dans `index.html`. Une série = les exercices de la classe (`atoi` + `plus` ou `NIV_ATOI`) + au plus deux exercices variés fabriqués automatiquement à partir d'eux :
+  « remets les mots dans l'ordre » (type `o`, puces `.mot` avec `data-n` = place dans la phrase) et « dictée à trous » (type `s`, champ `#saisie` avec `data-attendu`). Un exercice raté revient plus loin (« à revoir »).
+  Indice en deux temps (bouton 💡, puis réponse expliquée et mise en évidence `.montre` après deux erreurs). Personnage qui commente (`#fb`), étoile `.etoile-pop`, sons (WebAudio, préférence `atoi-son`), 🔊 Écouter (voix du navigateur), barre `#exProg`, bilan.
+  `outils/tester.py` sait jouer ces types et tourne avec `reduced_motion` (sinon les boutons animés sont « instables » pour Playwright).
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils
