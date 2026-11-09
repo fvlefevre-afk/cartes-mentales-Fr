@@ -230,7 +230,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .zone .num{position:absolute;right:-.3rem;top:-.3rem}
 .num.done{background:#23845a}
-.sm-page{position:relative}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
+.sm-page,.sheet.lesson{position:relative}.sm-retour-scr{top:-.1rem;right:.8rem;font-size:.8rem;padding:.1rem .6rem}.scr-head{padding-right:0}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
 .nb-mid{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
 .sm-carte{position:relative;height:25rem;margin:.6rem 0 0;border-radius:1.2rem;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--z) 8%,#fff),#fff 70%);border:2px dashed color-mix(in srgb,var(--z) 35%,#fff)}
 .sm-liens{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -768,6 +768,7 @@ function renderLessonScreen(t,i,direct){
   const secName=id=>L.sections.find(x=>x.id===id).nom;
   main.innerHTML=`<div class="sheet lesson lecon-${code(t)}" style="--fam:${f.couleur};--z:${s.couleur}">
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › <a href="#t=${t.id}/s:${s.id}">${esc(s.nom)}</a></div>
+    <a class="sm-retour sm-retour-scr" href="#t=${t.id}">🗺️ Carte de la leçon</a>
     <div class="scr-head"><span class="picto">${PICTO[e.picto]||''}</span><h2>${esc(e.titre)}${e.cm2?'<span class="tag-cm2">CM2</span>':e.ce2?'<span class="tag-cm2 ce2">CE2</span>':''}</h2>
       <span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p></div>
@@ -775,7 +776,7 @@ function renderLessonScreen(t,i,direct){
     <div class="stage-ctl"><span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">Suivant ▸</button></div>
     <div class="atoi" id="atoi" hidden><h3>À toi ! <span class="ex-num" id="exNum"></span></h3><p class="ask" id="ask"></p><p class="phrase tokens" id="tok"></p><div class="choices" id="choices"></div><p class="fb" id="fb" aria-live="polite"></p></div>
     ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Précédent',sub:L.ecrans[i-1].titre}:{href:`#t=${t.id}`,top:'Retour',sub:'à la carte'},
-      {href:`#t=${t.id}`,ico:'🗺️',top:'Carte de la leçon',href2:`#t=${t.id}/s:${s.id}`,ico2:'🧭',top2:s.nom},
+      {href:`#t=${t.id}/s:${s.id}`,ico:'🧭',top:s.nom},
       i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant',sub:L.ecrans[i+1].titre}:{href:`#t=${t.id}`,top:'Terminer',sub:'retour à la carte'})}
   </div>`;
   let st=0;
