@@ -230,6 +230,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .zone .num{position:absolute;right:-.3rem;top:-.3rem}
 .num.done{background:#23845a}
+.sm-page{position:relative}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
 .nb-mid{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
 .sm-carte{position:relative;height:25rem;margin:.6rem 0 0;border-radius:1.2rem;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--z) 8%,#fff),#fff 70%);border:2px dashed color-mix(in srgb,var(--z) 35%,#fff)}
 .sm-liens{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -737,12 +738,10 @@ function renderSectionMap(t,sid){
   const prevS=si>0?secs[si-1]:null, nextS=si<secs.length-1?secs[si+1]:null;
   main.innerHTML=`<div class="sheet lesson sm-page" style="--fam:${f.couleur};--z:${s.couleur}">
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › ${esc(s.nom)}</div>
+    <a class="sm-retour" href="#t=${t.id}">🗺️ Carte de la leçon</a>
     <div class="head">${belt(t)}<div><h2>${esc(s.nom)}</h2><div class="meta">Choisis une étape : je regarde l’explication, ou je m’entraîne directement.</div></div></div>
     <div class="sm-carte"><svg class="sm-liens" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${liens}</svg>
       <div class="sm-centre"><small>${esc(code(t))}</small><b>${esc(s.nom)}</b><span>${faits} / ${n} fait${faits>1?'s':''}</span></div>${noeuds}</div>
-    ${navBar(prevS?{href:`#t=${t.id}/s:${prevS.id}`,top:'Rubrique précédente',sub:prevS.nom}:{href:`#t=${t.id}`,top:'Retour',sub:'à la carte'},
-      {href:`#t=${t.id}`,ico:'🗺️',top:'Carte de la leçon'},
-      nextS?{href:`#t=${t.id}/s:${nextS.id}`,top:'Rubrique suivante',sub:nextS.nom}:{href:`#t=${t.id}`,top:'Terminer',sub:'retour à la carte'})}
   </div>`;
 }
 function renderLessonMap(t){
