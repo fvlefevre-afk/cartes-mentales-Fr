@@ -232,22 +232,27 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .num.done{background:#23845a}
 .sm-page,.sheet.lesson{position:relative}.sm-retour-scr{top:-.1rem;right:.8rem;font-size:.8rem;padding:.1rem .6rem}.scr-head{padding-right:0}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
 .nb-mid{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
-.sm-carte{position:relative;height:25rem;margin:.6rem 0 0;border-radius:1.2rem;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--z) 8%,#fff),#fff 70%);border:2px dashed color-mix(in srgb,var(--z) 35%,#fff)}
-.sm-liens{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.sm-liens path{fill:none;stroke-width:.9;stroke-linecap:round;stroke-dasharray:1.6 1.6;vector-effect:non-scaling-stroke;stroke-width:4;opacity:.7}
-.sm-centre{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:11.5rem;height:11.5rem;border-radius:50%;background:var(--z);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.8rem;box-shadow:0 8px 22px color-mix(in srgb,var(--z) 45%,transparent)}
-.sm-centre small{font-size:.9rem;opacity:.9;font-weight:700}.sm-centre b{font-size:1.45rem;line-height:1.15}.sm-centre span{font-size:.9rem;opacity:.95;margin-top:.3rem}
-.sm-noeud{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:16.5rem;max-width:44%;background:#fff;border:3px solid var(--z);border-radius:1.1rem;padding:.55rem .7rem .6rem;box-shadow:0 5px 14px rgba(31,42,68,.12)}
-.sm-noeud.ok{background:color-mix(in srgb,var(--z) 8%,#fff)}
-.sm-voir{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--ink);position:relative}
-.sm-voir b{font-size:1.1rem;line-height:1.2}
-.sm-n{flex:none;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--z);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.95rem}
-.sm-pic{flex:none;width:2rem;height:2rem;color:var(--z);display:grid;place-items:center}.sm-pic svg{width:1.8rem;height:1.8rem}
-.sm-ok{position:absolute;right:-1.1rem;top:-1.5rem;background:#23845a;color:#fff;width:1.6rem;height:1.6rem;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.95rem}
-.sm-actions{display:flex;gap:.4rem;margin-top:.45rem;flex-wrap:wrap}
-.sm-actions a{flex:1;text-align:center;text-decoration:none;font-size:.9rem;font-weight:700;color:var(--z);border:2px solid var(--z);border-radius:2rem;padding:.15rem .4rem;background:#fff;white-space:nowrap}
-.sm-actions a:hover{background:var(--z);color:#fff}
-.sm-carte{height:auto;display:flex;flex-direction:column;gap:.7rem;padding:.7rem;background:none}.sm-liens{display:none}.sm-centre{position:static;transform:none;width:auto;height:auto;border-radius:1rem;padding:.6rem}.sm-noeud{position:static;transform:none;width:auto;max-width:none}
+.sm-accueil{display:flex;align-items:center;gap:1rem;margin:.4rem 0 1rem;padding:.7rem 1rem;border-radius:1.4rem;background:linear-gradient(135deg,color-mix(in srgb,var(--z) 14%,#fff),#fff)}
+.sm-av{flex:none;width:5rem;height:5rem;border-radius:50%;object-fit:cover;border:4px solid var(--z);background:#fff}
+.sm-bulle{flex:1;margin:0;position:relative;background:#fff;border:3px solid var(--z);border-radius:1.2rem;padding:.55rem 1rem;display:flex;flex-direction:column;line-height:1.25}
+.sm-bulle b{font-size:1.4rem;color:var(--z)}.sm-bulle span{font-size:1rem;color:var(--soft)}
+.sm-prog{flex:none;display:flex;gap:.15rem}.sm-etoile{font-size:2.2rem;line-height:1;color:#d7dce5}.sm-etoile.on{color:#f2b705;text-shadow:0 2px 0 rgba(0,0,0,.12)}
+.sm-liste{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85rem}
+.sm-etape{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:.9rem;padding:.85rem 1.1rem;background:#fff;border:3px solid color-mix(in srgb,var(--z) 30%,#fff);border-radius:1.4rem}
+.sm-etape.suivant{border-color:var(--z);box-shadow:0 8px 22px color-mix(in srgb,var(--z) 30%,transparent)}
+.sm-etape.fait{background:#effaf3;border-color:#9fd8b4}
+.sm-n{width:3.2rem;height:3.2rem;border-radius:50%;background:var(--z);color:#fff;font-weight:800;font-size:1.6rem;display:grid;place-items:center;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.sm-etape.fait .sm-n{background:#23845a}
+.sm-pic{width:2.6rem;height:2.6rem;color:var(--z);display:grid;place-items:center}.sm-pic svg{width:2.4rem;height:2.4rem}
+.sm-corps{display:flex;flex-direction:column;line-height:1.2;min-width:0}.sm-corps b{font-size:1.4rem;color:var(--ink)}
+.sm-corps small{font-size:.9rem;font-weight:700;color:var(--z);margin-top:.15rem}.sm-etape.fait .sm-corps small{color:#23845a}
+.sm-actions{display:flex;align-items:center;gap:.5rem}
+.sm-actions a{text-decoration:none;font-weight:800;border-radius:2rem;white-space:nowrap;border:3px solid var(--z);transition:transform .12s}
+.sm-actions a:hover{transform:translateY(-1px)}
+.sm-go{font-size:1.15rem;padding:.5rem 1.2rem;background:var(--z);color:#fff}
+.sm-ex{font-size:.9rem;padding:.3rem .8rem;background:#fff;color:var(--z)}
+.sm-ex:hover{background:var(--z);color:#fff}
+@media (max-width:700px){.sm-etape{grid-template-columns:auto 1fr}.sm-pic{display:none}.sm-actions{grid-column:1/-1;justify-content:space-between}.sm-go{flex:1;text-align:center}.sm-accueil{flex-wrap:wrap}}
 @media print{.sm-page{display:none}}
 .map-path{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem;margin-top:1rem}
 .map-path a{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--ink);font-weight:700;background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.2rem .9rem .2rem .25rem}
@@ -729,19 +734,16 @@ function renderSectionMap(t,sid){
   if(!s){renderLessonMap(t);return;}
   document.title=code(t)+' — '+s.nom;
   const P=prog(t.id), items=L.ecrans.map((e,k)=>[e,k]).filter(([e])=>e.sec===sid), n=items.length;
-  const secs=L.sections.filter(x=>L.ecrans.some(e=>e.sec===x.id)), si=secs.findIndex(x=>x.id===sid);
-  const POS={1:[[76,50]],2:[[22,50],[78,50]],3:[[20,26],[80,26],[50,84]]};
-  const pos=POS[n]||items.map((_,k)=>{const a=(-90+180/n+k*360/n)*Math.PI/180;return [50+34*Math.cos(a),50+35*Math.sin(a)];});
-  const faits=items.filter(([,k])=>P[k]).length;
-  const liens=items.map((_,i)=>`<path d="M50 50 C 50 ${(50+pos[i][1])/2}, ${pos[i][0]} ${(50+pos[i][1])/2}, ${pos[i][0]} ${pos[i][1]}" stroke="${s.couleur}"/>`).join('');
-  const noeuds=items.map(([e,k],i)=>`<div class="sm-noeud${P[k]?' ok':''}" style="--x:${pos[i][0]}%;--y:${pos[i][1]}%"><a class="sm-voir" href="#t=${t.id}/${k}"><span class="sm-n">${i+1}</span><span class="sm-pic">${PICTO[e.picto]||''}</span><b>${esc(e.titre)}</b>${P[k]?'<span class="sm-ok" aria-label="fait">✓</span>':''}</a><div class="sm-actions"><a href="#t=${t.id}/${k}">👀 Je regarde</a><a href="#t=${t.id}/${k}?atoi">✏️ À toi !</a></div></div>`).join('');
-  const prevS=si>0?secs[si-1]:null, nextS=si<secs.length-1?secs[si+1]:null;
+  const faits=items.filter(([,k])=>P[k]).length, prochain=(items.find(([,k])=>!P[k])||[0,-1])[1];
+  const im=IMG[t.id]||{}, g=items[0]?items[0][0].guide:'girl', av=g==='duo'?im.duo:(im[g]||Object.values(im)[1]||'');
+  const etoiles=items.map(([,k])=>`<span class="sm-etoile${P[k]?' on':''}">★</span>`).join('');
+  const etapes=items.map(([e,k],i)=>`<li class="sm-etape${P[k]?' fait':k===prochain?' suivant':''}"><span class="sm-n">${P[k]?'✓':i+1}</span><span class="sm-pic">${PICTO[e.picto]||''}</span><div class="sm-corps"><b>${esc(e.titre)}</b>${P[k]?'<small>Réussi !</small>':k===prochain?'<small>À faire maintenant</small>':''}</div><div class="sm-actions"><a class="sm-go" href="#t=${t.id}/${k}">👀 Je regarde</a><a class="sm-ex" href="#t=${t.id}/${k}?atoi">✏️ À toi !</a></div></li>`).join('');
   main.innerHTML=`<div class="sheet lesson sm-page" style="--fam:${f.couleur};--z:${s.couleur}">
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › ${esc(s.nom)}</div>
     <a class="sm-retour" href="#t=${t.id}">🗺️ Carte de la leçon</a>
-    <div class="head">${belt(t)}<div><h2>${esc(s.nom)}</h2><div class="meta">Choisis une étape : je regarde l’explication, ou je m’entraîne directement.</div></div></div>
-    <div class="sm-carte"><svg class="sm-liens" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${liens}</svg>
-      <div class="sm-centre"><small>${esc(code(t))}</small><b>${esc(s.nom)}</b><span>${faits} / ${n} fait${faits>1?'s':''}</span></div>${noeuds}</div>
+    <div class="head">${belt(t)}<div><h2>${esc(s.nom)}</h2></div></div>
+    <div class="sm-accueil">${av?`<img class="sm-av" src="${av}" alt="">`:''}<p class="sm-bulle"><b>${faits===n?'Bravo, tout est réussi !':'Choisis une étape !'}</b><span>${faits===n?'Tu peux revoir une étape quand tu veux.':'Regarde l’explication, puis entraîne-toi.'}</span></p><div class="sm-prog" aria-label="${faits} étape${faits>1?'s':''} réussie${faits>1?'s':''} sur ${n}">${etoiles}</div></div>
+    <ol class="sm-liste">${etapes}</ol>
   </div>`;
 }
 function renderLessonMap(t){
