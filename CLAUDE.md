@@ -56,7 +56,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   barre « 1 › 2 › … » sous la carte) ouvre d'abord une petite carte mentale de la rubrique (`renderSectionMap`, adresse `#t=G2/s:neg`) : au centre le nom de la rubrique,
   autour un nœud par écran avec « 👀 Je regarde » (écran) et « ✏️ À toi ! » (adresse `#t=G2/3?atoi` : ouvre l'écran avec l'exercice déjà lancé). Les écrans ont un lien
   vers leur rubrique (fil d'Ariane et bouton 🧭 dans la barre du bas) ; la carte de rubrique a « Rubrique précédente / suivante ». Pour toutes les leçons, sans fichier à fabriquer.
-- **Exercices selon la classe (08/11/2026)** : G1 à G7 ont des phrases différentes en CE2 (exercices de base : `atoi` + `plus`), CM1 (`NIV_ATOI[id][2]`) et CM2 (`NIV_ATOI[id][3]`), sans bouton : le niveau suit la classe de la leçon (`niveauDe(t)`). Un écran sans `niv` garde les mêmes exercices pour tous. À étendre aux autres leçons si l'enseignante le demande.
+- **Exercices selon la classe (08/11/2026)** : G1 à G7, V1 à V6, H1 à H7, O1 à O6, C1 à C9 ont des phrases différentes en CE2 (exercices de base : `atoi` + `plus`), CM1 (`NIV_ATOI[id][2]`) et CM2 (`NIV_ATOI[id][3]`), sans bouton : le niveau suit la classe de la leçon (`niveauDe(t)`). Un écran sans `niv` garde les mêmes exercices pour tous. À étendre aux autres leçons si l'enseignante le demande.
 - Pas de noms d'élèves dans le dépôt : il est public.
 
 ## Outils
