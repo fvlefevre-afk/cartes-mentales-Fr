@@ -47,6 +47,9 @@ button{font:inherit;color:inherit}
 .bar .bar-niv button{border:0;background:transparent;padding:.28rem .85rem}
 .bar .bar-niv button:hover{background:#fff}.bar .bar-niv button[aria-pressed="true"]{background:var(--ink);color:#fff}
 .bar #ensBtn,.bar #menuBtn{min-width:2.4rem;justify-content:center}
+/* pages d'entraînement des élèves : ni la clé ni l'impression (09/11/2026) ; elles restent au sommaire et en mode enseignant */
+body:not(.au-sommaire) .bar #ensBtn:not(.on){display:none}
+body:not(.au-sommaire):not(:has(#ensBtn.on)) .bar .menu{display:none}
 body.au-sommaire #prec,body.au-sommaire #suiv,body.au-sommaire #barLecon,body.au-sommaire #tocBtn{display:none}
 body:not(.au-sommaire) #barEtat{display:none}
 @media (max-width:760px){.marque-t b{display:none}.bar-centre{order:3;flex-basis:100%;justify-content:center;border-top:1px solid var(--line);padding-top:.5rem}.bar-lecon span{display:none}.bar{row-gap:.35rem}.bar-niv{order:1}}
