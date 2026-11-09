@@ -25,7 +25,7 @@ button{font:inherit;color:inherit}
 /* bandeau (08/11/2026, refait : clair, arrondi, aux couleurs des cinq familles ; nom et photo de l'école réglables par l'enseignante) */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;padding:.55rem 1rem .7rem;background:rgba(255,255,255,.93);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);color:var(--ink);box-shadow:0 3px 16px rgba(31,42,68,.09)}
 .bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#2456a6 0 20%,#b3261e 20% 40%,#7b3fa0 40% 60%,#d9730d 60% 80%,#1e8a5a 80%)}
-.bar h1{margin:0;display:flex;align-items:center;gap:.65rem;min-width:0;border-radius:.9rem;padding:.1rem .5rem .1rem .1rem}
+.bar h1{margin:0 auto 0 0;display:flex;align-items:center;gap:.65rem;min-width:0;border-radius:.9rem;padding:.1rem .5rem .1rem .1rem}
 .bar .logo{width:2.7rem;height:2.7rem;border-radius:.85rem;object-fit:cover;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--line)}
 .bar .ecusson{display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.05rem;background:linear-gradient(135deg,#2456a6,#7b3fa0 55%,#d9730d)}
 .marque-t{display:flex;flex-direction:column;line-height:1.18;min-width:0}
@@ -49,7 +49,7 @@ button{font:inherit;color:inherit}
 .bar #ensBtn,.bar #menuBtn{min-width:2.4rem;justify-content:center}
 body.au-sommaire #prec,body.au-sommaire #suiv,body.au-sommaire #barLecon,body.au-sommaire #tocBtn{display:none}
 body:not(.au-sommaire) #barEtat{display:none}
-@media (max-width:760px){.marque-t b{display:none}.bar-centre{order:3;flex-basis:100%}.bar-lecon span{display:none}}
+@media (max-width:760px){.marque-t b{display:none}.bar-centre{order:3;flex-basis:100%;justify-content:center;border-top:1px solid var(--line);padding-top:.5rem}.bar-lecon span{display:none}.bar{row-gap:.35rem}.bar-niv{order:1}}
 /* photo de l'école en tête du sommaire */
 .hero{position:relative;margin:0 0 1.1rem;border-radius:18px;overflow:hidden;height:clamp(9rem,22vw,13.5rem);box-shadow:0 10px 30px rgba(31,42,68,.18);background:#dfe6f3}
 .hero img{width:100%;height:100%;object-fit:cover;display:block}
@@ -230,7 +230,8 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .zone .num{position:absolute;right:-.3rem;top:-.3rem}
 .num.done{background:#23845a}
-.sm-page,.sheet.lesson{position:relative}.sm-retour-scr{top:-.1rem;right:.8rem;font-size:.8rem;padding:.1rem .6rem}.scr-head{padding-right:0}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
+.sm-page,.sheet.lesson{position:relative}@media (max-width:700px){.sm-prog{order:3;flex-basis:100%;justify-content:center}.sm-bulle{min-width:11rem}}
+@media (max-width:700px){body .sheet a.sm-retour{position:static;display:block;width:max-content;margin:0 0 .5rem auto}}.sm-retour-scr{top:-.1rem;right:.8rem;font-size:.8rem;padding:.1rem .6rem}.scr-head{padding-right:0}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
 .nb-mid{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
 .sm-accueil{display:flex;align-items:center;gap:1rem;margin:.4rem 0 1rem;padding:.7rem 1rem;border-radius:1.4rem;background:linear-gradient(135deg,color-mix(in srgb,var(--z) 14%,#fff),#fff)}
 .sm-av{flex:none;width:5rem;height:5rem;border-radius:50%;object-fit:cover;border:4px solid var(--z);background:#fff}
