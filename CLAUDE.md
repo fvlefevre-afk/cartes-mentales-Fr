@@ -4,6 +4,11 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 
 ## Règles de travail
 
+- **Vocabulaire (10/11/2026, demande de l'enseignante)** : dire « les cartes interactives de français » (et « les cartes interactives de mathématiques »), jamais « le site ».
+- **Publication** : les élèves ouvrent les cartes par une adresse de La Forge Éducation (forge.apps.education.fr), sur ordinateur, tablette et téléphone. Ce dépôt GitHub
+  n'est pas l'adresse des élèves : `bash outils/publier-forge.sh` copie `index.html`, `images/`, `polices/` et `.gitlab-ci.yml` dans le dépôt voisin `publication-francais`
+  et l'envoie sur La Forge. À lancer depuis un ordinateur où ce dépôt voisin existe (une session dans le nuage n'a pas accès à La Forge) : prévenir l'enseignante
+  que les changements ne sont visibles des élèves qu'après cette publication.
 - Toujours travailler directement sur la branche `main`.
 - Ne jamais créer de branche ni de pull request : faire les commits sur `main` et les pousser directement.
 - Répondre en français à l'enseignante, avec des mots simples (pas de jargon technique).
