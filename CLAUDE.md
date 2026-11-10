@@ -38,8 +38,9 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - **Ouverture des leçons au fur et à mesure (20/10/2026, comme le site de maths)** : une leçon s'ouvre à la date de sa ceinture
   pour sa classe et le reste ensuite. Dates prévues : `OUVERTURE_PREVUE` dans `index.html` = premier jour de la période de la ceinture
   (colonne « Période » du fichier « Langue - ceintures » du tableau de bord), calculé par `node outils/ouvertures_site.mjs ../ressources`
-  (à relancer après tout changement de ce fichier). Progression réelle : fichier `ouvertures.json` à côté de `index.html` (fabriqué par le
-  tableau de bord, Planning › Français (année), bouton « Leçons ouvertes sur le site de français »), prioritaire. Leçon fermée : « s'ouvrira le … » ;
+  (à relancer après tout changement de ce fichier). **Depuis le 10/11/2026 (demande de l'enseignante : plus de dépôt régulier), seules les dates prévues
+  comptent** : `ouvertures.json` (sur La Forge) ne porte plus que le nom et la photo de l'école et les classes montrées (⚙ Réglages des cartes) ; ses dates éventuelles sont ignorées ;
+  en cas d'écart avec la classe, la clé 🔑. Leçon fermée : « s'ouvrira le … » ;
   pastille « nouveau » pendant 7 jours. Plus de codes de période ni de `?enseignant`.
   Accès enseignant : bouton 🔑 du bandeau et mot de passe, le même que sur le site de maths (connu de l'enseignante, jamais écrit dans le dépôt ;
   empreinte `MDP_ENS`, à recalculer avec `empreinteEns("…")` sur les deux sites pour le changer) : tout s'ouvre jusqu'à la fermeture de l'onglet.

@@ -1097,8 +1097,9 @@ function majMarque(){const e=ecole(),cle=e.nom+'|'+e.photo.length+e.photo.slice(
 let OUVERTURE_REELLE=null;   /* ouvertures.json : {maj, CE2:{code:date}, CM1:{…}, CM2:{…}} */
 const isoJour=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const AUJ=isoJour(new Date());
-/* date : brouillon, puis ouvertures.json (une date vide = leçon fermée), puis dates prévues */
-const dateOuverture=t=>{const n=niveauDe(t),c=code(t);for(const src of [BROUILLON.dates,OUVERTURE_REELLE]){const r=(src||{})[n];if(r&&typeof r==='object'&&Object.prototype.hasOwnProperty.call(r,c))return r[c]||'';}return (OUVERTURE_PREVUE[n]||{})[c]||'';};
+/* date d'ouverture : la date prévue (début de la période de la ceinture) (10/11/2026, demande de l'enseignante : plus de dates dans ouvertures.json,
+   plus de dépôt régulier ; en cas d'écart, la clé 🔑 ouvre tout sur l'appareil) */
+const dateOuverture=t=>(OUVERTURE_PREVUE[niveauDe(t)]||{})[code(t)]||'';;
 const ouverte=t=>{if(ENSEIGNANT)return true;if(!niveauVisible(niveauDe(t)))return false;const d=dateOuverture(t);return !!d&&d<=AUJ;};
 const nouvelle=t=>{const d=dateOuverture(t);return !ENSEIGNANT&&!!d&&d<=AUJ&&(new Date(AUJ)-new Date(d))/864e5<7;};
 const dateLongue=iso=>new Date(iso+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
@@ -1265,7 +1266,7 @@ function majBandeau(t){majBarNiv();majMarque();const n=t?niveauDe(t):niveauChois
   document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.classe===n)));
   if(som){const C=TRACES.filter(x=>hasTrace(x)&&niveauDe(x)===n),k=C.filter(ouverte).length;
     $('#barEtat').textContent=ENSEIGNANT?`Accès enseignant : les ${C.length} leçons de ${n} sont ouvertes`
-     :`🔓 ${k} leçon${k>1?'s':''} ouverte${k>1?'s':''} sur ${C.length}`+(OUVERTURE_REELLE&&OUVERTURE_REELLE.maj?` · progression de la classe au ${new Date(OUVERTURE_REELLE.maj+'T12:00').toLocaleDateString('fr-FR')}`:'');return;}
+     :`🔓 ${k} leçon${k>1?'s':''} ouverte${k>1?'s':''} sur ${C.length}`;return;}
   const dark=['Bleue','Violette','Marron','Verte','Noire'].includes(t.ceinture);
   $('#barLecon').innerHTML=`<i style="background:${t.ceinture?BELT[t.ceinture]:'#fff'}"></i><b>${esc(code(t))}</b><span>· ${esc(t.titre)}</span>`;
   const P=parcours(n),i=P.indexOf(t);$('#prec').disabled=i<=0;$('#suiv').disabled=i<0||i>=P.length-1;
@@ -1321,26 +1322,24 @@ document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.addEventListene
  b.onclick=()=>{if(ENS_REEL){if(confirm('Quitter le mode enseignant ? Seules les leçons ouvertes resteront visibles.')){try{sessionStorage.removeItem('francais-enseignant');sessionStorage.removeItem('francais-apercu');}catch(x){}location.reload();}return;}
   $('#ensMdp').value='';$('#ensMsg').textContent='';dlg.showModal();setTimeout(()=>$('#ensMdp').focus(),50);};})();
 /* Réglages enseignant (08/11/2026) : classes montrées et date d'ouverture de chaque leçon, dans un brouillon propre à cet onglet ;
-   « Télécharger » / « Copier » fabrique le ouvertures.json complet (classes + dates) à déposer sur La Forge ; « Voir comme un élève » = aperçu avec le brouillon. */
+   « Télécharger » / « Copier » fabrique ouvertures.json (école et classes seulement, plus de dates depuis le 10/11/2026) à déposer une fois sur La Forge ; « Voir comme un élève » = aperçu avec le brouillon. */
 if(ENS_REEL){(()=>{
- const ens=$('#ensBtn'),rb=document.createElement('button');rb.id='regBtn';rb.type='button';rb.textContent='⚙ Réglages';rb.title="Classes montrées et dates d'ouverture des leçons";ens.parentNode.insertBefore(rb,ens);
+ const ens=$('#ensBtn'),rb=document.createElement('button');rb.id='regBtn';rb.type='button';rb.textContent='⚙ Réglages';rb.title="Classes montrées, nom et photo de l'école";ens.parentNode.insertBefore(rb,ens);
  const dlg=document.createElement('dialog');dlg.id='regDlg';document.body.appendChild(dlg);let nivReg=NIV_AFF().includes(niveauChoisi())?niveauChoisi():'CM1';
  const dateCourte=d=>new Date(d+'T12:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
- const fichier=()=>{const out={maj:AUJ,classes:classesVis()},E=ecole();if(E.nom||E.photo)out.ecole=E;NIVEAUX.forEach(n=>{out[n]={};ordreSommaire(n).filter(hasTrace).forEach(t=>{out[n][code(t)]=dateOuverture(t);});});return JSON.stringify(out,null,1);};
+ const fichier=()=>{const out={maj:AUJ,classes:classesVis()},E=ecole();if(E.nom||E.photo)out.ecole=E;return JSON.stringify(out,null,1);};
  const apres=()=>{garderBrouillon();dessiner();render();};
  function dessiner(){const A=classesVis(),y=(dlg.querySelector('.rg-lst')||{}).scrollTop||0,L=ordreSommaire(nivReg).filter(hasTrace);
   dlg.innerHTML=`<h2>Réglages enseignant</h2>
-  <p class="rg-note">Ces choix restent dans cet onglet. Les élèves ne les voient qu'après le dépôt du fichier sur La Forge (en bas).</p>
+  <p class="rg-note">Ces choix changent rarement. Ils restent dans cet onglet ; les élèves ne les voient qu'après le dépôt du fichier sur La Forge (en bas), une seule fois.</p>
   <h3>École</h3>
   <div class="rg-ecole"><label>Nom de l'école<input type="text" maxlength="80" data-rgnom value="${esc(ecole().nom)}" placeholder="École élémentaire …"></label>
    <div class="rg-photo">${ecole().photo?`<img src="${ecole().photo}" alt="">`:'<span>Pas de photo</span>'}<div><button type="button" data-rgph>📷 ${ecole().photo?'Changer la photo':'Choisir une photo'}</button>${ecole().photo?'<button type="button" data-rgphx>Retirer</button>':''}<input type="file" id="rgPhoto" accept="image/*" hidden><small>Réduite automatiquement ; enregistrée dans ouvertures.json.</small></div></div></div>
   <h3>Classes montrées aux élèves</h3><div class="rg-cl">${NIVEAUX.map(n=>`<label><input type="checkbox" data-rgcl="${n}"${A.includes(n)?' checked':''}> ${n}</label>`).join('')}</div>
   <h3>Dates d'ouverture des leçons</h3>
-  <div class="rg-charge"><button type="button" data-rgld>📂 Charger ouvertures.json</button><input type="file" id="rgFic" accept=".json,application/json" hidden><span>Reprend le fichier fabriqué par le tableau de bord (ou un ancien fichier d'ici) : ses dates remplacent celles ci-dessous.</span></div>
-  <div class="rg-tabs">${NIVEAUX.map(n=>`<button type="button" data-rgniv="${n}" aria-pressed="${n===nivReg}">${n}</button>`).join('')}</div>
-  <div class="rg-lst">${L.map(t=>{const d=dateOuverture(t),ouv=!!d&&d<=AUJ,c=esc(code(t));return `<div class="rg-l"><b>${c}</b><span>${esc(t.titre)}</span><input type="date" value="${d}" data-rgd="${c}" aria-label="Date d'ouverture de ${c}"><em class="${ouv?'ok':''}">${ouv?'ouverte':d?'ouvre le '+dateCourte(d):'fermée'}</em><button type="button" data-rgo="${c}">Ouvrir</button><button type="button" data-rgf="${c}">Fermer</button></div>`;}).join('')}</div>
-  <h3>Les envoyer aux élèves</h3>
-  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>).</li><li>Sur La Forge, ouvrez le projet, « + » › « Téléverser un fichier », choisissez-le, puis « Commit ».</li><li>Le site se met à jour en 1 à 2 minutes.</li></ol>
+  <p class="rg-note">Chaque leçon s'ouvre au début de la période de sa ceinture : rien à régler ni à déposer. En cas d'écart, la clé 🔑 ouvre toutes les leçons sur l'appareil.</p>
+  <h3>Envoyer l'école et les classes aux élèves</h3>
+  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>).</li><li>Sur La Forge, ouvrez le projet, « + » › « Téléverser un fichier », choisissez-le, puis « Commit ».</li><li>Les cartes se mettent à jour en 1 à 2 minutes.</li></ol>
   <div class="rg-act"><button type="button" data-rgdl>⬇ Télécharger ouvertures.json</button><button type="button" data-rgcp>Copier le contenu</button><button type="button" data-rgap>👁 Voir comme un élève</button></div>
   <p id="rgMsg" role="status"></p>
   <div class="ens-actions"><button type="button" data-rgraz>Annuler mes changements</button><button type="button" data-rgfin id="ensOk">Fermer</button></div>`;
@@ -1348,8 +1347,6 @@ if(ENS_REEL){(()=>{
  rb.onclick=()=>{dessiner();dlg.showModal();};
  dlg.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;
   if('rgniv' in d){nivReg=d.rgniv;dessiner();}
-  else if('rgo' in d||'rgf' in d){const c=d.rgo||d.rgf;BROUILLON.dates=BROUILLON.dates||{};(BROUILLON.dates[nivReg]=BROUILLON.dates[nivReg]||{})[c]='rgo' in d?AUJ:'';apres();}
-  else if('rgld' in d){$('#rgFic').click();}
   else if('rgph' in d){$('#rgPhoto').click();}
   else if('rgphx' in d){BROUILLON.ecole={...ecole(),photo:''};apres();}
   else if('rgdl' in d){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([fichier()],{type:'application/json'}));a.download='ouvertures.json';a.click();$('#rgMsg').textContent='Fichier téléchargé : déposez-le sur La Forge.';}
@@ -1362,18 +1359,12 @@ if(ENS_REEL){(()=>{
  dlg.addEventListener('change',e=>{const i=e.target;
   if(i.dataset.rgnom!=null){BROUILLON.ecole={...ecole(),nom:i.value};apres();return;}
   if(i.id==='rgPhoto'){const f=i.files[0];i.value='';if(!f)return;reduire(f).then(x=>{BROUILLON.ecole={...ecole(),photo:x};apres();marqueVue='';majMarque();render();}).catch(()=>{$('#rgMsg').style.color='#b3261e';$('#rgMsg').textContent="Cette image n'a pas pu être lue.";});return;}
-  if(i.id==='rgFic'){const f=i.files[0];i.value='';if(!f)return;f.text().then(tx=>{let j;try{j=JSON.parse(tx);}catch(x){j=null;}
-    if(!j||typeof j!=='object'||!NIVEAUX.some(n=>j[n]&&typeof j[n]==='object')){$('#rgMsg').style.color='#b3261e';$('#rgMsg').textContent="Ce fichier n'est pas un ouvertures.json valide.";return;}
-    BROUILLON.dates=BROUILLON.dates||{};let k=0;NIVEAUX.forEach(n=>{if(j[n]&&typeof j[n]==='object'){BROUILLON.dates[n]={...(BROUILLON.dates[n]||{}),...Object.fromEntries(Object.entries(j[n]).filter(([c,v])=>typeof v==='string'))};k+=Object.keys(j[n]).length;}});
-    if(j.ecole&&typeof j.ecole==='object'){BROUILLON.ecole={nom:String(j.ecole.nom||'').slice(0,80),photo:photoOk(j.ecole.photo)?j.ecole.photo:''};}
-    if(Array.isArray(j.classes)){const A=NIVEAUX.filter(n=>j.classes.includes(n));if(A.length){BROUILLON.classes=A;if(!A.includes(nivReg))nivReg=A[0];}}
-    apres();$('#rgMsg').style.color='';$('#rgMsg').textContent=`Fichier chargé (${k} dates${j.maj?', progression du '+new Date(j.maj+'T12:00').toLocaleDateString('fr-FR'):''}). Vérifiez, puis téléchargez le fichier complet.`;});return;}
   if(i.dataset.rgcl){const A=NIVEAUX.filter(n=>dlg.querySelector(`[data-rgcl="${n}"]`).checked);if(!A.length){i.checked=true;$('#rgMsg').textContent='Gardez au moins une classe.';return;}BROUILLON.classes=A;if(!A.includes(nivReg))nivReg=A[0];apres();}
-  else if(i.dataset.rgd!=null&&i.type==='date'){BROUILLON.dates=BROUILLON.dates||{};(BROUILLON.dates[nivReg]=BROUILLON.dates[nivReg]||{})[i.dataset.rgd]=i.value;apres();}});
+});
  if(APERCU){const bn=document.createElement('div');bn.id='apercuBn';bn.innerHTML=`👁 Aperçu élève (avec vos réglages non envoyés) <button type="button">Revenir au mode enseignant</button>`;document.body.appendChild(bn);
   bn.querySelector('button').onclick=()=>{try{sessionStorage.removeItem('francais-apercu');}catch(x){}location.reload();};}
 })();}
-/* progression réelle de la classe (tableau de bord) : ouvertures.json à côté de index.html, s'il existe */
+/* ouvertures.json à côté de index.html, s'il existe : nom et photo de l'école, classes montrées (ses dates éventuelles ne sont plus lues, 10/11/2026) */
 if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;render();}}).catch(()=>{});
 $('#tocBtn').addEventListener('click',()=>go('#'));
 const menuBtn=$('#menuBtn'),menuList=$('#menuList');
