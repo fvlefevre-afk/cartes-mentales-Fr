@@ -15,6 +15,10 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   sont dans le dossier `images/` : l'objet `IMG` ne garde que leur chemin (page allégée de 11,7 Mo à 0,4 Mo, 23/10/2026).
   Une carte se remplace à la main en gardant le même nom de fichier (1400×933 px).
 - Écrans animés : §…§ colore une terminaison en violet (conjugaison).
+- **Lisibilité CM1 (10/11/2026, demande de l'enseignante)** : police Andika dans `polices/` (400, 400 italique, 700 ; licence `polices/OFL.txt`), plus de Google Fonts ;
+  textes lus par l'élève à 16 px au moins (`--u` : 16 à 22 px ; bloc « Lisibilité CM1 » en fin de feuille de style) ; une leçon n'est jamais réduite sous 90 % (`MIN_LECON`), la page défile ;
+  zones de la carte toujours visibles (pointillés, `.zone.fait` en vert, la prochaine `.zone.suivant` respire, immobile avec « réduire les animations ») ;
+  rien n'est dit par la seule couleur : verbe souligné deux fois (sujet une fois), ✓ / ✗ devant les messages et les choix justes ou faux. Ne pas revenir en arrière sur ces points.
 - G6 : compléments d’objet en indigo (#5e35b1), compléments circonstanciels en marron (#8d5524), sur la carte et dans les écrans
   (classe `lecon-G6`), pour ne pas reprendre le vert de l’adjectif ni l’orange du déterminant (choix de l’enseignante, 23/10/2026).
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.

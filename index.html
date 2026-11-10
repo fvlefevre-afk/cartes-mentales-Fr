@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Leçons interactives — ceintures de français CM1</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* Police Andika (SIL, licence OFL : polices/OFL.txt), faite pour les jeunes lecteurs ; fichiers dans polices/ (plus de Google Fonts : même écriture sur tous les appareils, sans internet, sans envoyer l'adresse de l'appareil à Google, 10/11/2026) */
+@font-face{font-family:"Andika";font-style:normal;font-weight:400;font-display:swap;src:url(polices/andika-400.woff2) format("woff2")}
+@font-face{font-family:"Andika";font-style:italic;font-weight:400;font-display:swap;src:url(polices/andika-400-italique.woff2) format("woff2")}
+@font-face{font-family:"Andika";font-style:normal;font-weight:700 900;font-display:swap;src:url(polices/andika-700.woff2) format("woff2")}
 :root{
   --paper:#fff;--ink:#1f2a44;--soft:#5b6479;--line:#d8dde8;
   --sujet:#1f5fc4;--verbe:#c62828;--term:#7b3fa0;--etiq:#d9730d;--etiq-bg:#fff1e3;--precis:#23845a;--precis-bg:#e8f5ee;
@@ -124,7 +125,7 @@ h3.sub{margin:1.6rem 0 .6rem;color:var(--fam);font-size:1.2rem}
 
 /* Code couleur */
 .s{color:var(--sujet);font-weight:700;text-decoration:underline;text-decoration-color:var(--sujet);text-underline-offset:3px}
-.v{color:var(--verbe);font-weight:700}
+.v{color:var(--verbe);font-weight:700;text-decoration:underline double;text-decoration-thickness:2px;text-decoration-color:var(--verbe);text-underline-offset:4px}
 .t{color:var(--term);font-weight:700}
 .et{color:var(--etiq);font-weight:700}
 .pr{color:var(--precis);font-weight:700}
@@ -228,7 +229,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .cm2-box.ce2{border-color:#1e8a5a;background:#ecf7f1}.cm2-box.ce2 h3{color:#1e8a5a}.tag-cm2.ce2{background:#1e8a5a}
 .tag-cm2{display:inline-block;vertical-align:middle;margin-left:.6rem;font-size:.8rem;font-weight:700;color:#fff;background:#2456a6;border-radius:.5rem;padding:.1rem .5rem}
 .chip2.nu{border:0;border-radius:.3cqw;background:rgb(208,237,251);color:#1f2a44}
-.zone{position:absolute;border-radius:1rem;border:3px solid transparent;transition:border-color .2s,background .2s}
+.zone{position:absolute;border-radius:1rem;border:3px dashed color-mix(in srgb,var(--z) 55%,transparent);background:color-mix(in srgb,var(--z) 4%,transparent);transition:border-color .2s,background .2s}
 .zone:hover,.zone:focus-visible{border-color:var(--z);background:color-mix(in srgb,var(--z) 8%,transparent);outline:0}
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .zone .num{position:absolute;right:-.3rem;top:-.3rem}
@@ -392,7 +393,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 }
 
 /* ===== Affichage comme le site de maths (08/11/2026) : échelle de texte commune, bandeau, sommaire et leçons qui remplissent la fenêtre ===== */
-:root{--u:clamp(12px,min(1.5dvh,1.1vw),21px);--s1:var(--u);--s2:calc(var(--u)*1.2);--s3:calc(var(--u)*1.55);--s4:calc(var(--u)*2.05)}
+:root{--u:clamp(16px,min(1.9dvh,1.3vw),22px);--s1:var(--u);--s2:calc(var(--u)*1.2);--s3:calc(var(--u)*1.55);--s4:calc(var(--u)*2.05)}
 body .marque-t small{font-size:var(--s1);margin-top:.05rem}body .marque-t b{font-size:var(--s2)}
 body .bar .logo{width:calc(var(--u)*2.8);height:calc(var(--u)*2.8)}
 body .bar button,body .bar-lecon,body .bar-etat,body .bar .menu-list button{font-size:var(--s1)}
@@ -423,6 +424,27 @@ body.au-sommaire .nouveau{font-size:var(--s1)}
 body.au-sommaire .legend{font-size:var(--s1)}
 /* leçon : le papier remplit la fenêtre (la mise à l'échelle est faite par fitPage) */
 body.mode-plein .sheet.lesson{border-radius:12px}
+
+/* ===== Lisibilité CM1 (10/11/2026) : textes lus par l'élève à 16 px au moins, zones visibles au doigt, pas d'information portée par la seule couleur ===== */
+.head .meta,.tile .state,.nouveau,.tag-cm2,.nb-t small,.fam h3 small,.legend,.legend strong,.intro,
+.atoi .mini,.atoi .ex-num,.ex-prog .pt,.sm-ex,.sm-corps small,.sm-retour,.sm-retour-scr,.niveaux a small,.fam-btns small{font-size:1rem}
+.atoi .mini{padding:.3rem .9rem;min-height:2.6rem}
+.ex-prog .pt{min-width:2.3rem;height:2.3rem}
+.sm-ex{padding:.45rem 1rem}
+@media (max-width:600px){body{font-size:18px}}
+/* zones de la carte : contour pointillé toujours visible (au doigt il n'y a pas de survol), plein au survol ; partie finie en vert ; la suivante respire */
+.zone:hover,.zone:focus-visible{border-style:solid}
+.zone.fait{border-color:color-mix(in srgb,#23845a 55%,transparent);background:transparent}
+.zone.suivant{border-style:solid;border-color:var(--z);animation:zoneSuiv 1.8s ease-in-out infinite}
+@keyframes zoneSuiv{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--z) 30%,transparent);background:color-mix(in srgb,var(--z) 10%,transparent)}}
+.num{width:2.6rem;height:2.6rem;font-size:1.25rem}
+@media (prefers-reduced-motion:reduce){.zone.suivant{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}}
+@media print{.zone{border-color:transparent;background:transparent;animation:none;box-shadow:none}}
+/* juste / faux : un signe en plus du vert et du rouge */
+.fb.good:not(:empty)::before{content:"✓ ";font-weight:800}
+.fb.bad:not(:empty)::before{content:"✗ ";font-weight:800}
+.choice.right::before{content:"✓ "}
+.choice.faux::before{content:"✗ "}
 </style>
 </head>
 <body>
@@ -792,7 +814,7 @@ function renderLessonMap(t){
     <div class="crumbs"><a href="#">Sommaire</a> › ${esc(f.nom)}</div>
     <div class="head">${belt(t)}<div><h2>${esc(t.titre)}</h2><div class="meta">Clique sur une partie de la carte pour découvrir la leçon.</div></div></div>
     <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))} : ${esc(t.titre)}">${chipCM2(t)}${(L.masque||[]).map(z=>`<span class="masque" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%" title="Pas au programme du CE2"></span>`).join('')}
-      ${L.sections.map((s,k)=>{const z=s.zone,d=secDone(L,t.id,s.id);return `<a class="zone" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
+      ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
     </div>
     <div class="map-path no-print">${L.sections.map((s,k)=>{const d=secDone(L,t.id,s.id);return `<a href="#t=${t.id}/s:${s.id}" style="--z:${s.couleur}"><span class="num${d?' done':''}">${d?'✓':k+1}</span>${esc(s.nom)}</a>`;}).join('<span class="arrow">›</span>')}</div>
     ${t.html?`<div class="body" style="margin-top:1.4rem">${t.html}</div>`:''}
@@ -1385,7 +1407,7 @@ load();render();
 /* Leçons et traces : le papier remplit la fenêtre, en largeur comme en hauteur (même principe que la mise à l'échelle du site de maths) */
 (function(){
  const main=document.getElementById('main'); if(!main)return;
- const MAX_LECON=2.2, MIN_LECON=.55, MAX_TRACE=1.35, LARGEUR_LECON=1000;
+ const MAX_LECON=2.2, MIN_LECON=.9, MAX_TRACE=1.35, LARGEUR_LECON=1000;
  let raf=0;
  const barre=()=>(document.querySelector('.bar')||{offsetHeight:0}).offsetHeight;
  function remettre(){
