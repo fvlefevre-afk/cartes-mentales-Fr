@@ -387,12 +387,12 @@ lecon('O10', ['Le <b>féminin</b> d’un nom d’agent en -eur s’écrit <b>-eu
    [Q('une direc___', ['trice', 'teuse', 'tresse'], 'Un directeur → une directrice.', 'Complète avec la bonne fin.', fill=H),
     Q('une coiff___', ['euse', 'eur', 'euze'], 'Un coiffeur → une coiffeuse.', 'Complète avec la bonne fin.', fill=H)]))
 
-lecon('O11', ['Quelques noms s’écrivent <b>-xion</b> : la connexion, la réflexion, la flexion.'],
- E('tion', 'attention', '-xion', 'boy', 'Quelques noms s’écrivent -xion : je les mémorise.',
-   ['une conne%xion%', 'la réfle%xion%', ('la fle%xion%', 'Des noms à mémoriser.')],
-   Q('la conne___', ['xion', 'ction', 'tion'], 'Un nom à mémoriser.', 'Complète avec la bonne fin.', fill=H),
-   [Q('la réfle___', ['xion', 'ction', 'tion'], 'Un nom à mémoriser.', 'Complète avec la bonne fin.', fill=H),
-    Q('la fle___', ['xion', 'ction', 'tion'], 'Un nom à mémoriser.', 'Complète avec la bonne fin.', fill=H)]))
+lecon('O11', ['Le <b>verbe de la famille</b> décide de la fin du nom : -quer → -cation (communiquer → communication), -ter → -tion, -mettre → -mission, -der et -clure → -sion. Exception : discuter → discussion.'],
+ E('famille', 'remplacer', 'Le verbe de la famille décide', 'boy', 'Je regarde la fin du verbe : elle décide de la fin du nom.',
+   ['communiquer → communi%cation%', 'inventer → inven%tion%', ('admettre → admi%ssion%', 'Verbe en -mettre : -mission.')],
+   Q('une indi___', ['cation', 'tion', 'sion'], 'Pense à indiquer : -quer → -cation.', 'Complète avec la bonne fin.', fill=H),
+   [Q('une conclu___', ['sion', 'tion', 'ssion'], 'Pense à conclure : -clure → -sion.', 'Complète avec la bonne fin.', fill=H),
+    Q('une discu___', ['ssion', 'sion', 'tion'], 'Une exception : discuter → discussion.', 'Complète avec la bonne fin.', fill=H)]))
 
 lecon('O12', ['Un adjectif en <b>-ent</b> donne un adverbe en <b>-emment</b> ; un adjectif en <b>-ant</b> donne <b>-amment</b>. Les deux se prononcent [amɑ̃].'],
  E('adj', 'liste', '-emment et -amment', 'boy', 'Un adjectif en -ent donne -emment ; un adjectif en -ant donne -amment.',

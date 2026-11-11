@@ -66,7 +66,7 @@ DATA_CM2 = {
  'O': [('marron','O8','Les noms en [é] et les exceptions en -tée (une dictée, une montée, une assiettée)'),
        ('noire','O9','Les consonnes doubles ; il-, ir-, im-, in- qui doublent la consonne (illisible, irréel, immobile, innombrable)'),
        ('or','O10','Les noms en -eur ; le féminin : -euse (une chanteuse) et -trice (une actrice)'),
-       ('argent','O11','Les noms en -tion, -sion, -ssion ; -xion (la connexion, la réflexion)'),
+       ('argent','O11','Les noms en -tion, -sion, -ssion ; le verbe de la famille décide de la fin du nom (communiquer → communication, admettre → admission, décider → décision)'),
        ('rouge','O12','Les adverbes en -ment ; -emment et -amment (évidemment, constamment)')],
 }
 
