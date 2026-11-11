@@ -12,7 +12,7 @@ def color_styles(s):
         if p and lab and lab not in m: m[lab] = p.group(1)
     return m
 
-HEX = {'rose': '#f4a7c0', 'marron': '#8a5a3b', 'rouge': '#e53935', 'violette': '#8e5bc4', 'bleue': '#3b7dd8', 'verte': '#4caf6a', 'orange': '#f39c3d', 'jaune': '#ffff00'}
+HEX = {'rose': '#f4a7c0', 'marron': '#8a5a3b', 'rouge': '#e53935', 'violette': '#8e5bc4', 'bleue': '#3b7dd8', 'verte': '#4caf6a', 'orange': '#f39c3d', 'jaune': '#ffff00', 'noire': '#3a3a3a', 'or': '#d4af37', 'argent': '#b8bcc4'}
 
 def ensure_color(s, cmap, color):
     if color in cmap: return s, cmap[color]

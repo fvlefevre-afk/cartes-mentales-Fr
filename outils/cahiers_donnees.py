@@ -27,12 +27,11 @@ DATA = {
        ('orange','V4','Les familles de mots : partie commune et même sens ; la famille m’aide à écrire'),
        ('verte','V5','Synonymes et contraires, de la même classe de mots'),
        ('bleue','V6','Les homonymes : même son, autre sens ; un mot, plusieurs sens (polysémie) ; la phrase m’aide')],
- 'O': [('blanche','O1','m devant m, b, p'),
-       ('rose','O2','Les lettres finales muettes : je m’appuie sur un mot de la même famille'),
-       ('jaune','O3','Le son [s] : s, ss, c, ç'),
-       ('orange','O4','Le son [k] : c, qu, k'),
-       ('verte','O5','Le son [g] : g, gu (et ge)'),
-       ('bleue','O6','ill et y ; oi et oy')],
+ 'O': [('marron','O8','Les noms en [é] : -é (masculin), -ée (féminin), -té (une qualité), -tié (la moitié, l’amitié, la pitié)'),
+       ('noire','O9','Les consonnes doubles : après a-, e-, o-, com- au début du mot ; le mot de la même famille m’aide'),
+       ('or','O10','Les noms en -eur, sans e (le bonheur, un chanteur) ; les exceptions : l’heure, le beurre, le cœur'),
+       ('argent','O11','Les noms en [sjɔ̃] : -tion, -sion (après une voyelle ou n, r, l), -ssion (entre deux voyelles) ; le verbe m’aide'),
+       ('rouge','O12','Les adverbes en -ment : l’adjectif au féminin + -ment (lente → lentement) ; adjectif en voyelle + -ment (vrai → vraiment)')],
 }
 
 # CM2 (parcours C) : mêmes numéros et mêmes couleurs que le CM1, notions approfondies (octobre 2026)
@@ -64,12 +63,11 @@ DATA_CM2 = {
        ('orange','V4','Familles de mots ; mots simples, dérivés et composés'),
        ('verte','V5','Synonymes, contraires et champ lexical'),
        ('bleue','V6','Homonymes et polysémie (un mot, plusieurs sens)')],
- 'O': [('blanche','O1','m devant m, b, p ; avec les préfixes em-, im-'),
-       ('rose','O2','Les lettres finales muettes : un mot de la même famille, même peu évident'),
-       ('jaune','O3','Le son [s] : s, ss, c, ç, et t devant -ion'),
-       ('orange','O4','Le son [k] : c, qu, k, ch, cc'),
-       ('verte','O5','Le son [g] : g, gu, ge ; les verbes en -guer'),
-       ('bleue','O6','ill et y ; oi et oy ; -eil / -eille, -ueil')],
+ 'O': [('marron','O8','Les noms en [é] et les exceptions en -tée (une dictée, une montée, une assiettée)'),
+       ('noire','O9','Les consonnes doubles ; il-, ir-, im-, in- qui doublent la consonne (illisible, irréel, immobile, innombrable)'),
+       ('or','O10','Les noms en -eur ; le féminin : -euse (une chanteuse) et -trice (une actrice)'),
+       ('argent','O11','Les noms en -tion, -sion, -ssion ; -xion (la connexion, la réflexion)'),
+       ('rouge','O12','Les adverbes en -ment ; -emment et -amment (évidemment, constamment)')],
 }
 
 # CE2 (parcours A) : mêmes numéros et mêmes couleurs que le CM1, version simplifiée (octobre 2026)
@@ -101,5 +99,5 @@ DATA_CE2 = {
        ('orange','O4','Le son [k] : c, qu, k'),
        ('verte','O5','Le son [g] : g, gu, ge'),
        ('bleue','O6','ill ; oi'),
-       ('violette','O7','Les sons [o], [é], [è] et les accents')],
+       ('violette','O7','e, é, è, ê : accent ou pas (é ; e devant deux consonnes ; è devant une consonne et un e muet ; ê à mémoriser)')],
 }

@@ -365,6 +365,43 @@ lecon('O2', ['Des familles moins faciles : accro<b>c</b> → accrocher, respe<b>
    [Q('un ban___', ['c', 't', 's'], 'Pense à « banquette ».', 'Quelle lettre muette faut-il écrire ?', fill=H),
     Q('un clima___', ['t', 's', 'x'], 'Pense à « climatique ».', 'Quelle lettre muette faut-il écrire ?', fill=H)]))
 
+# O8 à O12 (11/11/2026, idée 203 du tableau de bord) : ce que le CM2 apprend en plus de la leçon du CM1
+lecon('O8', ['Quelques noms féminins s’écrivent <b>-tée</b> : une action ou un contenu (une dictée, une montée, une assiettée).'],
+ E('tie', 'attention', 'Les exceptions en -tée', 'girl', 'Quelques noms féminins s’écrivent -tée : une action ou un contenu.',
+   ['une dic%tée%', 'une mon%tée%', ('une assiet%tée%', 'Une action ou un contenu : -tée, avec e.')],
+   Q('une dic___', ['tée', 'té', 'tié'], 'C’est une dictée : -tée.', 'Complète avec la bonne fin.', fill=H),
+   [Q('une mon___', ['tée', 'té', 'tié'], 'C’est une montée : -tée.', 'Complète avec la bonne fin.', fill=H),
+    Q('une por___', ['tée', 'té', 'tié'], 'C’est une portée : -tée.', 'Complète avec la bonne fin.', fill=H)]))
+
+lecon('O9', ['Le préfixe <b>in-</b> devient <b>il-, ir-, im-</b> devant l, r, m, et la consonne <b>se double</b> : illisible, irréel, immobile ; devant n : innombrable.'],
+ E('famille', 'mots', 'il-, ir-, im-, in-', 'boy', 'Le préfixe in- double la consonne devant l, r, m, n.',
+   ['i%ll%isible', 'i%rr%éel', ('i%mm%obile', 'in- + mobile : la consonne se double.')],
+   Q('i___isible', ['ll', 'l'], 'in- + lisible.', 'Complète : consonne simple ou double ?', fill=H),
+   [Q('i___obile', ['mm', 'm'], 'in- + mobile.', 'Complète : consonne simple ou double ?', fill=H),
+    Q('i___égal', ['ll', 'l'], 'in- + légal.', 'Complète : consonne simple ou double ?', fill=H)]))
+
+lecon('O10', ['Le <b>féminin</b> d’un nom d’agent en -eur s’écrit <b>-euse</b> ; celui d’un nom en -teur s’écrit <b>-trice</b>.'],
+ E('verbe', 'remplacer', 'Le féminin : -euse, -trice', 'girl', 'Le féminin d’un nom en -eur : -euse ou -trice.',
+   ['un chanteur → une chant%euse%', 'un vendeur → une vend%euse%', ('un acteur → une ac%trice%', 'Un nom en -teur : -trice.')],
+   Q('une dans___', ['euse', 'eur', 'euze'], 'Un danseur → une danseuse.', 'Complète avec la bonne fin.', fill=H),
+   [Q('une direc___', ['trice', 'teuse', 'tresse'], 'Un directeur → une directrice.', 'Complète avec la bonne fin.', fill=H),
+    Q('une coiff___', ['euse', 'eur', 'euze'], 'Un coiffeur → une coiffeuse.', 'Complète avec la bonne fin.', fill=H)]))
+
+lecon('O11', ['Quelques noms s’écrivent <b>-xion</b> : la connexion, la réflexion, la flexion.'],
+ E('tion', 'attention', '-xion', 'boy', 'Quelques noms s’écrivent -xion : je les mémorise.',
+   ['une conne%xion%', 'la réfle%xion%', ('la fle%xion%', 'Des noms à mémoriser.')],
+   Q('la conne___', ['xion', 'ction', 'tion'], 'Un nom à mémoriser.', 'Complète avec la bonne fin.', fill=H),
+   [Q('la réfle___', ['xion', 'ction', 'tion'], 'Un nom à mémoriser.', 'Complète avec la bonne fin.', fill=H),
+    Q('la fle___', ['xion', 'ction', 'tion'], 'Un nom à mémoriser.', 'Complète avec la bonne fin.', fill=H)]))
+
+lecon('O12', ['Un adjectif en <b>-ent</b> donne un adverbe en <b>-emment</b> ; un adjectif en <b>-ant</b> donne <b>-amment</b>. Les deux se prononcent [amɑ̃].'],
+ E('adj', 'liste', '-emment et -amment', 'boy', 'Un adjectif en -ent donne -emment ; un adjectif en -ant donne -amment.',
+   ['évident → évid%emment%', 'patient → pati%emment%', ('constant → const%amment%', 'Les deux se prononcent [amɑ̃].')],
+   Q('évid___', ['emment', 'amment', 'ement'], 'L’adjectif « évident » finit par -ent.', 'Complète avec la bonne fin.', fill=H),
+   [Q('const___', ['amment', 'emment', 'ament'], 'L’adjectif « constant » finit par -ant.', 'Complète avec la bonne fin.', fill=H),
+    Q('prud___', ['emment', 'amment', 'ement'], 'L’adjectif « prudent » finit par -ent.', 'Complète avec la bonne fin.', fill=H)]))
+
+
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sortie')
 os.makedirs(D, exist_ok=True)
 json.dump(OUT, open(os.path.join(D, 'CM2_PLUS.json'), 'w'), ensure_ascii=False, indent=1)

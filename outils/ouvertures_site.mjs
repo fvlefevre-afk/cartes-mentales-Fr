@@ -46,6 +46,8 @@ if(erreurs.length){ console.error(erreurs.join("\n")); process.exit(1); }
 const P = {};
 ["CE2", "CM1", "CM2"].forEach(n => { P[n] = {};
   O.L.forEach(([c, p, nv]) => { const per = O.per[p-1]; if(per && (!nv.length || nv.includes(n))) P[n][c] = per[1]; }); });
+/* orthographe (11/11/2026, idée 203) : O1 à O7 sont programmées au CE2 seulement ; pour le CM1 et le CM2 elles servent de reprises (« C si erreurs ») : ouvertes dès la rentrée */
+{ const r0 = O.per[0] && O.per[0][1]; if(r0) ["CM1", "CM2"].forEach(n => Object.keys(P.CE2).filter(c => c[0]==="O" && !(c in P[n])).forEach(c => { P[n][c] = r0; })); }
 const f = join(RACINE, "index.html"), s = readFileSync(f, "utf8");
 const re = /(\/\* OUVERTURE_PREVUE[^\n]*\*\/\n)const OUVERTURE_PREVUE=[^\n]*\n/;
 if(!re.test(s)){ console.error("Bloc OUVERTURE_PREVUE introuvable dans index.html"); process.exit(1); }
