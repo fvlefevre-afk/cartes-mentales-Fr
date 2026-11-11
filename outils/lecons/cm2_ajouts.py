@@ -355,15 +355,7 @@ lecon('C5', ['Avec être, le participe s’accorde avec le sujet, même quand le
     Q('Au loin sont ___ les bateaux.', ['apparus', 'apparu', 'apparues'], 'Le sujet « les bateaux » est après le verbe.', 'Complète.', fill='v')]))
 
 # =============================================================== ORTHOGRAPHE
-lecon('O1', ['Les préfixes <b>en-</b> et <b>in-</b> deviennent <b>em-</b> et <b>im-</b> devant m, b, p : emporter, impossible, immangeable.'],
- E('regle', 'liste', 'Avec un préfixe', 'girl', 'Le préfixe en- ou in- suit la règle aussi.',
-   [('%em%|p|orter · %em%|b|arquer · %im%|p|ossible', 'Devant m, b, p : em-, im-.'),
-    ('%in%|u|tile · %en%|l|ever', 'Devant les autres lettres : in-, en-.'),
-    ('%im%|m|angeable · %em%|m|ener', 'Devant m aussi.')],
-   Q('___buvable', ['im', 'in'], 'Après, il y a un b.', 'Complète : im ou in ?', fill=H),
-   [Q('___patient', ['im', 'in'], 'Après, il y a un p.', 'Complète : im ou in ?', fill=H),
-    Q('___capable', ['in', 'im'], 'Après, il y a un c.', 'Complète : im ou in ?', fill=H)]))
-
+# 11/11/2026 (idée 203 du tableau de bord) : plus d'ajout du CM2 dans O1 (em-, im-), O3 (-tion), O4 (ch, cc), O5 (-guer) ni O6 (-eil, -ail) ; seule O2 garde ses familles moins évidentes.
 lecon('O2', ['Des familles moins faciles : accro<b>c</b> → accrocher, respe<b>ct</b> → respecter, fusi<b>l</b> → fusiller.'],
  E('famille', 'mots', 'Des familles moins faciles', 'boy', 'Je cherche bien : un mot de la famille fait entendre la lettre.',
    [('un accro%c% → accro|c|her', 'Dans « accrocher », j’entends c.'),
@@ -372,42 +364,6 @@ lecon('O2', ['Des familles moins faciles : accro<b>c</b> → accrocher, respe<b>
    Q('un tapi___', ['s', 't', 'x'], 'Pense à « tapisser ».', 'Quelle lettre muette faut-il écrire ?', fill=H),
    [Q('un ban___', ['c', 't', 's'], 'Pense à « banquette ».', 'Quelle lettre muette faut-il écrire ?', fill=H),
     Q('un clima___', ['t', 's', 'x'], 'Pense à « climatique ».', 'Quelle lettre muette faut-il écrire ?', fill=H)]))
-
-lecon('O3', ['Le son « s » peut s’écrire <b>t</b> devant -ion : attention, opération, récréation.'],
- E('c', 'attention', '-tion : le t fait « s »', 'girl', 'Devant -ion, le t fait souvent le son « s ».',
-   [('une atten%t%|i|on', 'Devant -ion, le t fait « s ».'),
-    ('une opéra%t%|i|on · la récréa%t%|i|on', ''),
-    ('une pa%ss%ion · une émi%ss%ion', 'Mais certains mots s’écrivent -ssion : je les mémorise.')],
-   Q('une addi___ion', ['t', 'ss', 'c'], 'Le mot finit par -tion.', 'Complète avec la bonne lettre.', fill=H),
-   [Q('la na___ion', ['t', 'ss', 'c'], 'Le mot finit par -tion.', 'Complète avec la bonne lettre.', fill=H),
-    Q('une pro___ection', ['t', 'ss', 'c'], 'Ici, le t ne fait pas « s » : pro-tec-tion.', 'Complète avec la bonne lettre.', fill=H)]))
-
-lecon('O4', ['Le son « k » s’écrit parfois <b>ch</b> (chorale, orchestre) ou <b>cc</b> (accord, occuper).'],
- E('k', 'etiquette', 'ch et cc', 'boy', 'Quelques mots écrivent le son « k » autrement.',
-   [('une %ch%orale · un or%ch%estre', 'ch : des mots à mémoriser.'),
-    ('un a%cc%ord · o%cc%uper', 'cc devant a, o, u.'),
-    ('un a%cc%ident', 'Attention : cc devant i fait « ks ».')],
-   Q('', ['une chorale', 'une korale', 'une corale'], 'Un mot avec ch.', 'Quel mot est bien écrit ?'),
-   [Q('', ['accompagner', 'acompagner'], 'cc devant o.', 'Quel mot est bien écrit ?'),
-    Q('', ['un orchestre', 'un orkestre'], 'Un mot avec ch.', 'Quel mot est bien écrit ?')]))
-
-lecon('O5', ['Dans les verbes en <b>-guer</b>, le u reste partout : nous naviguons, il conjuguait.'],
- E('gu', 'remplacer', 'Les verbes en -guer', 'girl', 'Dans les verbes en -guer, le u reste à toutes les personnes.',
-   [('nous navi%gu%|o|ns', 'Le verbe est « naviguer » : le u reste.'),
-    ('il fati%gu%|a|it', ''),
-    ('nous conju%gu%|o|ns', 'Même devant a et o.')],
-   Q('nous conju___ons', ['gu', 'g', 'ge'], 'Le verbe est « conjuguer » : le u reste.', 'Complète avec les bonnes lettres.', fill=H),
-   [Q('il distin___ait', ['gu', 'g', 'ge'], 'Le verbe est « distinguer ».', 'Complète avec les bonnes lettres.', fill=H),
-    Q('nous dialo___ons', ['gu', 'g', 'ge'], 'Le verbe est « dialoguer ».', 'Complète avec les bonnes lettres.', fill=H)]))
-
-lecon('O6', ['Masculin <b>-eil, -ail, -euil</b> ; féminin <b>-eille, -aille, -euille</b>. Après c ou g : <b>-ueil</b> (accueil, orgueil).'],
- E('ill', 'attention', '-eil ou -eille ?', 'boy', 'Le nom est masculin ou féminin ?',
-   [('le révei%l% · la boutei%lle%', 'Masculin : -eil ; féminin : -eille.'),
-    ('un fauteu%il% · une feu%ille%', ''),
-    ('un acc%ueil% · l’org%ueil%', 'Après c ou g : -ueil.')],
-   Q('une corb___', ['eille', 'eil'], 'C’est un nom féminin.', 'Complète avec les bonnes lettres.', fill=H),
-   [Q('un appar___', ['eil', 'eille'], 'C’est un nom masculin.', 'Complète avec les bonnes lettres.', fill=H),
-    Q('un acc___', ['ueil', 'euil'], 'Après c : -ueil.', 'Complète avec les bonnes lettres.', fill=H)]))
 
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sortie')
 os.makedirs(D, exist_ok=True)
