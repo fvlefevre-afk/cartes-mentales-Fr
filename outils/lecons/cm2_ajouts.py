@@ -74,7 +74,8 @@ lecon('G3', ['Le <b>complément du nom</b> précise le nom ; il commence souvent
 
 lecon('G4', ['Les <b>prépositions</b> (à, de, sur, sous, dans, avec, pour, sans, chez…) sont invariables.',
              '<b>le, la, les</b> : déterminant devant un nom, <b>pronom</b> devant un verbe.', 'Les pronoms compléments : <b>me, te, le, la, lui, nous, vous, les, leur</b>.',
-             'Les <b>conjonctions de subordination</b> (quand, si, parce que, comme, lorsque) relient une partie qui dépend de l’autre.'],
+             'Les <b>conjonctions de subordination</b> (quand, si, parce que, comme, lorsque) relient une partie qui dépend de l’autre.',
+             'Le pronom complément remplace un groupe déjà écrit : son <b>antécédent</b>. <i>Le facteur apporte une lettre. Maman la lit.</i>'],
  E('conj', 'mots', 'Les prépositions', 'girl', 'Un petit mot invariable, devant un groupe nominal.',
    [('Le livre est |sur| la table.', '« sur » : une préposition.'),
     ('Je vais |à| l’école |avec| mon frère.', 'à, de, sur, sous, dans, avec, pour, sans, chez : des prépositions.'),
@@ -96,6 +97,13 @@ lecon('G4', ['Les <b>prépositions</b> (à, de, sur, sous, dans, avec, pour, san
    Q('Je donne un livre à Paul. → Je ___ donne un livre.', ['lui', 'le', 'leur'], 'à Paul → lui.', 'Complète avec le bon pronom.', fill='pr'),
    [Q('Je vois mes amis. → Je ___ vois.', ['les', 'leur', 'lui'], 'mes amis : COD au pluriel → les.', 'Complète avec le bon pronom.', fill='pr'),
     Q('Je parle à mes parents. → Je ___ parle.', ['leur', 'les', 'lui'], 'à mes parents : COI au pluriel → leur.', 'Complète avec le bon pronom.', fill='pr')]),
+ E('verbe', 'loupe', 'Ce que remplace le pronom : l’antécédent', 'girl', 'Le pronom complément remplace un groupe déjà écrit : son antécédent.',
+   [('Le facteur apporte |une lettre|. Maman |la| (lit).', '« la » remplace « une lettre » : c’est son antécédent.'),
+    ('Tom a cueilli |des fraises|. Il |les| (mange).', 'Même genre, même nombre : des fraises → les.'),
+    ('Nina voit |sa grand-mère|. Elle |lui| (donne) un dessin.', '« lui » remplace « sa grand-mère ».')],
+   Q('Papa lave la voiture. Il la sèche.', ['la voiture', 'Papa', 'il'], '« la » est féminin singulier : qu’est-ce que Papa sèche ?', 'Que remplace « la » ?'),
+   [Q('La maîtresse rend les cahiers. Les élèves les rangent.', ['les cahiers', 'les élèves', 'la maîtresse'], 'Qu’est-ce que les élèves rangent ?', 'Que remplace « les » ?'),
+    Q('Sami écrit à ses cousins. Il leur raconte ses vacances.', ['ses cousins', 'Sami', 'ses vacances'], 'À qui Sami raconte-t-il ses vacances ?', 'Que remplace « leur » ?')]),
  E('conj', 'wagon', 'Les conjonctions de subordination', 'girl', 'Elles relient une partie de phrase qui ne tient pas toute seule.',
    [('Je reste |parce qu’|il pleut.', '« parce qu’il pleut » ne tient pas tout seul.'),
     ('Je sortirai |quand| j’aurai fini.', ''),
@@ -145,13 +153,21 @@ lecon('G6', ['Le <b>COI</b> commence par une <b>préposition</b> (à, de) : <i>J
    [Q('Ma tante soigne les enfants.', ['COD', 'attribut du sujet'], 'Ma tante n’est pas les enfants.', '« les enfants » est…'),
     Q('Ce chien devient énorme.', ['attribut du sujet', 'COD'], 'Ce chien = énorme, avec « devenir ».', '« énorme » est…')]))
 
-lecon('G7', ['La chaîne des accords va jusqu’à l’<b>attribut du sujet</b> : <i>Les petites filles sont contentes.</i>'],
+lecon('G7', ['La chaîne des accords va jusqu’à l’<b>attribut du sujet</b> : <i>Les petites filles sont contentes.</i>',
+             'Avec <b>avoir</b>, le participe passé ne s’accorde jamais avec le sujet ; il s’accorde avec le <b>COD placé avant</b> le verbe : <i>Les pommes, Léa les a mangées.</i>'],
  E('chaine', 'liste', 'L’attribut dans la chaîne', 'boy', 'Tout s’accorde : déterminant, adjectif, nom, verbe et attribut.',
    [('^La^ petite fille (est) contente.', 'Au singulier.'),
     ('^Les^ petite*s* fille*s* (sont) content*es*.', 'Au pluriel, toute la chaîne change.')],
    Q('Les chemins sont ___.', ['étroits', 'étroit', 'étroites'], 'Les chemins : masculin pluriel.', 'Complète avec l’attribut bien accordé.', fill='pr'),
    [Q('Mes cousines semblent ___.', ['ravies', 'ravi', 'ravis'], 'Mes cousines : féminin pluriel.', 'Complète avec l’attribut bien accordé.', fill='pr'),
-    Q('Ces gâteaux paraissent ___.', ['délicieux', 'délicieuse', 'délicieuses'], 'Ces gâteaux : masculin pluriel.', 'Complète avec l’attribut bien accordé.', fill='pr')]))
+    Q('Ces gâteaux paraissent ___.', ['délicieux', 'délicieuse', 'délicieuses'], 'Ces gâteaux : masculin pluriel.', 'Complète avec l’attribut bien accordé.', fill='pr')]),
+ E('chaine', 'loupe', 'Le participe avec avoir et le COD placé avant', 'girl', 'Avec avoir, jamais d’accord avec le sujet ; accord avec le COD s’il est placé avant le verbe.',
+   [('Léa (a mangé) les pommes.', 'Le COD « les pommes » est après le verbe : pas d’accord.'),
+    ('Les pommes, Léa |les| a mangé*es*.', '« les » remplace « les pommes », placé avant le verbe : mangées (féminin pluriel).'),
+    ('Les filles (ont mangé) une tarte.', 'Jamais d’accord avec le sujet « les filles ».')],
+   Q('La lettre, Tom l’a ___.', ['écrite', 'écrit', 'écrits'], '« l’ » remplace « la lettre », placé avant le verbe : féminin singulier.', 'Complète avec le participe bien accordé.', fill='pr'),
+   [Q('Mes livres, je les ai ___.', ['rangés', 'rangé', 'rangées'], '« les » remplace « mes livres », placé avant : masculin pluriel.', 'Complète avec le participe bien accordé.', fill='pr'),
+    Q('Les enfants ont ___ une chanson.', ['chanté', 'chantés', 'chantée'], 'Le COD « une chanson » est après le verbe : pas d’accord.', 'Complète avec le participe bien accordé.', fill='pr')]))
 
 # =============================================================== HOMOPHONES (règle des jumeaux : aucun jumeau dans la ceinture)
 lecon('H1', ['Le verbe peut être <b>avant le sujet</b>, dans une question : <i>Quel âge a ton frère ?</i> Je prouve encore avec l’imparfait.'],
