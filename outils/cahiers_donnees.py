@@ -29,7 +29,7 @@ DATA = {
        ('bleue','V6','Les homonymes : même son, autre sens ; un mot, plusieurs sens (polysémie) ; la phrase m’aide')],
  'O': [('marron','O8','Les noms en [é] : -é (masculin), -ée (féminin), -té (une qualité), -tié (la moitié, l’amitié, la pitié)'),
        ('noire','O9','Les consonnes doubles : après a-, e-, o-, com- au début du mot ; le mot de la même famille m’aide'),
-       ('or','O10','Les noms en -eur, sans e (le bonheur, un chanteur) ; les exceptions : l’heure, le beurre, le cœur'),
+       ('or','O10','Les noms en -eur, sans e (le bonheur, un chanteur) ; les exceptions : l’heure, le beurre, le cœur ; le féminin : -euse, -trice (une chanteuse, une actrice)'),
        ('argent','O11','Les noms en [sjɔ̃] : -tion, -sion (après une voyelle ou n, r, l), -ssion (entre deux voyelles) ; le verbe m’aide'),
        ('rouge','O12','Les adverbes en -ment : l’adjectif au féminin + -ment (lente → lentement) ; adjectif en voyelle + -ment (vrai → vraiment)')],
 }
@@ -65,7 +65,7 @@ DATA_CM2 = {
        ('bleue','V6','Homonymes et polysémie (un mot, plusieurs sens)')],
  'O': [('marron','O8','Les noms en [é] et les exceptions en -tée (une dictée, une montée, une assiettée)'),
        ('noire','O9','Les consonnes doubles ; il-, ir-, im-, in- qui doublent la consonne (illisible, irréel, immobile, innombrable)'),
-       ('or','O10','Les noms en -eur ; le féminin : -euse (une chanteuse) et -trice (une actrice)'),
+       ('or','O10','Les noms en -eur, sans e, et leur féminin : -euse (une chanteuse) et -trice (une actrice)'),
        ('argent','O11','Les noms en -tion, -sion, -ssion ; le verbe de la famille décide de la fin du nom (communiquer → communication, admettre → admission, décider → décision)'),
        ('rouge','O12','Les adverbes en -ment ; -emment et -amment (évidemment, constamment)')],
 }

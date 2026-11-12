@@ -171,7 +171,7 @@ lesson('O9', 'Noire', 'CM1', 'Les consonnes doubles', 'début de mot et famille'
 # ================================================================ O10 : les noms en -eur
 lesson('O10', 'Or', 'CM1', 'Les noms en -eur', 'sans e', 'Les noms en -eur<br><small>sans e</small>', [
  ('eur', 'J’écris -eur', txt('Un nom en <b>[œr]</b> : <b>-eur</b>, sans e.', 100) + ex('le bonh%eur%', 'la coul%eur%', 'la p%eur%', size=20)),
- ('verbe', 'Le verbe m’aide', txt('Un nom d’<b>agent</b> : je pense au <b>verbe</b>.') + ex('chanter → un chant%eur%', 'voler → un vol%eur%', 'danser → un dans%eur%', size=19)),
+ ('verbe', 'Le verbe m’aide', txt('Un nom d’<b>agent</b> : je pense au <b>verbe</b>. Au féminin : <b>-euse</b>, <b>-trice</b>.') + ex('chanter → un chant%eur%', 'une chant%euse% · une ac%trice%', size=19)),
  ('exc', 'Exceptions', txt('Je les <b>mémorise</b>.') + ex('l’h%eure% · la dem%eure%', 'le b%eurre% · le l%eurre%', size=20)),
  ('coeur', 'cœur, sœur, chœur', txt('<b>œur</b> : trois noms à <b>mémoriser</b>.', 110) + ex('le c%œur%', 'la s%œur%', 'le ch%œur%', size=20)),
  ('prouve', 'Je prouve', txt('Je cherche le <b>verbe</b>, sinon je <b>mémorise</b>.') + ex('un chant%eur% : chanter', 'la coul%eur% : sans e', 'l’h%eure% : une exception', size=19)),
@@ -186,6 +186,11 @@ lesson('O10', 'Or', 'CM1', 'Les noms en -eur', 'sans e', 'Les noms en -eur<br><s
    Q('un nag___', ['eur', 'eure', 'œur'], 'Pense à nager.', 'Complète avec la bonne fin.', fill=H),
    [Q('un coiff___', ['eur', 'eure', 'œur'], 'Pense à coiffer.', 'Complète avec la bonne fin.', fill=H),
     Q('un jou___', ['eur', 'eure', 'œur'], 'Pense à jouer.', 'Complète avec la bonne fin.', fill=H)]),
+ E('verbe', 'remplacer', 'Le féminin : -euse, -trice', 'girl', 'Le féminin d’un nom en -eur : -euse ou -trice.',
+   ['un chanteur → une chant%euse%', 'un vendeur → une vend%euse%', ('un acteur → une ac%trice%', 'Un nom en -teur : -trice.')],
+   Q('une dans___', ['euse', 'eur', 'euze'], 'Un danseur → une danseuse.', 'Complète avec la bonne fin.', fill=H),
+   [Q('une direc___', ['trice', 'teuse', 'tresse'], 'Un directeur → une directrice.', 'Complète avec la bonne fin.', fill=H),
+    Q('une coiff___', ['euse', 'eur', 'euze'], 'Un coiffeur → une coiffeuse.', 'Complète avec la bonne fin.', fill=H)]),
  E('exc', 'attention', 'Exceptions', 'girl', 'Quelques noms ont un e : je les mémorise.',
    ['l’h%eure%', 'la dem%eure%', ('le b%eurre%', 'Des exceptions : je les mémorise.')],
    Q('l’h___', ['eure', 'eur', 'œur'], 'Une exception.', 'Complète avec la bonne fin.', fill=H),

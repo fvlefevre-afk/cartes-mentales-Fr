@@ -396,12 +396,7 @@ lecon('O9', ['Le préfixe <b>in-</b> devient <b>il-, ir-, im-</b> devant l, r, m
    [Q('i___obile', ['mm', 'm'], 'in- + mobile.', 'Complète : consonne simple ou double ?', fill=H),
     Q('i___égal', ['ll', 'l'], 'in- + légal.', 'Complète : consonne simple ou double ?', fill=H)]))
 
-lecon('O10', ['Le <b>féminin</b> d’un nom d’agent en -eur s’écrit <b>-euse</b> ; celui d’un nom en -teur s’écrit <b>-trice</b>.'],
- E('verbe', 'remplacer', 'Le féminin : -euse, -trice', 'girl', 'Le féminin d’un nom en -eur : -euse ou -trice.',
-   ['un chanteur → une chant%euse%', 'un vendeur → une vend%euse%', ('un acteur → une ac%trice%', 'Un nom en -teur : -trice.')],
-   Q('une dans___', ['euse', 'eur', 'euze'], 'Un danseur → une danseuse.', 'Complète avec la bonne fin.', fill=H),
-   [Q('une direc___', ['trice', 'teuse', 'tresse'], 'Un directeur → une directrice.', 'Complète avec la bonne fin.', fill=H),
-    Q('une coiff___', ['euse', 'eur', 'euze'], 'Un coiffeur → une coiffeuse.', 'Complète avec la bonne fin.', fill=H)]))
+# O10 : le féminin -euse, -trice est dans la leçon du CM1 depuis le 12/11/2026 (idée 254 du tableau de bord, exemple de réussite Eduscol du CM1) : plus d'ajout du CM2.
 
 lecon('O11', ['Le <b>verbe de la famille</b> décide de la fin du nom : -quer → -cation (communiquer → communication), -ter → -tion, -mettre → -mission, -der et -clure → -sion. Exception : discuter → discussion.'],
  E('famille', 'remplacer', 'Le verbe de la famille décide', 'boy', 'Je regarde la fin du verbe : elle décide de la fin du nom.',
