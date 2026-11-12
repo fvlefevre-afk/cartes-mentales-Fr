@@ -54,8 +54,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   Une leçon CM2 (id `XX-CM2`, code affiché `XX`) = la leçon CM1 + les écrans de `CM2_PLUS` (étiquette « CM2 »,
   placés après le dernier écran de leur section) + un encadré « En CM2, j'apprends aussi » sous la carte.
   Fabriqués par `outils/lecons/cm2_ajouts.py`, mis dans le site par `outils/inserer_cm2.py`. Liste : `CM2_COPIE` ;
-  l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`). C8 (plus-que-parfait, rouge) et
-  C9 (passé simple, violette) n'existent qu'en CM2 (`outils/lecons/c8_c9_cm2.py`, ids `C8-CM2`, `C9-CM2` ; anciens codes C6 et C7 jusqu'au 27/10/2026, numérotation du tableau de bord). Détail : `programmes/ecarts-CM1-CM2.md`.
+  l'étiquette « CM1 » de la carte est recouverte par « CM2 » (`CHIP_CM2`). C8 (plus-que-parfait, marron) et
+  C9 (passé simple, noire ; un numéro de ceinture = une couleur quel que soit le niveau, 12/11/2026 : avant, rouge et violette comme C6 et C7) n'existent qu'en CM2 (`outils/lecons/c8_c9_cm2.py`, ids `C8-CM2`, `C9-CM2` ; anciens codes C6 et C7 jusqu'au 27/10/2026, numérotation du tableau de bord). Détail : `programmes/ecarts-CM1-CM2.md`.
 - CE2 : mêmes numéros, mêmes couleurs, mêmes notions, en plus simple. Une leçon CE2 (id `XX-CE2`) = la leçon CM1
   sans les écrans listés dans `retirer`, + les écrans de `CE2_PLUS` (étiquette « CE2 ») + un encadré « Au CE2, je retiens » ;
   les zones de la carte sans écran sont masquées. Fabriqués par `outils/lecons/ce2_ajouts.py`, mis dans le site par

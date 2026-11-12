@@ -75,7 +75,7 @@ ecrans = [
    [Q('Ils sont tombés.', ['le passé composé', 'le plus-que-parfait'], 'L’auxiliaire est au présent.', 'Quel temps ?'),
     Q('Tu avais crié.', ['le plus-que-parfait', 'le passé composé'], 'L’auxiliaire est à l’imparfait.', 'Quel temps ?')]),
 ]
-save('C8-CM2', {'id': 'C8-CM2', 'code': 'C8', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Rouge', 'titre': 'Le plus-que-parfait', 'sous': 'avoir ou être à l’imparfait + participe passé', 'lesson': True}, sections, ecrans, zones)
+save('C8-CM2', {'id': 'C8-CM2', 'code': 'C8', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Marron', 'titre': 'Le plus-que-parfait', 'sous': 'avoir ou être à l’imparfait + participe passé', 'lesson': True}, sections, ecrans, zones)
 
 # ================================================================ C9
 boxes = [
@@ -132,4 +132,4 @@ ecrans = [
    [Q('Le roi ___ : « Silence ! »', ['dit', 'disa', 'dut'], 'dire → il dit.', 'Complète avec « dire » au passé simple.', fill='v'),
     Q('Ils ___ : « Bravo ! »', ['dirent', 'disèrent', 'durent'], 'dire → ils dirent.', 'Complète avec « dire » au passé simple.', fill='v')]),
 ]
-save('C9-CM2', {'id': 'C9-CM2', 'code': 'C9', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Violette', 'titre': 'Le passé simple', 'sous': '2e groupe et verbes irréguliers', 'lesson': True}, sections, ecrans, zones)
+save('C9-CM2', {'id': 'C9-CM2', 'code': 'C9', 'niveau': 'CM2', 'f': 'C', 'ceinture': 'Noire', 'titre': 'Le passé simple', 'sous': '2e groupe et verbes irréguliers', 'lesson': True}, sections, ecrans, zones)
