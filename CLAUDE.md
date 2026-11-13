@@ -50,6 +50,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   une ceinture absente de la classe demandée ouvre la leçon d'une autre classe qui l'a (21/10/2026).
 - Sommaire par classe : boutons CE2 / CM1 / CM2 (adresse `#niveau=CE2`…). Une leçon sans champ `niveau`
   est rangée en CM1 ; pour une leçon d'une autre classe, ajouter `niveau:'CE2'` ou `niveau:'CM2'` dans `TRACES`.
+- Cartes de G2 (13/11/2026) : les trois (`G2`, `G2-CE2`, `G2-CM2`) sont fabriquées par `outils/lecons/g2_cartes.py` (même apparence ; la carte CM1 était une image à part). `python3 outils/lecons/g2_cartes.py`, puis copier `outils/sortie/G2*_carte.jpeg` dans `images/`.
 - CM2 : mêmes numéros, mêmes couleurs, mêmes notions qu'en CM1 (choix de l'enseignante, octobre 2026).
   Une leçon CM2 (id `XX-CM2`, code affiché `XX`) = la leçon CM1 + les écrans de `CM2_PLUS` (étiquette « CM2 »,
   placés après le dernier écran de leur section) + un encadré « En CM2, j'apprends aussi » sous la carte.

@@ -1,8 +1,10 @@
-"""Cartes mentales de G2 (types et formes de phrase) pour le CE2 et le CM2 (28/10/2026) ; la carte du CM1 est images/G2.jpg.
+"""Cartes mentales de G2 (types et formes de phrase) pour les TROIS classes, fabriquées par le même outil pour avoir la même apparence (13/11/2026 :
+  la carte du CM1 était une image faite à part, les cartes CE2 et CM2 en différaient).
+  - G2 (CM1) : la carte d'origine, refaite à l'identique pour le texte (3 façons de poser une question, ne… pas / jamais / plus / rien / personne) ;
   - G2-CE2 : deux façons de poser une question (? seul, est-ce que), négation ne… pas seulement ;
-  - G2-CM2 : la carte du CM1, avec la phrase simple / complexe (verbes conjugués, et, mais, car) dans la case de la déclarative.
+  - G2-CM2 : comme le CM1, avec en plus la phrase simple / complexe sous la déclarative (même titre, mêmes six cadres).
 Mêmes six zones que G2 (decl, inter, imp, aff, neg, excl) : les leçons n'ont pas à changer de zones.
-Usage : python3 lecons/g2_cartes.py   → sortie/G2-CE2_carte.jpeg, sortie/G2-CM2_carte.jpeg (puis les copier dans images/G2-CE2.jpg, G2-CM2.jpg)."""
+Usage : python3 lecons/g2_cartes.py   → sortie/G2_carte.jpeg, G2-CE2_carte.jpeg, G2-CM2_carte.jpeg (puis les copier dans images/G2.jpg, G2-CE2.jpg, G2-CM2.jpg)."""
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from mapgen import build, TL, TC, TR
@@ -13,18 +15,14 @@ S, V = '<span class="s">{}</span>', '<span class="v">{}</span>'
 
 
 def carte(lid, chip, niveau):
-    ce2, cm2 = niveau == 'CE2', niveau == 'CM2'
-    if cm2:
-        decl = '''<ul style="padding-right:104px;font-size:19px;line-height:1.28;margin-top:-16px">
-  <li><b>Phrase simple</b> : un seul verbe conjugué.</li>
-  <li><b>Phrase complexe</b> : plusieurs verbes conjugués.</li></ul>''' + EX('Le chat <span class="v">dort</span>. <span style="font-size:15px">(1 verbe)</span><br>Le chat <span class="v">dort</span> et le chien <span class="v">aboie</span>. <span style="font-size:15px">(2 verbes)</span>', 17) + \
-        '<p class="small" style="margin:6px 0 0;font-size:16px">On relie avec <b>et</b>, <b>mais</b>, <b>car</b> ou une virgule.<br>L’infinitif ne compte pas : Léa veut <i>chanter</i>.</p>'
-        tl_title = 'Simple ou complexe'
-    else:
-        decl = '''<ul style="padding-right:104px;font-size:20px;margin-top:-14px">
+    ce2, cm2 = niveau == 'CE2', niveau == 'CM2'  # CM1 : ni l'un ni l'autre
+    decl = '''<ul style="padding-right:104px;font-size:20px;margin-top:-14px">
   <li>Elle raconte, elle informe.</li>
   <li>Elle se termine par un point <b>.</b> ou par <b>!</b></li></ul>''' + EX('Léa range sa chambre.', 21)
-        tl_title = 'Déclarative'
+    if cm2:
+        decl = decl.replace('font-size:20px;margin-top:-14px', 'font-size:19px;line-height:1.25;margin-top:-14px') + \
+            '<p class="small" style="margin:10px 0 0;font-size:17px;line-height:1.4"><b>Phrase simple</b> : un seul <span class="v">verbe conjugué</span>.<br><b>Phrase complexe</b> : plusieurs verbes conjugués, reliés par <b>et</b>, <b>mais</b>, <b>car</b> ou une virgule.</p>'
+    tl_title = 'Déclarative'
     if ce2:
         inter = '''<ul style="font-size:19.5px;line-height:1.3;margin-top:-12px"><li>Elle pose une question.</li><li>Elle se termine par <b>?</b></li><li><b>2 façons</b> de la poser :</li></ul>''' + \
                 EX('Tu ranges ta chambre ?<br>Est-ce que tu ranges ta chambre ?', 19)
@@ -45,19 +43,20 @@ def carte(lid, chip, niveau):
     exc = '''<ul style="font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une émotion (surprise, colère, joie…).</li><li>Elle se termine par <b>!</b></li><li>Elle s’ajoute à n’importe quel type de phrase :</li></ul>''' + \
           EX('Le chien renverse sa gamelle ! <span style="font-size:15px">(déclarative)</span><br>Range ta chambre ! <span style="font-size:15px">(impérative)</span>', 17)
     boxes = [
-     dict(id='decl', col='bleu', geom=TL, title=tl_title, avatar=('girl', 322, 122), html=decl, hstyle='font-size:30px' if cm2 else ''),
+     dict(id='decl', col='bleu', geom=TL, title=tl_title, avatar=('girl', 322, 122), html=decl, hstyle=''),
      dict(id='inter', col='vert', geom=TC, title=inter_t, html=inter),
      dict(id='imp', col='violet', geom=TR, title='Impérative', avatar=('boy', 1250, 122), html=imp),
      dict(id='aff', col='rose', geom=AFF, title='Affirmative', html=aff, style='padding-top:50px'),
      dict(id='neg', col='turquoise', geom=NEG, title='Négative', html=neg, style='padding-top:50px'),
      dict(id='excl', col='orange', geom=EXC, title='Exclamative', html=exc, style='padding-top:50px'),
     ]
-    legend = '<span class="v">verbe conjugué</span>' if cm2 else ''
-    titre = 'La phrase :<br>simple ou<br>complexe' if cm2 else 'Les types<br>et les formes<br>de phrase'
+    legend = ''
+    titre = 'Les types<br>et les formes<br>de phrase'
     return build(lid, titre, chip, legend, boxes, sub='', title_size=34, legend_pos='right:26px;top:540px')
 
 
 if __name__ == '__main__':
+    carte('G2', 'Grammaire — G2 — CM1', 'CM1')
     carte('G2-CE2', 'Grammaire — G2 — CE2', 'CE2')
     carte('G2-CM2', 'Grammaire — G2 — CM2', 'CM2')
-    print('cartes G2 : sortie/G2-CE2_carte.jpeg, G2-CM2_carte.jpeg')
+    print('cartes G2 : sortie/G2_carte.jpeg, G2-CE2_carte.jpeg, G2-CM2_carte.jpeg')
