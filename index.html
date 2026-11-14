@@ -935,7 +935,7 @@ function renderLessonScreen(t,i,direct){
     /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
     const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie0=NV&&lvl>1?NV[lvl]:base;
     /* parcours en 4 étapes : 2 = le premier exercice avec l'aide affichée, 3 = les autres exercices seul, 4 = je trouve l'erreur d'un élève */
-    const serie=!mode?serie0:mode==='aide'?serie0.slice(0,1):mode==='seul'?(serie0.length>1?serie0.slice(1):serie0):serie0.filter(a=>a.tasks&&a.tasks.length===1).slice(-3);
+    const serie=!mode?serie0:mode==='aide'?serie0.slice(0,1):mode==='seul'?(serie0.length>1?serie0.slice(1):serie0):serie0.filter(a=>a.tasks&&a.tasks.length>=1&&(a.tasks[0].click||a.tasks[0].choose)).slice(-3);
     const NAME={s:'le sujet',v:'le verbe'}, HINT={s:'Pose la question : « Qui est-ce qui… ? »',v:'Change le moment : « Hier, … » Quel mot change ?'};
     const tok=$('#tok'),ask=$('#ask'),fb=$('#fb'),ch=$('#choices'),indRow=$('#indRow'),prog=$('#exProg'),reduit=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const melange=n=>{const a=[...Array(n).keys()];for(let k=n-1;k>0;k--){const r=Math.floor(Math.random()*(k+1));[a[k],a[r]]=[a[r],a[k]];}return a;};
@@ -1038,7 +1038,7 @@ function renderLessonScreen(t,i,direct){
     }
     /* je corrige (G1) : un élève a répondu ; a-t-il raison ? s'il s'est trompé, je trouve la bonne réponse */
     function chargerCorrige(){
-      const k=A.tasks[0]; cur.ph=1; tasks=A.tasks; q=0; tok.hidden=!A.p; ch.innerHTML=''; indRow.innerHTML='';
+      const k=A.tasks[0]; cur.ph=1; tasks=[k]; q=0; tok.hidden=!A.p; ch.innerHTML=''; indRow.innerHTML='';
       toks=atoiTokens(A.p||''); const juste=Math.random()<.4; let montre;
       if(k.click){
         const bons=toks.map((x,n)=>[x,n]).filter(([x])=>x.sp==null&&!x.blank&&x.r===k.click), mauv=toks.map((x,n)=>[x,n]).filter(([x])=>x.sp==null&&!x.blank&&x.r!==k.click&&x.t.length>2);
