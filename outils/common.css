@@ -58,3 +58,4 @@ table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
 .box.tint li::marker{color:var(--c)}
 .box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
 .box.tint h2{color:#111}
+.box.tint>ul,.box.tint>p{zoom:1.06}   /* textes un peu plus grands : les cadres sont ensuite ajustés à leur contenu (g2_cartes.py) */
