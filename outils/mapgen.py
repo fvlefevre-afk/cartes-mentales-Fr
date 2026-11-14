@@ -59,6 +59,10 @@ def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='ri
         c, bg, hb = PAL[b['col']]
         l, t, w, h = b['geom']
         extra = b.get('style', '')
+        if 'ext' in b:   # cadre plein agrandi vers le haut de `ext` px (même haut que la zone cliquable en pointillés) ; le contenu garde sa place
+            pad = int(re.search(r'padding-top:(\d+)px', extra).group(1)) if 'padding-top' in extra else 58
+            extra = re.sub(r'padding-top:\d+px;?', '', extra) + f';padding-top:{pad + b["ext"]}px'
+            t, h = t - b['ext'], h + b['ext']
         parts.append(f'<div class="box" style="--c:{c};--bg:{bg};--hb:{hb};left:{l}px;top:{t}px;width:{w}px;height:{h}px;{extra}"><h2 style="{b.get('hstyle','')}">{b["title"]}</h2>{b["html"]}</div>')
         if b.get('avatar'):
             who, x, y = b['avatar']
