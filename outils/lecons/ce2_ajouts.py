@@ -38,7 +38,7 @@ lecon('G2', ['3 types de phrase : <b>déclarative</b> (.), <b>interrogative</b> 
     ('Est-ce que tu viens ?', '« Est-ce que » annonce aussi une question.')],
    Q('', ['Est-ce que tu as faim ?', 'Est-ce que tu as faim.', 'est-ce que tu as faim ?'], 'Une majuscule et un point d’interrogation.', 'Quelle question est bien écrite ?'),
    [Q('Où habites-tu', ['?', '.', '!'], 'C’est une question.', 'Quel point faut-il à la fin ?'),
-    Q('Quelle heure est-il ?', ['interrogative', 'déclarative', 'impérative'], 'Elle pose une question.', 'Cette phrase est…')]),
+    Q('Quelle heure est-il ?', ['interrogative', 'déclarative', 'impérative'], 'Elle pose une question.', 'Cette phrase est…')], cumul=True),
  E('decl', 'bulle', 'Les guillemets du dialogue', 'boy', 'Les guillemets montrent les paroles d’un personnage.',
    [('Léa dit : « Je pars. »', 'Les deux-points annoncent les paroles.'),
     ('Tom demande : « Tu viens ? »', 'Les paroles sont entre guillemets.')],

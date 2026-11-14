@@ -37,12 +37,14 @@ def Q2(p, *qs):
     return {'p': p, 'tasks': ts}
 
 
-def E(sec, picto, titre, guide, bulle, steps, atoi, plus):
+def E(sec, picto, titre, guide, bulle, steps, atoi, plus, cumul=False):   # cumul : les étapes déjà vues restent affichées
     st = []
     for s in steps:
         if isinstance(s, str): st.append({'p': s})
         else: st.append({'p': s[0], 'c': s[1]})
-    return {'sec': sec, 'picto': picto, 'titre': titre, 'guide': guide, 'bulle': bulle, 'steps': st, 'atoi': atoi, '_plus': plus}
+    d = {'sec': sec, 'picto': picto, 'titre': titre, 'guide': guide, 'bulle': bulle, 'steps': st, 'atoi': atoi, '_plus': plus}
+    if cumul: d['cumul'] = True
+    return d
 
 
 def save(lid, trace, sections, ecrans, zones):
