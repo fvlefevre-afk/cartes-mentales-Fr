@@ -882,9 +882,7 @@ function renderLessonScreen(t,i,direct){
       <p class="ask" id="ask"></p><p class="phrase tokens" id="tok"></p><div class="choices" id="choices"></div>
       <div class="fb-row"><p class="fb" id="fb" aria-live="polite"></p></div>
       <div class="indice-row" id="indRow"></div></div>
-    ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Précédent',sub:L.ecrans[i-1].titre}:{href:`#t=${t.id}`,top:'Retour',sub:'à la carte'},
-      {href:`#t=${t.id}/s:${s.id}`,ico:'🧭',top:'Rubrique '+s.nom},
-      i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant',sub:L.ecrans[i+1].titre}:{href:`#t=${t.id}`,top:'Terminer',sub:'retour à la carte'})}
+    ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour'}:{href:`#t=${t.id}`,top:'Retour'},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
   </div>`;
   let st=0;
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
