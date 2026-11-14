@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.join(D, '..'))
 from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
-SCRIPTS = {**{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
+SCRIPTS = {'G1': 'g1_carte.py', **{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524')}
 MARGE = 24
 ZMAX = {'C2': 1.0, 'C8-CM2': 1.1, 'C3': 1.1}   # cartes dont un tableau déborderait du cadre si le texte était plus grand
@@ -120,7 +120,7 @@ def auto1(lid, a, kw, boxes, silencieux=False):
     for b in bas:
         l, t, w, h = b['geom']; geo[b['id']] = (l, Tb + 24, w, Hb[b['id']] - 24)
     centre = [b for b in haut if b['geom'][0] < 840 and b['geom'][0] + b['geom'][2] > 560]
-    Bi = max(geo[b['id']][1] + geo[b['id']][3] for b in centre)
+    Bi = max(geo[b['id']][1] + geo[b['id']][3] for b in centre) if centre else min(geo[b['id']][1] + geo[b['id']][3] for b in haut)
     cdy = round((Bi + Tb) / 2 - 431)
     carte(lid, a, kw, boxes, geo, cdy)
     zones = {k: [round(l / 14, 1), round((t - 24) / 9.33, 1), round(w / 14, 1), round((t + h - (t - 24)) / 9.33, 1)] for k, (l, t, w, h) in geo.items()}
@@ -136,5 +136,10 @@ if __name__ == '__main__':
     # zones : une leçon qui a son bloc dans index.html les reçoit directement ; une carte par niveau (G6-CE2…) va dans ZONES_NIV
     site = open(os.path.join(D, '..', '..', 'index.html')).read()
     for lid, z in Z.items():
+        if lid == 'G1':   # leçon écrite en JS (pas en JSON) : zones remplacées une à une
+            import re
+            t = open(os.path.join(D, '..', '..', 'index.html')).read()
+            for k, v in z.items(): t = re.sub(r"(\{id:'%s',[^}]*?zone:)\[[^\]]*\]" % k, lambda m: m.group(1) + str(v), t, count=1)
+            open(os.path.join(D, '..', '..', 'index.html'), 'w').write(t); continue
         if ('\n%s:{"sections"' % lid) in site or ('\n"%s":{"sections"' % lid) in site: mettre_dans_le_site({lid: z}, lid)
         else: mettre_dans_le_site({lid.split('-')[0]: {}, lid: z}, lid.split('-')[0])
