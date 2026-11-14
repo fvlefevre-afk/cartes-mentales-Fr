@@ -472,6 +472,10 @@ body.mode-plein .sheet.lesson{border-radius:12px}
 .nav .nb-t b{font-size:1rem}.nav .nb-t small{font-size:.85rem}
 .cumul{display:block;margin:.35rem 0}.cumul small{display:block;font-size:1rem;font-weight:700;color:var(--ink)}.cumul:not(.cur){opacity:.75;font-size:.85em}.cumul.cur{animation:cumulIn .35s ease-out}@keyframes cumulIn{from{opacity:0;transform:translateY(8px)}}@media (prefers-reduced-motion:reduce){.cumul.cur{animation:none}}
 .sm-n{width:auto;min-width:5.2rem;height:auto;border-radius:1.4rem;padding:.25rem .8rem;flex-direction:column;line-height:1.05}.sm-n small{display:block;font-size:.95rem;font-weight:700;letter-spacing:.02em}   /* « Étape 1 » (13/11/2026) */
+/* pastille de l'étape à faire : elle clignote doucement et brille (13/11/2026) ; immobile avec « réduire les animations », mais toujours cerclée */
+.sm-etape.suivant .sm-n{background:var(--z);box-shadow:0 0 0 4px #fff,0 0 0 8px var(--z),0 0 18px 8px color-mix(in srgb,var(--z) 55%,transparent);animation:pastillePulse 1.2s ease-in-out infinite}
+@keyframes pastillePulse{50%{transform:scale(1.12);box-shadow:0 0 0 4px #fff,0 0 0 8px var(--z),0 0 28px 16px color-mix(in srgb,var(--z) 70%,transparent)}}
+@media (prefers-reduced-motion:reduce){.sm-etape.suivant .sm-n{animation:none}}
 </style>
 </head>
 <body>
@@ -844,7 +848,7 @@ function renderSectionMap(t,sid){
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › ${esc(s.nom)}</div>
     <a class="sm-retour" href="#t=${t.id}">🗺️ Carte de la leçon</a>
     <div class="head">${belt(t)}<div><h2>${esc(s.nom)}</h2></div></div>
-    <div class="sm-accueil">${av?`<img class="sm-av" src="${av}" alt="">`:''}<p class="sm-bulle"><b>${faits===n?'Bravo, tout est réussi !':(faits?'Continue avec l’étape '+(items.findIndex(([,k])=>k===prochain)+1)+' !':'Commence par l’étape 1 !')}</b><span>${faits===n?'Tu peux revoir une étape quand tu veux.':'👀 Je regarde l’explication, puis ✏️ À toi !'}</span></p><div class="sm-prog" aria-label="${faits} étape${faits>1?'s':''} réussie${faits>1?'s':''} sur ${n}">${etoiles}</div></div>
+    <div class="sm-accueil">${av?`<img class="sm-av" src="${av}" alt="">`:''}<p class="sm-bulle"><b>${faits===n?'Bravo, tout est réussi !':(faits?'Continue avec l’étape '+(items.findIndex(([,k])=>k===prochain)+1)+' !':'Commence par l’étape 1 !')}</b>${faits===n?'<span>Tu peux revoir une étape quand tu veux.</span>':''}</p><div class="sm-prog" aria-label="${faits} étape${faits>1?'s':''} réussie${faits>1?'s':''} sur ${n}">${etoiles}</div></div>
     <ol class="sm-liste">${etapes}</ol>
   </div>`;
 }
