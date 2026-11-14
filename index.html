@@ -838,7 +838,7 @@ function renderSectionMap(t,sid){
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › ${esc(s.nom)}</div>
     <a class="sm-retour" href="#t=${t.id}">🗺️ Carte de la leçon</a>
     <div class="head">${belt(t)}<div><h2>${esc(s.nom)}</h2></div></div>
-    <div class="sm-accueil">${av?`<img class="sm-av" src="${av}" alt="">`:''}<p class="sm-bulle"><b>${faits===n?'Bravo, tout est réussi !':'Choisis une étape !'}</b><span>${faits===n?'Tu peux revoir une étape quand tu veux.':'Regarde l’explication, puis entraîne-toi.'}</span></p><div class="sm-prog" aria-label="${faits} étape${faits>1?'s':''} réussie${faits>1?'s':''} sur ${n}">${etoiles}</div></div>
+    <div class="sm-accueil">${av?`<img class="sm-av" src="${av}" alt="">`:''}<p class="sm-bulle"><b>${faits===n?'Bravo, tout est réussi !':(faits?'Continue avec l’étape '+(items.findIndex(([,k])=>k===prochain)+1)+' !':'Commence par l’étape 1 !')}</b><span>${faits===n?'Tu peux revoir une étape quand tu veux.':'👀 Je regarde l’explication, puis ✏️ À toi !'}</span></p><div class="sm-prog" aria-label="${faits} étape${faits>1?'s':''} réussie${faits>1?'s':''} sur ${n}">${etoiles}</div></div>
     <ol class="sm-liste">${etapes}</ol>
   </div>`;
 }
