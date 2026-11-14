@@ -49,7 +49,7 @@ def branch(b, dy=0):
 CHIP_NIVEAUX = {}
 
 
-def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='right:18px;top:12px', cloud_dy=0):   # cloud_dy : descend le nuage central (et ses rayons, son titre) de cloud_dy px
+def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='right:18px;top:12px', cloud_dy=0, extra_html=''):   # cloud_dy : descend le nuage central (et ses rayons, son titre) de cloud_dy px
     import re
     if lid in CHIP_NIVEAUX: chip = re.sub(r'—\s*CM1\s*$', '— ' + CHIP_NIVEAUX[lid], chip)
     nb=lambda t: re.sub(r'« ', '«&nbsp;', re.sub(r' ([?!:;»])', r'&nbsp;\1', t))
@@ -82,6 +82,7 @@ def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='ri
 <div class="chip">{chip}</div>
 <div class="title" style="font-size:{title_size}px;margin-top:{cloud_dy}px"><div>{titre}{f'<small>{sub}</small>' if sub else ''}</div></div>
 {''.join(parts)}
+{extra_html}
 {f'<div style="position:absolute;{legend_pos};font-size:17px;background:#fff;border:2px solid #d8dde8;border-radius:14px;padding:2px 12px">{legend}</div>' if legend else ''}
 </body></html>'''
     hp = os.path.join(SORTIE, f'{lid}map.html')

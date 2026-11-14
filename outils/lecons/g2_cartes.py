@@ -47,12 +47,19 @@ def carte(lid, chip, niveau):
      dict(id='inter', col='vert', geom=TC, ext=24, title=inter_t, hstyle='top:30px', html=inter, figs=[('q', 800, 92, 90)]),
      dict(id='imp', col='violet', geom=TR, ext=24, title='Impérative', hstyle='top:30px', figs=[('boy', 1244, 106, 112)], html=imp),
      dict(id='aff', ext=24, col='rose', geom=AFF, title='Affirmative', hstyle='top:30px', html=aff, figs=[('thumb', 340, 785, 62)], style='padding-top:50px'),
-     dict(id='neg', ext=24, col='turquoise', geom=NEG, title='Négative', hstyle='top:30px', html=neg, figs=[('no', 792, 636, 54)], style='padding-top:50px'),
+     dict(id='neg', ext=24, col='turquoise', geom=NEG, title='Négative', hstyle='top:30px', html=neg, figs=[('no', 850, 632, 54)], style='padding-top:50px'),
      dict(id='excl', ext=24, col='orange', geom=EXC, title='Exclamative', hstyle='top:30px', html=exc, figs=[('burst', 1290, 700, 74)], style='padding-top:50px'),
     ]
     legend = ''
     titre = 'Les types<br>et les formes<br>de phrase'
-    return build(lid, titre, chip, legend, boxes, sub='', title_size=34, legend_pos='right:26px;top:540px', cloud_dy=26)
+    bulle = lambda x, y, w, h, txt, tail: f'<div style="position:absolute;left:{x}px;top:{y}px;width:{w}px;height:{h}px;background:#fff;border:3.5px solid #1f5fc4;border-radius:34px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px 18px;font-size:18.5px;line-height:1.3;color:#1f2a44"><span>{txt}</span><i style="position:absolute;{tail}"></i></div>'
+    note = ('<div style="position:absolute;left:18px;top:436px;width:392px;height:132px;background:#fff9e0;border:3.5px dashed #e6a700;border-radius:24px;display:flex;align-items:center;gap:12px;padding:6px 12px 6px 92px;font-size:19.5px;line-height:1.3;color:#1f2a44">'
+            '<img src="file://' + os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'img', 'g2', 'ampoule.png') + '" style="position:absolute;left:14px;top:14px;width:72px">'
+            '<span><b>À retenir :</b> une phrase a <b>toujours un type</b>. Elle peut en plus être <b>négative</b> et/ou <b>exclamative</b>.</span></div>')
+    duo = ('<img src="file://' + os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'img', 'g2', 'duo.png') + '" style="position:absolute;left:1200px;top:462px;width:180px">'
+           + bulle(964, 440, 238, 126, 'Quel est son type ?<br>Elle <b>raconte</b>, elle <b>demande</b> ou elle <b>ordonne</b> ?', 'right:-22px;bottom:30px;border:11px solid transparent;border-left:18px solid #1f5fc4;border-right:0'))
+    extra_html = note + duo
+    return build(lid, titre, chip, legend, boxes, extra_html=extra_html, sub='', title_size=34, legend_pos='right:26px;top:540px', cloud_dy=26)
 
 
 if __name__ == '__main__':
