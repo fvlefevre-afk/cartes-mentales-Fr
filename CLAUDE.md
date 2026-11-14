@@ -37,7 +37,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   à ces anciens documents restent en texte dans `outils/dispositifs_cm2/` et `outils/dispositifs_ce2/` (`outils/ajout_docx.py`). Test CM2 : 3 items tronc commun + 3 items ajout CM2. Partie « En CE2 » aussi (`outils/dispositifs_ce2/`) ; test CE2 : 6 items CE2.
 - **Ouverture des leçons au fur et à mesure (20/10/2026, comme le site de maths)** : une leçon s'ouvre à la date de sa ceinture
   pour sa classe et le reste ensuite. Dates prévues : `OUVERTURE_PREVUE` dans `index.html` = premier jour de la période de la ceinture
-  (colonne « Période » du fichier « Langue - ceintures » du tableau de bord), calculé par `node outils/ouvertures_site.mjs ../ressources`
+  (colonne « Période » du fichier « Ceintures de français » du tableau de bord), calculé par `node outils/ouvertures_site.mjs ../ressources`
   (à relancer après tout changement de ce fichier). **Depuis le 10/11/2026 (demande de l'enseignante : plus de dépôt régulier), seules les dates prévues
   comptent** : `ouvertures.json` (sur La Forge) ne porte plus que le nom et la photo de l'école et les classes montrées (⚙ Réglages des cartes) ; ses dates éventuelles sont ignorées ;
   en cas d'écart avec la classe, la clé 🔑. Leçon fermée : « s'ouvrira le … » ;

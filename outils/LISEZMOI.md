@@ -69,5 +69,5 @@ dézipper l'ancien .docx dans un dossier, lancer `python3 md2docx.py dispositif2
 ## Dates d'ouverture des leçons
 
 `node outils/ouvertures_site.mjs ../ressources` (Playwright, dépôt du tableau de bord à côté) recalcule `OUVERTURE_PREVUE` dans
-`index.html` : premier jour de la période de chaque ceinture, d'après le fichier « Langue - ceintures » du tableau de bord.
+`index.html` : premier jour de la période de chaque ceinture, d'après le fichier « Ceintures de français » du tableau de bord.
 À relancer après tout changement de ce fichier. Le fichier `ouvertures.json` (progression réelle, fabriqué par le tableau de bord) reste prioritaire.
