@@ -157,4 +157,7 @@ E('verbe', 'loupe', 'Verbe ou nom ?', 'boy', 'Un même mot peut être un verbe o
    [Q('', ['mais', 'maison', 'mange'], 'Cherche le mot qui relie.', 'Quel mot est invariable ?'),
     Q('rapide → ___', ['rapidement', 'rapides', 'rapidité'], 'Beaucoup d’adverbes finissent par -ment.', 'Je forme l’adverbe :', fill='circ')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026, comme G2 et G3)
+for _e in ecrans:
+    if _e['titre'] in ['Les articles', 'Les déterminants possessifs', 'Les déterminants démonstratifs', 'Le verbe se conjugue', 'Des adverbes en -ment', 'Choisir le bon mot', 'Variable ou invariable ?']: _e['cumul'] = True
 save('G4', {'id': 'G4', 'f': 'G', 'ceinture': 'Orange', 'titre': 'Les classes de mots', 'sous': 'nature des mots', 'lesson': True}, sections, ecrans, zones)

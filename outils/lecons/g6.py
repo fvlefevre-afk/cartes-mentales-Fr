@@ -120,4 +120,7 @@ ecrans = [
    Q('Demain matin, Léa promènera son chien dans le parc.', ['2', '1', '3'], 'Quand ? Où ?', 'Combien de compléments circonstanciels ?'),
    [Q('Le soir, Tom range sa chambre.', ['1', '2', '0'], 'Seul « Le soir » peut se supprimer.', 'Combien de compléments circonstanciels ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026, comme G2 et G3)
+for _e in ecrans:
+    if _e['titre'] in ['Où ? Quand ? Comment ?']: _e['cumul'] = True
 save('G6', {'id': 'G6', 'f': 'G', 'ceinture': 'Bleue', 'titre': 'Les compléments', 'sous': 'd’objet et circonstanciels', 'lesson': True}, sections, ecrans, zones)

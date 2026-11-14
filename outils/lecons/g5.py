@@ -118,4 +118,7 @@ ecrans = [
     Q('Ma sœur et moi ___ le repas.', ['préparons', 'préparent', 'prépare'], 'Ma sœur et moi = nous.', fill='v'),
     Q('Le chien de mes cousins ___.', ['aboie', 'aboient'], 'Qui est-ce qui aboie ? Le chien.', fill='v')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026, comme G2 et G3)
+for _e in ecrans:
+    if _e['titre'] in ['Les terminaisons à connaître', 'Plusieurs sujets', 'Pas tous les verbes en -ir']: _e['cumul'] = True
 save('G5', {'id': 'G5', 'f': 'G', 'ceinture': 'Verte', 'titre': "L'accord sujet-verbe", 'sous': 'et les verbes du 2e groupe', 'lesson': True}, sections, ecrans, zones)

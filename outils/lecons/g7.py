@@ -101,4 +101,7 @@ ecrans = [
    [Q('Les grand arbres est tombé.', ['Les grands arbres sont tombés.', 'Les grands arbres est tombés.', 'Les grand arbres sont tombé.'], 'Arbres : masculin pluriel.', 'Quelle est la bonne correction ?'),
     Q('La petit fille sont arrivé.', ['La petite fille est arrivée.', 'La petite fille sont arrivée.', 'La petit fille est arrivé.'], 'Fille : féminin singulier.', 'Quelle est la bonne correction ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026, comme G2 et G3)
+for _e in ecrans:
+    if _e['titre'] in ['Le nom noyau commande', 'Deux adjectifs, un seul noyau', 'Le sujet commande le verbe', 'Le groupe sujet s’accorde', 'Avec être, le participe s’accorde', 'Comme un adjectif']: _e['cumul'] = True
 save('G7', {'id': 'G7', 'f': 'G', 'ceinture': 'Violette', 'titre': 'La chaîne des accords', 'sous': 'GN, sujet-verbe, participe passé', 'lesson': True}, sections, ecrans, zones)
