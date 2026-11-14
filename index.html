@@ -828,7 +828,7 @@ function atoiTokens(p){
 function secDone(L,id,sid){const p=prog(id);const e=L.ecrans.map((x,i)=>[x,i]).filter(([x])=>x.sec===sid);return e.length&&e.every(([,i])=>p[i]);}
 
 function navBar(p,m,n){
-  const a=(x,cl)=>x?`<a class="nb ${cl}" href="${x.href}">${cl==='nb-prec'?'<span class="nb-fl">◀</span>':''}<span class="nb-t"><b>${x.top}</b>${x.sub?`<small>${esc(x.sub)}</small>`:''}</span>${cl==='nb-suiv'?'<span class="nb-fl">▶</span>':''}</a>`:'<span></span>';
+  const a=(x,cl)=>x?`<a class="nb ${cl}" href="${x.href}"${x.retour?' data-retour':''}>${cl==='nb-prec'?'<span class="nb-fl">◀</span>':''}<span class="nb-t"><b>${x.top}</b>${x.sub?`<small>${esc(x.sub)}</small>`:''}</span>${cl==='nb-suiv'?'<span class="nb-fl">▶</span>':''}</a>`:'<span></span>';
   return `<nav class="nav">${a(p,'nb-prec')}${m?`<span class="nb-mid">${m.href2?`<a class="nb nb-carte" href="${m.href2}"><span aria-hidden="true">${m.ico2}</span><span>${esc(m.top2)}</span></a>`:''}<a class="nb nb-carte" href="${m.href}"><span aria-hidden="true">${m.ico}</span><span>${m.top}</span></a></span>`:'<span></span>'}${a(n,'nb-suiv')}</nav>`;
 }
 function renderSectionMap(t,sid){
@@ -883,7 +883,7 @@ function renderLessonScreen(t,i,direct){
       <p class="ask" id="ask"></p><p class="phrase tokens" id="tok"></p><div class="choices" id="choices"></div>
       <div class="fb-row"><p class="fb" id="fb" aria-live="polite"></p></div>
       <div class="indice-row" id="indRow"></div></div>
-    ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour'}:{href:`#t=${t.id}`,top:'Retour'},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
+    ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour',retour:1}:{href:`#t=${t.id}`,top:'Retour',retour:1},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
   </div>`;
   let st=0;
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
@@ -1334,7 +1334,10 @@ function render(){
       majBandeau(null);scrollTo(0,0);return;}}
   renderToc();majBandeau(null);
 }
-window.addEventListener('hashchange',render);
+/* « Retour » : revient à la page d'où l'on vient (pile des pages vues pendant la visite), pas à l'écran numériquement précédent (13/11/2026) */
+const PILE=[]; let enRetour=false;
+window.addEventListener('hashchange',e=>{ if(enRetour){enRetour=false;} else { try{const o=new URL(e.oldURL).hash; if(o&&o!==location.hash) PILE.push(o);}catch(_){} } render(); });
+document.addEventListener('click',e=>{ const a=e.target.closest('a[data-retour]'); if(!a||!PILE.length) return; e.preventDefault(); enRetour=true; location.hash=PILE.pop(); });
 function go(h){if(location.hash===h)render();else location.hash=h;}
 
 /* ---------- Barre ---------- */
