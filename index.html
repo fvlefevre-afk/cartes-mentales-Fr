@@ -466,6 +466,10 @@ body.mode-plein .sheet.lesson{border-radius:12px}
 .lecon-G2 .atoi h3{color:#111}
 .lecon-G2 .choice{border-width:3px}
 .lecon-G2 .nav .nb{border-width:3.5px}
+
+/* écran d'une leçon (13/11/2026) : les points de position ne passent plus sous le bouton « Carte de la leçon » ; en bas, une seule paire de flèches (◀ ▶), le bouton d'étape n'en a plus */
+@media (min-width:701px){.scr-head{padding-right:12.5rem}}
+.nav .nb-t b{font-size:1rem}.nav .nb-t small{font-size:.85rem}
 </style>
 </head>
 <body>
@@ -870,7 +874,7 @@ function renderLessonScreen(t,i,direct){
       <span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p></div>
     <div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
-    <div class="stage-ctl"><span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">Suivant ▸</button></div>
+    <div class="stage-ctl"><span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">👀 Voir la suite</button></div>
     <div class="atoi" id="atoi" hidden>
       <div class="atoi-top"><h3>À toi ! <span class="ex-num" id="exNum"></span></h3><span class="atoi-outils no-print"><button type="button" id="lireBtn" class="mini" title="Écouter la consigne" aria-label="Écouter la consigne">🔊 Écouter</button><button type="button" id="sonBtn" class="mini" title="Sons de réussite" aria-label="Sons de réussite">🔔</button></span></div>
       <div class="ex-prog" id="exProg" aria-label="Progression de la série"></div>
@@ -878,7 +882,7 @@ function renderLessonScreen(t,i,direct){
       <div class="fb-row"><p class="fb" id="fb" aria-live="polite"></p></div>
       <div class="indice-row" id="indRow"></div></div>
     ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Précédent',sub:L.ecrans[i-1].titre}:{href:`#t=${t.id}`,top:'Retour',sub:'à la carte'},
-      {href:`#t=${t.id}/s:${s.id}`,ico:'🧭',top:s.nom},
+      {href:`#t=${t.id}/s:${s.id}`,ico:'🧭',top:'Rubrique '+s.nom},
       i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant',sub:L.ecrans[i+1].titre}:{href:`#t=${t.id}`,top:'Terminer',sub:'retour à la carte'})}
   </div>`;
   let st=0;
@@ -886,7 +890,7 @@ function renderLessonScreen(t,i,direct){
   function show(){
     const x=e.steps[st]; ph.innerHTML=phraseHTML(x.p); cap.textContent=x.c||''; cap.classList.toggle('on',!!x.c);
     sd.innerHTML=e.steps.map((_,k)=>`<span class="${k<=st?'on':''}"></span>`).join('');
-    nb.textContent=st===e.steps.length-1?'À toi ! ▸':'Suivant ▸';
+    nb.textContent=st===e.steps.length-1?'✏️ À toi !':'👀 Voir la suite';
   }
   function next(){ if(!$('#atoi').hidden) return; if(st<e.steps.length-1){st++;show();} else startAtoi(); }
   nb.addEventListener('click',next);
