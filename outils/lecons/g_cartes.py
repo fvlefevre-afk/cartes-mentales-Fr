@@ -9,9 +9,10 @@ sys.path.insert(0, os.path.join(D, '..'))
 from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
-SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}}
+SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524')}
 MARGE = 24
+ZMAX = {'C2': 1.0, 'C8-CM2': 1.1, 'C3': 1.1}   # cartes dont un tableau déborderait du cadre si le texte était plus grand
 ZOOM = [1]   # agrandissement du texte des cadres (cartes aux petits caractères : H) ; choisi par auto()
 ECART_MIN = 205   # espace minimum, entre les cadres du haut et ceux du bas, pour le nuage
 # retouches propres à une carte : (carte, cadre) -> (titre en plus, [(texte à remplacer, remplaçant)])
@@ -20,16 +21,23 @@ RETOUCHES = {('G4', 'inv'): ('font-size:25px;', []), ('G6', 'phrase'): ('font-si
              ('G6-CE2', 'tests'): ('', [('<p class="txt"><b>Je supprime', '<p class="txt" style="font-size:18px;white-space:nowrap;margin-right:-12px"><b>Je supprime')])}
 
 
-def lire(fichier):
-    """(boxes, args du build) d'un script de leçon : tout le texte avant l'appel à build() est exécuté, rien après."""
-    src = open(os.path.join(D, fichier)).read().split('\n')
-    i = next(k for k, l in enumerate(src) if 'build(' in l and not l.startswith(' '))
+def lire(fichier, lid=None):
+    """(boxes, args du build) de la carte `lid` d'un script de leçon. Les instructions qui précèdent sont exécutées, SAUF celles qui appellent
+    build() ou save() (rien n'est écrit, les autres cartes du même script ne sont pas refaites) ; celle de la carte voulue donne les arguments."""
+    tree = ast.parse(open(os.path.join(D, fichier)).read())
     ns = {'__file__': os.path.join(D, fichier)}
-    exec('\n'.join(src[:i]), ns)
-    call = ast.parse(src[i].split('=', 1)[-1].strip() if src[i].lstrip().startswith('out') else src[i].strip()).body[0].value
-    a = [eval(compile(ast.Expression(x), 'a', 'eval'), ns) for x in call.args]
-    kw = {k.arg: eval(compile(ast.Expression(k.value), 'a', 'eval'), ns) for k in call.keywords}
-    return ns['boxes'], a, kw
+    appelle = lambda n, noms: any(isinstance(x, ast.Call) and getattr(x.func, 'id', '') in noms for x in ast.walk(n))
+    for st in tree.body:
+        if appelle(st, ('build',)):
+            call = next(x for x in ast.walk(st) if isinstance(x, ast.Call) and getattr(x.func, 'id', '') == 'build')
+            if lid is None or (call.args and getattr(call.args[0], 'value', None) == lid):
+                a = [eval(compile(ast.Expression(x), 'a', 'eval'), ns) for x in call.args]
+                kw = {k.arg: eval(compile(ast.Expression(k.value), 'a', 'eval'), ns) for k in call.keywords}
+                return ns['boxes'], a, kw
+            continue
+        if appelle(st, ('save',)): continue
+        exec(compile(ast.Module([st], []), fichier, 'exec'), ns)
+    raise SystemExit('carte introuvable : ' + str(lid))
 
 
 def style(boxes, lid=''):
@@ -57,7 +65,9 @@ def carte(lid, a, kw, boxes, geo=None, cdy=26):
         g = (geo or {}).get(b['id'], b['geom']); dy = g[1] - b['geom'][1]   # les dessins suivent leur cadre quand la rangée du bas monte ou descend
         bx.append(dict(b, geom=g, figs=[(n, x, y + dy, w) for n, x, y, w in b.get('figs', [])]))
     titre, chip, legend = a[1], a[2], a[3]
-    kw = dict(kw); kw.pop('cloud_dy', None); kw['extra_html'] = police() + (f'<style>.box.tint>*:not(h2){{zoom:{ZOOM[0]} !important}}</style>' if ZOOM[0] != 1 else '')
+    kw = dict(kw); kw.pop('cloud_dy', None)
+    if lid == 'C5': kw['legend_pos'] = 'right:18px;top:520px'
+    kw['extra_html'] = police() + (f'<style>.box.tint>*:not(h2){{zoom:{ZOOM[0]} !important}}</style>' if ZOOM[0] != 1 else '')
     return build(lid, titre, chip, legend, bx, cloud_dy=cdy, **kw)
 
 
@@ -79,8 +89,8 @@ def titres(lid, boxes):
 
 def auto(lid, a, kw, boxes):
     """Pour H : texte agrandi au plus grand facteur (≤ 1,5) qui laisse la place du nuage."""
-    if lid[0] not in 'HV': ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
-    for z in [1.5, 1.45, 1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, 1.0]:
+    if lid[0] not in 'HVC': ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
+    for z in [x for x in [1.5, 1.45, 1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, 1.0] if x <= ZMAX.get(lid, 1.5)]:
         ZOOM[0] = z; r = auto1(lid, a, kw, boxes, silencieux=True)
         if (r[1] >= ECART_MIN and r[2] >= 40) or z == 1.0: break
     print(lid, 'zoom', z, 'écart', r[1]); return r[0]
@@ -113,10 +123,10 @@ if __name__ == '__main__':
     voulus = sys.argv[1:] or list(SCRIPTS)
     Z = {}
     for lid in voulus:
-        boxes, a, kw = lire(SCRIPTS[lid]); Z[lid] = auto(lid, a, kw, style(boxes, lid))
+        boxes, a, kw = lire(SCRIPTS[lid], lid); Z[lid] = auto(lid, a, kw, style(boxes, lid))
         shutil.copy(os.path.join(D, '..', 'sortie', f'{lid}_carte.jpeg'), os.path.join(D, '..', '..', 'images', f'{lid}.jpg'))
-    # zones : une leçon (CM1) par appel ; G6-CE2 va dans ZONES_NIV
-    for lid in [x for x in voulus if x != 'G6-CE2']:
-        if lid == 'H1': continue
-        mettre_dans_le_site({lid: Z[lid], **({'G6-CE2': Z['G6-CE2']} if lid == 'G6' and 'G6-CE2' in Z else {})}, lid)
-    if 'G6-CE2' in Z and 'G6' not in voulus: mettre_dans_le_site({'G6': {}, 'G6-CE2': Z['G6-CE2']}, 'G6')
+    # zones : une leçon qui a son bloc dans index.html les reçoit directement ; une carte par niveau (G6-CE2…) va dans ZONES_NIV
+    site = open(os.path.join(D, '..', '..', 'index.html')).read()
+    for lid, z in Z.items():
+        if ('\n%s:{"sections"' % lid) in site or ('\n"%s":{"sections"' % lid) in site: mettre_dans_le_site({lid: z}, lid)
+        else: mettre_dans_le_site({lid.split('-')[0]: {}, lid: z}, lid.split('-')[0])

@@ -116,7 +116,7 @@ def mettre_dans_le_site(zones, lesson='G2'):
     """Zones de G2 (CM1) dans LESSONS ; zones propres au CE2 et au CM2 dans ZONES_NIV (une carte par classe, cadres de hauteurs différentes)."""
     import re, json
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'index.html'); s = open(p).read()
-    a = s.index('\n%s:{"sections"' % lesson); b = s.index('"ecrans"', a); seg = s[a:b]
+    a = s.index('\n%s:{"sections"' % lesson) if ('\n%s:{"sections"' % lesson) in s else s.index('\n"%s":{"sections"' % lesson); b = s.index('"ecrans"', a); seg = s[a:b]
     for k, z in zones[lesson].items():
         seg = re.sub(r'("id": "%s".*?"zone": )\[[^\]]*\]' % k, lambda m: m.group(1) + str(z), seg, count=1)
     s = s[:a] + seg + s[b:]
