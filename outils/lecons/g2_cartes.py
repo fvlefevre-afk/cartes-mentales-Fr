@@ -13,9 +13,9 @@ AFF = (18, 618, 420, 302); NEG = (452, 618, 470, 302); EXC = (952, 618, 430, 302
 EX = lambda s, fs=20: f'<div class="ex" style="font-size:{fs}px;line-height:1.45;margin-top:8px">{s}</div>'
 S, V = '<span class="s">{}</span>', '<span class="v">{}</span>'
 # couleurs aussi soutenues que sur G1 : (bordure, fond du cadre, fond du titre, mots forts)
-PALG = {'bleu': ('#1f5fc4', '#dcebfb', '#a9cff5', '#1f5fc4'), 'vert': ('#23845a', '#dff3e2', '#a9e0b4', '#1b6b3a'),
-        'violet': ('#7b3fa0', '#eadcf7', '#cfb0ea', '#6a2f93'), 'rose': ('#c2185b', '#fde0ea', '#f7a8c4', '#b0124f'),
-        'turquoise': ('#00838f', '#d5f0f2', '#9fdde4', '#006b75'), 'orange': ('#e67e22', '#ffeacf', '#fcc78a', '#b85a00')}
+PALG = {'bleu': ('#1f5fc4', '#dcebfb', '#a9cff5', '#1f5fc4'), 'vert': ('#23845a', '#dff3e2', '#a9e0b4', '#16914f'),
+        'violet': ('#7b3fa0', '#eadcf7', '#cfb0ea', '#8a35c0'), 'rose': ('#c2185b', '#fde0ea', '#f7a8c4', '#d4145f'),
+        'turquoise': ('#00838f', '#d5f0f2', '#9fdde4', '#00909e'), 'orange': ('#e67e22', '#ffeacf', '#fcc78a', '#e0640a')}
 
 
 def carte(lid, chip, niveau):
