@@ -63,7 +63,10 @@ def carte(lid, chip, niveau, geo=None, bdy=0, cdy=26):
             '<span><b>À retenir :</b> une phrase a <b>toujours un type</b>. Elle peut en plus être <b>négative</b> et/ou <b>exclamative</b>.</span></div>')
     duo = ('<img src="file://' + os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'img', 'g2', 'duo.png') + '" style="position:absolute;left:1200px;top:462px;width:180px">'
            + bulle(964, 440, 238, 126, 'Quel est son type ?<br>Elle <b>raconte</b>, elle <b>demande</b> ou elle <b>ordonne</b> ?', 'right:-22px;bottom:30px;border:11px solid transparent;border-left:18px solid #1f5fc4;border-right:0'))
-    extra_html = ''   # note « À retenir » et duo d'enfants (variables note et duo) retirés le 13/11/2026 : surchargeaient la page
+    pol = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'polices'))
+    police = (f'<style>@font-face{{font-family:"Andika";font-weight:400;src:url(file://{pol}/andika-400.woff2)}}@font-face{{font-family:"Andika";font-weight:700 900;src:url(file://{pol}/andika-700.woff2)}}'
+              'body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style>')   # même police que les pages de la leçon (13/11/2026)
+    extra_html = police   # note « À retenir » et duo d'enfants (variables note et duo) retirés le 13/11/2026 : surchargeaient la page
     return build(lid, titre, chip, legend, boxes, extra_html=extra_html, sub='', title_size=34, cloud_dy=cdy)
 
 
