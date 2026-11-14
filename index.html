@@ -1344,9 +1344,13 @@ if(ENS_REEL){(()=>{
  const dateCourte=d=>new Date(d+'T12:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
  const fichier=()=>{const out={maj:AUJ,classes:classesVis()},E=ecole();if(E.nom||E.photo)out.ecole=E;return JSON.stringify(out,null,1);};
  const apres=()=>{garderBrouillon();dessiner();render();};
+ /* ce que voient les élèves = ouvertures.json publié ; tant que le brouillon en diffère, les élèves ne voient pas le changement (13/11/2026 : la photo ne s'affichait que chez l'enseignante) */
+ const publie=()=>{const e=(OUVERTURE_REELLE&&OUVERTURE_REELLE.ecole)||{};return {nom:typeof e.nom==='string'?e.nom.trim():'',photo:photoOk(e.photo)?e.photo:''};};
+ const nonPublie=()=>{const a=ecole(),p=publie(),c=(OUVERTURE_REELLE&&OUVERTURE_REELLE.classes)||null;return a.nom!==p.nom||a.photo!==p.photo||(c&&JSON.stringify(classesVis())!==JSON.stringify(c));};
  function dessiner(){const A=classesVis(),y=(dlg.querySelector('.rg-lst')||{}).scrollTop||0,L=ordreSommaire(nivReg).filter(hasTrace);
   dlg.innerHTML=`<h2>Réglages enseignant</h2>
   <p class="rg-note">Ces choix changent rarement. Ils restent dans cet onglet ; les élèves ne les voient qu'après le dépôt du fichier sur La Forge (en bas), une seule fois.</p>
+  ${nonPublie()?`<p class="rg-note" style="background:#fff3e0;border:2px solid #e67e22;border-radius:10px;padding:.5rem .8rem;color:#7a3d00"><b>⚠ Les élèves ne voient pas encore ces changements</b> (photo, nom ou classes). Ils ne les verront qu'après l'envoi du fichier, tout en bas.</p>`:(OUVERTURE_REELLE?`<p class="rg-note" style="color:#1b6b3a"><b>✓ Les élèves voient exactement ces réglages.</b></p>`:'')}
   <h3>École</h3>
   <div class="rg-ecole"><label>Nom de l'école<input type="text" maxlength="80" data-rgnom value="${esc(ecole().nom)}" placeholder="École élémentaire …"></label>
    <div class="rg-photo">${ecole().photo?`<img src="${ecole().photo}" alt="">`:'<span>Pas de photo</span>'}<div><button type="button" data-rgph>📷 ${ecole().photo?'Changer la photo':'Choisir une photo'}</button>${ecole().photo?'<button type="button" data-rgphx>Retirer</button>':''}<input type="file" id="rgPhoto" accept="image/*" hidden><small>Réduite automatiquement ; enregistrée dans ouvertures.json.</small></div></div></div>
@@ -1354,7 +1358,7 @@ if(ENS_REEL){(()=>{
   <h3>Dates d'ouverture des leçons</h3>
   <p class="rg-note">Chaque leçon s'ouvre au début de la période de sa ceinture : rien à régler ni à déposer. En cas d'écart, la clé 🔑 ouvre toutes les leçons sur l'appareil.</p>
   <h3>Envoyer l'école et les classes aux élèves</h3>
-  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>).</li><li>Sur La Forge, ouvrez le projet, « + » › « Téléverser un fichier », choisissez-le, puis « Commit ».</li><li>Les cartes se mettent à jour en 1 à 2 minutes.</li></ol>
+  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>, il va dans « Téléchargements »).</li><li>Lancez la publication habituelle (<b>bash outils/publier-forge.sh</b>) : elle prend ce fichier toute seule et l'envoie avec le site. <i>Sans la publication, la photo ne s'affiche que chez vous.</i></li><li>Les cartes se mettent à jour en 1 à 2 minutes.</li></ol>
   <div class="rg-act"><button type="button" data-rgdl>⬇ Télécharger ouvertures.json</button><button type="button" data-rgcp>Copier le contenu</button><button type="button" data-rgap>👁 Voir comme un élève</button></div>
   <p id="rgMsg" role="status"></p>
   <div class="ens-actions"><button type="button" data-rgraz>Annuler mes changements</button><button type="button" data-rgfin id="ensOk">Fermer</button></div>`;
@@ -1364,7 +1368,7 @@ if(ENS_REEL){(()=>{
   if('rgniv' in d){nivReg=d.rgniv;dessiner();}
   else if('rgph' in d){$('#rgPhoto').click();}
   else if('rgphx' in d){BROUILLON.ecole={...ecole(),photo:''};apres();}
-  else if('rgdl' in d){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([fichier()],{type:'application/json'}));a.download='ouvertures.json';a.click();$('#rgMsg').textContent='Fichier téléchargé : déposez-le sur La Forge.';}
+  else if('rgdl' in d){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([fichier()],{type:'application/json'}));a.download='ouvertures.json';a.click();$('#rgMsg').textContent='Fichier téléchargé dans « Téléchargements » : lancez maintenant bash outils/publier-forge.sh pour l’envoyer aux élèves.';}
   else if('rgcp' in d){const x=fichier();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>{$('#rgMsg').textContent='Contenu copié : sur La Forge, ouvrez ouvertures.json › Modifier › tout remplacer › Commit.';}).catch(()=>{$('#rgMsg').textContent="Copie impossible : utilisez « Télécharger ».";});}
   else if('rgap' in d){try{sessionStorage.setItem('francais-apercu','1');}catch(x){}location.reload();}
   else if('rgraz' in d){if(confirm('Annuler tous vos changements non envoyés ?')){BROUILLON={};garderBrouillon();apres();}}

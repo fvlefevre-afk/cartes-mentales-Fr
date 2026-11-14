@@ -5,6 +5,11 @@ set -e
 ICI="$(cd "$(dirname "$0")/.." && pwd)"; PUB="$ICI/../publication-francais"
 [ -d "$PUB/.git" ] || { echo "Dossier publication-francais introuvable à côté de ce dépôt."; exit 1; }
 cd "$PUB" && git pull -q --rebase forge main      # reprend ouvertures.json s'il a été déposé sur La Forge
+# ouvertures.json téléchargé depuis ⚙ Réglages (photo et nom de l'école, classes montrées) : le plus récent de « Téléchargements », s'il est plus récent que celui de La Forge
+DL=$(ls -t "$HOME"/Téléchargements/ouvertures*.json "$HOME"/Downloads/ouvertures*.json 2>/dev/null | head -1)
+if [ -n "$DL" ] && { [ ! -f "$PUB/ouvertures.json" ] || [ "$DL" -nt "$PUB/ouvertures.json" ]; } && python3 -c "import json,sys; j=json.load(open(sys.argv[1])); assert isinstance(j,dict) and 'classes' in j" "$DL" 2>/dev/null; then
+  cp "$DL" "$PUB/ouvertures.json" && echo "ouvertures.json repris de : $DL (photo et nom de l'école, classes montrées)"
+fi
 cp "$ICI/index.html" "$PUB/index.html"
 rm -rf $PUB/images && cp -r $ICI/images $PUB/images
 rm -rf $PUB/polices && cp -r $ICI/polices $PUB/polices      # police Andika (10/11/2026) : sans ce dossier, les cartes s’affichent dans une autre police

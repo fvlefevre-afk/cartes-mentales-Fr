@@ -44,6 +44,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   pastille « nouveau » pendant 7 jours. Plus de codes de période ni de `?enseignant`.
   Accès enseignant : bouton 🔑 du bandeau et mot de passe, le même que sur le site de maths (connu de l'enseignante, jamais écrit dans le dépôt ;
   empreinte `MDP_ENS`, à recalculer avec `empreinteEns("…")` sur les deux sites pour le changer) : tout s'ouvre jusqu'à la fermeture de l'onglet.
+- Photo / nom de l’école (13/11/2026) : ils ne sont vus des élèves qu’une fois `ouvertures.json` publié ; `outils/publier-forge.sh` reprend tout seul le fichier téléchargé depuis ⚙ Réglages (le plus récent de ~/Téléchargements, s’il est plus récent que celui de La Forge) et la fenêtre Réglages avertit tant que le brouillon diffère du publié (`nonPublie`).
 - Bandeau (comme le site de maths) : Sommaire et titre à gauche ; ◀ ceinture de la leçon ▶ au centre (sur le sommaire : nombre de leçons ouvertes) ;
   classe (CE2 / CM1 / CM2, `data-classe` : sur une leçon, ouvre la leçon du même code dans cette classe) et impression à droite.
   ◀ ▶ ne parcourent que les leçons ouvertes de la classe (`parcours()`). L'adresse `#G1` (lien du tableau de bord) ouvre la leçon G1 de la classe choisie ; `#G1&niveau=CE2` celle de cette classe ;
