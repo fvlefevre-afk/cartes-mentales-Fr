@@ -285,7 +285,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .phrase .s,.phrase .v{display:inline-block}
 .cap{margin:.6rem auto 0;font-size:1.1rem;color:var(--soft);min-height:1.6rem;opacity:0;transition:opacity .3s}
 .cap.on{opacity:1;color:var(--ink);font-weight:700}
-.stage-ctl{display:flex;align-items:center;justify-content:space-between;margin:.6rem 0 1.2rem;gap:1rem}
+.stage-ctl{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin:.6rem 0 1.2rem;gap:1rem}.stage-ctl .nb-prec{justify-self:start}.stage-ctl .btn{justify-self:end}
 .sdots{display:flex;gap:.3rem}
 .sdots span{width:1.6rem;height:.35rem;border-radius:.2rem;background:var(--line)}
 .sdots span.on{background:var(--z)}
@@ -465,7 +465,7 @@ body.mode-plein .sheet.lesson{border-radius:12px}
 :is(.lecon-G2,.lecon-G3) .atoi{background:var(--tint);border:3.5px solid var(--z);border-radius:1.8rem}
 :is(.lecon-G2,.lecon-G3) .atoi h3{color:#111}
 :is(.lecon-G2,.lecon-G3) .choice{border-width:3px}
-:is(.lecon-G2,.lecon-G3) .nav .nb{border-width:3.5px}
+:is(.lecon-G2,.lecon-G3) :is(.nav,.stage-ctl) .nb{border-width:3.5px}
 
 /* écran d'une leçon (13/11/2026) : les points de position ne passent plus sous le bouton « Carte de la leçon » ; en bas, une seule paire de flèches (◀ ▶), le bouton d'étape n'en a plus */
 @media (min-width:701px){.scr-head{padding-right:12.5rem}}
@@ -883,14 +883,14 @@ function renderLessonScreen(t,i,direct){
       <span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p></div>
     <div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
-    <div class="stage-ctl"><span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">👀 Voir la suite</button></div>
+    <div class="stage-ctl">${/^G[23]/.test(code(t))?`<a class="nb nb-prec" data-retour href="${i>0?`#t=${t.id}/${i-1}`:`#t=${t.id}`}"><span class="nb-fl">◀</span><span class="nb-t"><b>Retour</b></span></a>`:'<span></span>'}<span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">👀 Voir la suite</button></div>
     <div class="atoi" id="atoi" hidden>
       <div class="atoi-top"><h3>À toi ! <span class="ex-num" id="exNum"></span></h3><span class="atoi-outils no-print"><button type="button" id="lireBtn" class="mini" title="Écouter la consigne" aria-label="Écouter la consigne">🔊 Écouter</button><button type="button" id="sonBtn" class="mini" title="Sons de réussite" aria-label="Sons de réussite">🔔</button></span></div>
       <div class="ex-prog" id="exProg" aria-label="Progression de la série"></div>
       <p class="ask" id="ask"></p><p class="phrase tokens" id="tok"></p><div class="choices" id="choices"></div>
       <div class="fb-row"><p class="fb" id="fb" aria-live="polite"></p></div>
       <div class="indice-row" id="indRow"></div></div>
-    ${navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour',retour:1}:{href:`#t=${t.id}`,top:'Retour',retour:1},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
+    ${/^G[23]/.test(code(t))?'':navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour',retour:1}:{href:`#t=${t.id}`,top:'Retour',retour:1},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
   </div>`;
   let st=0;
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
@@ -912,7 +912,7 @@ function renderLessonScreen(t,i,direct){
 
   function startAtoi(){
     const box=$('#atoi'); box.hidden=false; nb.hidden=true;
-    $('#stage').style.display='none'; $('.stage-ctl').style.display='none';   /* en mode « À toi ! », seul l'exercice reste affiché (13/11/2026) */
+    $('#stage').style.display='none'; $('#sdots').style.display='none';   /* en mode « À toi ! », seul l'exercice reste affiché (13/11/2026) */
     const base=[e.atoi,...(e.plus||[])], NV=e.niv||null;
     /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
     const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie=NV&&lvl>1?NV[lvl]:base;
