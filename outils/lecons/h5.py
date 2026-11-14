@@ -75,4 +75,7 @@ ecrans = [
    Q('', ['Ma lampe, je la répare.', 'Ma lampe, je le répare.'], 'Lampe est féminin : la.', 'Quelle phrase est bien écrite ?'),
    [Q('', ['C’était une belle journée.', 'Cétait une belle journée.'], 'C’était : avec une apostrophe.', 'Quelle phrase est bien écrite ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['la : un déterminant', 'la : un pronom', 'c’est : cela est']: _e['cumul'] = True
 save('H5', {'id': 'H5', 'f': 'H', 'ceinture': 'Verte', 'titre': "la, c'est", 'sous': 'la déterminant et pronom · c’est', 'lesson': True}, sections, ecrans, zones)

@@ -9,9 +9,11 @@ sys.path.insert(0, os.path.join(D, '..'))
 from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
-SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py'}
+SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524')}
 MARGE = 24
+ZOOM = [1]   # agrandissement du texte des cadres (cartes aux petits caractères : H) ; choisi par auto()
+ECART_MIN = 205   # espace minimum, entre les cadres du haut et ceux du bas, pour le nuage
 # retouches propres à une carte : (carte, cadre) -> (titre en plus, [(texte à remplacer, remplaçant)])
 RETOUCHES = {('G4', 'inv'): ('font-size:25px;', []), ('G6', 'phrase'): ('font-size:24px;', []),
              ('G6-CE2', 'cc'): ('', [('font-size:20px;padding-right:96px', 'font-size:20px;padding-right:150px')]),
@@ -50,9 +52,12 @@ def style(boxes, lid=''):
 
 
 def carte(lid, a, kw, boxes, geo=None, cdy=26):
-    bx = [dict(b, geom=(geo or {}).get(b['id'], b['geom'])) for b in boxes]
+    bx = []
+    for b in boxes:
+        g = (geo or {}).get(b['id'], b['geom']); dy = g[1] - b['geom'][1]   # les dessins suivent leur cadre quand la rangée du bas monte ou descend
+        bx.append(dict(b, geom=g, figs=[(n, x, y + dy, w) for n, x, y, w in b.get('figs', [])]))
     titre, chip, legend = a[1], a[2], a[3]
-    kw = dict(kw); kw.pop('cloud_dy', None); kw['extra_html'] = police()
+    kw = dict(kw); kw.pop('cloud_dy', None); kw['extra_html'] = police() + (f'<style>.box.tint>*:not(h2){{zoom:{ZOOM[0]} !important}}</style>' if ZOOM[0] != 1 else '')
     return build(lid, titre, chip, legend, bx, cloud_dy=cdy, **kw)
 
 
@@ -73,6 +78,15 @@ def titres(lid, boxes):
 
 
 def auto(lid, a, kw, boxes):
+    """Pour H : texte agrandi au plus grand facteur (≤ 1,5) qui laisse la place du nuage."""
+    if not lid.startswith('H'): ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
+    for z in [1.5, 1.45, 1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, 1.0]:
+        ZOOM[0] = z; r = auto1(lid, a, kw, boxes, silencieux=True)
+        if r[1] >= ECART_MIN or z == 1.0: break
+    print(lid, 'zoom', z, 'écart', r[1]); return r[0]
+
+
+def auto1(lid, a, kw, boxes, silencieux=False):
     """Mesure le contenu de chaque cadre, ajuste les hauteurs, aligne la rangée du bas tout en bas, place le nuage au milieu ; renvoie les zones (en %)."""
     ids = [b['id'] for b in boxes]
     carte(lid, a, kw, boxes)
@@ -91,8 +105,8 @@ def auto(lid, a, kw, boxes):
     Bi = max(geo[b['id']][1] + geo[b['id']][3] for b in centre)
     cdy = round((Bi + Tb) / 2 - 431)
     carte(lid, a, kw, boxes, geo, cdy)
-    print(lid, 'bas du centre', Bi, 'rangée du bas à', Tb, 'écart', Tb - Bi, 'nuage dy', cdy)
-    return {k: [round(l / 14, 1), round((t - 24) / 9.33, 1), round(w / 14, 1), round((t + h - (t - 24)) / 9.33, 1)] for k, (l, t, w, h) in geo.items()}
+    zones = {k: [round(l / 14, 1), round((t - 24) / 9.33, 1), round(w / 14, 1), round((t + h - (t - 24)) / 9.33, 1)] for k, (l, t, w, h) in geo.items()}
+    return (zones, Tb - Bi) if silencieux else zones
 
 
 if __name__ == '__main__':
@@ -103,5 +117,6 @@ if __name__ == '__main__':
         shutil.copy(os.path.join(D, '..', 'sortie', f'{lid}_carte.jpeg'), os.path.join(D, '..', '..', 'images', f'{lid}.jpg'))
     # zones : une leçon (CM1) par appel ; G6-CE2 va dans ZONES_NIV
     for lid in [x for x in voulus if x != 'G6-CE2']:
+        if lid == 'H1': continue
         mettre_dans_le_site({lid: Z[lid], **({'G6-CE2': Z['G6-CE2']} if lid == 'G6' and 'G6-CE2' in Z else {})}, lid)
     if 'G6-CE2' in Z and 'G6' not in voulus: mettre_dans_le_site({'G6': {}, 'G6-CE2': Z['G6-CE2']}, 'G6')

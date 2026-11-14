@@ -77,4 +77,7 @@ ecrans = [
    Q('', ['Il fait beau, mais il fait froid.', 'Il fait beau mais, il fait froid.'], 'La virgule se place avant mais.', 'Choisis la phrase bien écrite.'),
    [Q('', ['Tu viens ou tu restes ?', 'Tu viens, ou, tu restes ?'], 'En général, pas de virgule avec ou.', 'Choisis la phrase bien écrite.')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['et : j’ajoute', 'ou : je choisis', 'mais : je m’oppose', 'Des mots qui ne changent jamais']: _e['cumul'] = True
 save('H4', {'id': 'H4', 'f': 'H', 'ceinture': 'Orange', 'titre': 'et, ou, mais', 'sous': 'les mots qui relient', 'lesson': True}, sections, ecrans, zones)

@@ -87,4 +87,7 @@ ecrans = [
    Q('', ['Cet ami est gentil.', 'Ce ami est gentil.'], 'Ami commence par une voyelle.', 'Quelle phrase est bien écrite ?'),
    [Q('', ['Ces voitures roulent vite.', 'Ces voiture roulent vite.'], 'Après ces, le nom est au pluriel.', 'Quelle phrase est bien écrite ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['ce, cet, cette', 'ces : au pluriel', 'à : le petit mot', 'à ne change jamais']: _e['cumul'] = True
 save('H3', {'id': 'H3', 'f': 'H', 'ceinture': 'Jaune', 'titre': 'ce, ces, à', 'sous': 'les démonstratifs · le petit mot à', 'lesson': True}, sections, ecrans, zones)

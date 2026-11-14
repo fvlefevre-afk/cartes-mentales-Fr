@@ -77,4 +77,7 @@ ecrans = [
    Q('', ['Léa invite son amie.', 'Léa invite sa amie.'], 'Devant une voyelle : son.', 'Quelle phrase est bien écrite ?'),
    [Q('', ['Tom range ses cahiers.', 'Tom range ses cahier.'], 'Après ses, le nom est au pluriel.', 'Quelle phrase est bien écrite ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['son : à lui, à elle', 'ses : plusieurs choses', 'mes : à moi', 'Un ou plusieurs ?']: _e['cumul'] = True
 save('H6', {'id': 'H6', 'f': 'H', 'ceinture': 'Bleue', 'titre': 'son, ses, mes', 'sous': 'les possessifs et leur accord', 'lesson': True}, sections, ecrans, zones)

@@ -86,4 +86,7 @@ ecrans = [
    [Q('', ['Voilà mon frère.', 'Voila mon frère.'], 'Voilà garde l’accent.', 'Laquelle est bien écrite ?'),
     Q('', ['Mes amis sont là-bas.', 'Mes amis sont labas.'], 'Là-bas : accent et trait d’union.', 'Laquelle est bien écrite ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['on remplace des personnes', 'là : un lieu']: _e['cumul'] = True
 save('H2', {'id': 'H2', 'f': 'H', 'ceinture': 'Rose', 'titre': 'on, là, où', 'sous': 'le pronom on · là et où', 'lesson': True}, sections, ecrans, zones)

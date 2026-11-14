@@ -77,4 +77,7 @@ ecrans = [
    Q('', ['Il s’est endormi.', 'Il se endormi.'], 'Passé composé : s’est + participe passé.', 'Quelle phrase est bien écrite ?'),
    [Q('', ['Elles se sont amusées.', 'Elles s’est amusées.'], 'Au pluriel : se sont.', 'Quelle phrase est bien écrite ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['se : devant un verbe', 'je me, tu te, il se', 'L’accord avec s’est', 'Les pièges']: _e['cumul'] = True
 save('H7', {'id': 'H7', 'f': 'H', 'ceinture': 'Violette', 'titre': "se, s'est", 'sous': 'le pronom se · s’est au passé composé', 'lesson': True}, sections, ecrans, zones)
