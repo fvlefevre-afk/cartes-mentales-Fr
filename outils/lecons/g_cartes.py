@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.join(D, '..'))
 from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
-SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
+SCRIPTS = {**{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524')}
 MARGE = 24
 ZMAX = {'C2': 1.0, 'C8-CM2': 1.1, 'C3': 1.1}   # cartes dont un tableau déborderait du cadre si le texte était plus grand
@@ -24,6 +24,13 @@ RETOUCHES = {('G4', 'inv'): ('font-size:25px;', []), ('G6', 'phrase'): ('font-si
 def lire(fichier, lid=None):
     """(boxes, args du build) de la carte `lid` d'un script de leçon. Les instructions qui précèdent sont exécutées, SAUF celles qui appellent
     build() ou save() (rien n'est écrit, les autres cartes du même script ne sont pas refaites) ; celle de la carte voulue donne les arguments."""
+    if fichier.startswith('o'):   # leçons O : une fonction lesson() appelle build() et save() pour chaque carte ; on enregistre les appels de build() sans rien écrire
+        rec = {}
+        def faux_build(l, *a, **k): rec[l] = (k.pop('boxes', None) or a[3], (l,) + a, k); return '', {}
+        src = open(os.path.join(D, fichier)).read().replace('from mapgen import build, TL, TC, TR', 'from mapgen import TL, TC, TR').replace('from lhelp import *', 'from lhelp import *\nsave = lambda *a, **k: None')
+        ns = {'__file__': os.path.join(D, fichier), 'build': faux_build}
+        exec(compile(src, fichier, 'exec'), ns)
+        return rec[lid]
     tree = ast.parse(open(os.path.join(D, fichier)).read())
     ns = {'__file__': os.path.join(D, fichier)}
     appelle = lambda n, noms: any(isinstance(x, ast.Call) and getattr(x.func, 'id', '') in noms for x in ast.walk(n))
@@ -65,7 +72,8 @@ def carte(lid, a, kw, boxes, geo=None, cdy=26):
         g = (geo or {}).get(b['id'], b['geom']); dy = g[1] - b['geom'][1]   # les dessins suivent leur cadre quand la rangée du bas monte ou descend
         bx.append(dict(b, geom=g, figs=[(n, x, y + dy, w) for n, x, y, w in b.get('figs', [])]))
     titre, chip, legend = a[1], a[2], a[3]
-    kw = dict(kw); kw.pop('cloud_dy', None)
+    kw = dict(kw); kw.pop('cloud_dy', None); kw.pop('legend_pos', None) if lid[0] == 'O' else None
+    if lid in ('O8', 'O10'): kw['title_size'] = 33
     if lid == 'C5': kw['legend_pos'] = 'right:18px;top:520px'
     kw['extra_html'] = police() + (f'<style>.box.tint>*:not(h2){{zoom:{ZOOM[0]} !important}}</style>' if ZOOM[0] != 1 else '')
     return build(lid, titre, chip, legend, bx, cloud_dy=cdy, **kw)
@@ -89,7 +97,7 @@ def titres(lid, boxes):
 
 def auto(lid, a, kw, boxes):
     """Pour H : texte agrandi au plus grand facteur (≤ 1,5) qui laisse la place du nuage."""
-    if lid[0] not in 'HVC': ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
+    if lid[0] not in 'HVCO': ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
     for z in [x for x in [1.5, 1.45, 1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, 1.0] if x <= ZMAX.get(lid, 1.5)]:
         ZOOM[0] = z; r = auto1(lid, a, kw, boxes, silencieux=True)
         if (r[1] >= ECART_MIN and r[2] >= 40) or z == 1.0: break
