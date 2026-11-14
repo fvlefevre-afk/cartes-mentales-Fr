@@ -906,6 +906,7 @@ function renderLessonScreen(t,i,direct){
 
   function startAtoi(){
     const box=$('#atoi'); box.hidden=false; nb.hidden=true;
+    $('#stage').style.display='none'; $('.stage-ctl').style.display='none';   /* en mode « À toi ! », seul l'exercice reste affiché (13/11/2026) */
     const base=[e.atoi,...(e.plus||[])], NV=e.niv||null;
     /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
     const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie=NV&&lvl>1?NV[lvl]:base;
