@@ -907,7 +907,7 @@ function renderLessonScreen(t,i,direct){
   </div>`;
   let st=0;
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
-  const P4=PARC4(t), fait4=[false,false,false,false];
+  const P4=PARC4(t), fait4=[false,false,false,false]; let ATOI_RUN=0;
   function show(){
     const x=e.steps[st];
     if(e.cumul){   /* les étapes déjà vues restent affichées, la nouvelle est mise en avant (13/11/2026) */
@@ -929,7 +929,7 @@ function renderLessonScreen(t,i,direct){
   if(direct&&e.atoi) startAtoi(P4?'aide':undefined);
 
   function startAtoi(mode){   /* mode (G1 seulement) : 'aide', 'seul' ou 'corrige' */
-    const box=$('#atoi'); box.hidden=false; nb.hidden=true; if(P4) majParc({aide:2,seul:3,corrige:4}[mode]||2); if(P4){ const h=box.querySelector('.atoi-top h3'); if(h&&h.firstChild) h.firstChild.textContent={aide:'Avec aide ',seul:'Seul ',corrige:'Je corrige '}[mode]||'Avec aide '; }
+    const run=++ATOI_RUN; const box=$('#atoi'); box.hidden=false; nb.hidden=true; if(P4) majParc({aide:2,seul:3,corrige:4}[mode]||2); if(P4){ const h=box.querySelector('.atoi-top h3'); if(h&&h.firstChild) h.firstChild.textContent={aide:'Avec aide ',seul:'Seul ',corrige:'Je corrige '}[mode]||'Avec aide '; }
     $('#stage').style.display='none'; $('#sdots').style.display='none';   /* en mode « À toi ! », seul l'exercice reste affiché (13/11/2026) */
     const base=[e.atoi,...(e.plus||[])], NV=e.niv||null; box.querySelectorAll('.fb-av').forEach(x=>x.remove());
     /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
@@ -1010,6 +1010,12 @@ function renderLessonScreen(t,i,direct){
       majProg();
       const more=document.createElement('div'); more.className='after';
       const nx=L.ecrans[i+1], tout=file.every(x=>x.fait);
+      if(P4){   /* parcours G1 : on passe tout seul à l'exercice suivant ; à la fin, refaire une série ou passer à l'étape suivante */
+        if(!tout){ const me=run; setTimeout(()=>{ if(me===ATOI_RUN&&!box.hidden&&cur.fait) autre(); },1600); return; }
+        const et=({aide:2,seul:3,corrige:4}[mode]||2); fait4[et-1]=true; majParc(et);
+        const sv={aide:['✏️ Étape 3 : Seul','seul'],seul:['🔍 Étape 4 : Je corrige','corrige']}[mode];
+        more.innerHTML=`<p class="bilan">⭐ ${ok1} réussite${ok1>1?'s':''} du premier coup sur ${file.length}</p>`+(file.length>1||true?'<button type="button" class="btn ghost ex-autre">↻ Refaire une série</button>':'')+(sv?`<button type="button" class="btn go ex-suite">${sv[0]} ▸</button>`:(nx&&nx.sec===e.sec?`<a class="btn go" href="#t=${t.id}/${i+1}">Écran suivant ▸</a>`:`<a class="btn go" href="#t=${t.id}/s:${e.sec}">Terminer ▸</a>`));
+        box.appendChild(more); const ba=more.querySelector('.ex-autre'); if(ba) ba.onclick=autre; const bs=more.querySelector('.ex-suite'); if(bs) bs.onclick=()=>startAtoi(sv[1]); return; }
       more.innerHTML=(tout?`<p class="bilan">⭐ ${ok1} réussite${ok1>1?'s':''} du premier coup sur ${file.length}</p>`:'')+(file.length>1?`<button type="button" class="btn go ex-autre">${tout?'↻ Recommencer':'↻ Un autre exercice'}</button>`:'')+(nx&&nx.sec===e.sec?`<a class="btn ${file.length>1?'ghost':'go'}" href="#t=${t.id}/${i+1}">Écran suivant ▸</a>`:'');
       if(P4&&tout){ fait4[({aide:2,seul:3,corrige:4}[mode]||2)-1]=true; majParc({aide:2,seul:3,corrige:4}[mode]||2);
         const sv={aide:['✏️ Étape 3 : Seul','seul'],seul:['🔍 Étape 4 : Je corrige','corrige']}[mode];
