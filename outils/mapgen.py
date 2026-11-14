@@ -64,6 +64,9 @@ def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='ri
             who, x, y = b['avatar']
             pos = 'left:-14%;top:-6%;width:125%;height:125%' if who == 'girl' else 'left:-22%;top:-4%;width:130%;height:130%'
             parts.append(f'<div class="avw" style="--c:{c};left:{x}px;top:{y}px"><img src="file://{D}/img/G2_{who}.jpeg" style="{pos}"></div>')
+    for b in boxes:   # images posées sur un cadre (dessins découpés de la carte d'origine, outils/img/g2/) : fig = (nom, x, y, largeur)
+        for nom, x, y, w in b.get('figs', []):
+            parts.append(f'<img src="file://{D}/img/g2/{nom}.png" style="position:absolute;left:{x}px;top:{y}px;width:{w}px">')
     branches = ''.join(branch(b) for b in boxes)
     html = f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">

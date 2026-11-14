@@ -40,15 +40,15 @@ def carte(lid, chip, niveau):
     else:
         neg = '''<ul style="font-size:19px;line-height:1.3;margin-top:-10px"><li>La négation <b>encadre le verbe</b> :</li></ul><div class="ex" style="font-size:19px;margin-top:4px;text-align:center">ne… pas, ne… jamais, ne… plus,<br>ne… rien, ne… personne</div>''' + \
               EX('Léa <b>ne</b> range <b>jamais</b> sa chambre.<br>Devant une voyelle : <b>n’</b> <span class="arrow">→</span> Léa <b>n’</b>écrit <b>rien</b>.', 18)
-    exc = '''<ul style="font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une émotion (surprise, colère, joie…).</li><li>Elle se termine par <b>!</b></li><li>Elle s’ajoute à n’importe quel type de phrase :</li></ul>''' + \
+    exc = '''<ul style="padding-right:84px;font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une émotion (surprise, colère, joie…).</li><li>Elle se termine par <b>!</b></li><li>Elle s’ajoute à n’importe quel type de phrase :</li></ul>''' + \
           EX('Le chien renverse sa gamelle ! <span style="font-size:15px">(déclarative)</span><br>Range ta chambre ! <span style="font-size:15px">(impérative)</span>', 17)
     boxes = [
-     dict(id='decl', col='bleu', geom=TL, title=tl_title, avatar=('girl', 322, 122), html=decl, hstyle=''),
-     dict(id='inter', col='vert', geom=TC, title=inter_t, html=inter),
-     dict(id='imp', col='violet', geom=TR, title='Impérative', avatar=('boy', 1250, 122), html=imp),
-     dict(id='aff', col='rose', geom=AFF, title='Affirmative', html=aff, style='padding-top:50px'),
-     dict(id='neg', col='turquoise', geom=NEG, title='Négative', html=neg, style='padding-top:50px'),
-     dict(id='excl', col='orange', geom=EXC, title='Exclamative', html=exc, style='padding-top:50px'),
+     dict(id='decl', col='bleu', geom=TL, title=tl_title, figs=[('girl', 352, 98, 84)], html=decl, hstyle=''),
+     dict(id='inter', col='vert', geom=TC, title=inter_t, html=inter, figs=[('q', 810, 98, 100)]),
+     dict(id='imp', col='violet', geom=TR, title='Impérative', figs=[('boy', 1262, 98, 116)], html=imp),
+     dict(id='aff', col='rose', geom=AFF, title='Affirmative', html=aff, figs=[('thumb', 340, 785, 62)], style='padding-top:50px'),
+     dict(id='neg', col='turquoise', geom=NEG, title='Négative', html=neg, figs=[('no', 832, 626, 58)], style='padding-top:50px'),
+     dict(id='excl', col='orange', geom=EXC, title='Exclamative', html=exc, figs=[('burst', 1295, 640, 78)], style='padding-top:50px'),
     ]
     legend = ''
     titre = 'Les types<br>et les formes<br>de phrase'
