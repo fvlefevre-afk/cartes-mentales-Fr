@@ -52,7 +52,7 @@ def carte(lid, chip, niveau):
     ]
     legend = ''
     titre = 'Les types<br>et les formes<br>de phrase'
-    return build(lid, titre, chip, legend, boxes, sub='', title_size=34, legend_pos='right:26px;top:540px')
+    return build(lid, titre, chip, legend, boxes, sub='', title_size=34, legend_pos='right:26px;top:540px', cloud_dy=26)
 
 
 if __name__ == '__main__':

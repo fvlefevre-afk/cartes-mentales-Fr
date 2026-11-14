@@ -23,7 +23,7 @@ BR = (945, 568, 437, 350)
 CX, CY = 700, 440
 
 
-def branch(b):
+def branch(b, dy=0):
     l, t, w, h = b['geom']
     col = PAL[b['col']][0]
     bx = l + w / 2
@@ -37,8 +37,8 @@ def branch(b):
         ex, ey = CX, t + h - 5
     else:                                   # bas
         ex, ey = min(max(CX + (bx - CX) * 0.6, l + 80), l + w - 80), t + 5
-    ang = math.atan2(ey - CY, ex - CX)
-    sx, sy = CX + 115 * math.cos(ang), CY + 75 * math.sin(ang)
+    ang = math.atan2(ey - CY - dy, ex - CX)
+    sx, sy = CX + 115 * math.cos(ang), CY + dy + 75 * math.sin(ang)
     mx, my = (sx + ex) / 2, (sy + ey) / 2
     return f'<path d="M{sx:.0f} {sy:.0f} Q{mx:.0f} {sy:.0f} {ex:.0f} {ey:.0f}" stroke="{col}"/>'
 
@@ -49,7 +49,7 @@ def branch(b):
 CHIP_NIVEAUX = {}
 
 
-def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='right:18px;top:12px'):
+def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='right:18px;top:12px', cloud_dy=0):   # cloud_dy : descend le nuage central (et ses rayons, son titre) de cloud_dy px
     import re
     if lid in CHIP_NIVEAUX: chip = re.sub(r'—\s*CM1\s*$', '— ' + CHIP_NIVEAUX[lid], chip)
     nb=lambda t: re.sub(r'« ', '«&nbsp;', re.sub(r' ([?!:;»])', r'&nbsp;\1', t))
@@ -71,16 +71,16 @@ def build(lid, titre, chip, legend, boxes, sub='', title_size=40, legend_pos='ri
     for b in boxes:   # images posées sur un cadre (dessins découpés de la carte d'origine, outils/img/g2/) : fig = (nom, x, y, largeur)
         for nom, x, y, w in b.get('figs', []):
             parts.append(f'<img src="file://{D}/img/g2/{nom}.png" style="position:absolute;left:{x}px;top:{y}px;width:{w}px">')
-    branches = ''.join(branch(b) for b in boxes)
+    branches = ''.join(branch(b, cloud_dy) for b in boxes)
     html = f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">
 <g fill="none" stroke-width="7" stroke-linecap="round">{branches}</g>
-<g><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
+<g transform="translate(0,{cloud_dy})"><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
 <g fill="#eaf2fd"><circle cx="620" cy="420" r="64"/><circle cx="700" cy="395" r="74"/><circle cx="785" cy="420" r="64"/><circle cx="600" cy="470" r="51"/><circle cx="700" cy="478" r="58"/><circle cx="805" cy="470" r="51"/><rect x="600" y="410" width="205" height="80"/></g>
 <g stroke-width="6" stroke-linecap="round"><path d="M520 400 l-26 -12" stroke="#f5b700"/><path d="M515 440 h-30" stroke="#e67e22"/><path d="M522 482 l-26 12" stroke="#c62828"/><path d="M880 400 l26 -12" stroke="#f5b700"/><path d="M885 440 h30" stroke="#23845a"/><path d="M878 482 l26 12" stroke="#7b3fa0"/></g></g>
 </svg>
 <div class="chip">{chip}</div>
-<div class="title" style="font-size:{title_size}px"><div>{titre}{f'<small>{sub}</small>' if sub else ''}</div></div>
+<div class="title" style="font-size:{title_size}px;margin-top:{cloud_dy}px"><div>{titre}{f'<small>{sub}</small>' if sub else ''}</div></div>
 {''.join(parts)}
 {f'<div style="position:absolute;{legend_pos};font-size:17px;background:#fff;border:2px solid #d8dde8;border-radius:14px;padding:2px 12px">{legend}</div>' if legend else ''}
 </body></html>'''

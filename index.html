@@ -232,7 +232,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .zone{position:absolute;border-radius:max(8px,1.86cqw);border:max(2px,.25cqw) dashed color-mix(in srgb,var(--z) 55%,transparent);background:color-mix(in srgb,var(--z) 4%,transparent);transition:border-color .2s,background .2s}
 .zone:hover,.zone:focus-visible{border-color:var(--z);background:color-mix(in srgb,var(--z) 8%,transparent);outline:0}
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
-.zone .num{position:absolute;right:-.3rem;top:-.3rem}
+.zone .num{position:absolute;left:max(.4rem,1.3cqw);top:max(.35rem,.8cqw);right:auto;width:max(1.8rem,3.4cqw);height:max(1.8rem,3.4cqw);font-size:max(1rem,1.7cqw)}   /* numéro dans le cadre, à l'écart des bords (13/11/2026) */
 .num.done{background:#23845a}
 .sm-page,.sheet.lesson{position:relative}@media (max-width:700px){.sm-prog{order:3;flex-basis:100%;justify-content:center}.sm-bulle{min-width:11rem}}
 @media (max-width:700px){body .sheet a.sm-retour{position:static;display:block;width:max-content;margin:0 0 .5rem auto}}.sm-retour-scr{top:-.1rem;right:.8rem;font-size:.8rem;padding:.1rem .6rem}.scr-head{padding-right:0}.sm-retour{position:absolute;right:1.2rem;top:1rem;text-decoration:none;font-weight:700;font-size:.95rem;color:var(--z);background:#fff;border:2px solid var(--z);border-radius:2rem;padding:.3rem .9rem;z-index:2}.sm-retour:hover{background:var(--z);color:#fff}
@@ -831,7 +831,6 @@ function renderLessonMap(t){
     <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))} : ${esc(t.titre)}">${chipCM2(t)}${(L.masque||[]).map(z=>`<span class="masque" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%" title="Pas au programme du CE2"></span>`).join('')}
       ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
     </div>
-    <div class="map-path no-print">${L.sections.map((s,k)=>{const d=secDone(L,t.id,s.id);return `<a href="#t=${t.id}/s:${s.id}" style="--z:${s.couleur}"><span class="num${d?' done':''}">${d?'✓':k+1}</span>${esc(s.nom)}</a>`;}).join('<span class="arrow">›</span>')}</div>
     ${t.html?`<div class="body" style="margin-top:1.4rem">${t.html}</div>`:''}
   </div>`;
   if(t.html) renderConj(main);
