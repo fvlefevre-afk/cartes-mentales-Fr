@@ -216,6 +216,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 
 /* ===== Leçon interactive G1 ===== */
 [hidden]{display:none!important}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}   /* titre de la leçon : lu par les lecteurs d'écran, redondant avec le nuage de la carte (13/11/2026) */
 .map{position:relative;border-radius:.6rem;overflow:hidden;box-shadow:0 2px 10px rgba(30,42,68,.12);background:#fff}
 .map img{display:block;width:100%;height:auto}
 .map,.mapw{container-type:inline-size}
@@ -827,7 +828,7 @@ function renderLessonMap(t){
   const first=sid=>L.ecrans.findIndex(e=>e.sec===sid);
   main.innerHTML=`<div class="sheet lesson" style="--fam:${f.couleur}">
     <div class="crumbs"><a href="#">Sommaire</a> › ${esc(f.nom)}</div>
-    <div class="head">${belt(t)}<div><h2>${esc(t.titre)}</h2><div class="meta">Clique sur une partie de la carte pour découvrir la leçon.</div></div></div>
+    <h2 class="vh">${esc(t.titre)}</h2>
     <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))} : ${esc(t.titre)}">${chipCM2(t)}${(L.masque||[]).map(z=>`<span class="masque" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%" title="Pas au programme du CE2"></span>`).join('')}
       ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
     </div>

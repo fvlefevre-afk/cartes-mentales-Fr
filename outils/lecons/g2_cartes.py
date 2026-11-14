@@ -20,37 +20,37 @@ PALG = {'bleu': ('#1f5fc4', '#dcebfb', '#a9cff5', '#1f5fc4'), 'vert': ('#23845a'
 
 def carte(lid, chip, niveau):
     ce2, cm2 = niveau == 'CE2', niveau == 'CM2'  # CM1 : ni l'un ni l'autre
-    decl = '''<ul style="padding-right:104px;font-size:20px;margin-top:-14px">
+    decl = '''<ul style="padding-right:104px;font-size:20px;margin-top:-14px;min-height:88px">
   <li>Elle <b>raconte</b>, elle <b>informe</b>.</li>
-  <li>Elle se termine par un point <b>.</b> ou par <b>!</b></li></ul>''' + EX(f'{S.format("Léa")} {V.format("range")} sa chambre.', 21)
+  <li>Elle finit par <b>.</b> ou par <b>!</b></li></ul>''' + EX(f'{S.format("Léa")} {V.format("range")} sa chambre.', 21)
     if cm2:
-        decl = decl.replace('font-size:20px;margin-top:-14px', 'font-size:19px;line-height:1.25;margin-top:-14px') + \
+        decl = decl.replace('font-size:20px;margin-top:-14px', 'font-size:19px;line-height:1.25;margin-top:-14px;min-height:88px') + \
             '<p class="small" style="margin:10px 0 0;font-size:17px;line-height:1.4"><b>Phrase simple</b> : un seul <span class="v">verbe conjugué</span>.<br><b>Phrase complexe</b> : plusieurs verbes conjugués, reliés par <b>et</b>, <b>mais</b>, <b>car</b> ou une virgule.</p>'
     tl_title = 'Déclarative'
     if ce2:
-        inter = '''<ul style="font-size:19.5px;line-height:1.3;margin-top:-12px"><li>Elle pose une question.</li><li>Elle se termine par <b>?</b></li><li><b>2 façons</b> de la poser :</li></ul>''' + \
+        inter = '''<ul style="font-size:19.5px;line-height:1.3;margin-top:-12px"><li>Elle pose une question.</li><li>Elle finit par <b>?</b></li><li><b>2 façons</b> de la poser :</li></ul>''' + \
                 EX(f'{S.format("Tu")} {V.format("ranges")} ta chambre ?<br>Est-ce que {S.format("tu")} {V.format("ranges")} ta chambre ?', 19)
         inter_t = 'Interrogative'
     else:
-        inter = '''<ul style="font-size:19.5px;line-height:1.3;margin-top:-12px"><li>Elle pose une question.</li><li>Elle se termine par <b>?</b></li><li><b>3 façons</b> de la poser :</li></ul>''' + \
+        inter = '''<ul style="font-size:19.5px;line-height:1.3;margin-top:-12px"><li>Elle pose une question.</li><li>Elle finit par <b>?</b></li><li><b>3 façons</b> de la poser :</li></ul>''' + \
                 EX(f'{S.format("Tu")} {V.format("ranges")} ta chambre ?<br>Est-ce que {S.format("tu")} {V.format("ranges")} ta chambre ?<br>{V.format("Ranges")}-{S.format("tu")} ta chambre ?', 18)
         inter_t = 'Interrogative'
-    imp = '''<ul style="font-size:19.5px;padding-right:104px;line-height:1.3;margin-top:-14px"><li>Elle donne un <b>ordre</b>, un <b>conseil</b>.</li><li>Elle se termine par <b>.</b> ou <b>!</b></li><li><b>Pas de sujet écrit</b></li></ul>''' + \
-          EX(f'{S.format("Vous")} {V.format("rangez")} votre chambre. <span style="font-size:14px">(polie)</span><br>{V.format("Rangez")} votre chambre. <span style="font-size:14px">(directe)</span>', 17)
-    aff = '<ul style="font-size:20px;margin-top:-10px"><li>Elle <b>affirme</b> quelque chose.</li></ul>' + EX(f'{S.format("Léa")} {V.format("range")} sa chambre.<br>{S.format("Léa")} {V.format("aime")} le chocolat.', 20)
+    imp = '''<ul style="font-size:19.5px;padding-right:104px;line-height:1.3;margin-top:-14px"><li>Elle donne un <b>ordre</b>, un <b>conseil</b>.</li><li>Elle finit par <b>.</b> ou <b>!</b></li><li><b>Pas de sujet</b> écrit</li></ul>''' + \
+          EX(f'{V.format("Range")} ta chambre !<br>{V.format("Rangez")} votre chambre.', 19)
+    aff = '<ul style="font-size:20px;margin-top:-10px"><li>Elle <b>affirme</b> quelque chose.</li><li>C’est le contraire de la négative.</li></ul>' + EX(f'{S.format("Léa")} {V.format("range")} sa chambre.<br>{S.format("Léa")} {V.format("aime")} le chocolat.', 20)
     if ce2:
         neg = '''<ul style="font-size:19.5px;line-height:1.3;margin-top:-10px"><li>La négation <b>encadre le verbe</b> :</li></ul><div class="ex" style="font-size:21px;margin-top:4px;text-align:center"><b>ne</b> … <b>pas</b></div>''' + \
               EX(f'{S.format("Léa")} <b>ne</b> {V.format("range")} <b>pas</b> sa chambre.<br>Devant une voyelle : <b>n’</b> <span class="arrow">→</span> {S.format("Léa")} <b>n’</b>{V.format("aime")} <b>pas</b> le thé.', 18)
     else:
         neg = '''<ul style="font-size:19px;line-height:1.3;margin-top:-10px"><li>La négation <b>encadre le verbe</b> :</li></ul><div class="ex" style="font-size:19px;margin-top:4px;text-align:center">ne… pas, ne… jamais, ne… plus,<br>ne… rien, ne… personne</div>''' + \
               EX(f'{S.format("Léa")} <b>ne</b> {V.format("range")} <b>jamais</b> sa chambre.<br>Devant une voyelle : <b>n’</b> <span class="arrow">→</span> {S.format("Léa")} <b>n’</b>{V.format("écrit")} <b>rien</b>.', 18)
-    exc = '''<ul style="padding-right:84px;font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une <b>émotion</b> (surprise, colère, joie…).</li><li>Elle se termine par <b>!</b></li><li>Elle s’ajoute à n’importe quel type de phrase :</li></ul>''' + \
+    exc = '''<ul style="padding-right:84px;font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une <b>émotion</b> (surprise, colère, joie…).</li><li>Elle finit par <b>!</b></li><li>Elle s’ajoute à un type de phrase :</li></ul>''' + \
           EX(f'{S.format("Le chien")} {V.format("renverse")} sa gamelle ! <span style="font-size:15px;color:#1f5fc4;font-weight:700">(déclarative)</span><br>{V.format("Range")} ta chambre ! <span style="font-size:15px;color:#7b3fa0;font-weight:700">(impérative)</span>', 17)
     boxes = [
      dict(id='decl', col='bleu', pal=PALG['bleu'], geom=TL, ext=24, title=tl_title, figs=[('girl', 352, 98, 84)], html=decl, hstyle='top:30px'),
      dict(id='inter', col='vert', pal=PALG['vert'], geom=TC, ext=24, title=inter_t, hstyle='top:30px', html=inter, figs=[('q', 800, 92, 90)]),
      dict(id='imp', col='violet', pal=PALG['violet'], geom=TR, ext=24, title='Impérative', hstyle='top:30px', figs=[('boy', 1244, 106, 112)], html=imp),
-     dict(id='aff', ext=24, col='rose', pal=PALG['rose'], geom=AFF, title='Affirmative', hstyle='top:30px', html=aff, figs=[('thumb', 340, 785, 62)], style='padding-top:50px'),
+     dict(id='aff', ext=24, col='rose', pal=PALG['rose'], geom=AFF, title='Affirmative', hstyle='top:30px', html=aff, figs=[('thumb', 352, 826, 56)], style='padding-top:50px'),
      dict(id='neg', ext=24, col='turquoise', pal=PALG['turquoise'], geom=NEG, title='Négative', hstyle='top:30px', html=neg, figs=[('no', 850, 632, 54)], style='padding-top:50px'),
      dict(id='excl', ext=24, col='orange', pal=PALG['orange'], geom=EXC, title='Exclamative', hstyle='top:30px', html=exc, figs=[('burst', 1290, 700, 74)], style='padding-top:50px'),
     ]
