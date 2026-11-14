@@ -62,7 +62,7 @@ lecon('G3', ['Le <b>complément du nom</b> précise le nom ; il commence souvent
     ('une tasse |à café|', 'On peut l’enlever : le groupe nominal reste correct.')],
    C('une boîte <à chaussures>', 'Clique sur le complément du nom.', 'Il précise le nom « boîte ».'),
    [C('le vélo <de mon frère>', 'Clique sur le complément du nom.', 'Il précise le nom « vélo ».'),
-    C('un sac <en cuir> noir', 'Clique sur le complément du nom.', 'Il commence par « en ».')]),
+    C('un sac <en cuir> noir', 'Clique sur le complément du nom.', 'Il commence par « en ».')], cumul=True),
  E('adj', 'remplacer', 'Épithète ou attribut ?', 'boy', 'L’adjectif est collé au nom, ou relié par le verbe être.',
    [('un chat ~noir~', 'Collé au nom : l’adjectif est épithète.'),
     ('Le chat (est) ~noir~.', 'Relié au sujet par « être » : il est attribut du sujet.'),
@@ -70,7 +70,7 @@ lecon('G3', ['Le <b>complément du nom</b> précise le nom ; il commence souvent
    Q('Ma sœur est contente.', ['attribut du sujet', 'épithète'], 'Il est relié au sujet par le verbe être.', '« contente » est…'),
    [Q('une robe rouge', ['épithète', 'attribut du sujet'], 'Il est collé au nom.', '« rouge » est…'),
     Q('Ces pommes paraissent mûres.', ['attribut du sujet', 'épithète'], 'Il est relié par « paraître ».', '« mûres » est…'),
-    Q('un grand arbre', ['épithète', 'attribut du sujet'], 'Il est collé au nom.', '« grand » est…')]))
+    Q('un grand arbre', ['épithète', 'attribut du sujet'], 'Il est collé au nom.', '« grand » est…')], cumul=True))
 
 lecon('G4', ['Les <b>prépositions</b> (à, de, sur, sous, dans, avec, pour, sans, chez…) sont invariables.',
              '<b>le, la, les</b> : déterminant devant un nom, <b>pronom</b> devant un verbe.', 'Les pronoms compléments : <b>me, te, le, la, lui, nous, vous, les, leur</b>.',

@@ -15,7 +15,14 @@ S, V = '<span class="s">{}</span>', '<span class="v">{}</span>'
 # couleurs aussi soutenues que sur G1 : (bordure, fond du cadre, fond du titre, mots forts)
 PALG = {'bleu': ('#1f5fc4', '#dcebfb', '#a9cff5', '#1f5fc4'), 'vert': ('#23845a', '#dff3e2', '#a9e0b4', '#16914f'),
         'violet': ('#7b3fa0', '#eadcf7', '#cfb0ea', '#8a35c0'), 'rose': ('#c2185b', '#fde0ea', '#f7a8c4', '#d4145f'),
-        'turquoise': ('#00838f', '#d5f0f2', '#9fdde4', '#00909e'), 'orange': ('#e67e22', '#ffeacf', '#fcc78a', '#e0640a')}
+        'turquoise': ('#00838f', '#d5f0f2', '#9fdde4', '#00909e'), 'orange': ('#e67e22', '#ffeacf', '#fcc78a', '#e0640a'), 'rouge': ('#c62828', '#fde3e1', '#f6a9a4', '#c62828')}
+
+
+def police():
+    """Style Andika (même police que les pages de la leçon) à ajouter à la carte."""
+    pol = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'polices'))
+    return (f'<style>@font-face{{font-family:"Andika";font-weight:400;src:url(file://{pol}/andika-400.woff2)}}@font-face{{font-family:"Andika";font-weight:700 900;src:url(file://{pol}/andika-700.woff2)}}'
+              'body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style>')   # même police que les pages de la leçon (13/11/2026)
 
 
 def carte(lid, chip, niveau, geo=None, bdy=0, cdy=26):
@@ -63,14 +70,11 @@ def carte(lid, chip, niveau, geo=None, bdy=0, cdy=26):
             '<span><b>À retenir :</b> une phrase a <b>toujours un type</b>. Elle peut en plus être <b>négative</b> et/ou <b>exclamative</b>.</span></div>')
     duo = ('<img src="file://' + os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'img', 'g2', 'duo.png') + '" style="position:absolute;left:1200px;top:462px;width:180px">'
            + bulle(964, 440, 238, 126, 'Quel est son type ?<br>Elle <b>raconte</b>, elle <b>demande</b> ou elle <b>ordonne</b> ?', 'right:-22px;bottom:30px;border:11px solid transparent;border-left:18px solid #1f5fc4;border-right:0'))
-    pol = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'polices'))
-    police = (f'<style>@font-face{{font-family:"Andika";font-weight:400;src:url(file://{pol}/andika-400.woff2)}}@font-face{{font-family:"Andika";font-weight:700 900;src:url(file://{pol}/andika-700.woff2)}}'
-              'body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style>')   # même police que les pages de la leçon (13/11/2026)
-    extra_html = police   # note « À retenir » et duo d'enfants (variables note et duo) retirés le 13/11/2026 : surchargeaient la page
+    extra_html = police()   # note « À retenir » et duo d'enfants (variables note et duo) retirés le 13/11/2026 : surchargeaient la page
     return build(lid, titre, chip, legend, boxes, extra_html=extra_html, sub='', title_size=34, cloud_dy=cdy)
 
 
-def mesurer(lid):
+def mesurer(lid, ids=('decl', 'inter', 'imp', 'aff', 'neg', 'excl')):
     """Hauteur utile (bas du dernier contenu) de chaque cadre, dans la page sortie/<lid>map.html."""
     from playwright.sync_api import sync_playwright
     hp = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sortie', f'{lid}map.html')
@@ -79,7 +83,7 @@ def mesurer(lid):
         r = pg.evaluate("""() => [...document.querySelectorAll('.box')].map(bx => { let m = 0;
             [...bx.children].forEach(c => { if (c.tagName !== 'H2') m = Math.max(m, c.getBoundingClientRect().bottom); }); return m; })""")
         b.close()
-    return dict(zip(['decl', 'inter', 'imp', 'aff', 'neg', 'excl'], r))
+    return dict(zip(ids, r))
 
 
 MARGE = 24   # espace sous le dernier contenu
@@ -108,15 +112,19 @@ def auto(lid, chip, niveau):
     return zones
 
 
-def mettre_dans_le_site(zones):
+def mettre_dans_le_site(zones, lesson='G2'):
     """Zones de G2 (CM1) dans LESSONS ; zones propres au CE2 et au CM2 dans ZONES_NIV (une carte par classe, cadres de hauteurs différentes)."""
     import re, json
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'index.html'); s = open(p).read()
-    a = s.index('\nG2:{"sections"'); b = s.index('"ecrans"', a); seg = s[a:b]
-    for k, z in zones['G2'].items():
+    a = s.index('\n%s:{"sections"' % lesson); b = s.index('"ecrans"', a); seg = s[a:b]
+    for k, z in zones[lesson].items():
         seg = re.sub(r'("id": "%s".*?"zone": )\[[^\]]*\]' % k, lambda m: m.group(1) + str(z), seg, count=1)
     s = s[:a] + seg + s[b:]
-    ligne = 'const ZONES_NIV=' + json.dumps({k: v for k, v in zones.items() if k != 'G2'}) + ';   /* zones propres à une classe (cartes de G2 ajustées à leur contenu, outils/lecons/g2_cartes.py) */\n'
+    ex = {}
+    m0 = re.search(r'const ZONES_NIV=(.*?);   /\*', s)
+    if m0: ex = json.loads(m0.group(1))
+    ex.update({k: v for k, v in zones.items() if k != lesson})
+    ligne = 'const ZONES_NIV=' + json.dumps(ex) + ';   /* zones propres à une classe (cartes de G2 ajustées à leur contenu, outils/lecons/g2_cartes.py) */\n'
     if 'const ZONES_NIV=' in s: s = re.sub(r'const ZONES_NIV=.*?\n', lambda m: ligne, s, count=1)
     else:
         fin = "LESSONS[id2]=JSON.parse(ren(JSON.stringify(LESSONS[id2])));}});\n"
