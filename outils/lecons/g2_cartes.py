@@ -45,7 +45,7 @@ def carte(lid, chip, niveau):
         neg = '''<ul style="font-size:19px;line-height:1.3;margin-top:-10px"><li>La négation <b>encadre le verbe</b> :</li></ul><div class="ex" style="font-size:19px;margin-top:4px;text-align:center">ne… pas, ne… jamais, ne… plus,<br>ne… rien, ne… personne</div>''' + \
               EX(f'{S.format("Léa")} <b>ne</b> {V.format("range")} <b>jamais</b> sa chambre.<br>Devant une voyelle : <b>n’</b> <span class="arrow">→</span> {S.format("Léa")} <b>n’</b>{V.format("écrit")} <b>rien</b>.', 18)
     exc = '''<ul style="padding-right:84px;font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une <b>émotion</b> (surprise, colère, joie…).</li><li>Elle finit par <b>!</b></li><li>Elle s’ajoute à un type de phrase :</li></ul>''' + \
-          EX(f'{S.format("Le chien")} {V.format("renverse")} sa gamelle ! <span style="font-size:15px;color:#1f5fc4;font-weight:700">(déclarative)</span><br>{V.format("Range")} ta chambre ! <span style="font-size:15px;color:#7b3fa0;font-weight:700">(impérative)</span>', 17)
+          EX(f'{S.format("Le chien")} {V.format("renverse")} sa gamelle ! <span style="font-size:15px;color:#111;font-weight:700">(déclarative)</span><br>{V.format("Range")} ta chambre ! <span style="font-size:15px;color:#111;font-weight:700">(impérative)</span>', 17)
     boxes = [
      dict(id='decl', col='bleu', pal=PALG['bleu'], geom=TL, ext=24, title=tl_title, figs=[('girl', 352, 98, 84)], html=decl, hstyle='top:30px'),
      dict(id='inter', col='vert', pal=PALG['vert'], geom=TC, ext=24, title=inter_t, hstyle='top:30px', html=inter, figs=[('q', 800, 92, 90)]),

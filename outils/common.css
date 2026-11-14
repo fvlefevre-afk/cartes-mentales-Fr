@@ -54,7 +54,7 @@ table.tr td{padding:3px 6px;border-bottom:1.5px dashed #d8dde8}
 table.cj{border-collapse:collapse;font-size:19px;line-height:1.35}
 table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
 
-.box.tint b{color:var(--k)}
-.box.tint li::marker{color:var(--k)}
+.box.tint b{color:#111}
+.box.tint li::marker{color:var(--c)}
 .box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
 .box.tint h2{color:#111}
