@@ -44,7 +44,7 @@ def carte(lid, chip, niveau):
           EX('Le chien renverse sa gamelle ! <span style="font-size:15px">(déclarative)</span><br>Range ta chambre ! <span style="font-size:15px">(impérative)</span>', 17)
     boxes = [
      dict(id='decl', col='bleu', geom=TL, ext=24, title=tl_title, figs=[('girl', 352, 98, 84)], html=decl, hstyle='top:30px'),
-     dict(id='inter', col='vert', geom=TC, ext=24, title=inter_t, hstyle='top:30px', html=inter, figs=[('q', 790, 108, 96)]),
+     dict(id='inter', col='vert', geom=TC, ext=24, title=inter_t, hstyle='top:30px', html=inter, figs=[('q', 800, 92, 90)]),
      dict(id='imp', col='violet', geom=TR, ext=24, title='Impérative', hstyle='top:30px', figs=[('boy', 1244, 106, 112)], html=imp),
      dict(id='aff', ext=24, col='rose', geom=AFF, title='Affirmative', hstyle='top:30px', html=aff, figs=[('thumb', 340, 785, 62)], style='padding-top:50px'),
      dict(id='neg', ext=24, col='turquoise', geom=NEG, title='Négative', hstyle='top:30px', html=neg, figs=[('no', 792, 636, 54)], style='padding-top:50px'),
