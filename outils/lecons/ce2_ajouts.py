@@ -43,7 +43,7 @@ lecon('G2', ['3 types de phrase : <b>déclarative</b> (.), <b>interrogative</b> 
    [('Léa dit : « Je pars. »', 'Les deux-points annoncent les paroles.'),
     ('Tom demande : « Tu viens ? »', 'Les paroles sont entre guillemets.')],
    C('Maman crie : <« À table ! »>', 'Clique sur les paroles.', 'Elles sont entre guillemets.'),
-   [Q('', ['Il dit : « Bonjour. »', 'Il dit « Bonjour. » :', 'Il dit : Bonjour.'], 'Deux-points, puis guillemets.', 'Quelle phrase est bien écrite ?')]))
+   [Q('', ['Il dit : « Bonjour. »', 'Il dit « Bonjour. » :', 'Il dit : Bonjour.'], 'Deux-points, puis guillemets.', 'Quelle phrase est bien écrite ?')], cumul=True))
 
 lecon('G3', ['Le groupe nominal : <b>déterminant + nom</b>, parfois un <b>adjectif</b>.', 'Les accords : -e au féminin, -s au pluriel ; -x et -aux (un cheval → des chevaux).',
              'Les féminins qui s’entendent : lecteur → lectrice, joyeux → joyeuse.'],

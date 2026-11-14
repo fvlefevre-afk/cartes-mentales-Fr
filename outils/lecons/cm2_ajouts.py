@@ -45,7 +45,7 @@ lecon('G2', ['Une <b>phrase simple</b> a <b>un seul verbe conjugué</b> ; une <b
    Q('Le soleil brille et les oiseaux chantent.', ['complexe : deux verbes conjugués', 'simple : un seul verbe conjugué'], 'Compte les verbes conjugués.', 'Cette phrase est…'),
    [Q('Mon frère lit une bande dessinée.', ['simple : un seul verbe conjugué', 'complexe : deux verbes conjugués'], 'Compte les verbes conjugués.', 'Cette phrase est…'),
     Q('Je mange parce que j’ai faim.', ['complexe : deux verbes conjugués', 'simple : un seul verbe conjugué'], 'Compte les verbes conjugués.', 'Cette phrase est…'),
-    Q('Nous partirons demain matin.', ['simple : un seul verbe conjugué', 'complexe : deux verbes conjugués'], 'Compte les verbes conjugués.', 'Cette phrase est…')]),
+    Q('Nous partirons demain matin.', ['simple : un seul verbe conjugué', 'complexe : deux verbes conjugués'], 'Compte les verbes conjugués.', 'Cette phrase est…')], cumul=True),
  E('decl', 'wagon', 'Des mots qui relient', 'boy', 'Un petit mot peut relier deux parties de la phrase.',
    [('Il (pleut). Je (prends) mon parapluie.', 'Deux phrases simples.'),
     ('Il (pleut), |donc| je (prends) mon parapluie.', 'Une phrase complexe : « donc » relie les deux parties.'),
