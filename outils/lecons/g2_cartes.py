@@ -44,11 +44,11 @@ def carte(lid, chip, niveau):
           EX('Le chien renverse sa gamelle ! <span style="font-size:15px">(déclarative)</span><br>Range ta chambre ! <span style="font-size:15px">(impérative)</span>', 17)
     boxes = [
      dict(id='decl', col='bleu', geom=TL, title=tl_title, figs=[('girl', 352, 98, 84)], html=decl, hstyle=''),
-     dict(id='inter', col='vert', geom=TC, title=inter_t, html=inter, figs=[('q', 810, 98, 100)]),
-     dict(id='imp', col='violet', geom=TR, title='Impérative', figs=[('boy', 1262, 98, 116)], html=imp),
+     dict(id='inter', col='vert', geom=TC, title=inter_t, html=inter, figs=[('q', 790, 108, 96)]),
+     dict(id='imp', col='violet', geom=TR, title='Impérative', figs=[('boy', 1244, 106, 112)], html=imp),
      dict(id='aff', col='rose', geom=AFF, title='Affirmative', html=aff, figs=[('thumb', 340, 785, 62)], style='padding-top:50px'),
-     dict(id='neg', col='turquoise', geom=NEG, title='Négative', html=neg, figs=[('no', 832, 626, 58)], style='padding-top:50px'),
-     dict(id='excl', col='orange', geom=EXC, title='Exclamative', html=exc, figs=[('burst', 1295, 640, 78)], style='padding-top:50px'),
+     dict(id='neg', col='turquoise', geom=NEG, title='Négative', html=neg, figs=[('no', 792, 636, 54)], style='padding-top:50px'),
+     dict(id='excl', col='orange', geom=EXC, title='Exclamative', html=exc, figs=[('burst', 1290, 700, 74)], style='padding-top:50px'),
     ]
     legend = ''
     titre = 'Les types<br>et les formes<br>de phrase'
