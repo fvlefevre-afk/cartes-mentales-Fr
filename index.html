@@ -471,6 +471,7 @@ body.mode-plein .sheet.lesson{border-radius:12px}
 @media (min-width:701px){.scr-head{padding-right:12.5rem}}
 .nav .nb-t b{font-size:1rem}.nav .nb-t small{font-size:.85rem}
 .cumul{display:block;margin:.35rem 0}.cumul small{display:block;font-size:1rem;font-weight:700;color:var(--ink)}.cumul:not(.cur){opacity:.75;font-size:.85em}.cumul.cur{animation:cumulIn .35s ease-out}@keyframes cumulIn{from{opacity:0;transform:translateY(8px)}}@media (prefers-reduced-motion:reduce){.cumul.cur{animation:none}}
+.sm-n{width:auto;min-width:5.2rem;height:auto;border-radius:1.4rem;padding:.25rem .8rem;flex-direction:column;line-height:1.05}.sm-n small{display:block;font-size:.95rem;font-weight:700;letter-spacing:.02em}   /* « Étape 1 » (13/11/2026) */
 </style>
 </head>
 <body>
@@ -838,7 +839,7 @@ function renderSectionMap(t,sid){
   const faits=items.filter(([,k])=>P[k]).length, prochain=(items.find(([,k])=>!P[k])||[0,-1])[1];
   const im=IMG[t.id]||{}, g=items[0]?items[0][0].guide:'girl', av=g==='duo'?im.duo:(im[g]||Object.values(im)[1]||'');
   const etoiles=items.map(([,k])=>`<span class="sm-etoile${P[k]?' on':''}">★</span>`).join('');
-  const etapes=items.map(([e,k],i)=>`<li class="sm-etape${P[k]?' fait':k===prochain?' suivant':''}"><span class="sm-n">${P[k]?'✓':i+1}</span><span class="sm-pic">${PICTO[e.picto]||''}</span><div class="sm-corps"><b>${esc(e.titre)}</b>${P[k]?'<small>Réussi !</small>':k===prochain?'<small>À faire maintenant</small>':''}</div><div class="sm-actions"><a class="sm-go" href="#t=${t.id}/${k}">👀 Je regarde</a><a class="sm-ex" href="#t=${t.id}/${k}?atoi">✏️ À toi !</a></div></li>`).join('');
+  const etapes=items.map(([e,k],i)=>`<li class="sm-etape${P[k]?' fait':k===prochain?' suivant':''}"><span class="sm-n"><small>${P[k]?'✓ Étape':'Étape'}</small>${i+1}</span><span class="sm-pic">${PICTO[e.picto]||''}</span><div class="sm-corps"><b>${esc(e.titre)}</b>${P[k]?'<small>Réussi !</small>':k===prochain?'<small>À faire maintenant</small>':''}</div><div class="sm-actions"><a class="sm-go" href="#t=${t.id}/${k}">👀 Je regarde</a><a class="sm-ex" href="#t=${t.id}/${k}?atoi">✏️ À toi !</a></div></li>`).join('');
   main.innerHTML=`<div class="sheet lesson sm-page lecon-${code(t)}" style="--fam:${f.couleur};--z:${s.couleur}">
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › ${esc(s.nom)}</div>
     <a class="sm-retour" href="#t=${t.id}">🗺️ Carte de la leçon</a>
