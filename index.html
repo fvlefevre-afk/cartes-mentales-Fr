@@ -468,6 +468,15 @@ body.mode-plein .sheet.lesson{border-radius:12px}
 :is([class*="lecon-G"],[class*="lecon-H"],[class*="lecon-V"],[class*="lecon-C"],[class*="lecon-O"]) .choice{border-width:3px}
 :is([class*="lecon-G"],[class*="lecon-H"],[class*="lecon-V"],[class*="lecon-C"],[class*="lecon-O"]) :is(.nav,.stage-ctl) .nb{border-width:3.5px}
 
+/* parcours en 4 étapes de G1 (14/11/2026) : barre de pastilles sous le personnage, comme dans les cartes de maths */
+.parcours{display:flex;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 .9rem}
+.pc{display:inline-flex;align-items:center;gap:.4rem;border:2.5px solid var(--line);background:#fff;color:var(--ink);border-radius:2rem;padding:.3rem .9rem .3rem .4rem;font:inherit;font-weight:700;font-size:1rem;cursor:pointer}
+.pc-n{display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;background:color-mix(in srgb,var(--z) 18%,#fff);color:var(--z);font-size:.85rem}
+.pc.cur{background:var(--z);border-color:var(--z);color:#fff}.pc.cur .pc-n{background:#fff;color:var(--z)}
+.pc.ok{border-color:#23845a}.pc.ok .pc-n{background:#23845a;color:#fff}
+.pc:disabled{opacity:.45;cursor:default}
+.eleve{background:#ffe9a8;border-radius:.4rem;padding:0 .25rem;outline:2px dashed #d99a00}
+.ex-suite{margin-left:.5rem}
 /* écran d'une leçon (13/11/2026) : les points de position ne passent plus sous le bouton « Carte de la leçon » ; en bas, une seule paire de flèches (◀ ▶), le bouton d'étape n'en a plus */
 @media (min-width:701px){.scr-head{padding-right:12.5rem}}
 .nav .nb-t b{font-size:1rem}.nav .nb-t small{font-size:.85rem}
@@ -872,6 +881,7 @@ function renderLessonMap(t){
   if(t.html) renderConj(main);
 }
 
+const PARC4=t=>code(t)==='G1';   /* G1 : parcours en 4 étapes (14/11/2026) : Je regarde, Avec aide, Seul, Je corrige */
 function renderLessonScreen(t,i,direct){
   const L=LESSONS[t.id], e=L.ecrans[i], s=L.sections.find(x=>x.id===e.sec), f=fam(t.f), P=prog(t.id), im=IMG[t.id];
   document.title=code(t)+' — '+e.titre;
@@ -884,6 +894,7 @@ function renderLessonScreen(t,i,direct){
     <div class="scr-head"><span class="picto">${PICTO[e.picto]||''}</span><h2>${esc(e.titre)}${e.cm2?'<span class="tag-cm2">CM2</span>':e.ce2?'<span class="tag-cm2 ce2">CE2</span>':''}</h2>
       <span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p></div>
+    ${PARC4(t)?`<div class="parcours" id="parcours" role="tablist" aria-label="Les 4 étapes">${[['👀','Je regarde'],['🤝','Avec aide'],['✏️','Seul'],['🔍','Je corrige']].map(([ic,nm],k)=>`<button type="button" class="pc${k===0?' cur':''}" data-et="${k+1}"${k>0&&!e.atoi?' disabled':''}><span class="pc-n">${k+1}</span><span aria-hidden="true">${ic}</span> ${nm}</button>`).join('')}</div>`:''}
     <div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
     <div class="stage-ctl">${/^[GHVCO]\d/.test(code(t))?`<a class="nb nb-prec" data-retour href="${i>0?`#t=${t.id}/${i-1}`:`#t=${t.id}`}"><span class="nb-fl">◀</span><span class="nb-t"><b>Retour</b></span></a>`:'<span></span>'}<span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">👀 Voir la suite</button></div>
     <div class="atoi" id="atoi" hidden>
@@ -896,6 +907,7 @@ function renderLessonScreen(t,i,direct){
   </div>`;
   let st=0;
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
+  const P4=PARC4(t), fait4=[false,false,false,false];
   function show(){
     const x=e.steps[st];
     if(e.cumul){   /* les étapes déjà vues restent affichées, la nouvelle est mise en avant (13/11/2026) */
@@ -903,21 +915,27 @@ function renderLessonScreen(t,i,direct){
       cap.textContent=''; cap.classList.remove('on');
     } else { ph.innerHTML=phraseHTML(x.p); cap.textContent=x.c||''; cap.classList.toggle('on',!!x.c); }
     sd.innerHTML=e.steps.map((_,k)=>`<span class="${k<=st?'on':''}"></span>`).join('');
-    nb.textContent=st===e.steps.length-1?'✏️ À toi !':'👀 Voir la suite';
+    nb.textContent=st===e.steps.length-1?(P4?'🤝 Avec aide':'✏️ À toi !'):'👀 Voir la suite';
   }
-  function next(){ if(!$('#atoi').hidden) return; if(st<e.steps.length-1){st++;show();} else startAtoi(); }
+  function next(){ if(!$('#atoi').hidden) return; if(st<e.steps.length-1){st++;show();} else startAtoi(P4?'aide':undefined); }
   nb.addEventListener('click',next);
   $('#stage').addEventListener('click',()=>{ if(st<e.steps.length-1) next(); });
   document.onkeydown=ev=>{ if(!/^#t=[A-Z]\d+(-CM2|-CE2)?\//.test(location.hash)) return; if((ev.key===' '||ev.key==='ArrowRight')&&!/BUTTON|A/.test(ev.target.tagName)){ev.preventDefault();next();} };
   show();
-  if(direct&&e.atoi) startAtoi();
+  const majParc=n=>{ const bar=$('#parcours'); if(!bar) return; bar.querySelectorAll('.pc').forEach(b=>{ const k=+b.dataset.et; b.classList.toggle('cur',k===n); b.classList.toggle('ok',fait4[k-1]&&k!==n); }); };
+  if(P4){ $('#parcours').addEventListener('click',ev=>{ const b=ev.target.closest('.pc'); if(!b||b.disabled) return; const k=+b.dataset.et;
+      if(k===1){ $('#atoi').hidden=true; $('#stage').style.display=''; $('#sdots').style.display=''; nb.hidden=false; st=0; show(); majParc(1); fait4[0]=true; }
+      else startAtoi(['','','aide','seul','corrige'][k]); }); }
+  if(direct&&e.atoi) startAtoi(P4?'aide':undefined);
 
-  function startAtoi(){
-    const box=$('#atoi'); box.hidden=false; nb.hidden=true;
+  function startAtoi(mode){   /* mode (G1 seulement) : 'aide', 'seul' ou 'corrige' */
+    const box=$('#atoi'); box.hidden=false; nb.hidden=true; if(P4) majParc({aide:2,seul:3,corrige:4}[mode]||2); if(P4){ const h=box.querySelector('.atoi-top h3'); if(h&&h.firstChild) h.firstChild.textContent={aide:'Avec aide ',seul:'Seul ',corrige:'Je corrige '}[mode]||'Avec aide '; }
     $('#stage').style.display='none'; $('#sdots').style.display='none';   /* en mode « À toi ! », seul l'exercice reste affiché (13/11/2026) */
-    const base=[e.atoi,...(e.plus||[])], NV=e.niv||null;
+    const base=[e.atoi,...(e.plus||[])], NV=e.niv||null; box.querySelectorAll('.fb-av').forEach(x=>x.remove());
     /* niveau d'exercices selon la classe de la leçon : CE2 = phrases d'origine, CM1 = « Je m'entraîne », CM2 = « Défi » (plus de boutons, 08/11/2026) */
-    const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie=NV&&lvl>1?NV[lvl]:base;
+    const lvl=niveauDe(t)==='CE2'?1:niveauDe(t)==='CM2'?3:2, serie0=NV&&lvl>1?NV[lvl]:base;
+    /* parcours en 4 étapes : 2 = le premier exercice avec l'aide affichée, 3 = les autres exercices seul, 4 = je trouve l'erreur d'un élève */
+    const serie=!mode?serie0:mode==='aide'?serie0.slice(0,1):mode==='seul'?(serie0.length>1?serie0.slice(1):serie0):serie0.filter(a=>a.tasks&&a.tasks.length===1).slice(-3);
     const NAME={s:'le sujet',v:'le verbe'}, HINT={s:'Pose la question : « Qui est-ce qui… ? »',v:'Change le moment : « Hier, … » Quel mot change ?'};
     const tok=$('#tok'),ask=$('#ask'),fb=$('#fb'),ch=$('#choices'),indRow=$('#indRow'),prog=$('#exProg'),reduit=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const melange=n=>{const a=[...Array(n).keys()];for(let k=n-1;k>0;k--){const r=Math.floor(Math.random()*(k+1));[a[k],a[r]]=[a[r],a[k]];}return a;};
@@ -945,13 +963,13 @@ function renderLessonScreen(t,i,direct){
       if(tk.some(k=>k.click)) return atoiTokens(a.p).map(x=>x.sp!=null?x.sp:x.blank?'':x.t).join('').replace(/\s+/g,' ').trim();
       return null; };
     const extras=[];
-    { const mots=x=>x.split(' ').length;
+    if(!mode||mode==='seul'){ const mots=x=>x.split(' ').length;
       for(let k=serie.length-1;k>=0;k--){ const ph=phraseDe(serie[k]); if(ph&&mots(ph)>=4&&mots(ph)<=10&&!/[\/→]/.test(ph)){ extras.push({a:serie[k],t:'o',cible:ph}); break; } }
       for(let k=0;k<serie.length;k++){ const a=serie[k],tk=a.tasks; if(tk.length===1&&tk[0].choose&&tk[0].fill&&a.p&&(a.p.match(/___/g)||[]).length===1&&!/[\[\](){}<>^~%#|*§]/.test(a.p)){ const bon=tk[0].choose[tk[0].ok]; if(bon.length>=2&&!/\s/.test(bon)){ extras.push({a,t:'s'}); break; } } } }
-    const file=serie.map(a=>({a,t:'n',erreurs:0,fait:false,revu:false})).concat(extras.map(x=>Object.assign({erreurs:0,fait:false,revu:false},x)));
+    const file=serie.map(a=>({a,t:mode==='corrige'?'c':'n',erreurs:0,fait:false,revu:false})).concat(extras.map(x=>Object.assign({erreurs:0,fait:false,revu:false},x)));
     let idx=0,cur,A,tasks,toks,q=0,hits=0,errT=0,errEx=0,ok1=0,rep=[],chips=[],cibleMots=[];
     const hintOf=k=>(k&&(k.hint||HINT[k.click]))||'';
-    const majNum=()=>{ $('#exNum').textContent=file.length>1?`· exercice ${idx+1} sur ${file.length}${cur.revu?' · à revoir':''}${cur.t!=='n'?' · défi':''}`:''; };
+    const majNum=()=>{ $('#exNum').textContent=file.length>1?`· exercice ${idx+1} sur ${file.length}${cur.revu?' · à revoir':''}${cur.t==='o'||cur.t==='s'?' · défi':''}`:''; };
     const majProg=()=>{ majNum(); prog.innerHTML=file.map((x,k)=>`<span class="pt${x.fait?(x.erreurs?' ok':' o1'):''}${k===idx?' cur':''}${x.revu?' revu':''}">${x.fait?(x.erreurs?'✓':'★'):k+1}</span>`).join(''); };
     function charger(){
       cur=file[idx]; A=cur.a; q=0; hits=0; errT=0; errEx=0; rep=[];
@@ -959,6 +977,7 @@ function renderLessonScreen(t,i,direct){
       majProg();
       if(cur.t==='o') return chargerOrdre();
       if(cur.t==='s') return chargerSaisie();
+      if(cur.t==='c') return chargerCorrige();
       tasks=A.tasks;
       const hasClick=tasks.some(k=>k.click); toks=atoiTokens(A.p||'');
       tok.hidden=!A.p;
@@ -978,20 +997,24 @@ function renderLessonScreen(t,i,direct){
         ask.textContent=k.ask||'Choisis la bonne réponse.';
         ch.innerHTML=melange(k.choose.length).map(n=>`<button type="button" class="choice" data-n="${n}"${k.fill?' draggable="true"':''}>${esc(k.choose[n])}</button>`).join('');
       }
+      if(mode==='aide'&&hintOf(k)) say('💡 Aide : '+hintOf(k),'');
     }
     function done(){
       cur.fait=true; cur.erreurs=errEx;
-      if(errEx===0) ok1++; else if(!cur.revu&&cur.t==='n') file.splice(Math.min(idx+3,file.length),0,{a:cur.a,t:'n',erreurs:0,fait:false,revu:true});
+      if(errEx===0) ok1++; else if(!cur.revu&&cur.t==='n'&&mode!=='aide') file.splice(Math.min(idx+3,file.length),0,{a:cur.a,t:'n',erreurs:0,fait:false,revu:true});
       ask.textContent=''; ch.innerHTML=''; indRow.innerHTML='';
       const dernier=tasks&&tasks.length?tasks[tasks.length-1]:null;
       say(errEx===0?pick(['Bravo, du premier coup !','Parfait, du premier coup !','Excellent, sans erreur !']):('Bien joué !'+(hintOf(dernier)?' Je retiens : '+hintOf(dernier):'')),'good');
       etoile(); bip(file.every(x=>x.fait)?SON_FIN:SON_OK);
-      P[i]=1; progSave(t.id);
-      const d=$('.dots .cur'); if(d) d.classList.add('ok');
+      if(!P4||mode==='seul'){ P[i]=1; progSave(t.id); const d=$('.dots .cur'); if(d) d.classList.add('ok'); }
       majProg();
       const more=document.createElement('div'); more.className='after';
       const nx=L.ecrans[i+1], tout=file.every(x=>x.fait);
       more.innerHTML=(tout?`<p class="bilan">⭐ ${ok1} réussite${ok1>1?'s':''} du premier coup sur ${file.length}</p>`:'')+(file.length>1?`<button type="button" class="btn go ex-autre">${tout?'↻ Recommencer':'↻ Un autre exercice'}</button>`:'')+(nx&&nx.sec===e.sec?`<a class="btn ${file.length>1?'ghost':'go'}" href="#t=${t.id}/${i+1}">Écran suivant ▸</a>`:'');
+      if(P4&&tout){ fait4[({aide:2,seul:3,corrige:4}[mode]||2)-1]=true; majParc({aide:2,seul:3,corrige:4}[mode]||2);
+        const sv={aide:['✏️ Étape 3 : Seul','seul'],seul:['🔍 Étape 4 : Je corrige','corrige']}[mode];
+        more.insertAdjacentHTML('beforeend',sv?`<button type="button" class="btn go ex-suite">${sv[0]} ▸</button>`:'<p class="bilan">🎉 Bravo, tu as fait les 4 étapes !</p>');
+        const bs=more.querySelector('.ex-suite'); if(bs) bs.onclick=()=>startAtoi(sv[1]); }
       box.appendChild(more);
       const b=more.querySelector('.ex-autre'); if(b) b.onclick=autre;
     }
@@ -1003,7 +1026,7 @@ function renderLessonScreen(t,i,direct){
     function bad(el,k){
       if(el){el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); if(el.classList.contains('choice')) el.classList.add('faux');}
       errT++; errEx++; bip(SON_KO);
-      if(errT===1){
+      if(errT===1&&mode!=='aide'){
         say(pick(ENC),'bad');
         indRow.innerHTML='<button type="button" class="btn ghost" id="indBtn">💡 Un indice</button>';
         $('#indBtn').onclick=()=>{ say('Indice : '+(hintOf(k)||'relis bien la consigne.'),'bad'); indRow.innerHTML=''; };
@@ -1012,6 +1035,22 @@ function renderLessonScreen(t,i,direct){
         say('Regarde : '+(h?h+' ':'')+(k&&k.choose?`La bonne réponse est « ${k.choose[k.ok]} ».`:'Les mots à trouver sont colorés.'),'bad');
         if(k) revele(k);
       }
+    }
+    /* je corrige (G1) : un élève a répondu ; a-t-il raison ? s'il s'est trompé, je trouve la bonne réponse */
+    function chargerCorrige(){
+      const k=A.tasks[0]; cur.ph=1; tasks=A.tasks; q=0; tok.hidden=!A.p; ch.innerHTML=''; indRow.innerHTML='';
+      toks=atoiTokens(A.p||''); const juste=Math.random()<.4; let montre;
+      if(k.click){
+        const bons=toks.map((x,n)=>[x,n]).filter(([x])=>x.sp==null&&!x.blank&&x.r===k.click), mauv=toks.map((x,n)=>[x,n]).filter(([x])=>x.sp==null&&!x.blank&&x.r!==k.click&&x.t.length>2);
+        const c=pick(juste||!mauv.length?bons:mauv); cur.juste=juste||!mauv.length; montre=c[0].t;
+        tok.innerHTML=toks.map((x,n)=>x.sp!=null?x.sp:x.blank?'<span class="blank">&nbsp;</span>':n===c[1]?`<span class="eleve">${esc(x.t)}</span>`:esc(x.t)).join('');
+        ask.innerHTML=`Un élève dit : « <b>${esc(montre)}</b> est ${NAME[k.click]}. » A-t-il raison ?`;
+      } else {
+        const mauv=k.choose.filter((x,n)=>n!==k.ok); cur.juste=juste||!mauv.length; montre=cur.juste?k.choose[k.ok]:pick(mauv);
+        tok.innerHTML=toks.map(x=>x.sp!=null?x.sp:x.blank?`<span class="blank filled eleve">${esc(montre)}</span>`:esc(x.t)).join('');
+        ask.innerHTML=`Un élève a écrit « <b>${esc(montre)}</b> ». ${esc(k.ask||'')} A-t-il raison ?`;
+      }
+      ch.innerHTML=melange(2).map(n=>`<button type="button" class="choice" data-n="${n}">${n===0?'✔ Oui, il a raison':'✘ Non, il s’est trompé'}</button>`).join('');
     }
     /* remettre les mots dans l'ordre */
     function chargerOrdre(){
@@ -1054,6 +1093,15 @@ function renderLessonScreen(t,i,direct){
     ch.onclick=ev=>{
       if(cur.t==='o'){ const m=ev.target.closest('.mot:not(.used)'); if(!m||cur.fait) return; const c=chips.find(x=>x.n===+m.dataset.n); c.use=true; rep.push(c); rendOrdre(); if(rep.length===cibleMots.length) verifOrdre(); return; }
       if(cur.t==='s'){ if(ev.target.closest('#valSaisie')) verifSaisie(); return; }
+      if(cur.t==='c'&&cur.ph===1){ const c=ev.target.closest('.choice'); if(!c) return; const dit=+c.dataset.n===0;
+        if(dit===cur.juste){ c.classList.add('right'); bip(SON_OK);
+          if(cur.juste){ say('Oui, il a raison !','good'); q=0; done(); }
+          else { say('Oui, il s’est trompé. Trouve la bonne réponse !','good'); cur.ph=2; const k=tasks[0];
+            if(k.click) tok.innerHTML=toks.map((x,n)=>x.sp!=null?x.sp:x.blank?'<span class="blank">&nbsp;</span>':`<button type="button" class="tk" data-n="${n}">${esc(x.t)}</button>`).join('');
+            else tok.innerHTML=toks.map(x=>x.sp!=null?x.sp:x.blank?'<span class="blank">&nbsp;</span>':esc(x.t)).join('');
+            setTask(); say('Oui, il s’est trompé. Trouve la bonne réponse !','good'); } }
+        else { c.classList.add('faux','shake'); errEx++; bip(SON_KO); say(cur.juste?'Regarde bien : sa réponse est juste.':'Regarde bien : sa réponse est fausse.','bad'); }
+        return; }
       const b=ev.target.closest('.choice'); const k=tasks[q]; if(!b||!k||!k.choose) return;
       if(+b.dataset.n===k.ok){
         b.classList.add('right');
