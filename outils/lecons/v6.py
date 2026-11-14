@@ -80,4 +80,7 @@ ecrans = [
     Q('monter · descendre', ['des contraires', 'des homonymes', 'des synonymes'], 'Sens opposé.', 'Ces deux mots sont…'),
     Q('cent · sang', ['des homonymes', 'des synonymes', 'des contraires'], 'Même son, sens différent.', 'Ces deux mots sont…')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['Même son, autre sens', 'Écrits autrement', 'Écrits pareil', 'Un mot, plusieurs sens', 'Homonyme ou synonyme ?']: _e['cumul'] = True
 save('V6', {'id': 'V6', 'f': 'V', 'ceinture': 'Bleue', 'titre': 'Les homonymes', 'sous': 'même son, autre sens', 'lesson': True}, sections, ecrans, zones)

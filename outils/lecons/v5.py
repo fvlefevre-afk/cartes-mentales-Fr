@@ -82,4 +82,7 @@ ecrans = [
    [Q('', ['la faiblesse', 'faible', 'faiblement'], 'Je cherche un nom, comme la force.', 'Dans la famille de « fort », le contraire de « la force » :'),
     Q('', ['propreté ↔ saleté', 'propre ↔ sale', 'proprement ↔ salement'], 'Je cherche les deux noms.', 'Quelle paire est faite de deux noms ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['Sens opposé : les contraires', 'Un préfixe pour le contraire', 'La même classe de mots']: _e['cumul'] = True
 save('V5', {'id': 'V5', 'f': 'V', 'ceinture': 'Verte', 'titre': 'Synonymes et contraires', 'sous': 'même sens · sens opposé', 'lesson': True}, sections, ecrans, zones)

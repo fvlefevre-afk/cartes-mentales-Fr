@@ -91,4 +91,7 @@ ecrans = [
    Q('', ['refaire', 'renard', 'reine'], 'Enlève re- : reste-t-il un mot ?', 'Lequel contient vraiment un préfixe ?'),
    [Q('', ['imbattable', 'inbattable'], 'Devant b, on écrit im-.', 'Quel mot est bien écrit ?')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['re- : à nouveau', 'dé-, in-, im-, mal- : le contraire', 'Les personnes et les métiers', 'Petit, possible, manière']: _e['cumul'] = True
 save('V3', {'id': 'V3', 'f': 'V', 'ceinture': 'Jaune', 'titre': 'Les préfixes et les suffixes', 'sous': 'des indices dans le mot', 'lesson': True}, sections, ecrans, zones)

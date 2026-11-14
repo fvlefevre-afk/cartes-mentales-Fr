@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.join(D, '..'))
 from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
-SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}}
+SCRIPTS = {'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524')}
 MARGE = 24
 ZOOM = [1]   # agrandissement du texte des cadres (cartes aux petits caractères : H) ; choisi par auto()
@@ -79,10 +79,10 @@ def titres(lid, boxes):
 
 def auto(lid, a, kw, boxes):
     """Pour H : texte agrandi au plus grand facteur (≤ 1,5) qui laisse la place du nuage."""
-    if not lid.startswith('H'): ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
+    if lid[0] not in 'HV': ZOOM[0] = 1; return auto1(lid, a, kw, boxes)
     for z in [1.5, 1.45, 1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, 1.0]:
         ZOOM[0] = z; r = auto1(lid, a, kw, boxes, silencieux=True)
-        if r[1] >= ECART_MIN or z == 1.0: break
+        if (r[1] >= ECART_MIN and r[2] >= 40) or z == 1.0: break
     print(lid, 'zoom', z, 'écart', r[1]); return r[0]
 
 
@@ -106,7 +106,7 @@ def auto1(lid, a, kw, boxes, silencieux=False):
     cdy = round((Bi + Tb) / 2 - 431)
     carte(lid, a, kw, boxes, geo, cdy)
     zones = {k: [round(l / 14, 1), round((t - 24) / 9.33, 1), round(w / 14, 1), round((t + h - (t - 24)) / 9.33, 1)] for k, (l, t, w, h) in geo.items()}
-    return (zones, Tb - Bi) if silencieux else zones
+    return (zones, Tb - Bi, Tb - max(g[1] + g[3] for k, g in geo.items() if g[1] < CY)) if silencieux else zones
 
 
 if __name__ == '__main__':

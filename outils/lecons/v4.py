@@ -72,4 +72,7 @@ ecrans = [
    [Q('replanter', ['re-, au début', 'plant-, au milieu'], 'Cherche le mot de base : plant.', 'Le préfixe est…'),
     Q('', ['qui peut être lavé', 'qui lave', 'pas lavé'], '-able : qu’on peut.', 'Dans la famille de « laver », « lavable » veut dire…')]),
 ]
+# écrans dont les étapes restent affichées (14/11/2026)
+for _e in ecrans:
+    if _e['titre'] in ['Je fabrique des mots', 'L’intrus', 'La famille m’aide à écrire']: _e['cumul'] = True
 save('V4', {'id': 'V4', 'f': 'V', 'ceinture': 'Orange', 'titre': 'Les familles de mots', 'sous': 'partie commune et même sens', 'lesson': True}, sections, ecrans, zones)
