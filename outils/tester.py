@@ -49,7 +49,7 @@ with sync_playwright() as p:
             # étape 1, Je regarde : l'animation pas à pas
             while pg.is_visible('#nextStep'):
                 t = pg.inner_text('#ph')
-                if re.search(r'[\[\]{}^~%#|*§]', t): raw.append((lid, i, t))   # marque restée visible
+                if re.search(r'[\[\]{}^~%#|*§]', re.sub(r'\[[^\[\]\s*%|§^~#{}]{1,4}\]', '', t)): raw.append((lid, i, t))   # marque restée visible (un son noté [é], [sjɔ̃] n'en est pas une)
                 pg.click('#nextStep'); pg.wait_for_timeout(40)
             # étapes 2 à 4 : Avec aide, Seul, Je corrige ; chaque exercice est joué jusqu'à « fait » (CartesExo.derniere, bibliothèque commune)
             for etape in ('Avec aide', 'Seul', 'Je corrige'):
