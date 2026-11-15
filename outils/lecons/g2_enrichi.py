@@ -479,4 +479,6 @@ for t in ('Je transforme en question', 'La négation au passé'):
 s = s[:m.start(1)] + json.dumps(CE2, ensure_ascii=False) + s[m.end(1):]
 
 open(CHEMIN, 'w', encoding='utf-8').write(s)
+import sys as _s, os as _o; _s.path.insert(0, _o.path.dirname(_o.path.dirname(_o.path.abspath(__file__))))
+import sans_ecriture_fausse; sans_ecriture_fausse.corriger(CHEMIN, bavard=False)   # jamais d'écriture fausse (15/11/2026)
 print('G2 enrichie :', len(nouveaux), 'écrans ;', sum(len(x) for x in niv['2']), 'exercices CM1,', sum(len(x) for x in niv['3']), 'exercices CM2')

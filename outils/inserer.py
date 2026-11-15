@@ -46,5 +46,6 @@ PL = json.loads(L[k][len('const PLUS='):].rstrip().rstrip(';'))
 for i in ids: PL[i] = data[i]['plus']
 L[k] = 'const PLUS=' + json.dumps(PL, ensure_ascii=False) + ';'
 open(P, 'w', encoding='utf-8').write('\n'.join(L))
+import sans_ecriture_fausse; sans_ecriture_fausse.corriger(P, bavard=False)   # jamais d'écriture fausse (15/11/2026)
 print('mis dans le site :', ', '.join(ids))
 print('Penser : nouvelle famille → FAMILLES ; date d’ouverture → node outils/ouvertures_site.mjs ../ressources (OUVERTURE_PREVUE dans index.html).')

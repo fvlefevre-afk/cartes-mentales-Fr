@@ -14,4 +14,5 @@ else:
     j = [n for n, l in enumerate(L) if l.startswith('const CM2_COPIE=')][0]
     L.insert(j, line)
 open(P, 'w', encoding='utf-8').write('\n'.join(L))
+import sans_ecriture_fausse; sans_ecriture_fausse.corriger(P, bavard=False)   # jamais d'écriture fausse (15/11/2026)
 print(f'écrans {NIV} mis dans le site :', sum(len(v['ecrans']) for v in data.values()))

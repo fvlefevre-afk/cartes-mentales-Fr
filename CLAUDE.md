@@ -12,6 +12,10 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 - **PC de l'enseignante (15/11/2026, accord de l'enseignante)** : Claude peut modifier les fichiers de sa copie locale `Documents/freddy/cartes-mentales-fr`, en plus de GitHub.
   Après chaque envoi sur GitHub, mettre cette copie à jour (`git pull origin main` dans ce dossier) quand la session a accès au PC (session lancée sur le PC, ou dossier partagé par Remote Control).
   Une session dans le nuage sans dossier partagé n'y a pas accès : le dire à l'enseignante et lui donner la commande à taper.
+- **Jamais d'écriture fausse montrée aux élèves (15/11/2026, décision de l'enseignante)** : aucun exercice « Quel mot / Quelle phrase est bien écrit(e) ? » qui fasse choisir parmi des mots ou des phrases mal écrits.
+  À la place : un trou à compléter avec de vraies formes (« Les enfants ___ dehors. » : jouent / joue / jouez), un trou de quelques lettres quand la faute serait une forme inventée (« Je pou___ai venir. » : rr / r),
+  ou une question sur la règle, la phrase juste sous les yeux (virgules, « ne… pas »). `outils/sans_ecriture_fausse.py` fait ce remplacement dans `index.html` ; il est appelé tout seul à la fin de
+  `inserer.py`, `inserer_cm2.py`, `lecons/niveaux_lib.py` et `lecons/g2_enrichi.py` (une phrase qu'il ne sait pas traiter est signalée : l'ajouter dans `REGLES_FIXES`). Dans un nouvel exercice, écrire directement la forme « Complète ».
 - Toujours travailler directement sur la branche `main`.
 - Ne jamais créer de branche ni de pull request : faire les commits sur `main` et les pousser directement.
 - Répondre en français à l'enseignante, avec des mots simples (pas de jargon technique).
