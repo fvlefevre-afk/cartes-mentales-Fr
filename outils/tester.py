@@ -6,6 +6,7 @@ Il faut Playwright (pour Python) et Chromium.
 La date du navigateur est mise en fin d'année scolaire : toutes les leçons sont ouvertes, même celles
 dont la date d'ouverture n'est pas encore arrivée.
 Vérifie aussi : la carte et les personnages s'affichent (dossier images/), la carte a des zones, la leçon a des écrans.
+Chaque écran : l'animation (Je regarde), puis les séries « Avec aide », « Seul » et « Je corrige » (présentation du 14/11/2026, 4 étapes).
 Termine par « TOUT EST BON » ou par la liste des problèmes (et un code d'erreur)."""
 import datetime, os, re, sys
 from playwright.sync_api import sync_playwright
@@ -43,40 +44,52 @@ with sync_playwright() as p:
         n = ok = i = 0
         while True:
             pg.goto(f + f'#t={lid}/{i}'); pg.wait_for_timeout(120)
-            if not pg.query_selector('.scr-head'): break
+            if not pg.query_selector('#main .cu-et'): break          # plus d'écran : la page n'a plus la barre des 4 étapes (présentation du 14/11/2026)
             if not pg.evaluate(IMAGES_OK): pb.append(f'{lid} écran {i} : personnage absent')
+            # étape 1, Je regarde : l'animation pas à pas
             while pg.is_visible('#nextStep'):
                 t = pg.inner_text('#ph')
                 if re.search(r'[\[\]{}^~%#|*§]', t): raw.append((lid, i, t))   # marque restée visible
                 pg.click('#nextStep'); pg.wait_for_timeout(40)
-            seen = 0
-            while True:
-                for _ in range(4):
-                    if pg.query_selector('#atoi .after'): break
-                    mots = pg.query_selector_all('#choices .mot')        # « remets les mots dans l'ordre » : data-n = place dans la phrase
-                    if mots:
-                        for k in sorted(int(m.get_attribute('data-n')) for m in mots):
-                            pg.click(f'#choices .mot[data-n="{k}"]:not(.used)'); pg.wait_for_timeout(30)
-                        pg.wait_for_timeout(250); continue
-                    sa = pg.query_selector('#saisie')                      # dictée à trous : la réponse est dans data-attendu
-                    if sa:
-                        sa.fill(sa.get_attribute('data-attendu')); pg.click('#valSaisie'); pg.wait_for_timeout(300); continue
-                    ch = pg.query_selector_all('#choices .choice')
-                    if ch:
-                        for c in ch:
-                            c.click(); pg.wait_for_timeout(420)
-                            if 'right' in (c.get_attribute('class') or ''): break
-                    else:
+            # étapes 2 à 4 : Avec aide, Seul, Je corrige ; chaque exercice est joué jusqu'à « fait » (CartesExo.derniere, bibliothèque commune)
+            for etape in ('Avec aide', 'Seul', 'Je corrige'):
+                bt = pg.locator('#main .cu-et', has_text=etape).first
+                if not bt.count() or bt.is_disabled(): continue
+                pg.goto(f + f'#t={lid}/{i}'); pg.wait_for_timeout(100)
+                bt = pg.locator('#main .cu-et', has_text=etape).first; bt.click(); pg.wait_for_timeout(150)
+                vus = 0
+                while vus < 14:
+                    fait = lambda: pg.evaluate("(() => { const s = CartesExo.derniere; return !!(s && s.cur() && s.cur().fait); })()")
+                    for _ in range(6):
+                        if fait(): break
+                        mots = pg.query_selector_all('#choices .mot:not(.used)')     # remets les mots dans l'ordre : data-n = place dans la phrase
+                        if mots:
+                            for k in sorted(int(m.get_attribute('data-n')) for m in mots):
+                                pg.click(f'#choices .mot[data-n="{k}"]:not(.used)'); pg.wait_for_timeout(30)
+                            pg.wait_for_timeout(250); continue
+                        sa = pg.query_selector('#saisie')                              # dictée à trous : la réponse est dans data-attendu
+                        if sa and sa.is_visible():
+                            sa.fill(sa.get_attribute('data-attendu')); pg.click('#valSaisie'); pg.wait_for_timeout(300); continue
+                        ch = pg.query_selector_all('#choices .choice')
+                        if ch:
+                            for c in ch:
+                                if fait(): break
+                                try: c.click(timeout=1500)
+                                except Exception: continue
+                                pg.wait_for_timeout(350)
+                                if 'right' in (c.get_attribute('class') or '') or fait(): break
+                            continue
                         for tk in pg.query_selector_all('#tok .tk:not(.found)'):
-                            tk.click(); pg.wait_for_timeout(30)
-                            if pg.query_selector('#atoi .after'): break
-                n += 1
-                if pg.query_selector('#atoi .after'): ok += 1
-                else: bad.append((lid, i, pg.inner_text('#exNum'), pg.inner_text('#ask')))
-                btn = pg.query_selector('.ex-autre'); seen += 1
-                if not btn or seen >= 6: break
-                btn.click(); pg.wait_for_timeout(120)
-                if pg.inner_text('#exNum').startswith('· exercice 1 '): break
+                            try: tk.click(timeout=1500)
+                            except Exception: continue
+                            pg.wait_for_timeout(30)
+                            if fait(): break
+                    n += 1; vus += 1
+                    if fait(): ok += 1
+                    else:
+                        bad.append((lid, i, etape, pg.inner_text('#exNum'), pg.inner_text('#ask'))); break
+                    if pg.query_selector('#atoi .after'): break                       # fin de la série (bilan, « Refaire une série »)
+                    pg.evaluate("CartesExo.derniere.autre()"); pg.wait_for_timeout(120)  # sans attendre le passage automatique (1,6 s)
             i += 1
         if not i: pb.append(f'{lid} : aucun écran')
         total_ex += n; total_ok += ok
