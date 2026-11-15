@@ -4,11 +4,6 @@ Propositions faites pendant le travail, auxquelles il n'a pas encore été répo
 Rayer ou supprimer une ligne une fois la décision prise.
 
 
-## ⚠ URGENT (15/11/2026)
-
-- [ ] **Cette copie n'est peut-être pas celle que l'enseignante utilise** (« tu ne travailles pas sur les bonnes » cartes, 15/11/2026). Les corrections O7, O8, O11, O12 des commits d349f24 et 648681e
-  ont été faites ici ; elles sont à reporter dans les vraies cartes, sur son PC, puis à publier sur La Forge. Détail complet : dépôt `ressources`, `IDEES.md`, idée 305.
-
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
 - [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,
@@ -25,7 +20,5 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## Jamais d'écriture fausse montrée aux élèves (15/11/2026)
 
-- [ ] **Les exercices « Quel mot est bien écrit ? » qui restent** : l'enseignante a décidé le 15/11/2026 (tableau de bord, idée 262 refusée) qu'on ne propose « jamais des écritures fausses
-  aux élèves ». Ces exercices montrent des mots mal écrits (« la moité », « le queur », « appès »…). Retirés le 15/11/2026 de O7, O8 et O12 (remplacés par « Complète avec la bonne
-  lettre / la bonne fin »). Il en reste 45 dans `index.html` (sources : `outils/lecons/o7_o12.py` O9 et O10, `o1_a_o6.py`, `ce2_seulement.py`, `o_niveaux.py`, `v3.py`, `v_niveaux.py`) :
-  proposition de les remplacer de la même façon, en attente de l'accord de l'enseignante.
+- [x] **Les exercices « Quel mot est bien écrit ? »** : les 45 qui restaient (O1, O4, O9, O10, V3, CE2 et CM2 compris) remplacés le 15/11/2026, avec l'accord de l'enseignante, par « Complète : m ou n ? » / « Complète avec la bonne lettre » (sources `o1_a_o6.py`, `o7_o12.py`, `o_niveaux.py`, `v3.py`, `v_niveaux.py` et `index.html`). Il n'en reste aucun.
+- [ ] **Les exercices « Quelle phrase est bien écrite ? »** (et « Laquelle est bien écrite ? », « Choisis la phrase bien écrite. », « Quelle question / phrase déclarative est bien écrite ? ») : 191 dans `index.html`. Ils montrent aussi des écritures fausses (« Vous disez bonjour. », « Cest mon tour ! », « Ils allent au parc. », virgules mal placées…), surtout en conjugaison, grammaire et homophones. À remplacer ? En attente de la décision de l'enseignante (idée 307 du tableau de bord).

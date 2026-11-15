@@ -83,8 +83,8 @@ niv = {
   [sens('Ce vieux livre est introuvable.', '« introuvable » veut dire…', 'qu’on ne peut pas trouver', ['qu’on trouve facilement', 'déjà trouvé']), sens('Le champion est invincible.', '« invincible » veut dire…', 'qu’on ne peut pas vaincre', ['qu’on vainc souvent', 'déjà vaincu']),
    sens('Cette consigne est incompréhensible.', '« incompréhensible » veut dire…', 'qu’on ne peut pas comprendre', ['qu’on comprend vite', 'déjà comprise']), sens('Le pont est infranchissable.', '« infranchissable » veut dire…', 'qu’on ne peut pas franchir', ['qu’on franchit facilement', 'déjà franchi'])]),
  'Les pièges': (
-  [bm('Lequel contient vraiment un préfixe ?', 'défaire', ['dehors', 'demain']), bm('Lequel contient vraiment un préfixe ?', 'redire', ['rendre', 'reste']), bm('Quel mot est bien écrit ?', 'impossible', ['inpossible']), bm('Quel mot est bien écrit ?', 'immobile', ['inmobile'])],
-  [bm('Quel mot est bien écrit ?', 'irrégulier', ['inrégulier', 'irégulier']), bm('Quel mot est bien écrit ?', 'illisible', ['inlisible', 'ilisible']), bm('Lequel contient vraiment un préfixe ?', 'désagréable', ['désert', 'désir']), bm('Lequel contient vraiment un préfixe ?', 'malchance', ['malade', 'malin'])]),
+  [bm('Lequel contient vraiment un préfixe ?', 'défaire', ['dehors', 'demain']), bm('Lequel contient vraiment un préfixe ?', 'redire', ['rendre', 'reste']), C('i___possible', 'Complète : m ou n ?', 'm', ['n'], 'Je pense au préfixe.', 'hl'), C('i___mobile', 'Complète : m ou n ?', 'm', ['n'], 'Je pense au préfixe.', 'hl')],
+  [C('i___égulier', 'Complète avec les bonnes lettres.', 'rr', ['nr', 'r'], 'Je pense au préfixe.', 'hl'), C('i___isible', 'Complète avec les bonnes lettres.', 'll', ['nl', 'l'], 'Je pense au préfixe.', 'hl'), bm('Lequel contient vraiment un préfixe ?', 'désagréable', ['désert', 'désir']), bm('Lequel contient vraiment un préfixe ?', 'malchance', ['malade', 'malin'])]),
  # --- V4
  'Une famille de mots': (
   [fam('terre', 'terrain', ['tarte', 'tirer']), fam('mer', 'marin', ['mère', 'mur']), fam('chanter', 'chanson', ['chaussure', 'chasser']), fam('lire', 'lecture', ['lime', 'lier'])],

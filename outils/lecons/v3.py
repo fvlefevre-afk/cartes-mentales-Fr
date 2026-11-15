@@ -89,7 +89,7 @@ ecrans = [
    [('reine · renard', 'Si j’enlève re-, il ne reste pas un mot : pas de préfixe.'),
     ('%im%|possible| · %im%|buvable| · %in%|connu|', 'im- devant p, b, m ; in- ailleurs.')],
    Q('', ['refaire', 'renard', 'reine'], 'Enlève re- : reste-t-il un mot ?', 'Lequel contient vraiment un préfixe ?'),
-   [Q('', ['imbattable', 'inbattable'], 'Devant b, on écrit im-.', 'Quel mot est bien écrit ?')]),
+   [Q('i___battable', ['m', 'n'], 'Devant b, on écrit im-.', 'Complète : m ou n ?', fill='hl')]),
 ]
 # écrans dont les étapes restent affichées (14/11/2026)
 for _e in ecrans:
