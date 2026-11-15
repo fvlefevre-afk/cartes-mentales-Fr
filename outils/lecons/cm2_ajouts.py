@@ -382,7 +382,7 @@ lecon('O2', ['Des familles moins faciles : accro<b>c</b> → accrocher, respe<b>
     Q('un clima___', ['t', 's', 'x'], 'Pense à « climatique ».', 'Quelle lettre muette faut-il écrire ?', fill=H)]))
 
 # O8 à O12 (11/11/2026, idée 203 du tableau de bord) : ce que le CM2 apprend en plus de la leçon du CM1
-lecon('O8', ['Quelques noms féminins s’écrivent <b>-tée</b> : une action ou un contenu (une dictée, une montée, une assiettée).'],
+lecon('O8', ['D’autres noms en <b>-tée</b> (vus au CM1 : la dictée, la montée) : une assiettée, une portée, une jetée.'],
  E('tie', 'attention', 'Les exceptions en -tée', 'girl', 'Quelques noms féminins s’écrivent -tée : une action ou un contenu.',
    ['une dic%tée%', 'une mon%tée%', ('une assiet%tée%', 'Une action ou un contenu : -tée, avec e.')],
    Q('une dic___', ['tée', 'té', 'tié'], 'C’est une dictée : -tée.', 'Complète avec la bonne fin.', fill=H),

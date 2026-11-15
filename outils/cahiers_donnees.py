@@ -27,10 +27,10 @@ DATA = {
        ('orange','V4','Les familles de mots : partie commune et même sens ; la famille m’aide à écrire'),
        ('verte','V5','Synonymes et contraires, de la même classe de mots'),
        ('bleue','V6','Les homonymes : même son, autre sens ; un mot, plusieurs sens (polysémie) ; la phrase m’aide')],
- 'O': [('marron','O8','Les noms en [é] : -é (masculin), -ée (féminin), -té (une qualité), -tié (la moitié, l’amitié, la pitié)'),
+ 'O': [('marron','O8','Les noms en [é] : -é (masculin), -ée (féminin), -té (une qualité), sauf -tée (la dictée, la montée), -tié (la moitié, l’amitié, la pitié)'),
        ('noire','O9','Les consonnes doubles : après a-, e-, o-, com- au début du mot ; le mot de la même famille m’aide'),
        ('or','O10','Les noms en -eur, sans e (le bonheur, un chanteur) ; les exceptions : l’heure, le beurre, le cœur ; le féminin : -euse, -trice (une chanteuse, une actrice)'),
-       ('argent','O11','Les noms en [sjɔ̃] : -tion, -sion (après une voyelle ou n, r, l), -ssion (entre deux voyelles) ; le verbe m’aide'),
+       ('argent','O11','Les noms en [sjɔ̃] : -tion, -sion (après une voyelle ; après n, r : surtout -tion), -ssion (entre deux voyelles) ; le verbe m’aide'),
        ('rouge','O12','Les adverbes en -ment : l’adjectif au féminin + -ment (lente → lentement) ; adjectif en voyelle + -ment (vrai → vraiment)')],
 }
 
