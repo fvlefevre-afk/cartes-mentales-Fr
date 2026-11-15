@@ -16,3 +16,10 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **Choix du niveau de l'exercice par l'enseignante** (pas par l'élève), par classe, dans Réglages.
 - [ ] **Mode « défi du jour »** : trois exercices pris dans les ceintures déjà ouvertes (révision spiralée).
 - [ ] **Suivi enseignante** : résultats par élève et par ceinture, exportables (en lien avec le tableau de bord).
+
+## Jamais d'écriture fausse montrée aux élèves (15/11/2026)
+
+- [ ] **Les exercices « Quel mot est bien écrit ? » qui restent** : l'enseignante a décidé le 15/11/2026 (tableau de bord, idée 262 refusée) qu'on ne propose « jamais des écritures fausses
+  aux élèves ». Ces exercices montrent des mots mal écrits (« la moité », « le queur », « appès »…). Retirés le 15/11/2026 de O7, O8 et O12 (remplacés par « Complète avec la bonne
+  lettre / la bonne fin »). Il en reste 45 dans `index.html` (sources : `outils/lecons/o7_o12.py` O9 et O10, `o1_a_o6.py`, `ce2_seulement.py`, `o_niveaux.py`, `v3.py`, `v_niveaux.py`) :
+  proposition de les remplacer de la même façon, en attente de l'accord de l'enseignante.
