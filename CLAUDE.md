@@ -9,6 +9,9 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   n'est pas l'adresse des élèves : `bash outils/publier-forge.sh` copie `index.html`, `images/`, `polices/` et `.gitlab-ci.yml` dans le dépôt voisin `publication-francais`
   et l'envoie sur La Forge. À lancer depuis un ordinateur où ce dépôt voisin existe (une session dans le nuage n'a pas accès à La Forge) : prévenir l'enseignante
   que les changements ne sont visibles des élèves qu'après cette publication.
+- **PC de l'enseignante (15/11/2026, accord de l'enseignante)** : Claude peut modifier les fichiers de sa copie locale `Documents/freddy/cartes-mentales-fr`, en plus de GitHub.
+  Après chaque envoi sur GitHub, mettre cette copie à jour (`git pull origin main` dans ce dossier) quand la session a accès au PC (session lancée sur le PC, ou dossier partagé par Remote Control).
+  Une session dans le nuage sans dossier partagé n'y a pas accès : le dire à l'enseignante et lui donner la commande à taper.
 - Toujours travailler directement sur la branche `main`.
 - Ne jamais créer de branche ni de pull request : faire les commits sur `main` et les pousser directement.
 - Répondre en français à l'enseignante, avec des mots simples (pas de jargon technique).
