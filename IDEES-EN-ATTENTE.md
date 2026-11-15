@@ -3,6 +3,12 @@
 Propositions faites pendant le travail, auxquelles il n'a pas encore été répondu.
 Rayer ou supprimer une ligne une fois la décision prise.
 
+
+## ⚠ URGENT (15/11/2026)
+
+- [ ] **Cette copie n'est peut-être pas celle que l'enseignante utilise** (« tu ne travailles pas sur les bonnes » cartes, 15/11/2026). Les corrections O7, O8, O11, O12 des commits d349f24 et 648681e
+  ont été faites ici ; elles sont à reporter dans les vraies cartes, sur son PC, puis à publier sur La Forge. Détail complet : dépôt `ressources`, `IDEES.md`, idée 305.
+
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
 - [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,
