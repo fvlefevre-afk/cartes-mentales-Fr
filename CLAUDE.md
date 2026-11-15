@@ -16,6 +16,10 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   À la place : un trou à compléter avec de vraies formes (« Les enfants ___ dehors. » : jouent / joue / jouez), un trou de quelques lettres quand la faute serait une forme inventée (« Je pou___ai venir. » : rr / r),
   ou une question sur la règle, la phrase juste sous les yeux (virgules, « ne… pas »). `outils/sans_ecriture_fausse.py` fait ce remplacement dans `index.html` ; il est appelé tout seul à la fin de
   `inserer.py`, `inserer_cm2.py`, `lecons/niveaux_lib.py` et `lecons/g2_enrichi.py` (une phrase qu'il ne sait pas traiter est signalée : l'ajouter dans `REGLES_FIXES`). Dans un nouvel exercice, écrire directement la forme « Complète ».
+- **Tableau de bord (15/11/2026, demande de l'enseignante)** : le tableau de bord (dépôt voisin `../ressources`, branche `branche-propre`) imprime les exercices de ces cartes
+  sur papier (Fiches de travail › Français) d'après une COPIE d'`index.html`. Après toute modification d'`index.html` (leçon, exercice, `inserer.py`…), une fois le commit poussé, sans attendre
+  qu'on le demande : dans `../ressources`, `git pull origin branche-propre`, `node outils/exporter-exos-cartes.mjs`, `node build.mjs`, `node test/exos-cartes.mjs`, puis commit et push de
+  `src/js/17zx-exos-cartes.js` et `tableau-de-bord.html` (fichiers précis, jamais `git add -A` : une autre session peut y travailler). Si `../ressources` n'est pas accessible, le dire à l'enseignante.
 - Toujours travailler directement sur la branche `main`.
 - Ne jamais créer de branche ni de pull request : faire les commits sur `main` et les pousser directement.
 - Répondre en français à l'enseignante, avec des mots simples (pas de jargon technique).
