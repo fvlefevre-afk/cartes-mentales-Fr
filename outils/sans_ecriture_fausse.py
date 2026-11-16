@@ -124,6 +124,7 @@ def corriger(chemin=None, bavard=True):
         return json.dumps({'p': r['p'], 'tasks': [nt]}, ensure_ascii=False)
     t2 = EX.sub(rep, t)
     if t2 != t: open(chemin, 'w', encoding='utf-8').write(t2)
+    import formes_inventees; formes_inventees.corriger(chemin, bavard=False)   # jamais de forme inventée (16/11/2026)
     reste = sum(t2.count(a) for a in ASKS)
     if bavard or pb or reste:
         print(f'Sans écriture fausse : {n[0]} exercices remplacés, {reste} restants.')

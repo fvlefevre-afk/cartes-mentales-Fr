@@ -38,7 +38,7 @@ les « inconnus » ci-dessous sont des formes inventées ou des morceaux de mots
 
 | Ceintures | Exercices touchés | Nature |
 |---|---|---|
-| C1, C2, C3, C4, C6, C7, C9 (conjugaison) | 134 (C1 42, C2 22, C6 20, C7 16, C3 14, C4 12, C9 8) | formes de verbes inventées : « prendent », « achettons », « oublirai », « faireras », « choisé », « allent », « faisez »… |
+| C1, C2, C3, C4, C6, C7, C9 (conjugaison) — **corrigé le 16/11/2026** (`outils/formes_inventees.py`) | 134 (C1 42, C2 22, C6 20, C7 16, C3 14, C4 12, C9 8) | formes de verbes inventées : « prendent », « achettons », « oublirai », « faireras », « choisé », « allent », « faisez »… |
 | G5 | 16 | formes de verbes inventées : « finons », « choisisez », « finisent », « grandent » |
 | G7 | 33 | question « Quel GN est bien accordé ? » : choix parmi des groupes nominaux mal accordés |
 | G3 | 4 | un « grose » et 3 « Quel GN est bien accordé ? » dans le premier exercice de certains écrans (hors banque) |
