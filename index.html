@@ -165,6 +165,7 @@ h3.sub{margin:1.6rem 0 .6rem;color:var(--fam);font-size:1.2rem}
 .niveaux{display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1.4rem}
 .niveaux a{flex:1 1 0;min-width:0;text-align:center;text-decoration:none;font-weight:700;font-size:1.25rem;padding:.65rem 1rem;border-radius:1rem;border:3px solid #2456a6;color:#2456a6;background:#fff}
 .niveaux a.on{background:#2456a6;color:#fff}
+.niveaux a.masquee,.bar-niv button.masquee{opacity:.55;border-style:dashed}.bar-niv button.masquee{outline:2px dashed #8a93a8;outline-offset:-3px}
 .niveaux a small{display:block;font-weight:500;font-size:.75rem;opacity:.85}
 .fam-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.2rem}
 .fam-btns button{font:inherit;font-weight:700;font-size:1.02rem;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;border:2.5px solid var(--c);color:var(--c);background:#fff;transition:background .15s}
@@ -1464,7 +1465,7 @@ function renderToc(){
   main.innerHTML=`${E.photo?`<figure class="hero"><img src="${E.photo}" alt=""><figcaption>${E.nom?`<small>${esc(E.nom)}</small>`:''}<b>Ceintures de français · ${niv}</b></figcaption></figure>`:''}<div class="sheet">
   <h2 class="toc-title">Sommaire</h2>
   <p class="intro">Les leçons de chaque ceinture, à relire avant l'entraînement ou le test.</p>
-  ${NIV_AFF().length<2?'':`<nav class="niveaux" aria-label="Choisir sa classe">${NIV_AFF().map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;return `<a href="#niveau=${n}" class="${n===niv?'on':''}"${n===niv?' aria-current="page"':''}>${n}<small>${k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>`}
+  ${NIV_AFF().length<2?'':`<nav class="niveaux" aria-label="Choisir sa classe">${NIV_AFF().map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;const cache=ENSEIGNANT&&!classesVis().includes(n);return `<a href="#niveau=${n}" class="${n===niv?'on':''}${cache?' masquee':''}"${n===niv?' aria-current="page"':''}${cache?' title="Classe cachée aux élèves (réglages enseignant)"':''}>${n}<small>${cache?'cachée aux élèves':k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>`}
   ${!TRACES.some(t=>niveauDe(t)===niv)?`<p class="avenir">Les leçons de ${niv} arrivent bientôt.</p>`:''}
   ${famBoutons(niv)}
   ${FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv)&&(famChoix==='tout'||famChoix===f.id)).map(f=>`<section class="fam" style="--c:${f.couleur}">
@@ -1624,7 +1625,7 @@ function setEditing(on){
   else if(on&&!(cur&&cur.lesson)) toast('Ouvrez une trace pour la modifier.');
 }
 /* classes cachées : boutons du bandeau retirés (tous retirés s'il n'en reste qu'une) */
-function majBarNiv(){const A=NIV_AFF();document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>{b.style.display=A.includes(b.dataset.classe)&&A.length>1?'':'none';});document.querySelector('.bar-niv').style.display=A.length<2?'none':'';}
+function majBarNiv(){const A=NIV_AFF();document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>{const cache=ENSEIGNANT&&!classesVis().includes(b.dataset.classe);b.classList.toggle('masquee',cache);b.title=cache?'Classe cachée aux élèves (réglages enseignant)':'';b.style.display=A.includes(b.dataset.classe)&&A.length>1?'':'none';});document.querySelector('.bar-niv').style.display=A.length<2?'none':'';}
 majBarNiv();
 const allerA=k=>{const cur=byId((decodeURIComponent(location.hash).match(/^#t=([^/]+)/)||[])[1]);if(!cur)return;const P=parcours(niveauDe(cur)),i=P.indexOf(cur);if(i>=0&&P[i+k])go('#t='+P[i+k].id);};
 $('#prec').addEventListener('click',()=>allerA(-1));$('#suiv').addEventListener('click',()=>allerA(1));
@@ -1649,7 +1650,7 @@ if(ENS_REEL){(()=>{
  const dlg=document.createElement('dialog');dlg.id='regDlg';document.body.appendChild(dlg);let nivReg=NIV_AFF().includes(niveauChoisi())?niveauChoisi():'CM1';
  const dateCourte=d=>new Date(d+'T12:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
  const fichier=()=>{const out={maj:AUJ,classes:classesVis()},E=ecole();if(E.nom||E.photo)out.ecole=E;return JSON.stringify(out,null,1);};
- const apres=()=>{garderBrouillon();dessiner();render();};
+ const apres=()=>{garderBrouillon();dessiner();render();majBarNiv();};
  /* ce que voient les élèves = ouvertures.json publié ; tant que le brouillon en diffère, les élèves ne voient pas le changement (13/11/2026 : la photo ne s'affichait que chez l'enseignante) */
  const publie=()=>{const e=(OUVERTURE_REELLE&&OUVERTURE_REELLE.ecole)||{};return {nom:typeof e.nom==='string'?e.nom.trim():'',photo:photoOk(e.photo)?e.photo:''};};
  const nonPublie=()=>{const a=ecole(),p=publie(),c=(OUVERTURE_REELLE&&OUVERTURE_REELLE.classes)||null;return a.nom!==p.nom||a.photo!==p.photo||(c&&JSON.stringify(classesVis())!==JSON.stringify(c));};
