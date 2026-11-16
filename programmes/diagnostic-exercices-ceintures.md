@@ -1,0 +1,42 @@
+# Diagnostic des exercices des ceintures de français (16/11/2026)
+
+Mesure faite sur les exercices exportés pour le tableau de bord (103 leçons : chaque ceinture en CE2, CM1 et CM2). **Chiffres indicatifs** : l'export réunit
+les exercices de plusieurs classes (environ 10 par écran) ; dans les cartes, chaque classe en montre moins (de l'ordre de 4 par écran pour les ceintures de grammaire).
+La conformité au programme n'est pas mesurée automatiquement : elle demande une relecture ceinture par ceinture.
+
+Repères de conformité (programme du cycle 3 du 17/04/2025, annexe du cycle 2, `ecarts-CM1-CM2.md`, cahiers de progrès) :
+- G3 : repérer des groupes nominaux « dans une phrase simple » (Dét.+Nom, Dét.+Nom+Adj, Dét.+Adj.+Nom) ; complément du nom, épithète / attribut : CM2 seulement.
+- Une phrase d'exercice de CE2 et CM1 : phrase simple, un seul verbe, sujet avant le verbe (sujet inversé = CM2), pas de proposition subordonnée (phrase complexe = CM2), pas de phrase sans verbe en CE2.
+- Types de phrases au programme : déclaratives, interrogatives, impératives ; formes négative et exclamative : on peut varier la structure.
+- **Jamais d'écriture fausse montrée** (décision du 15/11/2026) : les propositions d'un exercice sont de vraies formes ; une forme inventée devient un trou de quelques lettres.
+  Contrôle : un dictionnaire français (`/usr/share/dict/french`) vérifie chaque mot proposé.
+
+## Résultats (par ceinture)
+
+Colonnes : répétition = part de phrases en double ; 1er mot = part de phrases qui commencent par le même mot ; « mince » = 3 exercices par écran.
+
+| Ceinture | Constat | Priorité |
+|---|---|---|
+| O11 | 92 % de phrases répétées, 93 % commencent par le même mot, 3 exercices par écran | 1 |
+| O2, O4, O6 | 13 à 17 % de répétition, 42 à 50 % commencent par le même mot | 1 |
+| O1, O3, O5 | 4 à 22 % de répétition, 18 à 32 % même premier mot | 2 |
+| O7 à O12 | mince (15 à 21 exercices par leçon) | 1 |
+| O1, O3, O4, O5, O6 | mêmes exercices en CE2, CM1 et CM2 : pas d'adaptation au niveau | 2 |
+| C6, C7 (CE2) | mince (15 à 16 exercices par leçon) | 2 |
+| H3, H5 | H3 : 45 % même premier mot ; H5 : 8 % de répétition | 3 |
+| V5, V2, V4 | V5 : 50 % même premier mot ; V2 : 26 à 32 % | 3 |
+| G1, G4, G5, G6, G7 | variété correcte (10 à 29 % même premier mot) ; conformité à relire | 4 |
+| C1 à C5, V1, V3, V6 | peu de répétitions ; environ 4 exercices par écran dans les cartes | 4 |
+| G2 | bien fourni ; un tiers des exercices sont des questions sans phrase (normal) | — |
+| G3 | en cours : banque de phrases écrites et relues (`outils/lecons/g3_banque.py`) | en cours |
+
+## À vérifier dans toutes les ceintures (non mesuré)
+
+- **Formes inventées** proposées aux élèves (contrôle au dictionnaire) : G3 en avait environ 170 (écrans 7, 8, 9, 11, 12, 13), remplacées par de vraies formes ou des trous de lettres.
+  Les autres ceintures n'ont pas encore été contrôlées de cette façon.
+- Conformité au programme (phrase simple, notions de la bonne classe).
+
+## Méthode retenue
+
+Une banque de phrases écrites et relues, écran par écran et classe par classe, plutôt que des phrases fabriquées par programme (le sens n'est pas garanti).
+Validation par l'enseignante écran par écran. Structures variées (pas toujours sujet, verbe, complément).
