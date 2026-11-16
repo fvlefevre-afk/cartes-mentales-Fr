@@ -39,15 +39,15 @@ les « inconnus » ci-dessous sont des formes inventées ou des morceaux de mots
 | Ceintures | Exercices touchés | Nature |
 |---|---|---|
 | C1, C2, C3, C4, C6, C7, C9 (conjugaison) — **corrigé le 16/11/2026** (`outils/formes_inventees.py`) | 134 (C1 42, C2 22, C6 20, C7 16, C3 14, C4 12, C9 8) | formes de verbes inventées : « prendent », « achettons », « oublirai », « faireras », « choisé », « allent », « faisez »… |
-| G5 | 16 | formes de verbes inventées : « finons », « choisisez », « finisent », « grandent » |
-| G7 | 33 | question « Quel GN est bien accordé ? » : choix parmi des groupes nominaux mal accordés |
-| G3 | 4 | un « grose » et 3 « Quel GN est bien accordé ? » dans le premier exercice de certains écrans (hors banque) |
-| V5 | 14 | mots inventés : « repossible », « recontent », « dépatient », « malagréable » |
+| G5 — **corrigé le 16/11/2026** | 16 | formes de verbes inventées : « finons », « choisisez », « finisent », « grandent » |
+| G7 — **corrigé le 16/11/2026** | 33 | question « Quel GN est bien accordé ? » : choix parmi des groupes nominaux mal accordés |
+| G3 (restes) — **corrigé le 16/11/2026** | 4 | un « grose » et 3 « Quel GN est bien accordé ? » dans le premier exercice de certains écrans (hors banque) |
+| V5 et V3 — **corrigés le 16/11/2026** | 14 (+ V3) | mots inventés : « repossible », « recontent », « dépatient », « malagréable » |
 | V2, V3, V4 | 111 (V3 84, V2 24, V4 3) | surtout des morceaux de mots (« onter », « nteur », « dinier ») : trous de lettres à confirmer |
 | O10, O11, O12 | 57 | terminaisons à choisir (« ement / ément / emment », « ssion ») : trous de lettres, normal |
 | O3, O5, O6, O7 à O9, C5, C8, G1, G2, G4, G6, H1 à H7, O1, O2, O4, V1, V6 | 0 | rien d'inventé (G2 : « a-t-il » est correct) |
 
-Ordre de reprise proposé : conjugaison (C) > G5 > G7 et G3 (« Quel GN est bien accordé ? ») > V5 > V2 à V4 (à examiner).
+Reste à examiner : V2, V3, V4 (morceaux de mots : sans doute des trous de lettres légitimes), O10 à O12 (terminaisons), G4 (« aujourd »).
 Règle de remplacement : de vraies formes à choisir (« Les enfants ___ dehors. » : jouent / joue / jouez), ou un trou de quelques lettres (« Je pou___ai » : rr / r),
 ou une question sur la règle avec la forme juste sous les yeux.
 
