@@ -1396,14 +1396,17 @@ const ENS_REEL=(()=>{try{return sessionStorage.getItem("francais-enseignant")===
 const APERCU=ENS_REEL&&(()=>{try{return sessionStorage.getItem("francais-apercu")==="1";}catch(e){return false;}})();
 const ENSEIGNANT=ENS_REEL&&!APERCU;
 let BROUILLON=(()=>{if(!ENS_REEL)return {};try{return JSON.parse(sessionStorage.getItem("francais-brouillon")||"{}")||{};}catch(e){return {};}})();   /* {classes, dates:{CE2:{code:date|""}}} */
-const garderBrouillon=()=>{try{sessionStorage.setItem("francais-brouillon",JSON.stringify(BROUILLON));}catch(e){}};
+const garderBrouillon=()=>{try{sessionStorage.setItem("francais-brouillon",JSON.stringify(BROUILLON));}catch(e){}
+  /* classes choisies : gardées aussi sur cet appareil (hors mode enseignant, une classe décochée n'apparaît plus, même avant l'envoi du fichier) */
+  try{if(BROUILLON.classes)localStorage.setItem("francais-classes-locales",JSON.stringify(BROUILLON.classes));else localStorage.removeItem("francais-classes-locales");}catch(e){}};
+const classesLocales=()=>{try{const a=JSON.parse(localStorage.getItem("francais-classes-locales")||"null");return Array.isArray(a)&&a.length&&a.every(n=>NIVEAUX.includes(n))?a:null;}catch(e){return null;}};
 try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
 /* CLASSES_VISIBLES : classes montrées aux élèves (choix de l'enseignante). Pour cacher une classe, la retirer de la liste (ex. ['CM1'] ou ['CM1','CM2']) ;
    avec une seule classe, les boutons CE2 / CM1 / CM2 disparaissent. L'accès enseignant (🔑) montre toujours tout. */
 const CLASSES_VISIBLES=['CE2','CM1','CM2'];
 /* fin CLASSES_VISIBLES */
 /* classes montrées : brouillon de l'enseignante, sinon « classes » de ouvertures.json, sinon CLASSES_VISIBLES */
-const classesVis=()=>BROUILLON.classes||(OUVERTURE_REELLE&&Array.isArray(OUVERTURE_REELLE.classes)&&OUVERTURE_REELLE.classes.length?OUVERTURE_REELLE.classes:null)||CLASSES_VISIBLES;
+const classesVis=()=>BROUILLON.classes||classesLocales()||(OUVERTURE_REELLE&&Array.isArray(OUVERTURE_REELLE.classes)&&OUVERTURE_REELLE.classes.length?OUVERTURE_REELLE.classes:null)||CLASSES_VISIBLES;
 const niveauVisible=n=>ENSEIGNANT||classesVis().includes(n);
 const photoOk=x=>typeof x==='string'&&x.length<2500000&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/=]+$/.test(x);
 /* école (nom et photo, réglés dans ⚙ Réglages, enregistrés dans ouvertures.json : {ecole:{nom, photo}}) */
