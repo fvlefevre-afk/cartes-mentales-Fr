@@ -13,13 +13,13 @@ Repères de conformité (programme du cycle 3 du 17/04/2025, annexe du cycle 2, 
 
 ## Résultats (par ceinture)
 
-Colonnes : répétition = part de phrases en double ; 1er mot = part de phrases qui commencent par le même mot ; « mince » = 3 exercices par écran.
+Mesures : exercices identiques = part d'exercices en double dans la leçon (mêmes phrase, réponse et question) ; le « premier mot » n'est PAS un défaut pour des mots à compléter (« un / une ») ; « mince » = 3 exercices par écran.
 
 | Ceinture | Constat | Priorité |
 |---|---|---|
-| O11 | 92 % de phrases répétées, 93 % commencent par le même mot, 3 exercices par écran | 1 |
-| O2, O4, O6 | 13 à 17 % de répétition, 42 à 50 % commencent par le même mot | 1 |
-| O1, O3, O5 | 4 à 22 % de répétition, 18 à 32 % même premier mot | 2 |
+| O11 | **3 exercices par écran** (15 par leçon) ; aucun mot répété (le « 93 % même premier mot » des premières mesures était « un / une » : normal pour des mots à compléter ; erreur de lecture corrigée le 16/11/2026) | 1 |
+| O2, O4, O6 | 13 à 17 % d'exercices identiques (recontrôlé le 16/11/2026) | 1 |
+| O1 | 22 % d'exercices identiques (recontrôlé) ; O3 et O5 : à recontrôler | 2 |
 | O7 à O12 | mince (15 à 21 exercices par leçon) | 1 |
 | O1, O3, O4, O5, O6 | mêmes exercices en CE2, CM1 et CM2 : pas d'adaptation au niveau | 2 |
 | C6, C7 (CE2) | mince (15 à 16 exercices par leçon) | 2 |
