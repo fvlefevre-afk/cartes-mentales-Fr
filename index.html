@@ -1398,7 +1398,9 @@ const ENSEIGNANT=ENS_REEL&&!APERCU;
 let BROUILLON=(()=>{if(!ENS_REEL)return {};try{return JSON.parse(sessionStorage.getItem("francais-brouillon")||"{}")||{};}catch(e){return {};}})();   /* {classes, dates:{CE2:{code:date|""}}} */
 const garderBrouillon=()=>{try{sessionStorage.setItem("francais-brouillon",JSON.stringify(BROUILLON));}catch(e){}
   /* classes choisies : gardées aussi sur cet appareil (hors mode enseignant, une classe décochée n'apparaît plus, même avant l'envoi du fichier) */
-  try{if(BROUILLON.classes)localStorage.setItem("francais-classes-locales",JSON.stringify(BROUILLON.classes));else localStorage.removeItem("francais-classes-locales");}catch(e){}};
+  try{if(BROUILLON.classes)localStorage.setItem("francais-classes-locales",JSON.stringify(BROUILLON.classes));else localStorage.removeItem("francais-classes-locales");}catch(e){}
+  try{if(BROUILLON.ecole)localStorage.setItem("francais-ecole-locale",JSON.stringify(BROUILLON.ecole));else localStorage.removeItem("francais-ecole-locale");}catch(e){}};
+const ecoleLocale=()=>{try{const e=JSON.parse(localStorage.getItem("francais-ecole-locale")||"null");return e&&typeof e==="object"?e:null;}catch(x){return null;}};
 const classesLocales=()=>{try{const a=JSON.parse(localStorage.getItem("francais-classes-locales")||"null");return Array.isArray(a)&&a.length&&a.every(n=>NIVEAUX.includes(n))?a:null;}catch(e){return null;}};
 try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
 /* CLASSES_VISIBLES : classes montrées aux élèves (choix de l'enseignante). Pour cacher une classe, la retirer de la liste (ex. ['CM1'] ou ['CM1','CM2']) ;
@@ -1410,7 +1412,7 @@ const classesVis=()=>BROUILLON.classes||classesLocales()||(OUVERTURE_REELLE&&Arr
 const niveauVisible=n=>ENSEIGNANT||classesVis().includes(n);
 const photoOk=x=>typeof x==='string'&&x.length<2500000&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/=]+$/.test(x);
 /* école (nom et photo, réglés dans ⚙ Réglages, enregistrés dans ouvertures.json : {ecole:{nom, photo}}) */
-const ecole=()=>{const e=BROUILLON.ecole||(OUVERTURE_REELLE&&OUVERTURE_REELLE.ecole)||{};return {nom:typeof e.nom==='string'?e.nom.trim().slice(0,80):'',photo:photoOk(e.photo)?e.photo:''};};
+const ecole=()=>{const e=BROUILLON.ecole||ecoleLocale()||(OUVERTURE_REELLE&&OUVERTURE_REELLE.ecole)||{};return {nom:typeof e.nom==='string'?e.nom.trim().slice(0,80):'',photo:photoOk(e.photo)?e.photo:''};};
 let marqueVue='';
 function majMarque(){const e=ecole(),cle=e.nom+'|'+e.photo.length+e.photo.slice(-24);if(cle===marqueVue)return;marqueVue=cle;
   $('#ecoleNom').textContent=e.nom;const h=$('#home'),ancien=h.querySelector('.logo');let n;
