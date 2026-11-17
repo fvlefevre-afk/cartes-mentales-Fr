@@ -581,6 +581,25 @@ body .bar .serie-b{flex:none;width:calc(var(--u)*2.4);height:calc(var(--u)*2.4)}
 @media (max-width:1180px){.bar-centre{order:3;flex-basis:100%}.marque-t{display:none}}
 @media (max-width:640px){.bar{padding:.3rem .5rem;gap:.3rem .5rem}.bar button{padding:.25rem .6rem}}
 @media (max-height:520px){.bar{position:relative;top:auto}}
+/* Voir un cadre de la carte en grand (17/11/2026) : bouton 🔍 de chaque cadre et fenêtre plein écran */
+.map .loupe{position:absolute;z-index:3;transform:translate(calc(-100% - max(.35rem,.8cqw)),max(.35rem,.8cqw));width:max(2rem,3.4cqw);height:max(2rem,3.4cqw);
+  display:grid;place-items:center;padding:0;border-radius:50%;border:2px solid color-mix(in srgb,var(--z) 70%,#fff);background:#fff;color:#222;
+  font-size:max(.95rem,1.6cqw);line-height:1;cursor:zoom-in;box-shadow:0 1px 4px rgba(0,0,0,.18);opacity:.92}
+.map .loupe:hover,.map .loupe:focus-visible{opacity:1;border-color:var(--z);transform:translate(calc(-100% - max(.35rem,.8cqw)),max(.35rem,.8cqw)) scale(1.12);outline:0}
+.loupe-fond{position:fixed;inset:0;z-index:1000;background:rgba(20,24,36,.82);display:grid;place-items:center;padding:1vh 2vw}
+.loupe-fond[hidden]{display:none}
+.loupe-boite{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:100%}
+.loupe-tete{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;justify-content:center;background:#fff;border-radius:999px;padding:.35rem .5rem .35rem .6rem;
+  border:3px solid var(--z);font:600 clamp(16px,1.6vw,22px)/1.2 Andika,sans-serif;color:#222}
+.loupe-num{display:grid;place-items:center;width:2em;height:2em;border-radius:50%;background:var(--z);color:#fff;font-weight:700}
+.loupe-b{width:2.2em;height:2.2em;border-radius:50%;border:2px solid #d5d8e0;background:#f6f7fa;cursor:pointer;font:inherit;line-height:1;padding:0}
+.loupe-b:hover,.loupe-b:focus-visible{border-color:var(--z);outline:0}
+.loupe-act{padding:.4em .9em;border-radius:999px;background:var(--z);color:#fff;text-decoration:none;font-weight:700;white-space:nowrap}
+.loupe-act:hover,.loupe-act:focus-visible{filter:brightness(1.1);outline:3px solid color-mix(in srgb,var(--z) 40%,transparent)}
+.loupe-vue{position:relative;overflow:hidden;background:#fff;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.loupe-vue img{position:absolute;max-width:none;height:auto;display:block}
+html.loupe-ouverte{overflow:hidden}
+@media print{.map .loupe,.loupe-fond{display:none!important}}
 </style>
 </head>
 <body>
@@ -968,12 +987,76 @@ function renderLessonMap(t){
     <h2 class="vh">${esc(t.titre)}</h2>
     <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))} : ${esc(t.titre)}">${chipCM2(t)}${(L.masque||[]).map(z=>`<span class="masque" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%" title="Pas au programme du CE2"></span>`).join('')}
       ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
+      ${L.sections.map((s,k)=>{const z=s.zone;return `<button type="button" class="loupe" data-loupe="${k}" style="left:${z[0]+z[2]}%;top:${z[1]}%;--z:${s.couleur}" title="Voir ce cadre en grand" aria-label="Voir en grand : ${esc(s.nom)}">🔍</button>`;}).join('')}
     </div>
     ${t.html?`<div class="body" style="margin-top:1.4rem">${t.html}</div>`:''}
     ${CM1_PLUS[t.id]||''}
   </div>`;
   if(t.html) renderConj(main);
+  LOUPE.carte={src:IMG[t.id].carte, nom:code(t)+' — '+t.titre, secs:L.sections.map(s=>({zone:s.zone, nom:s.nom, couleur:s.couleur, href:'#t='+t.id+'/s:'+s.id}))};
 }
+
+/* ===== Voir un cadre de la carte en grand (17/11/2026, demande de l'enseignante : un clic sur un cadre ouvre les activités,
+   il fallait aussi pouvoir l'afficher en grand, pour la classe au tableau) : bouton 🔍 en haut à droite de chaque cadre ;
+   ◀ ▶ (ou flèches du clavier) pour passer d'un cadre à l'autre, « Les activités » pour y aller, ✕ / Échap / clic à côté pour fermer. */
+const LOUPE={carte:null, k:0, el:null};
+function loupeTaille(){
+  const c=LOUPE.carte, el=LOUPE.el; if(!c||!el) return;
+  const img=el.querySelector('.loupe-vue img'), z=c.secs[LOUPE.k].zone;
+  const W=img.naturalWidth||1400, H=img.naturalHeight||933, r=(z[2]*W)/(z[3]*H);
+  const tete=el.querySelector('.loupe-tete').offsetHeight;
+  const lw=Math.min(innerWidth*.96, (innerHeight*.94-tete-16)*r);
+  const vue=el.querySelector('.loupe-vue'); vue.style.width=lw+'px'; vue.style.height=(lw/r)+'px';
+}
+function loupeMontrer(k){
+  const c=LOUPE.carte; if(!c||!c.secs.length) return;
+  LOUPE.k=(k+c.secs.length)%c.secs.length; const s=c.secs[LOUPE.k], z=s.zone;
+  if(!LOUPE.el){
+    LOUPE.el=document.createElement('div'); LOUPE.el.className='loupe-fond';
+    LOUPE.el.setAttribute('role','dialog'); LOUPE.el.setAttribute('aria-modal','true');
+    LOUPE.el.innerHTML=`<div class="loupe-boite"><div class="loupe-tete">
+        <button type="button" class="loupe-b" data-lp="-1" title="Cadre précédent" aria-label="Cadre précédent">◀</button>
+        <span class="loupe-num"></span><b class="loupe-titre"></b>
+        <button type="button" class="loupe-b" data-lp="1" title="Cadre suivant" aria-label="Cadre suivant">▶</button>
+        <a class="loupe-act" href="#">✏️ Les activités</a>
+        <button type="button" class="loupe-b loupe-x" data-lp="x" title="Fermer (Échap)" aria-label="Fermer">✕</button>
+      </div><div class="loupe-vue"><img alt=""></div></div>`;
+    LOUPE.el.addEventListener('click',e=>{
+      const b=e.target.closest('[data-lp]');
+      if(b){ if(b.dataset.lp==='x') loupeFermer(); else loupeMontrer(LOUPE.k+ +b.dataset.lp); return; }
+      if(e.target.closest('.loupe-act')){ loupeFermer(); return; }
+      if(!e.target.closest('.loupe-boite')) loupeFermer();
+    });
+    LOUPE.el.querySelector('.loupe-vue img').addEventListener('load',loupeTaille);
+    document.body.appendChild(LOUPE.el);
+  }
+  const el=LOUPE.el, img=el.querySelector('.loupe-vue img');
+  el.style.setProperty('--z',s.couleur||'#2456a6');
+  el.setAttribute('aria-label','Cadre '+(LOUPE.k+1)+' en grand : '+s.nom);
+  el.querySelector('.loupe-num').textContent=LOUPE.k+1;
+  el.querySelector('.loupe-titre').textContent=s.nom;
+  el.querySelector('.loupe-act').href=s.href;
+  el.querySelectorAll('[data-lp="-1"],[data-lp="1"]').forEach(b=>b.hidden=c.secs.length<2);
+  if(img.getAttribute('src')!==c.src) img.src=c.src;
+  img.alt=c.nom+' — cadre '+(LOUPE.k+1)+' : '+s.nom;
+  Object.assign(img.style,{width:(100*100/z[2])+'%', left:(-100*z[0]/z[2])+'%', top:(-100*z[1]/z[3])+'%'});
+  el.hidden=false; document.documentElement.classList.add('loupe-ouverte');
+  loupeTaille(); el.querySelector('.loupe-x').focus({preventScroll:true});
+}
+function loupeFermer(){
+  if(!LOUPE.el||LOUPE.el.hidden) return;
+  LOUPE.el.hidden=true; document.documentElement.classList.remove('loupe-ouverte');
+  const b=document.querySelector('.loupe[data-loupe="'+LOUPE.k+'"]'); if(b) b.focus({preventScroll:true});
+}
+document.addEventListener('click',e=>{const b=e.target.closest('.loupe[data-loupe]'); if(b){e.preventDefault(); e.stopPropagation(); loupeMontrer(+b.dataset.loupe);}},true);
+document.addEventListener('keydown',e=>{
+  if(!LOUPE.el||LOUPE.el.hidden) return;
+  if(e.key==='Escape'){e.preventDefault(); e.stopPropagation(); loupeFermer();}
+  else if(e.key==='ArrowRight'){e.preventDefault(); loupeMontrer(LOUPE.k+1);}
+  else if(e.key==='ArrowLeft'){e.preventDefault(); loupeMontrer(LOUPE.k-1);}
+},true);
+addEventListener('resize',loupeTaille);
+addEventListener('hashchange',loupeFermer);
 
 /*BIB-JS*/
 /* ===== Bibliothèque commune des cartes interactives (maths et français) : INTERFACE =====
