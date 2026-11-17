@@ -27,9 +27,12 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 
 ## Le site
 
-- Le site tient dans `index.html` ; les images (cartes mentales `images/<id>.jpg`, personnages `images/fille*.jpg`, `images/garcon*.jpg`, `duo.jpg`)
-  sont dans le dossier `images/` : l'objet `IMG` ne garde que leur chemin (page allégée de 11,7 Mo à 0,4 Mo, 23/10/2026).
-  Une carte se remplace à la main en gardant le même nom de fichier (1400×933 px).
+- **Un seul fichier, comme les cartes de maths (17/11/2026, demande de l'enseignante, qui copie seulement `index.html` sur sa clé USB)** : `index.html` fonctionne SEUL, sans dossier à côté.
+  Les outils fabriquent toujours les images dans `images/<id>.jpg` et l'objet `IMG` garde leur chemin ; `python3 outils/integrer_images.py` ajoute sous la ligne `const IMG=` le bloc
+  `/*IMAGES-INTEGREES*/…/*IMAGES-INTEGREES-FIN*/` (images en WebP qualité 82, chemin → image au chargement) et met la police Andika dans la feuille de style (`url(data:…)/*polices/…*/`).
+  Page d'environ 8 Mo. Il est appelé tout seul à la fin de `inserer.py`, `inserer_cm2.py`, `lecons/g_cartes.py`, `g2_cartes.py`, `g3_cartes.py` et par `publier-forge.sh` ;
+  après toute autre modification d'une image (carte remplacée à la main, copie depuis `outils/sortie/`), le relancer avant le commit : `tester.py` signale un bloc pas à jour.
+  Ne jamais modifier ce bloc à la main. Une carte se remplace en gardant le même nom de fichier (1400×933 px), puis `integrer_images.py`.
 - Écrans animés : §…§ colore une terminaison en violet (conjugaison).
 - **Lisibilité CM1 (10/11/2026, demande de l'enseignante)** : police Andika dans `polices/` (400, 400 italique, 700 ; licence `polices/OFL.txt`), plus de Google Fonts ;
   textes lus par l'élève à 16 px au moins (`--u` : 16 à 22 px ; bloc « Lisibilité CM1 » en fin de feuille de style) ; une leçon n'est jamais réduite sous 90 % (`MIN_LECON`), la page défile ;

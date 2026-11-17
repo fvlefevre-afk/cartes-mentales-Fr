@@ -113,3 +113,5 @@ if __name__ == '__main__':
     Z = {'G3': auto('G3', 'Grammaire — G3 — CM1', 'CM1'), 'G3-CE2': auto('G3-CE2', 'Grammaire — G3 — CE2', 'CE2'), 'G3-CM2': auto('G3-CM2', 'Grammaire — G3 — CM2', 'CM2')}
     mettre_dans_le_site(Z, 'G3')
     print('cartes G3 : sortie/G3_carte.jpeg, G3-CE2_carte.jpeg, G3-CM2_carte.jpeg (à copier dans images/) ; zones mises dans index.html')
+if __name__ == '__main__':
+    import os, sys; import subprocess as _sp; _sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'integrer_images.py')])   # images et police dans index.html (17/11/2026)

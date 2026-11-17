@@ -14,7 +14,7 @@ cp "$ICI/index.html" "$PUB/index.html"
 rm -rf $PUB/images && cp -r $ICI/images $PUB/images
 rm -rf $PUB/polices && cp -r $ICI/polices $PUB/polices      # police Andika (10/11/2026) : sans ce dossier, les cartes s’affichent dans une autre police
 cp "$ICI/.gitlab-ci.yml" "$PUB/.gitlab-ci.yml"           # la publication copie aussi polices/ dans la page en ligne
-python3 "$ICI/outils/versions_images.py" "$PUB/index.html"   # 17/11/2026 : marque de version sur chaque image (sinon tablettes et ordinateurs gardent une ancienne carte sous les nouveaux cadres)
+python3 "$ICI/outils/integrer_images.py" "$PUB/index.html"   # 17/11/2026 : images et police dans la page (un seul fichier, comme les maths ; rien ne peut rester ancien à côté)
 cd "$PUB" && git add -A
 if git diff --cached --quiet; then echo "Rien à publier : le site en ligne est déjà à jour."; exit 0; fi
 git commit -q -m "Mise à jour du site" && git push forge main && echo "Publié : le site se met à jour en 1 à 2 minutes."

@@ -34,6 +34,9 @@ with sync_playwright() as p:
         ids = args
 
     bad = []; raw = []; pb = []; total_ex = total_ok = 0
+    import subprocess as _sp, os as _os
+    if _sp.run([sys.executable, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'integrer_images.py'), '--verifier'], capture_output=True).returncode:
+        pb.append('images intégrées pas à jour : lancer python3 outils/integrer_images.py')
     for lid in ids:
         pg.goto(f + '#t=' + lid); pg.wait_for_timeout(250)
         if not pg.query_selector('.sheet.lesson'):

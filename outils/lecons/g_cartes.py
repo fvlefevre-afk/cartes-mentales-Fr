@@ -143,3 +143,5 @@ if __name__ == '__main__':
             open(os.path.join(D, '..', '..', 'index.html'), 'w').write(t); continue
         if ('\n%s:{"sections"' % lid) in site or ('\n"%s":{"sections"' % lid) in site: mettre_dans_le_site({lid: z}, lid)
         else: mettre_dans_le_site({lid.split('-')[0]: {}, lid: z}, lid.split('-')[0])
+if __name__ == '__main__':
+    import os, sys; import subprocess as _sp; _sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'integrer_images.py')])   # images et police dans index.html (17/11/2026)

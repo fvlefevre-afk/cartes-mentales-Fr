@@ -49,3 +49,5 @@ open(P, 'w', encoding='utf-8').write('\n'.join(L))
 import sans_ecriture_fausse; sans_ecriture_fausse.corriger(P, bavard=False)   # jamais d'écriture fausse (15/11/2026)
 print('mis dans le site :', ', '.join(ids))
 print('Penser : nouvelle famille → FAMILLES ; date d’ouverture → node outils/ouvertures_site.mjs ../ressources (OUVERTURE_PREVUE dans index.html).')
+import os, sys
+import subprocess as _sp; _sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'integrer_images.py')])   # images et police dans index.html (17/11/2026)
