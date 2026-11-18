@@ -13,6 +13,8 @@ PAL = {  # couleur: (bordure, fond, fond du titre)
     'rose': ('#c2185b', '#fdf0f5', '#fbe0ea'),
     'indigo': ('#5e35b1', '#f3effc', '#e0d7f6'),  # compléments d'objet (G6)
     'marron': ('#8d5524', '#faf3ec', '#eedccb'),  # compléments circonstanciels (G6)
+    'ciel': ('#0b8fd6', '#eaf6fd', '#c6e7fa'),  # déterminant, code des personnages (G4, 17/11/2026)
+    'gris': ('#5f6b7a', '#f1f3f5', '#dde1e6'),  # cadre sans classe de mot (G4 « Variable ou invariable ? »)
 }
 # Positions standard (comme G3)
 TL = (18, 86, 430, 330)

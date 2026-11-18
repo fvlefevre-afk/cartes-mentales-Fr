@@ -37,7 +37,7 @@ table.acc td{padding:2px 0;white-space:nowrap}
 table.acc td.m{color:#5b6479;text-align:center;width:36px;font-family:"DejaVu Sans"}
 .pic{position:absolute}
 
-.s{color:#1f5fc4;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px}
+.s{color:#1a2f8f;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px} /* sujet : bleu marine, toujours souligné (17/11/2026), distinct du bleu ciel du déterminant */
 .v{color:#c62828;font-weight:700}
 .p{color:#7b3fa0;font-weight:700;border:3px solid #7b3fa0;border-radius:20px;padding:0 8px}
 .rond{font-weight:700;border:3px solid var(--c);border-radius:20px;padding:0 8px;color:var(--c)}

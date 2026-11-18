@@ -8,11 +8,11 @@ BCx = (485, 568, 430, 350)
 BRx = (952, 568, 430, 350)
 boxes = [
  dict(id='gn', col='vert', geom=TL, title='Les mots du GN', avatar=('girl', 322, 122), html='''
-  <p class="txt" style="padding-right:100px">Le <b style="color:#1f5fc4">nom</b> : une personne, un animal, une chose, une idée.</p>
+  <p class="txt" style="padding-right:100px">Le <b style="color:#e0458f">nom</b> : une personne, un animal, une chose, une idée.</p>
   <p class="txt" style="padding-right:100px">L’<span class="a">adjectif</span> dit comment est le nom.</p>
   <div class="ex big" style="margin-top:14px"><span class="d">une</span> <span class="a">jolie</span> <span class="n">robe</span></div>
   <p class="small" style="margin:8px 0 0">Le <span class="d">déterminant</span> est devant le nom.</p>'''),
- dict(id='det', col='orange', geom=TC, title='Les déterminants', html='''
+ dict(id='det', col='ciel', geom=TC, title='Les déterminants', html='''
   <p style="margin:0 0 6px;font-size:19px;line-height:1.35"><b>Articles</b> : <span class="d">le, la, les, un, une, des</span></p>
   <p style="margin:0 0 6px;font-size:19px;line-height:1.35"><b>Possessifs</b> (à qui ?) : <span class="d">mon, ton, son, ma, ta, sa, mes, tes, ses, notre, votre, leur, nos, vos, leurs</span></p>
   <p style="margin:0 0 8px;font-size:19px;line-height:1.35"><b>Démonstratifs</b> (je montre) : <span class="d">ce, cet, cette, ces</span></p>
@@ -21,9 +21,9 @@ boxes = [
   <ul style="padding-right:96px;font-size:20px">
    <li>Le <span class="v">verbe</span> se conjugue : il change avec le temps et le sujet.</li>
    <li>Le <b>pronom</b> remplace un nom.</li></ul>
-  <div class="ex" style="text-align:center"><span class="s">Léa</span> <span class="v">chante</span> <span class="arrow">→</span> <span class="s">Elle</span> <span class="v">chante</span></div>
+  <div class="ex" style="text-align:center"><span class="n">Léa</span> <span class="v">chante</span> <span class="arrow">→</span> <span class="p">Elle</span> <span class="v">chante</span></div>
   <p class="small" style="margin:6px 0 0;font-size:16px;line-height:1.35"><b>sujets</b> : je, tu, il, elle, on, nous, vous, ils, elles<br><b>compléments</b> : me, te, le, la, les, lui, leur</p>'''),
- dict(id='adv', col='violet', geom=BLx, title='L’adverbe', style='padding-top:50px', html='''
+ dict(id='adv', col='orange', geom=BLx, title='L’adverbe', style='padding-top:50px', html='''
   <ul style="font-size:20px">
    <li>Il précise un <span class="v">verbe</span>, un adjectif ou un autre adverbe.</li>
    <li>Beaucoup finissent par <span class="e">-ment</span>.</li></ul>
@@ -33,21 +33,21 @@ boxes = [
   <p class="txt">Les <b>conjonctions de coordination</b> relient deux mots ou deux parties de phrase.</p>
   <div class="ex big" style="font-size:21px;padding:6px 4px;white-space:nowrap">mais · ou · et · donc · or · ni · car</div>
   <p class="txt" style="text-align:center">Il pleut <span class="rond">mais</span> je sors.</p>'''),
- dict(id='inv', col='rose', geom=BRx, title='Variable ou invariable ?', style='padding-top:50px', html='''
+ dict(id='inv', col='gris', geom=BRx, title='Variable ou invariable ?', style='padding-top:50px', html='''
   <p class="txt"><b>Variables</b> (ils changent) : nom, déterminant, adjectif, verbe, pronom.</p>
   <p class="txt"><b>Invariables</b> (ils ne changent jamais) : adverbe, conjonction.</p>
-  <div class="ex" style="font-size:20px">il parle <span class="rond">doucement</span><br>elles parlent <span class="rond">doucement</span></div>'''),
+  <div class="ex" style="font-size:20px">il parle <span class="rond" style="--c:#e67e22">doucement</span><br>elles parlent <span class="rond" style="--c:#e67e22">doucement</span></div>'''),
 ]
-legend = '<span class="d">dét.</span> · <b style="color:#1f5fc4">nom</b> · <span class="a">adjectif</span> · <span class="v">verbe</span>'
+legend = '<span class="d">dét.</span> · <b style="color:#e0458f">nom</b> · <span class="a">adjectif</span> · <span class="v">verbe</span> · <b style="color:#8e44c9">pronom</b> · <b style="color:#e67e22">adverbe</b>'
 out, zones = build('G4', 'Les classes<br>de mots', 'Grammaire — G4 — CM1', legend, boxes, sub='', title_size=38)
 
 sections = [
  {'id': 'gn', 'nom': 'Les mots du GN', 'couleur': '#23845a'},
- {'id': 'det', 'nom': 'Les déterminants', 'couleur': '#e67e22'},
+ {'id': 'det', 'nom': 'Les déterminants', 'couleur': '#0b8fd6'},
  {'id': 'verbe', 'nom': 'Verbe et pronom', 'couleur': '#c62828'},
- {'id': 'adv', 'nom': 'L’adverbe', 'couleur': '#7b3fa0'},
+ {'id': 'adv', 'nom': 'L’adverbe', 'couleur': '#e67e22'},
  {'id': 'conj', 'nom': 'Les mots qui relient', 'couleur': '#00838f'},
- {'id': 'inv', 'nom': 'Variable ou invariable ?', 'couleur': '#c2185b'},
+ {'id': 'inv', 'nom': 'Variable ou invariable ?', 'couleur': '#5f6b7a'},
 ]
 ecrans = [
  E('gn', 'etiquette', 'Le nom', 'girl', 'Un nom désigne une personne, un animal, une chose ou une idée.',

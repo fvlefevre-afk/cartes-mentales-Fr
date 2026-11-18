@@ -4,6 +4,11 @@ Propositions faites pendant le travail, auxquelles il n'a pas encore été répo
 Rayer ou supprimer une ligne une fois la décision prise.
 
 
+## Code couleur des personnages (17/11/2026)
+
+- [ ] **G3 et G7 au code des personnages** : déterminant bleu ciel, nom rose (comme G4). G4 est fait ; attendre l'essai en classe.
+- [ ] **Pages vivantes de G4 (dépôt `edl`)** : observation et entraînement collectif encore à l'ancien code (déterminant orange, nom bleu…) ; accès au dépôt refusé à la session du 17/11/2026.
+
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
 - [ ] **Un fichier de référence unique des ceintures** (comme `architecture_ceintures.py` en maths) d'où sortent le site,

@@ -10,7 +10,11 @@ from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
 SCRIPTS = {'G1': 'g1_carte.py', **{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
-PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524')}
+PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524'),
+          'ciel': ('#0b8fd6', '#dff2fc', '#a8daf5', '#0b8fd6'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
+# Code couleur des personnages (17/11/2026, choix de l'enseignante) : déterminant bleu ciel, nom rose, adjectif vert, verbe rouge,
+# pronom violet, adverbe orange, conjonction turquoise. Mis en place d'abord sur G4 ; même code dans index.html (.lecon-G4).
+CSS_CARTE = {'G4': '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}.p{color:#8e44c9;border-color:#8e44c9}</style>'}
 MARGE = 24
 ZMAX = {'C2': 1.0, 'C8-CM2': 1.1, 'C3': 1.1}   # cartes dont un tableau déborderait du cadre si le texte était plus grand
 ZOOM = [1]   # agrandissement du texte des cadres (cartes aux petits caractères : H) ; choisi par auto()
@@ -75,7 +79,7 @@ def carte(lid, a, kw, boxes, geo=None, cdy=26):
     kw = dict(kw); kw.pop('cloud_dy', None); kw.pop('legend_pos', None) if lid[0] == 'O' else None
     if lid in ('O8', 'O10'): kw['title_size'] = 33
     if lid == 'C5': kw['legend_pos'] = 'right:18px;top:520px'
-    kw['extra_html'] = police() + (f'<style>.box.tint>*:not(h2){{zoom:{ZOOM[0]} !important}}</style>' if ZOOM[0] != 1 else '')
+    kw['extra_html'] = police() + CSS_CARTE.get(lid, '') + (f'<style>.box.tint>*:not(h2){{zoom:{ZOOM[0]} !important}}</style>' if ZOOM[0] != 1 else '')
     return build(lid, titre, chip, legend, bx, cloud_dy=cdy, **kw)
 
 
