@@ -132,10 +132,13 @@ h3.sub{margin:1.6rem 0 .6rem;color:var(--fam);font-size:1.2rem}
 /* G6 : compléments d'objet (~…~) en indigo, compléments circonstanciels (^…^) en marron, pour ne pas reprendre le vert de l'adjectif ni l'orange du déterminant (choix de l'enseignante, 23/10/2026) */
 .lecon-G6{--precis:#5e35b1;--precis-bg:#f3effc;--etiq:#8d5524;--etiq-bg:#faf3ec}
 /* G4 : code couleur des personnages (17/11/2026, choix de l’enseignante) : déterminant bleu ciel, nom rose, adjectif vert, verbe rouge, pronom violet, adverbe orange, conjonction turquoise */
-.lecon-G4{--etiq:#0b8fd6;--etiq-bg:#e3f4fc}
+/* couleurs libres (17/11/2026) : --cl-det… posées par appliquerCouleursCl() d'après ouvertures.json (⚙ Réglages › Couleurs des classes de mots) ; sinon le code des personnages */
+.lecon-G4{--etiq:var(--cl-det,#0b8fd6);--etiq-bg:color-mix(in srgb,var(--cl-det,#0b8fd6) 12%,#fff);--precis:var(--cl-adj,#23845a);--precis-bg:color-mix(in srgb,var(--cl-adj,#23845a) 12%,#fff);--verbe:var(--cl-verbe,#c62828)}
 .lecon-G4 .circ{color:var(--z);font-weight:700}
-.lecon-G4[data-sec="gn"] .circ{--z:#e0458f}
-.lecon-G4[data-sec="verbe"] .circ{--z:#8e44c9}
+.lecon-G4[data-sec="gn"] .circ{--z:var(--cl-nom,#e0458f)}
+.lecon-G4[data-sec="verbe"] .circ{--z:var(--cl-pron,#8e44c9)}
+.lecon-G4[data-sec="adv"] .circ{--z:var(--cl-adv,#e67e22)}
+.lecon-G4[data-sec="conj"] .circ{--z:var(--cl-conj,#00838f)}
 .barre{text-decoration:line-through;text-decoration-thickness:2px;color:#8a92a6}
 .neg{border:2px solid var(--verbe);border-radius:.9rem;padding:0 .3rem;color:var(--verbe)}
 .ind{text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:#23845a;text-underline-offset:4px}
@@ -1496,7 +1499,8 @@ let BROUILLON=(()=>{if(!ENS_REEL)return {};try{return JSON.parse(sessionStorage.
 const garderBrouillon=()=>{try{sessionStorage.setItem("francais-brouillon",JSON.stringify(BROUILLON));}catch(e){}
   /* classes choisies : gardées aussi sur cet appareil (hors mode enseignant, une classe décochée n'apparaît plus, même avant l'envoi du fichier) */
   try{if(BROUILLON.classes)localStorage.setItem("francais-classes-locales",JSON.stringify(BROUILLON.classes));else localStorage.removeItem("francais-classes-locales");}catch(e){}
-  try{if(BROUILLON.ecole)localStorage.setItem("francais-ecole-locale",JSON.stringify(BROUILLON.ecole));else localStorage.removeItem("francais-ecole-locale");}catch(e){}};
+  try{if(BROUILLON.ecole)localStorage.setItem("francais-ecole-locale",JSON.stringify(BROUILLON.ecole));else localStorage.removeItem("francais-ecole-locale");}catch(e){}
+  try{if(BROUILLON.couleurs)localStorage.setItem("francais-couleurs-locales",JSON.stringify(BROUILLON.couleurs));else localStorage.removeItem("francais-couleurs-locales");}catch(e){}};
 const ecoleLocale=()=>{try{const e=JSON.parse(localStorage.getItem("francais-ecole-locale")||"null");return e&&typeof e==="object"?e:null;}catch(x){return null;}};
 const classesLocales=()=>{try{const a=JSON.parse(localStorage.getItem("francais-classes-locales")||"null");return Array.isArray(a)&&a.length&&a.every(n=>NIVEAUX.includes(n))?a:null;}catch(e){return null;}};
 try{localStorage.removeItem('classe-cm1-periode-debloquee');}catch(e){}   /* anciens codes de période */
@@ -1516,6 +1520,15 @@ function majMarque(){const e=ecole(),cle=e.nom+'|'+e.photo.length+e.photo.slice(
   if(e.photo){n=document.createElement('img');n.src=e.photo;n.alt='';n.className='logo';}else{n=document.createElement('span');n.className='logo ecusson';n.textContent='Fr';n.setAttribute('aria-hidden','true');}
   ancien.replaceWith(n);}
 let OUVERTURE_REELLE=null;   /* ouvertures.json : {maj, CE2:{code:date}, CM1:{…}, CM2:{…}} */
+/* Couleurs des classes de mots (17/11/2026, choix de l'enseignante : couleurs entièrement libres) : d'origine le code des personnages ; réglées dans ⚙ Réglages
+   (ou reprises du fichier couleurs-classes.js du tableau de bord), enregistrées dans ouvertures.json {couleurs:{det:"#rrggbb",…}} (seulement celles qui changent) ;
+   appliquées aux écrans de G4 (variables --cl-det…). Les images des cartes mentales gardent leurs couleurs (dessinées). */
+const CL_DEF={det:'#0b8fd6',nom:'#e0458f',adj:'#23845a',verbe:'#c62828',pron:'#8e44c9',adv:'#e67e22',conj:'#00838f',prep:'#2fa58a'};
+const CL_NOM={det:'Déterminant',nom:'Nom',adj:'Adjectif',verbe:'Verbe',pron:'Pronom',adv:'Adverbe',conj:'Conjonction',prep:'Préposition'};
+const couleursValides=o=>{const r={};if(o&&typeof o==='object')Object.keys(CL_DEF).forEach(k=>{const v=o[k];if(typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v)&&v.toLowerCase()!==CL_DEF[k])r[k]=v.toLowerCase();});return r;};
+const couleursLocales=()=>{try{const c=JSON.parse(localStorage.getItem("francais-couleurs-locales")||"null");return c&&typeof c==='object'?c:null;}catch(x){return null;}};
+const couleursCl=()=>couleursValides(BROUILLON.couleurs||couleursLocales()||(OUVERTURE_REELLE&&OUVERTURE_REELLE.couleurs)||{});
+function appliquerCouleursCl(){const C=couleursCl(),r=document.documentElement.style;Object.keys(CL_DEF).forEach(k=>{if(C[k])r.setProperty('--cl-'+k,C[k]);else r.removeProperty('--cl-'+k);});}
 const isoJour=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const AUJ=isoJour(new Date());
 /* date d'ouverture : la date prévue (début de la période de la ceinture) (10/11/2026, demande de l'enseignante : plus de dates dans ouvertures.json,
@@ -1751,23 +1764,28 @@ if(ENS_REEL){(()=>{
  const ens=$('#ensBtn'),rb=document.createElement('button');rb.id='regBtn';rb.type='button';rb.textContent='⚙ Réglages';rb.title="Classes montrées, nom et photo de l'école";ens.parentNode.insertBefore(rb,ens);
  const dlg=document.createElement('dialog');dlg.id='regDlg';document.body.appendChild(dlg);let nivReg=NIV_AFF().includes(niveauChoisi())?niveauChoisi():'CM1';
  const dateCourte=d=>new Date(d+'T12:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
- const fichier=()=>{const out={maj:AUJ,classes:classesVis()},E=ecole();if(E.nom||E.photo)out.ecole=E;return JSON.stringify(out,null,1);};
- const apres=()=>{garderBrouillon();dessiner();render();majBarNiv();};
+ const fichier=()=>{const out={maj:AUJ,classes:classesVis()},E=ecole(),C=couleursCl();if(E.nom||E.photo)out.ecole=E;if(Object.keys(C).length)out.couleurs=C;return JSON.stringify(out,null,1);};
+ const apres=()=>{garderBrouillon();appliquerCouleursCl();dessiner();render();majBarNiv();};
+ const lisible=h=>{const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(v=>v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4));return 1.05/(0.2126*c[0]+0.7152*c[1]+0.0722*c[2]+0.05)>=3;};
  /* ce que voient les élèves = ouvertures.json publié ; tant que le brouillon en diffère, les élèves ne voient pas le changement (13/11/2026 : la photo ne s'affichait que chez l'enseignante) */
  const publie=()=>{const e=(OUVERTURE_REELLE&&OUVERTURE_REELLE.ecole)||{};return {nom:typeof e.nom==='string'?e.nom.trim():'',photo:photoOk(e.photo)?e.photo:''};};
- const nonPublie=()=>{const a=ecole(),p=publie(),c=(OUVERTURE_REELLE&&OUVERTURE_REELLE.classes)||null;return a.nom!==p.nom||a.photo!==p.photo||(c&&JSON.stringify(classesVis())!==JSON.stringify(c));};
+ const nonPublie=()=>{const a=ecole(),p=publie(),c=(OUVERTURE_REELLE&&OUVERTURE_REELLE.classes)||null;return a.nom!==p.nom||a.photo!==p.photo||(c&&JSON.stringify(classesVis())!==JSON.stringify(c))||JSON.stringify(couleursCl())!==JSON.stringify(couleursValides((OUVERTURE_REELLE&&OUVERTURE_REELLE.couleurs)||{}));};
  function dessiner(){const A=classesVis(),y=(dlg.querySelector('.rg-lst')||{}).scrollTop||0,L=ordreSommaire(nivReg).filter(hasTrace);
   dlg.innerHTML=`<h2>Réglages enseignant</h2>
   <p class="rg-note">Ces choix changent rarement. Ils restent dans cet onglet ; les élèves ne les voient qu'après le dépôt du fichier sur La Forge (en bas), une seule fois.</p>
-  ${nonPublie()?`<p class="rg-note" style="background:#fff3e0;border:2px solid #e67e22;border-radius:10px;padding:.5rem .8rem;color:#7a3d00"><b>⚠ Les élèves ne voient pas encore ces changements</b> (photo, nom ou classes). Ils ne les verront qu'après l'envoi du fichier, tout en bas.</p>`:(OUVERTURE_REELLE?`<p class="rg-note" style="color:#1b6b3a"><b>✓ Les élèves voient exactement ces réglages.</b></p>`:'')}
+  ${nonPublie()?`<p class="rg-note" style="background:#fff3e0;border:2px solid #e67e22;border-radius:10px;padding:.5rem .8rem;color:#7a3d00"><b>⚠ Les élèves ne voient pas encore ces changements</b> (photo, nom, classes ou couleurs). Ils ne les verront qu'après l'envoi du fichier, tout en bas.</p>`:(OUVERTURE_REELLE?`<p class="rg-note" style="color:#1b6b3a"><b>✓ Les élèves voient exactement ces réglages.</b></p>`:'')}
   <h3>École</h3>
   <div class="rg-ecole"><label>Nom de l'école<input type="text" maxlength="80" data-rgnom value="${esc(ecole().nom)}" placeholder="École élémentaire …"></label>
    <div class="rg-photo">${ecole().photo?`<img src="${ecole().photo}" alt="">`:'<span>Pas de photo</span>'}<div><button type="button" data-rgph>📷 ${ecole().photo?'Changer la photo':'Choisir une photo'}</button>${ecole().photo?'<button type="button" data-rgphx>Retirer</button>':''}<input type="file" id="rgPhoto" accept="image/*" hidden><small>Réduite automatiquement ; enregistrée dans ouvertures.json.</small></div></div></div>
   <h3>Classes montrées aux élèves</h3><div class="rg-cl">${NIVEAUX.map(n=>`<label><input type="checkbox" data-rgcl="${n}"${A.includes(n)?' checked':''}> ${n}</label>`).join('')}</div>
+  <h3>Couleurs des classes de mots</h3>
+  <p class="rg-note">Couleur de chaque classe de mot dans les écrans de G4. Les images des cartes mentales gardent leurs couleurs (elles sont dessinées). Pour reprendre les couleurs choisies dans le tableau de bord : « Reprendre le fichier du tableau de bord » (<b>couleurs-classes.js</b>).</p>
+  <div class="rg-coul" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr));gap:.4rem .8rem">${Object.keys(CL_DEF).map(k=>{const v=couleursCl()[k]||CL_DEF[k];return `<label style="display:flex;align-items:center;gap:.4rem"><input type="color" data-rgcoul="${k}" value="${v}" style="width:2.6rem;height:1.8rem;padding:0;border:1px solid #ccc;border-radius:6px"><span style="color:${v};font-weight:700">${CL_NOM[k]}</span>${lisible(v)?'':'<span title="Peu lisible écrit sur fond blanc">⚠</span>'}</label>`;}).join('')}</div>
+  <div class="rg-act"><button type="button" data-rgcoulf>📥 Reprendre le fichier du tableau de bord</button>${Object.keys(couleursCl()).length?'<button type="button" data-rgcoulraz>Couleurs d\'origine</button>':''}<input type="file" id="rgCoul" accept=".js,.json,text/javascript,application/json" hidden></div>
   <h3>Dates d'ouverture des leçons</h3>
   <p class="rg-note">Chaque leçon s'ouvre au début de la période de sa ceinture : rien à régler ni à déposer. En cas d'écart, la clé 🔑 ouvre toutes les leçons sur l'appareil.</p>
-  <h3>Envoyer l'école et les classes aux élèves</h3>
-  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>, il va dans « Téléchargements »).</li><li>Lancez la publication habituelle (<b>bash outils/publier-forge.sh</b>) : elle prend ce fichier toute seule et l'envoie avec le site. <i>Sans la publication, la photo ne s'affiche que chez vous.</i></li><li>Les cartes se mettent à jour en 1 à 2 minutes.</li></ol>
+  <h3>Envoyer l'école, les classes et les couleurs aux élèves</h3>
+  <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>, il va dans « Téléchargements » ; il porte aussi les couleurs).</li><li>Lancez la publication habituelle (<b>bash outils/publier-forge.sh</b>) : elle prend ce fichier toute seule et l'envoie avec le site. <i>Sans la publication, la photo ne s'affiche que chez vous.</i></li><li>Les cartes se mettent à jour en 1 à 2 minutes.</li></ol>
   <div class="rg-act"><button type="button" data-rgdl>⬇ Télécharger ouvertures.json</button><button type="button" data-rgcp>Copier le contenu</button><button type="button" data-rgap>👁 Voir comme un élève</button></div>
   <p id="rgMsg" role="status"></p>
   <div class="ens-actions"><button type="button" data-rgraz>Annuler mes changements</button><button type="button" data-rgfin id="ensOk">Fermer</button></div>`;
@@ -1777,6 +1795,8 @@ if(ENS_REEL){(()=>{
   if('rgniv' in d){nivReg=d.rgniv;dessiner();}
   else if('rgph' in d){$('#rgPhoto').click();}
   else if('rgphx' in d){BROUILLON.ecole={...ecole(),photo:''};apres();}
+  else if('rgcoulf' in d){$('#rgCoul').click();}
+  else if('rgcoulraz' in d){BROUILLON.couleurs={};apres();}
   else if('rgdl' in d){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([fichier()],{type:'application/json'}));a.download='ouvertures.json';a.click();$('#rgMsg').textContent='Fichier téléchargé dans « Téléchargements » : lancez maintenant bash outils/publier-forge.sh pour l’envoyer aux élèves.';}
   else if('rgcp' in d){const x=fichier();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>{$('#rgMsg').textContent='Contenu copié : sur La Forge, ouvrez ouvertures.json › Modifier › tout remplacer › Commit.';}).catch(()=>{$('#rgMsg').textContent="Copie impossible : utilisez « Télécharger ».";});}
   else if('rgap' in d){try{sessionStorage.setItem('francais-apercu','1');}catch(x){}location.reload();}
@@ -1786,6 +1806,8 @@ if(ENS_REEL){(()=>{
  const reduire=f=>new Promise((ok,ko)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const k=Math.min(1,1100/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);let q=.8,x=c.toDataURL('image/jpeg',q);while(x.length>450000&&q>.4){q-=.1;x=c.toDataURL('image/jpeg',q);}ok(x);};im.onerror=()=>ko();im.src=u;});
  dlg.addEventListener('change',e=>{const i=e.target;
   if(i.dataset.rgnom!=null){BROUILLON.ecole={...ecole(),nom:i.value};apres();return;}
+  if(i.dataset.rgcoul){BROUILLON.couleurs={...couleursCl(),[i.dataset.rgcoul]:i.value};BROUILLON.couleurs=couleursValides(BROUILLON.couleurs);apres();return;}
+  if(i.id==='rgCoul'){const f=i.files[0];i.value='';if(!f)return;f.text().then(t=>{const m=t.match(/\{[\s\S]*\}/);const o=m?JSON.parse(m[0]):null;if(!o||!Object.keys(CL_DEF).some(k=>typeof o[k]==='string'))throw 0;BROUILLON.couleurs=couleursValides(o);apres();$('#rgMsg').style.color='';$('#rgMsg').textContent='Couleurs reprises du tableau de bord : téléchargez ouvertures.json et publiez pour les élèves.';}).catch(()=>{$('#rgMsg').style.color='#b3261e';$('#rgMsg').textContent="Ce fichier n'est pas le fichier des couleurs du tableau de bord (couleurs-classes.js).";});return;}
   if(i.id==='rgPhoto'){const f=i.files[0];i.value='';if(!f)return;reduire(f).then(x=>{BROUILLON.ecole={...ecole(),photo:x};apres();marqueVue='';majMarque();render();}).catch(()=>{$('#rgMsg').style.color='#b3261e';$('#rgMsg').textContent="Cette image n'a pas pu être lue.";});return;}
   if(i.dataset.rgcl){const A=NIVEAUX.filter(n=>dlg.querySelector(`[data-rgcl="${n}"]`).checked);if(!A.length){i.checked=true;$('#rgMsg').textContent='Gardez au moins une classe.';return;}BROUILLON.classes=A;if(!A.includes(nivReg))nivReg=A[0];apres();}
 });
@@ -1793,7 +1815,8 @@ if(ENS_REEL){(()=>{
   bn.querySelector('button').onclick=()=>{try{sessionStorage.removeItem('francais-apercu');}catch(x){}location.reload();};}
 })();}
 /* ouvertures.json à côté de index.html, s'il existe : nom et photo de l'école, classes montrées (ses dates éventuelles ne sont plus lues, 10/11/2026) */
-if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;render();}}).catch(()=>{});
+appliquerCouleursCl();
+if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;appliquerCouleursCl();render();}}).catch(()=>{});
 $('#tocBtn').addEventListener('click',()=>go('#'));
 const menuBtn=$('#menuBtn'),menuList=$('#menuList');
 menuBtn.addEventListener('click',e=>{e.stopPropagation();const o=menuList.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o);});

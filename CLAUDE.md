@@ -45,6 +45,9 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   `CSS_CARTE['G4']` dans `outils/lecons/g_cartes.py`, palettes `ciel` et `gris` dans `mapgen.PAL` et `PAL_DE`), couleurs des rubriques, écrans (bloc `.lecon-G4` : `--etiq` = déterminant ;
   `data-sec` posé sur la page d'un écran pour colorer les mots entourés `|…|` selon la rubrique : nom rose dans « Les mots du GN », pronom violet dans « Verbe et pronom »). G3, G7 : pas encore (idée en attente).
   Les mêmes couleurs servent dans le tableau de bord (personnages des fiches de G4, 17ya). L'observation vivante de G4 (dépôt `edl`, `g4_obs_tpl.html`) suit le même code depuis le 17/11/2026.
+  **Couleurs entièrement libres (17/11/2026, choix de l'enseignante)** : ⚙ Réglages › Couleurs des classes de mots (8 couleurs, ⚠ si peu lisible, « Reprendre le fichier du tableau de bord » = `couleurs-classes.js`,
+  « Couleurs d'origine ») ; brouillon `BROUILLON.couleurs` (+ `francais-couleurs-locales`), publié dans ouvertures.json `{couleurs:{det:…}}` (seulement celles qui changent : `couleursValides`) ; `appliquerCouleursCl()` pose `--cl-det`… ;
+  le CSS de `.lecon-G4` lit `var(--cl-…, couleur d'origine)` (déterminant, adjectif, verbe, mots entourés par rubrique). Les images des cartes mentales ne changent pas (dessinées).
 - **Sujet en bleu marine #1a2f8f, toujours souligné (17/11/2026, choix de l'enseignante)** : `--sujet` et `.s` (outils/common.css), pour ne pas le confondre avec le bleu ciel du déterminant ;
   cartes refaites : G1, G2 (3), G5, G6, G6-CE2, G7, H7, C1 à C5, C8-CM2, C9-CM2. Le bleu #1f5fc4 reste la couleur de cadre « bleu ».
 - G6 : compléments d’objet en indigo (#5e35b1), compléments circonstanciels en marron (#8d5524), sur la carte et dans les écrans
