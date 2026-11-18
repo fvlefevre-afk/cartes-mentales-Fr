@@ -17,7 +17,7 @@ boxes = [
  dict(id='pieges', col='rouge', geom=TR, title='Attention aux pièges !', avatar=('girl', 1255, 285), html='''
   <ul style="font-size:20px;line-height:1.35">
    <li><b>Le sujet est loin</b> :<br><span class="s">Le chat</span> des voisins <span class="v">miaule</span>.</li>
-   <li><b>Le sujet est après</b> :<br>Dans le pré <span class="v">courent</span> <span class="s">les chevaux</span>.</li>
+   <!-- « Le sujet est après » retiré de la carte (18/11/2026, idée 328 : notion du CM2, dans l'encadré « En CM2, j'apprends aussi ») -->
    <li><b>Un petit mot devant</b> :<br><span class="s">Je</span> les <span class="v">regarde</span>.</li></ul>'''),
  dict(id='groupe2', col='violet', geom=(18, 568, 560, 350), title='Les verbes du 2e groupe', style='padding-top:52px', html=f'''
   <p class="txt">Infinitif en <b>-ir</b>, avec {E_('-iss-')} à nous, vous, ils.</p>

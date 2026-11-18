@@ -14,7 +14,8 @@ boxes = [
   <p class="txt" style="font-size:19px;margin:6px 0 0">Il répond à la question : <b>« qui est-ce qui… ? »</b></p>''' + EX(f'{S.format("Il")} regarde la télé.<br>{S.format("Toutes les dames du salon")} discutent.<br>{S.format("Charles et sa mère")} discutent.', 19),
       figs=[('girl', 352, 98, 84)]),
  dict(id='verbe', col='rouge', geom=TR, title='Le verbe', html='''<ul style="font-size:20px;line-height:1.35;padding-right:100px;margin-top:-6px"><li>Le verbe, c’est <b>l’action</b>.</li><li>Il nous dit <b>ce que fait le sujet</b>.</li></ul>
-  <p class="txt" style="font-size:19px;margin:6px 0 0">Pour le trouver, je demande : <b>« qu’est-ce qu’il / elle fait ? »</b></p>''' + EX(f'Il {V.format("regarde")} la télé.<br>Toutes les dames du salon {V.format("discutent")}.', 19),
+  <p class="txt" style="font-size:19px;margin:6px 0 0">Pour le trouver, je demande : <b>« qu’est-ce qu’il / elle fait ? »</b></p>
+  <p class="txt" style="font-size:19px;margin:4px 0 0">Pour être sûr, <b>je change le moment</b> : le verbe est le mot qui change (hier, demain).</p>''' + EX(f'Il {V.format("regarde")} la télé.<br>Hier, il {V.format("regardait")} la télé.', 19),   # critère morphosyntaxique (18/11/2026, idée 328 : guide « La grammaire du français du CP à la 6e », p. 139-140)
       figs=[('boy', 1244, 106, 112)]),
  dict(id='phrase', col='vert', geom=BAS, title='Une phrase, c’est…', style='padding-top:50px', html='''<p class="txt" style="font-size:25px;text-align:center;margin:0">Une phrase, c’est un <span class="s">sujet</span> ET un <span class="v">verbe</span>.</p>''' + EX(f'{S.format("Il")} {V.format("regarde")} la télé.', 24).replace('margin-top:8px', 'margin-top:10px;text-align:center') + '''<p class="small" style="text-align:center;margin:10px 0 0;font-size:19px">Une phrase a du <b>sens</b> et raconte quelque chose !</p>''',
       figs=[('duo', 392, 566, 120), ('ampoule', 950, 733, 50)]),

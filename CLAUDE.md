@@ -52,6 +52,9 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   le CSS de `.lecon-G4` (et de G3, G7) lit `var(--cl-…, couleur d'origine)` (déterminant, adjectif, verbe, mots entourés par rubrique). Les images des cartes mentales ne changent pas (dessinées).
 - **Sujet en bleu marine #1a2f8f, toujours souligné (17/11/2026, choix de l'enseignante)** : `--sujet` et `.s` (outils/common.css), pour ne pas le confondre avec le bleu ciel du déterminant ;
   cartes refaites : G1, G2 (3), G5, G6, G6-CE2, G7, H7, C1 à C5, C8-CM2, C9-CM2. Le bleu #1f5fc4 reste la couleur de cadre « bleu ».
+- **Démarche d'après les documents d'accompagnement (18/11/2026, idée 328 du tableau de bord)** : carte G1 avec le critère « je change le moment : le verbe est le mot qui change » (`g1_carte.py`) ;
+  écrans « Le sujet après le verbe » (G1) et « Le sujet est après le verbe » (G5) au CM2 seulement (`CM2_SEULS`, retirés de la leçon CM1 après la copie CM2 ; G1 : dernier écran, G5 n'ouvre qu'en janvier 2027 :
+  aucune progression décalée) ; ligne « Le sujet est après » retirée de la carte G5 (`g5.py`, déjà dans l'encadré CM2).
 - G6 : compléments d’objet en indigo (#5e35b1), compléments circonstanciels en marron (#8d5524), sur la carte et dans les écrans
   (classe `lecon-G6`), pour ne pas reprendre le vert de l’adjectif ni l’orange du déterminant (choix de l’enseignante, 23/10/2026).
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.
