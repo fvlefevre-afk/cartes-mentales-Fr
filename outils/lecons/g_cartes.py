@@ -14,7 +14,8 @@ PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8
           'ciel': ('#0b8fd6', '#dff2fc', '#a8daf5', '#0b8fd6'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
 # Code couleur des personnages (17/11/2026, choix de l'enseignante) : déterminant bleu ciel, nom rose, adjectif vert, verbe rouge,
 # pronom violet, adverbe orange, conjonction turquoise. Mis en place d'abord sur G4 ; même code dans index.html (.lecon-G4).
-CSS_CARTE = {'G4': '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}.p{color:#8e44c9;border-color:#8e44c9}</style>'}
+CSS_CARTE = {'G4': '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}.p{color:#8e44c9;border-color:#8e44c9}</style>',
+             'G7': '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}</style>'}   # G7 : 18/11/2026 ; G3 : CSS_PERSO de g3_cartes.py
 MARGE = 24
 ZMAX = {'C2': 1.0, 'C8-CM2': 1.1, 'C3': 1.1}   # cartes dont un tableau déborderait du cadre si le texte était plus grand
 ZOOM = [1]   # agrandissement du texte des cadres (cartes aux petits caractères : H) ; choisi par auto()

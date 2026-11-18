@@ -9,7 +9,6 @@ Rayer ou supprimer une ligne une fois la décision prise.
 - [ ] **Cartes mentales aux couleurs choisies par l'enseignante** (18/11/2026) : les couleurs des classes de mots sont libres (⚙ Réglages › Couleurs des classes de mots), mais l'image de la carte (`images/G4.jpg`)
   garde le code des personnages (couleurs dessinées). Pistes : refaire l'image sur demande avec ses couleurs (`CSS_CARTE` de `g_cartes.py`, palettes de `g4.py`) ou afficher la carte en HTML (garder la page que fabrique le programme au lieu de sa photo) —
   seulement pour G3, G4 et G7 (et variantes CE2 / CM2), les cartes qui colorent les classes de mots ; les autres restent des images. Idée 327 du tableau de bord.
-- [ ] **G3 et G7 au code des personnages** : déterminant bleu ciel, nom rose (comme G4). G4 est fait ; attendre l'essai en classe.
 
 ## Faire comme sur le site de maths (proposition du 20/10/2026)
 
