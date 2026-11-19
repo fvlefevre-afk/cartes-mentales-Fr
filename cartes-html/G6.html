@@ -1,0 +1,95 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:1400px;height:933px;position:relative;background:#fdfcf9;font-family:"Poppins",sans-serif;color:#1f2a44;overflow:hidden}
+svg.bg{position:absolute;inset:0}
+.box{position:absolute;border:3.5px solid var(--c);border-radius:26px;background:var(--bg);padding:58px 22px 14px}
+.box h2{position:absolute;left:50%;top:-4px;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--hb);color:var(--c);border:3px solid var(--c);border-radius:22px;padding:2px 26px;font-size:31px;font-weight:700;line-height:1.35}
+.box ul{margin:0;padding-left:22px;font-size:21px;line-height:1.38}
+.box li{margin:0 0 5px}
+.box li::marker{color:var(--c)}
+.ex{background:#fff;border:2.5px dashed var(--c);border-radius:16px;padding:8px 14px;margin-top:10px;font-size:21px;line-height:1.45}
+.ex b.t{display:block;color:var(--c);font-size:18px;margin-bottom:2px}
+.big{font-size:27px;text-align:center}
+.d{color:#d9730d;font-weight:700}
+.a{color:#23845a;font-weight:700}
+.co{color:#5e35b1;font-weight:700} /* complément d'objet (G6) */
+.cc{color:#8d5524;font-weight:700} /* complément circonstanciel (G6) */
+.n{color:#1f5fc4;font-weight:700;border:3px solid #1f5fc4;border-radius:20px;padding:0 8px}
+.e{color:#c62828;font-weight:700;background:#ffe066;border-radius:5px;padding:0 2px}
+.lab{display:flex;justify-content:center;gap:0;font-size:15px;margin-top:-2px}
+.lab span{display:inline-block;text-align:center}
+.barre{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:#c62828;color:#8a92a6}
+.av{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);object-fit:cover;background:#fff}
+.chip{position:absolute;left:16px;top:12px;border:2.5px solid #3b7dd8;background:#eaf2fd;color:#1f4f9c;border-radius:16px;padding:3px 16px;font-size:20px;font-weight:500}
+.cm1{position:absolute;right:26px;top:10px;font-size:24px;font-weight:700;color:#1f2a44;transform:rotate(-6deg)}
+.title{position:absolute;left:520px;top:340px;width:360px;height:180px;display:grid;place-items:center;text-align:center;font-weight:700;font-size:40px;line-height:1.12;color:#1f3f7a}
+.title small{display:block;font-size:19px;font-weight:500;color:#5b6479;margin-top:6px}
+.sub{position:absolute;border:2.5px solid var(--c);background:#fff;border-radius:18px;padding:40px 16px 10px}
+.sub h3{position:absolute;left:18px;top:-2px;transform:translateY(-50%);margin:0;background:var(--hb);color:var(--c);border:2.5px solid var(--c);border-radius:16px;padding:0 16px;font-size:22px;line-height:1.5}
+.rule{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff6c9;border:2.5px solid #f0c419;border-radius:16px;padding:3px 18px;font-size:20px;font-weight:500}
+.legend{position:absolute;left:470px;top:28px;}
+.arrow{color:#5b6479;font-weight:400;padding:0 4px;font-family:"DejaVu Sans";font-size:1em}
+.avw{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);overflow:hidden;background:#fff}
+.avw img{position:absolute;width:140%;height:140%;left:-28%;top:-12%}
+table.acc{border-collapse:collapse;font-size:20px;line-height:1.5;width:100%}
+table.acc td{padding:2px 0;white-space:nowrap}
+table.acc td.m{color:#5b6479;text-align:center;width:36px;font-family:"DejaVu Sans"}
+.pic{position:absolute}
+
+.s{color:#1a2f8f;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px} /* sujet : bleu marine, toujours souligné (17/11/2026), distinct du bleu ciel du déterminant */
+.v{color:#c62828;font-weight:700}
+.p{color:#7b3fa0;font-weight:700;border:3px solid #7b3fa0;border-radius:20px;padding:0 8px}
+.rond{font-weight:700;border:3px solid var(--c);border-radius:20px;padding:0 8px;color:var(--c)}
+.ex p{margin:0}
+.box p.txt{margin:0 0 6px;font-size:20px;line-height:1.38}
+.small{font-size:18px}
+.hrow{margin:0 0 9px;font-size:20px;line-height:1.3}
+.hrow .rond{font-size:22px}
+.ast{display:block;font-size:17px;color:#4a5368;margin-top:2px}
+.exl{display:block;font-size:19px;background:#fff;border:2px dashed var(--c);border-radius:12px;padding:1px 10px;margin-top:4px}
+table.tr{border-collapse:collapse;font-size:20px;width:100%}
+table.tr td{padding:3px 6px;border-bottom:1.5px dashed #d8dde8}
+.t{color:#7b3fa0;font-weight:700}
+table.cj{border-collapse:collapse;font-size:19px;line-height:1.35}
+table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
+
+.box.tint b{color:#111}
+.box.tint li::marker{color:var(--c)}
+.box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
+.box.tint h2{color:#111}
+.box.tint>ul,.box.tint>p{zoom:1.06}   /* textes un peu plus grands : les cadres sont ensuite ajustés à leur contenu (g2_cartes.py) */
+</style></head><body>
+<svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">
+<g fill="none" stroke-width="7" stroke-linecap="round"><path d="M608 432 Q526 432 443 284" stroke="#00838f"/><path d="M700 402 Q700 402 700 321" stroke="#5e35b1"/><path d="M791 431 Q874 431 957 279" stroke="#8d5524"/><path d="M605 519 Q532 519 459 639" stroke="#7b3fa0"/><path d="M785 527 Q832 527 878 639" stroke="#c62828"/></g>
+<g transform="translate(0,37)"><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
+<g fill="#eaf2fd"><circle cx="620" cy="420" r="64"/><circle cx="700" cy="395" r="74"/><circle cx="785" cy="420" r="64"/><circle cx="600" cy="470" r="51"/><circle cx="700" cy="478" r="58"/><circle cx="805" cy="470" r="51"/><rect x="600" y="410" width="205" height="80"/></g>
+<g stroke-width="6" stroke-linecap="round"><path d="M520 400 l-26 -12" stroke="#f5b700"/><path d="M515 440 h-30" stroke="#e67e22"/><path d="M522 482 l-26 12" stroke="#c62828"/><path d="M880 400 l26 -12" stroke="#f5b700"/><path d="M885 440 h30" stroke="#23845a"/><path d="M878 482 l26 12" stroke="#7b3fa0"/></g></g>
+</svg>
+<div class="chip">Grammaire — G6 — CM1</div>
+<div class="title" style="font-size:38px;margin-top:37px"><div>Les<br>compléments</div></div>
+<div class="box tint" style="--c:#00838f;--k:#00909e;--bg:#d5f0f2;--hb:#9fdde4;left:18px;top:62px;width:430px;height:329px;;padding-top:82px"><h2 style="font-size:24px;top:30px;;">Sujet, verbe… et plus</h2>
+  <p class="txt" style="padding-right:100px">Une phrase a un <span class="s">sujet</span> et un <span class="v">verbe</span>.</p>
+  <p class="txt" style="padding-right:100px">Elle peut avoir des <b>compléments</b>.</p>
+  <div class="ex" style="font-size:21px;margin-top:14px;line-height:1.5"><span class="cc">Ce matin,</span> <span class="s">Léa</span> <span class="v">mange</span> <span class="co">une pomme</span> <span class="cc">dans la cuisine</span>.</div></div><div class="box tint" style="--c:#5e35b1;--k:#5e35b1;--bg:#ece6fa;--hb:#cdbff0;left:485px;top:20px;width:430px;height:306px;;padding-top:82px"><h2 style="top:30px;font-size:28px;font-size:25.1px;">Le complément d’objet</h2>
+  <ul style="font-size:19px;line-height:1.3">
+   <li>Il complète le verbe&nbsp;: il se place <b>après lui</b>.</li>
+   <li>On ne peut <b>pas le déplacer</b>.</li></ul>
+  <div class="ex" style="font-size:19px;line-height:1.4;margin-top:6px"><span class="s">Tom</span> <span class="v">lance</span> <span class="co">le ballon</span>. <span class="arrow">→</span> <b>COD</b><br><span class="s">Il</span> <span class="v">parle</span> <span class="co">à sa mère</span>. <span class="arrow">→</span> <b>COI</b></div>
+  <p style="margin:4px 0 0;font-size:16px">COI&nbsp;: avec un petit mot (<b>à</b>, <b>de</b>) après le verbe.</p></div><div class="box tint" style="--c:#8d5524;--k:#8d5524;--bg:#f6e9dc;--hb:#e5c9a8;left:952px;top:62px;width:430px;height:321px;;padding-top:82px"><h2 style="top:30px;font-size:25px;font-size:19.9px;">Compléments circonstanciels</h2>
+  <ul style="font-size:20px;padding-right:96px">
+   <li>Ils donnent des <b>précisions</b> sur l’action.</li>
+   <li>On peut les <b>supprimer</b> et les <b>déplacer</b>.</li></ul>
+  <div class="ex" style="font-size:20px;line-height:1.5"><span class="cc">Hier,</span> <span class="s">Léa</span> <span class="v">a joué</span><br><span class="cc">dans le parc</span> <span class="cc">joyeusement</span>.</div></div><div class="box tint" style="--c:#7b3fa0;--k:#8a35c0;--bg:#eadcf7;--hb:#cfb0ea;left:18px;top:610px;width:560px;height:311px;;padding-top:76px"><h2 style="top:30px;;">Les tests</h2>
+  <p class="txt"><b>1. Je supprime&nbsp;:</b></p>
+  <div class="ex" style="font-size:20px;margin:0 0 6px"><span class="barre">Ce matin,</span> <span class="s">les élèves</span> <span class="v">chantent</span> <span class="barre">dans la cour</span>.</div>
+  <p class="txt" style="font-size:18px">La phrase a encore du sens.</p>
+  <p class="txt"><b>2. Je déplace&nbsp;:</b></p>
+  <div class="ex" style="font-size:20px;margin:0"><span class="cc">Dans la cour,</span> <span class="s">les élèves</span> <span class="v">chantent</span>.</div></div><div class="box tint" style="--c:#c62828;--k:#c62828;--bg:#fde3e1;--hb:#f6a9a4;left:612px;top:610px;width:770px;height:267px;;padding-top:76px"><h2 style="top:30px;;">Attention&nbsp;!</h2>
+  <ul style="font-size:20px;line-height:1.45">
+   <li>En début de phrase, le complément circonstanciel est suivi<br>d’une <span class="e">virgule</span>&nbsp;: <span class="cc">Le matin<span class="e">,</span></span> les oiseaux chantent.</li>
+   <li>Une phrase peut avoir <b>plusieurs</b> compléments.</li>
+   <li>Le test le plus sûr&nbsp;: <b>je déplace</b>.<br>Le complément d’objet ne bouge pas.</li></ul></div><img src="file:///home/user/cartes-mentales-fr/outils/img/g2/girl.png" style="position:absolute;left:352px;top:98px;width:84px"><img src="file:///home/user/cartes-mentales-fr/outils/img/g2/boy.png" style="position:absolute;left:1244px;top:106px;width:112px">
+<style>@font-face{font-family:"Andika";font-weight:400;src:url(file:///home/user/cartes-mentales-fr/polices/andika-400.woff2)}@font-face{font-family:"Andika";font-weight:700 900;src:url(file:///home/user/cartes-mentales-fr/polices/andika-700.woff2)}body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style>
+<div style="position:absolute;right:18px;top:470px;font-size:17px;background:#fff;border:2px solid #d8dde8;border-radius:14px;padding:2px 12px"><span class="s">sujet</span> · <span class="v">verbe</span> · <span class="co">compl. d’objet</span> · <span class="cc">compl. circonstanciel</span></div>
+</body></html>

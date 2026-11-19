@@ -9,6 +9,12 @@ sys.path.insert(0, os.path.join(D, '..'))
 from mapgen import build, CY
 from g2_cartes import PALG, police, mesurer, mettre_dans_le_site
 
+def garder_html(sortie, image=None):
+    """garde la page qui a servi à photographier la carte (sortie/<sortie>map.html) dans cartes-html/<image>.html : la loupe l'affiche en vrai texte (19/11/2026)"""
+    dst = os.path.join(D, '..', '..', 'cartes-html'); os.makedirs(dst, exist_ok=True)
+    shutil.copy(os.path.join(D, '..', 'sortie', f'{sortie}map.html'), os.path.join(dst, f'{image or sortie}.html'))
+
+
 SCRIPTS = {'G1': 'g1_carte.py', **{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524'),
           'ciel': ('#0b8fd6', '#dff2fc', '#a8daf5', '#0b8fd6'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
@@ -138,6 +144,7 @@ if __name__ == '__main__':
     for lid in voulus:
         boxes, a, kw = lire(SCRIPTS[lid], lid); Z[lid] = auto(lid, a, kw, style(boxes, lid))
         shutil.copy(os.path.join(D, '..', 'sortie', f'{lid}_carte.jpeg'), os.path.join(D, '..', '..', 'images', f'{lid}.jpg'))
+        garder_html(lid)
     # zones : une leçon qui a son bloc dans index.html les reçoit directement ; une carte par niveau (G6-CE2…) va dans ZONES_NIV
     site = open(os.path.join(D, '..', '..', 'index.html')).read()
     for lid, z in Z.items():
