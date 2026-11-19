@@ -1,4 +1,4 @@
-"""O8 (« Les noms en -é, -ée, -té, -tié ») : BANQUE d'exercices écrite à la main (19/11/2026). État : BROUILLON, pas encore intégré dans index.html
+"""O8 (« Les noms en -é, -ée, -té, -tié ») : BANQUE d'exercices écrite à la main (19/11/2026). État : intégré dans index.html le 19/11/2026
 (intégration : python3 o8_banque.py --integrer, relançable : repart des exercices d'origine).
 
 Avant : 3 exercices par écran. Sources : docs/dispositif-orthographe-ce2-cm1-cm2.md (O8 : -é masculin, -ée féminin, -té qualité ou état, -tée contenu ou action, -tié : moitié, amitié, pitié ;
@@ -28,7 +28,7 @@ FEMININ = [FEM('une matin___', 'Le nom est féminin : une matinée.'), FEM('la f
 QUALITE = [TE('la clar___', 'C’est une qualité : la clarté.'), TE('la sécuri___', 'C’est un état : la sécurité.'), TE('la difficul___', 'C’est un état : la difficulté.'),
            TE('la rapidi___', 'C’est une qualité : la rapidité.'), TE('la pauvre___', 'C’est un état : la pauvreté.'), TE('la propre___', 'C’est une qualité : la propreté.'),
            TE('la volon___', 'C’est une qualité : la volonté.'), TE('l’égali___', 'C’est un état : l’égalité.'), TE('la cruau___', 'C’est une qualité : la cruauté.'),
-           TE('la fragili___', 'C’est une qualité : la fragilité.'), TE('la timidi___', 'C’est une qualité : la timidité.'), TE('la sérén___', 'C’est un état : la sérénité.')]
+           TE('la fragili___', 'C’est une qualité : la fragilité.'), TE('la timidi___', 'C’est une qualité : la timidité.'), TE('la séréni___', 'C’est un état : la sérénité.')]
 # écran 4 : -tée (dictée, montée) : pas de mot de plus au CM1 (le programme de la ceinture n'en voit que deux) ; les autres -tée sont au CM2
 TEE_CM1 = []
 # écran 5 : -tié (3 noms seulement) : questions avec de vrais mots
@@ -54,8 +54,8 @@ PROUVE = [
  P('lycée', '-ée', R_X, R_F, R_A, 'Un nom masculin qui s’écrit pourtant -ée.'), P('pitié', '-tié', R_T, R_Q, R_A, 'Je mémorise : moitié, amitié, pitié.'),
  P('café', '-é', R_M, R_F, R_Q, 'Regarde le petit mot devant : un.'), P('timidité', '-té', R_Q, R_A, R_F, 'Une qualité.'),
 ]
-CM2_EXTRA = [TEE('une jet___', 'Une jetée : -tée, avec e.'), TEE('une assiet___', 'Un contenu : une assiettée, avec e.'), TEE('une pât___', 'De la nourriture pour un animal : une pâtée, avec e.'),
-             TEE('une nui___', 'Une nuit passée à l’hôtel : une nuitée, avec e.'), TEE('une pellet___', 'Le contenu d’une pelle : une pelletée, avec e.'), TEE('une pot___', 'Le contenu d’un pot : une potée, avec e.')]
+CM2_EXTRA = [TEE('une je___', 'Une jetée : -tée, avec e.'), TEE('une assiet___', 'Un contenu : une assiettée, avec e.'), TEE('une pâ___', 'De la nourriture pour un animal : une pâtée, avec e.'),
+             TEE('une nui___', 'Une nuit passée à l’hôtel : une nuitée, avec e.'), TEE('une pelle___', 'Le contenu d’une pelle : une pelletée, avec e.'), TEE('une po___', 'Le contenu d’un pot : une potée, avec e.')]
 BANQUE = {'masc': MASCULIN, 'fem': FEMININ, 'te': QUALITE, 'tee': TEE_CM1, 'tie': TIE_QUESTIONS, 'prouve': PROUVE}
 ORDRE = ['masc', 'fem', 'te', 'tee', 'tie', 'prouve']
 PLUS_ORIGINE = 2
