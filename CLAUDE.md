@@ -29,6 +29,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
 
 - **Affichage au tableau (18/11/2026, demande de l'enseignante)** : `python3 outils/projection.py` (bloc `/*PROJECTION*/` en fin de feuille de style, rejouable) :
   titre de l'activité centré dans sa pastille, cartes d'activités sur toute la largeur. Mêmes réglages que les cartes de mathématiques (`outils-dev/projection.py`).
+  Page de la carte d'une leçon (idée 330, 19/11/2026) : `fitPage` (fin d'`index.html`) fait tenir la CARTE seule dans l'écran (avant : carte + encadré « … je retiens », la carte n'occupait que 60 % de la largeur en 1920 × 1080) ; l'encadré vient dessous, on fait défiler.
 - **Un seul fichier, comme les cartes de maths (17/11/2026, demande de l'enseignante, qui copie seulement `index.html` sur sa clé USB)** : `index.html` fonctionne SEUL, sans dossier à côté.
   Les outils fabriquent toujours les images dans `images/<id>.jpg` et l'objet `IMG` garde leur chemin ; `python3 outils/integrer_images.py` ajoute sous la ligne `const IMG=` le bloc
   `/*IMAGES-INTEGREES*/…/*IMAGES-INTEGREES-FIN*/` (images en WebP qualité 82, chemin → image au chargement) et met la police Andika dans la feuille de style (`url(data:…)/*polices/…*/`).

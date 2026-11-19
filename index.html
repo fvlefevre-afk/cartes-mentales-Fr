@@ -1876,7 +1876,10 @@ load();render();
    main.style.width=LARGEUR_LECON+'px';
    s.style.minHeight='0px';
    const cs=getComputedStyle(main), ph=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);
-   const w=main.getBoundingClientRect().width, h=main.getBoundingClientRect().height;
+   const w=main.getBoundingClientRect().width;
+   /* page de la carte (idée 330, 19/11/2026, affichage au tableau) : c'est la CARTE qui remplit l'écran ; l'encadré « … je retiens » vient dessous (on fait défiler) */
+   const carte=!s.querySelector('.cu-et')&&s.querySelector('.map');
+   const h=carte?carte.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
    const availW=innerWidth, availH=innerHeight-barre();
    const z=Math.max(MIN_LECON,Math.min(availW/w,availH/h,MAX_LECON))*.99;
    main.style.zoom=z.toFixed(3);
