@@ -1,0 +1,76 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:1400px;height:933px;position:relative;background:#fdfcf9;font-family:"Poppins",sans-serif;color:#1f2a44;overflow:hidden}
+svg.bg{position:absolute;inset:0}
+.box{position:absolute;border:3.5px solid var(--c);border-radius:26px;background:var(--bg);padding:58px 22px 14px}
+.box h2{position:absolute;left:50%;top:-4px;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--hb);color:var(--c);border:3px solid var(--c);border-radius:22px;padding:2px 26px;font-size:31px;font-weight:700;line-height:1.35}
+.box ul{margin:0;padding-left:22px;font-size:21px;line-height:1.38}
+.box li{margin:0 0 5px}
+.box li::marker{color:var(--c)}
+.ex{background:#fff;border:2.5px dashed var(--c);border-radius:16px;padding:8px 14px;margin-top:10px;font-size:21px;line-height:1.45}
+.ex b.t{display:block;color:var(--c);font-size:18px;margin-bottom:2px}
+.big{font-size:27px;text-align:center}
+.d{color:#d9730d;font-weight:700}
+.a{color:#23845a;font-weight:700}
+.co{color:#5e35b1;font-weight:700} /* complément d'objet (G6) */
+.cc{color:#8d5524;font-weight:700} /* complément circonstanciel (G6) */
+.n{color:#1f5fc4;font-weight:700;border:3px solid #1f5fc4;border-radius:20px;padding:0 8px}
+.e{color:#c62828;font-weight:700;background:#ffe066;border-radius:5px;padding:0 2px}
+.lab{display:flex;justify-content:center;gap:0;font-size:15px;margin-top:-2px}
+.lab span{display:inline-block;text-align:center}
+.barre{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:#c62828;color:#8a92a6}
+.av{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);object-fit:cover;background:#fff}
+.chip{position:absolute;left:16px;top:12px;border:2.5px solid #3b7dd8;background:#eaf2fd;color:#1f4f9c;border-radius:16px;padding:3px 16px;font-size:20px;font-weight:500}
+.cm1{position:absolute;right:26px;top:10px;font-size:24px;font-weight:700;color:#1f2a44;transform:rotate(-6deg)}
+.title{position:absolute;left:520px;top:340px;width:360px;height:180px;display:grid;place-items:center;text-align:center;font-weight:700;font-size:40px;line-height:1.12;color:#1f3f7a}
+.title small{display:block;font-size:19px;font-weight:500;color:#5b6479;margin-top:6px}
+.sub{position:absolute;border:2.5px solid var(--c);background:#fff;border-radius:18px;padding:40px 16px 10px}
+.sub h3{position:absolute;left:18px;top:-2px;transform:translateY(-50%);margin:0;background:var(--hb);color:var(--c);border:2.5px solid var(--c);border-radius:16px;padding:0 16px;font-size:22px;line-height:1.5}
+.rule{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff6c9;border:2.5px solid #f0c419;border-radius:16px;padding:3px 18px;font-size:20px;font-weight:500}
+.legend{position:absolute;left:470px;top:28px;}
+.arrow{color:#5b6479;font-weight:400;padding:0 4px;font-family:"DejaVu Sans";font-size:1em}
+.avw{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);overflow:hidden;background:#fff}
+.avw img{position:absolute;width:140%;height:140%;left:-28%;top:-12%}
+table.acc{border-collapse:collapse;font-size:20px;line-height:1.5;width:100%}
+table.acc td{padding:2px 0;white-space:nowrap}
+table.acc td.m{color:#5b6479;text-align:center;width:36px;font-family:"DejaVu Sans"}
+.pic{position:absolute}
+
+.s{color:#1a2f8f;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px} /* sujet : bleu marine, toujours souligné (17/11/2026), distinct du bleu ciel du déterminant */
+.v{color:#c62828;font-weight:700}
+.p{color:#7b3fa0;font-weight:700;border:3px solid #7b3fa0;border-radius:20px;padding:0 8px}
+.rond{font-weight:700;border:3px solid var(--c);border-radius:20px;padding:0 8px;color:var(--c)}
+.ex p{margin:0}
+.box p.txt{margin:0 0 6px;font-size:20px;line-height:1.38}
+.small{font-size:18px}
+.hrow{margin:0 0 9px;font-size:20px;line-height:1.3}
+.hrow .rond{font-size:22px}
+.ast{display:block;font-size:17px;color:#4a5368;margin-top:2px}
+.exl{display:block;font-size:19px;background:#fff;border:2px dashed var(--c);border-radius:12px;padding:1px 10px;margin-top:4px}
+table.tr{border-collapse:collapse;font-size:20px;width:100%}
+table.tr td{padding:3px 6px;border-bottom:1.5px dashed #d8dde8}
+.t{color:#7b3fa0;font-weight:700}
+table.cj{border-collapse:collapse;font-size:19px;line-height:1.35}
+table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
+
+.box.tint b{color:#111}
+.box.tint li::marker{color:var(--c)}
+.box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
+.box.tint h2{color:#111}
+.box.tint>ul,.box.tint>p{zoom:1.06}   /* textes un peu plus grands : les cadres sont ensuite ajustés à leur contenu (g2_cartes.py) */
+</style></head><body>
+<svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">
+<g fill="none" stroke-width="7" stroke-linecap="round"><path d="M604 431 Q524 431 443 302" stroke="#1f5fc4"/><path d="M700 397 Q700 397 700 309" stroke="#23845a"/><path d="M789 425 Q873 425 957 262" stroke="#7b3fa0"/><path d="M597 505 Q477 505 358 641" stroke="#c2185b"/><path d="M695 547 Q693 547 692 641" stroke="#00838f"/><path d="M802 506 Q917 506 1032 641" stroke="#e67e22"/></g>
+<g transform="translate(0,32)"><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
+<g fill="#eaf2fd"><circle cx="620" cy="420" r="64"/><circle cx="700" cy="395" r="74"/><circle cx="785" cy="420" r="64"/><circle cx="600" cy="470" r="51"/><circle cx="700" cy="478" r="58"/><circle cx="805" cy="470" r="51"/><rect x="600" y="410" width="205" height="80"/></g>
+<g stroke-width="6" stroke-linecap="round"><path d="M520 400 l-26 -12" stroke="#f5b700"/><path d="M515 440 h-30" stroke="#e67e22"/><path d="M522 482 l-26 12" stroke="#c62828"/><path d="M880 400 l26 -12" stroke="#f5b700"/><path d="M885 440 h30" stroke="#23845a"/><path d="M878 482 l26 12" stroke="#7b3fa0"/></g></g>
+</svg>
+<div class="chip">Grammaire — G2 — CM2</div>
+<div class="title" style="font-size:34px;margin-top:32px"><div>Les types<br>et les formes<br>de phrase</div></div>
+<div class="box tint" style="--c:#1f5fc4;--k:#1f5fc4;--bg:#dcebfb;--hb:#a9cff5;left:18px;top:62px;width:430px;height:357px;;padding-top:82px"><h2 style="top:30px">Déclarative</h2><ul style="padding-right:76px;font-size:19px;line-height:1.25;margin-top:-14px;min-height:88px;min-height:88px">
+  <li>Elle <b>raconte</b>, elle <b>informe</b>.</li>
+  <li>Elle finit par <b>.</b> ou par <b>!</b></li></ul><div class="ex" style="font-size:21px;line-height:1.45;margin-top:8px"><span class="s">Léa</span> <span class="v">range</span> sa chambre.</div><p class="small" style="margin:10px 0 0;font-size:17px;line-height:1.4"><b>Phrase simple</b>&nbsp;: un seul <span class="v">verbe conjugué</span>.<br><b>Phrase complexe</b>&nbsp;: plusieurs verbes conjugués, reliés par <b>et</b>, <b>mais</b>, <b>car</b> ou une virgule.</p></div><div class="box tint" style="--c:#23845a;--k:#16914f;--bg:#dff3e2;--hb:#a9e0b4;left:485px;top:20px;width:430px;height:294px;;padding-top:82px"><h2 style="top:30px">Interrogative</h2><ul style="font-size:19.5px;line-height:1.3;margin-top:-12px"><li>Elle pose une question.</li><li>Elle finit par <b>?</b></li><li><b>3 façons</b> de la poser&nbsp;:</li></ul><div class="ex" style="font-size:18px;line-height:1.45;margin-top:8px"><span class="s">Tu</span> <span class="v">ranges</span> ta chambre&nbsp;?<br>Est-ce que <span class="s">tu</span> <span class="v">ranges</span> ta chambre&nbsp;?<br><span class="v">Ranges</span>-<span class="s">tu</span> ta chambre&nbsp;?</div></div><div class="box tint" style="--c:#7b3fa0;--k:#8a35c0;--bg:#eadcf7;--hb:#cfb0ea;left:952px;top:62px;width:430px;height:295px;;padding-top:82px"><h2 style="top:30px">Impérative</h2><ul style="font-size:19.5px;padding-right:104px;line-height:1.3;margin-top:-14px"><li>Elle donne un <b>ordre</b>, un <b>conseil</b>.</li><li>Elle finit par <b>.</b> ou <b>!</b></li><li><b>Pas de sujet</b> écrit</li></ul><div class="ex" style="font-size:19px;line-height:1.45;margin-top:8px"><span class="v">Range</span> ta chambre&nbsp;!<br><span class="v">Rangez</span> votre chambre.</div></div><div class="box tint" style="--c:#c2185b;--k:#d4145f;--bg:#fde0ea;--hb:#f7a8c4;left:18px;top:612px;width:420px;height:206px;;padding-top:74px"><h2 style="top:30px">Affirmative</h2><ul style="font-size:20px;margin-top:-10px;padding-right:54px"><li>Elle <b>affirme</b> quelque chose.</li></ul><div class="ex" style="font-size:20px;line-height:1.45;margin-top:8px"><span class="s">Léa</span> <span class="v">range</span> sa chambre.<br><span class="s">Léa</span> <span class="v">aime</span> le chocolat.</div></div><div class="box tint" style="--c:#00838f;--k:#00909e;--bg:#d5f0f2;--hb:#9fdde4;left:452px;top:612px;width:470px;height:278px;;padding-top:74px"><h2 style="top:30px">Négative</h2><ul style="font-size:19px;line-height:1.3;margin-top:-10px"><li>La négation <b>encadre le verbe</b>&nbsp;:</li></ul><div class="ex" style="font-size:19px;margin-top:4px;text-align:center">ne… pas, ne… jamais, ne… plus,<br>ne… rien, ne… personne</div><div class="ex" style="font-size:18px;line-height:1.45;margin-top:8px"><span class="s">Léa</span> <b>ne</b> <span class="v">range</span> <b>jamais</b> sa chambre.<br>Devant une voyelle&nbsp;: <b>n’</b> <span class="arrow">→</span> <span class="s">Léa</span> <b>n’</b><span class="v">écrit</span> <b>rien</b>.</div></div><div class="box tint" style="--c:#e67e22;--k:#e0640a;--bg:#ffeacf;--hb:#fcc78a;left:952px;top:612px;width:430px;height:309px;;padding-top:74px"><h2 style="top:30px">Exclamative</h2><ul style="padding-right:84px;font-size:19px;line-height:1.3;margin-top:-10px"><li>Elle exprime une <b>émotion</b> (surprise, colère, joie…).</li><li>Elle finit par <b>!</b></li><li>Elle s’ajoute à un type de phrase&nbsp;:</li></ul><div class="ex" style="font-size:17px;line-height:1.45;margin-top:8px"><span class="s">Le chien</span> <span class="v">renverse</span> sa gamelle&nbsp;! <span style="font-size:15px;color:#111;font-weight:700">(déclarative)</span><br><span class="v">Range</span> ta chambre&nbsp;! <span style="font-size:15px;color:#111;font-weight:700">(impérative)</span></div></div><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/girl.png" style="position:absolute;left:352px;top:98px;width:84px"><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/q.png" style="position:absolute;left:800px;top:92px;width:90px"><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/boy.png" style="position:absolute;left:1244px;top:106px;width:112px"><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/thumb.png" style="position:absolute;left:368px;top:646px;width:50px"><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/no.png" style="position:absolute;left:850px;top:650px;width:54px"><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/burst.png" style="position:absolute;left:1290px;top:718px;width:74px">
+<style>@font-face{font-family:"Andika";font-weight:400;src:url(file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/polices/andika-400.woff2)}@font-face{font-family:"Andika";font-weight:700 900;src:url(file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/polices/andika-700.woff2)}body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style>
+<div style="position:absolute;right:18px;top:12px;font-size:17px;background:#fff;border:2px solid #d8dde8;border-radius:14px;padding:2px 12px"><span class="s">sujet</span> · <span class="v">verbe</span></div>
+</body></html>

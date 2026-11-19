@@ -1,0 +1,95 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:1400px;height:933px;position:relative;background:#fdfcf9;font-family:"Poppins",sans-serif;color:#1f2a44;overflow:hidden}
+svg.bg{position:absolute;inset:0}
+.box{position:absolute;border:3.5px solid var(--c);border-radius:26px;background:var(--bg);padding:58px 22px 14px}
+.box h2{position:absolute;left:50%;top:-4px;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--hb);color:var(--c);border:3px solid var(--c);border-radius:22px;padding:2px 26px;font-size:31px;font-weight:700;line-height:1.35}
+.box ul{margin:0;padding-left:22px;font-size:21px;line-height:1.38}
+.box li{margin:0 0 5px}
+.box li::marker{color:var(--c)}
+.ex{background:#fff;border:2.5px dashed var(--c);border-radius:16px;padding:8px 14px;margin-top:10px;font-size:21px;line-height:1.45}
+.ex b.t{display:block;color:var(--c);font-size:18px;margin-bottom:2px}
+.big{font-size:27px;text-align:center}
+.d{color:#d9730d;font-weight:700}
+.a{color:#23845a;font-weight:700}
+.co{color:#5e35b1;font-weight:700} /* complément d'objet (G6) */
+.cc{color:#8d5524;font-weight:700} /* complément circonstanciel (G6) */
+.n{color:#1f5fc4;font-weight:700;border:3px solid #1f5fc4;border-radius:20px;padding:0 8px}
+.e{color:#c62828;font-weight:700;background:#ffe066;border-radius:5px;padding:0 2px}
+.lab{display:flex;justify-content:center;gap:0;font-size:15px;margin-top:-2px}
+.lab span{display:inline-block;text-align:center}
+.barre{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:#c62828;color:#8a92a6}
+.av{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);object-fit:cover;background:#fff}
+.chip{position:absolute;left:16px;top:12px;border:2.5px solid #3b7dd8;background:#eaf2fd;color:#1f4f9c;border-radius:16px;padding:3px 16px;font-size:20px;font-weight:500}
+.cm1{position:absolute;right:26px;top:10px;font-size:24px;font-weight:700;color:#1f2a44;transform:rotate(-6deg)}
+.title{position:absolute;left:520px;top:340px;width:360px;height:180px;display:grid;place-items:center;text-align:center;font-weight:700;font-size:40px;line-height:1.12;color:#1f3f7a}
+.title small{display:block;font-size:19px;font-weight:500;color:#5b6479;margin-top:6px}
+.sub{position:absolute;border:2.5px solid var(--c);background:#fff;border-radius:18px;padding:40px 16px 10px}
+.sub h3{position:absolute;left:18px;top:-2px;transform:translateY(-50%);margin:0;background:var(--hb);color:var(--c);border:2.5px solid var(--c);border-radius:16px;padding:0 16px;font-size:22px;line-height:1.5}
+.rule{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff6c9;border:2.5px solid #f0c419;border-radius:16px;padding:3px 18px;font-size:20px;font-weight:500}
+.legend{position:absolute;left:470px;top:28px;}
+.arrow{color:#5b6479;font-weight:400;padding:0 4px;font-family:"DejaVu Sans";font-size:1em}
+.avw{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);overflow:hidden;background:#fff}
+.avw img{position:absolute;width:140%;height:140%;left:-28%;top:-12%}
+table.acc{border-collapse:collapse;font-size:20px;line-height:1.5;width:100%}
+table.acc td{padding:2px 0;white-space:nowrap}
+table.acc td.m{color:#5b6479;text-align:center;width:36px;font-family:"DejaVu Sans"}
+.pic{position:absolute}
+
+.s{color:#1a2f8f;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px} /* sujet : bleu marine, toujours souligné (17/11/2026), distinct du bleu ciel du déterminant */
+.v{color:#c62828;font-weight:700}
+.p{color:#7b3fa0;font-weight:700;border:3px solid #7b3fa0;border-radius:20px;padding:0 8px}
+.rond{font-weight:700;border:3px solid var(--c);border-radius:20px;padding:0 8px;color:var(--c)}
+.ex p{margin:0}
+.box p.txt{margin:0 0 6px;font-size:20px;line-height:1.38}
+.small{font-size:18px}
+.hrow{margin:0 0 9px;font-size:20px;line-height:1.3}
+.hrow .rond{font-size:22px}
+.ast{display:block;font-size:17px;color:#4a5368;margin-top:2px}
+.exl{display:block;font-size:19px;background:#fff;border:2px dashed var(--c);border-radius:12px;padding:1px 10px;margin-top:4px}
+table.tr{border-collapse:collapse;font-size:20px;width:100%}
+table.tr td{padding:3px 6px;border-bottom:1.5px dashed #d8dde8}
+.t{color:#7b3fa0;font-weight:700}
+table.cj{border-collapse:collapse;font-size:19px;line-height:1.35}
+table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
+
+.box.tint b{color:#111}
+.box.tint li::marker{color:var(--c)}
+.box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
+.box.tint h2{color:#111}
+.box.tint>ul,.box.tint>p{zoom:1.06}   /* textes un peu plus grands : les cadres sont ensuite ajustés à leur contenu (g2_cartes.py) */
+</style></head><body>
+<svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">
+<g fill="none" stroke-width="7" stroke-linecap="round"><path d="M596 387 Q520 387 443 296" stroke="#5f6b7a"/><path d="M700 345 Q700 345 700 280" stroke="#c2185b"/><path d="M799 382 Q878 382 957 270" stroke="#23845a"/><path d="M620 474 Q589 474 558 567" stroke="#e67e22"/><path d="M805 451 Q915 451 1025 567" stroke="#c62828"/></g>
+<g transform="translate(0,-20)"><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
+<g fill="#eaf2fd"><circle cx="620" cy="420" r="64"/><circle cx="700" cy="395" r="74"/><circle cx="785" cy="420" r="64"/><circle cx="600" cy="470" r="51"/><circle cx="700" cy="478" r="58"/><circle cx="805" cy="470" r="51"/><rect x="600" y="410" width="205" height="80"/></g>
+<g stroke-width="6" stroke-linecap="round"><path d="M520 400 l-26 -12" stroke="#f5b700"/><path d="M515 440 h-30" stroke="#e67e22"/><path d="M522 482 l-26 12" stroke="#c62828"/><path d="M880 400 l26 -12" stroke="#f5b700"/><path d="M885 440 h30" stroke="#23845a"/><path d="M878 482 l26 12" stroke="#7b3fa0"/></g></g>
+</svg>
+<div class="chip">Grammaire — G3 — CM1</div>
+<div class="title" style="font-size:40px;margin-top:-20px"><div>Le groupe<br>nominal<small>le GN</small></div></div>
+<div class="box tint" style="--c:#5f6b7a;--k:#4b5563;--bg:#eef0f3;--hb:#cfd5dd;left:18px;top:62px;width:430px;height:347px;;padding-top:82px"><h2 style="top:30px">Le GN, c’est…</h2><ul style="padding-right:128px;font-size:20px;margin-top:-14px">
+  <li>un groupe de mots organisé autour d’un <b>nom</b>.</li>
+  <li><span class="d">déterminant</span> + <b style="color:#e0458f">nom</b> (+ <span class="a">adjectif</span>)</li></ul>
+  <div class="ex big" style="text-align:center;margin-top:8px"><span class="d">le</span> <span class="a">petit</span> <span class="n">chat</span> <span class="a">noir</span></div>
+  <p class="small" style="margin:6px 0 0;font-size:16px">Déterminants&nbsp;: <span class="d" style="font-size:15px">le, la, les, un, une, des, mon, ce…</span></p></div><div class="box tint" style="--c:#e0458f;--k:#d6337f;--bg:#fde4ef;--hb:#f7b3d2;left:485px;top:20px;width:430px;height:265px;;padding-top:82px"><h2 style="top:30px">Le nom noyau</h2><ul style="font-size:20px;line-height:1.3;margin-top:-12px">
+  <li>C’est le mot <b>le plus important</b> du GN. Je l’<b>entoure</b>.</li>
+  <li>On ne peut <b>pas l’enlever</b>.</li></ul>
+  <div class="ex" style="text-align:center;padding:4px 10px;margin-top:6px">une <span class="barre">grande</span> <span class="n">maison</span> <span class="barre">blanche</span><br><span class="arrow">→</span> <span class="d">une</span> <span class="n">maison</span></div></div><div class="box tint" style="--c:#23845a;--k:#16914f;--bg:#dff3e2;--hb:#a9e0b4;left:952px;top:62px;width:430px;height:307px;;padding-top:82px"><h2 style="top:30px">L’adjectif</h2><ul style="padding-right:128px;font-size:19.5px;line-height:1.3;margin-top:-14px">
+  <li>Il dit <b>comment est</b> le nom.</li>
+  <li>Il se place <b>avant</b> ou <b>après</b> le nom.</li></ul>
+  <ul style="font-size:19.5px;line-height:1.3;margin-top:2px"><li>Dans le GN, il est <b>épithète</b>.</li></ul>
+  <div class="exl" style="margin-top:6px;line-height:1.4;font-size:19.5px">un <span class="a">gros</span> ballon <span class="a">rouge</span><br>une souris <span class="arrow">→</span> une <span class="a">petite</span> souris <span class="a">grise</span></div></div><div class="box tint" style="--c:#e67e22;--k:#e0640a;--bg:#ffeacf;--hb:#fcc78a;left:18px;top:538px;width:892px;height:383px;;padding-top:72px"><h2 style="top:30px">Les accords dans le GN</h2><div class="rule" style="top:74px;font-size:19.5px">Le <b>nom noyau</b> commande&nbsp;: le déterminant et l’adjectif s’accordent avec lui.</div><div class="sub" style="--c:#5f6b7a;--hb:#eef0f3;left:22px;top:140px;width:410px;height:216px;font-size:20px;line-height:1.5"><h3>Masculin → féminin</h3>
+  <div>J’ajoute souvent un <span class="e">e</span>.</div>
+  <div style="margin-top:6px">un ami content<br>&nbsp;&nbsp;<span class="arrow">→</span> un<span class="e">e</span> ami<span class="e">e</span> content<span class="e">e</span></div>
+  <div style="margin-top:6px">Parfois, le mot change&nbsp;:<br>&nbsp;&nbsp;gros <span class="arrow">→</span> gro<span class="e">sse</span> · doux <span class="arrow">→</span> dou<span class="e">ce</span></div></div><div class="sub" style="--c:#00838f;--hb:#cdeef1;left:456px;top:140px;width:410px;height:216px;font-size:20px;line-height:1.5"><h3>Singulier → pluriel</h3>
+  <div>J’ajoute souvent un <span class="e">s</span>.</div>
+  <div style="margin-top:6px">le chat noir<br>&nbsp;&nbsp;<span class="arrow">→</span> le<span class="e">s</span> chat<span class="e">s</span> noir<span class="e">s</span></div>
+  <div style="margin-top:6px">une fleur jaune<br>&nbsp;&nbsp;<span class="arrow">→</span> de<span class="e">s</span> fleur<span class="e">s</span> jaune<span class="e">s</span></div></div></div><div class="box tint" style="--c:#c62828;--k:#c62828;--bg:#fde3e1;--hb:#f6a9a4;left:945px;top:538px;width:437px;height:292px;;padding-top:82px"><h2 style="top:30px">Attention&nbsp;!</h2><ul style="font-size:19px;line-height:1.28;margin-top:-16px">
+  <li>Pluriel en <span class="e">x</span>&nbsp;: des gâteau<span class="e">x</span>, des jeu<span class="e">x</span>.</li>
+  <li><b>-al</b> <span class="arrow">→</span> <b>-aux</b>&nbsp;: un cheval, des chev<span class="e">aux</span>.</li>
+  <li>Déjà <b>-s, -x, -z</b>&nbsp;: pas de changement.<br><span class="small" style="font-size:16px">une souris <span class="arrow">→</span> des souris</span></li>
+  <li>Déjà <b>-e</b> au masculin&nbsp;: pas de changement.<br><span class="small" style="font-size:16px">un vélo rouge <span class="arrow">→</span> une moto rouge</span></li></ul></div><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/girl.png" style="position:absolute;left:352px;top:98px;width:84px"><img src="file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/outils/img/g2/boy.png" style="position:absolute;left:1244px;top:106px;width:112px">
+<style>@font-face{font-family:"Andika";font-weight:400;src:url(file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/polices/andika-400.woff2)}@font-face{font-family:"Andika";font-weight:700 900;src:url(file:///home/pc-bureau/Documents/Freddy/cartes-mentales-fr/polices/andika-700.woff2)}body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style><style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}</style>
+<div style="position:absolute;right:26px;top:14px;font-size:17px;background:#fff;border:2px solid #d8dde8;border-radius:14px;padding:2px 12px"><span class="d">dét.</span> · <b style="color:#e0458f">nom noyau</b> · <span class="a">adjectif</span></div>
+</body></html>

@@ -38,6 +38,7 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   Ne jamais modifier ce bloc à la main. Une carte se remplace en gardant le même nom de fichier (1400×933 px), puis `integrer_images.py`.
 - **Voir un cadre en grand (17/11/2026, demande de l'enseignante)** : un clic sur un cadre de la carte ouvre toujours ses activités ; le bouton 🔍 en haut à droite de chaque cadre (`.loupe`, `data-loupe`, posé par `renderLessonMap`)
   ouvre le cadre seul en plein écran (`loupeMontrer`, objet `LOUPE`, rogné d'après la `zone` de la rubrique) : ◀ ▶ ou flèches du clavier pour les autres cadres, « ✏️ Les activités », ✕ / Échap / clic à côté pour fermer. Caché à l'impression.
+  Loupe nette (19/11/2026) : la page qui a servi à photographier la carte est gardée dans `cartes-html/<id>.html` (`garder_html`, `lecons/g_cartes.py` ; aussi appelé par `g2_cartes.py` et `g3_cartes.py`, qui recopient maintenant eux-mêmes leurs images dans `images/`), intégrée par `integrer_images.py` (bloc CARTES-HTML) et affichée en vrai texte par `loupeHtml` : 49 cartes (toutes).
 - Écrans animés : §…§ colore une terminaison en violet (conjugaison).
 - **Lisibilité CM1 (10/11/2026, demande de l'enseignante)** : police Andika dans `polices/` (400, 400 italique, 700 ; licence `polices/OFL.txt`), plus de Google Fonts ;
   textes lus par l'élève à 16 px au moins (`--u` : 16 à 22 px ; bloc « Lisibilité CM1 » en fin de feuille de style) ; une leçon n'est jamais réduite sous 90 % (`MIN_LECON`), la page défile ;
