@@ -46,11 +46,19 @@ lecon('G2', ['3 types de phrase : <b>déclarative</b> (.), <b>interrogative</b> 
    [Q('', ['Il dit : « Bonjour. »', 'Il dit « Bonjour. » :', 'Il dit : Bonjour.'], 'Deux-points, puis guillemets.', 'Quelle phrase est bien écrite ?')], cumul=True))
 
 lecon('G3', ['Le groupe nominal : <b>déterminant + nom</b>, parfois un <b>adjectif</b>.', 'Les accords : -e au féminin, -s au pluriel ; -x et -aux (un cheval → des chevaux).',
-             'Les féminins qui s’entendent : lecteur → lectrice, joyeux → joyeuse.'],
+             'Les féminins qui s’entendent : lecteur → lectrice, joyeux → joyeuse.'], ['Des féminins qui changent'],   # grosse, douce, neuve : CM1 (idée 329)
+ E('accord', 'remplacer', 'Des féminins qui s’entendent', 'boy', 'Parfois, le féminin s’entend : la fin du mot change.',
+   [('un lecteur → une lect%rice%', '-teur devient -trice.'), ('joyeux → joyeu%se% · heureux → heureu%se%', '-eux devient -euse.'), ('un chanteur → une chant%euse%', '-eur devient -euse.')],
+   Q('une fille ___', ['joyeuse', 'joyeux', 'joyeuses'], 'joyeux → joyeuse.', 'Complète avec le mot au féminin.', fill='pr'),
+   [Q('une maman ___', ['heureuse', 'heureux', 'heureuses'], 'heureux → heureuse.', 'Complète avec le mot au féminin.', fill='pr'),
+    Q('une ___ de romans', ['lectrice', 'lecteur', 'lecteurs'], 'un lecteur → une lectrice.', 'Complète avec le mot au féminin.', fill='pr'),
+    Q('une ___ célèbre', ['chanteuse', 'chanteur', 'chanteurs'], 'un chanteur → une chanteuse.', 'Complète avec le mot au féminin.', fill='pr'),
+    Q('une ___ de bus', ['conductrice', 'conducteur', 'conducteurs'], 'un conducteur → une conductrice.', 'Complète avec le mot au féminin.', fill='pr'),
+    Q('une réponse ___', ['sérieuse', 'sérieux', 'sérieuses'], 'sérieux → sérieuse.', 'Complète avec le mot au féminin.', fill='pr')], cumul=True),
       mots=[('Le nom noyau, c’est le nom du GN.', 'Le nom, c’est le mot le plus important du GN.'), ('nom noyau', 'nom'), ('noyau', 'nom')])   # au CE2 : « nom » (27/10/2026) ; carte propre : lecons/g3_cartes.py (G3-CE2)
 
 lecon('G4', ['Les classes de mots : <b>nom</b> (commun ou propre), <b>déterminant</b>, <b>adjectif</b>, <b>verbe</b>, <b>pronom sujet</b>, <b>adverbe</b>.',
-             'Certains mots changent (variables), d’autres jamais (invariables) : très, bien, demain, doucement.'], [2, 3, 5, 7, 9, 10, 'Nature ou fonction ?'],
+             'Certains mots changent (variables), d’autres jamais (invariables) : très, bien, demain, doucement.'], [2, 3, 5, 7, 9, 10, 'Nature ou fonction ?', 'Les articles'],   # articles nommés au CM1 (idée 329)
  E('gn', 'etiquette', 'Nom commun, nom propre', 'girl', 'Le nom propre désigne une personne ou un lieu précis ; il a une majuscule.',
    [('une |ville| · |Paris|', 'ville : nom commun ; Paris : nom propre.'),
     ('un |chien| · |Médor|', 'Le nom propre prend une majuscule.')],
@@ -79,7 +87,8 @@ lecon('G6', ['La phrase : le <b>groupe sujet</b> et le <b>groupe verbal</b> (le 
    [('[Le chat] dort.', ''), ('[Il] dort.', 'le chat → il.'), ('[Les filles] jouent. → [Elles] jouent.', 'les filles → elles.')],
    Q('Les enfants courent.', ['Ils courent.', 'Il court.', 'Elles courent.'], 'les enfants → ils.', 'Je remplace le groupe sujet par un pronom :'),
    [Q('Ma sœur chante.', ['Elle chante.', 'Il chante.', 'Elles chantent.'], 'ma sœur → elle.', 'Je remplace le groupe sujet par un pronom :'),
-    Q('Le vent souffle.', ['Il souffle.', 'Elle souffle.', 'Ils soufflent.'], 'le vent → il.', 'Je remplace le groupe sujet par un pronom :')]), titre='Groupe sujet, groupe verbal', sous='la phrase en deux groupes', demasquer=['cod', 'cc'])
+    Q('Le vent souffle.', ['Il souffle.', 'Elle souffle.', 'Ils soufflent.'], 'le vent → il.', 'Je remplace le groupe sujet par un pronom :')]), titre='Groupe sujet, groupe verbal', sous='la phrase en deux groupes', demasquer=['cod', 'cc'],
+ mots=[('Un complément circonstanciel peut changer de place.', 'Certains compléments peuvent changer de place.'), ('En début de phrase, le complément circonstanciel est suivi d’une virgule.', 'En début de phrase, le complément déplacé est suivi d’une virgule.'), ('Je déplace seulement le complément circonstanciel.', 'Je déplace seulement le complément.'), ('Le complément circonstanciel peut changer de place.', 'Certains compléments peuvent changer de place.'), ('Quelle phrase déplace bien le complément circonstanciel ?', 'Quelle phrase déplace bien le complément ?'), ('Un complément circonstanciel peut se supprimer.', 'Certains compléments peuvent se supprimer.'), ('Un complément circonstanciel peut être supprimé.', 'Certains compléments peuvent se supprimer.'), ('compléments circonstanciels', 'compléments'), ('complément circonstanciel', 'complément')])   # pas de « complément circonstanciel » au CE2 (cycle 3 ; idée 329)
 
 lecon('G7', ['La chaîne des accords : le <b>groupe nominal</b> s’accorde, puis le <b>verbe</b> s’accorde avec le sujet.'], [2, 3, 4, 5, 6, 7, 'Je me corrige'],
  E('chaine', 'liste', 'Toute la chaîne', 'boy', 'Au pluriel, tout change : déterminant, adjectif, nom et verbe.',
@@ -104,11 +113,14 @@ lecon('C1', ['Le présent d’<b>être</b>, d’<b>avoir</b> et des verbes du <b
    [('il chant§e§ → chanter', 'Je retrouve l’infinitif.'), ('nous jou§ons§ → jouer', ''), ('vous parl§ez§ → parler', '')],
    Q('', ['danser', 'dansent', 'dansez'], 'L’infinitif se termine par -er.', 'Quel est l’infinitif de « ils dansent » ?'),
    [Q('', ['marcher', 'marchons', 'marche'], 'L’infinitif se termine par -er.', 'Quel est l’infinitif de « nous marchons » ?'),
-    Q('', ['être', 'est', 'étais'], 'C’est le verbe être.', 'Quel est l’infinitif de « il est » ?')]), sous='être, avoir et le 1er groupe')
+    Q('', ['être', 'est', 'étais'], 'C’est le verbe être.', 'Quel est l’infinitif de « il est » ?')]), sous='être, avoir et le 1er groupe',
+ mots=[('chanter · finir · prendre', 'chanter · faire · prendre')])   # 2e groupe : CM1 (idée 329)
 
 lecon('C2', ['Le futur d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chanterai, nous chanterons.', 'Les verbes irréguliers au futur : ceinture C7.'], [3, 5, 6, 7, 8], sous='être, avoir et le 1er groupe')
 lecon('C3', ['L’imparfait d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chantais, nous chantions.', 'Les verbes irréguliers à l’imparfait : ceinture C7.'], [3, 5, 6], sous='être, avoir et le 1er groupe')
-lecon('C4', ['Le passé composé avec <b>avoir</b> : avoir au présent + participe passé (j’ai chanté).'], [4])
+lecon('C4', ['Le passé composé avec <b>avoir</b> : avoir au présent + participe passé (j’ai chanté).'], [4],
+      mots=[('1er groupe : -é. 2e groupe : -i.', '1er groupe : -é. Les verbes irréguliers : je les apprends.'), ('finir → [j’](ai) fin§i§', 'faire → [j’](ai) fai§t§'),
+            ('2e groupe : il finit par -i.', 'faire : fait ; prendre : pris ; dire : dit.'), ('[Tu] (as) grand§i§ → grandir', '[Tu] (as) pr§is§ → prendre')])   # 2e groupe : CM1 (idée 329)
 lecon('C5', ['Le passé composé avec <b>être</b> pour les verbes de déplacement : je suis parti, il est arrivé.'], [2, 4])
 
 # =============================================================== VOCABULAIRE

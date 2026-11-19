@@ -56,7 +56,7 @@ ecrans = [
    ['[je] chanter§ai§ · [tu] chanter§as§ · [il] chanter§a§',
     '[nous] chanter§ons§ · [vous] chanter§ez§ · [ils] chanter§ont§',
     ('-rai · -ras · -ra · -rons · -rez · -ront', 'Le r est la marque du futur.')],
-   Q('Vous ___ vos devoirs.', ['finirez', 'finissez', 'finirai'], 'Vous → -ez, avec le r du futur.', 'Complète avec le verbe au futur.', fill='t'),
+   Q('Vous ___ vos devoirs demain.', ['copierez', 'copiez', 'copierai'], 'Vous → -ez, avec le r du futur.', 'Complète avec le verbe au futur.', fill='t'),
    [Q('Tu ___ tes amis.', ['inviteras', 'invites', 'inviterais'], 'Tu → -as, avec le r du futur.', 'Complète avec le verbe au futur.', fill='t'),
     Q('Ils ___ la porte.', ['fermeront', 'ferment', 'fermerons'], 'Ils → -ont.', 'Complète avec le verbe au futur.', fill='t')]),
  E('term', 'attention', '2e groupe et le e muet', 'boy', 'Je garde tout l’infinitif, même le e qu’on n’entend pas.',

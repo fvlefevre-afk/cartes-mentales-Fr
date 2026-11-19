@@ -110,7 +110,7 @@ lecon('G4', ['Les <b>prépositions</b> (à, de, sur, sous, dans, avec, pour, san
     ('Je sortirai |quand| j’aurai fini.', ''),
     ('Viens |si| tu veux.', 'quand, si, parce que, comme, lorsque, puisque.')],
    C('Je souris <quand> je te vois.', 'Clique sur la conjonction de subordination.', 'Un mot qui relie : quand, si, parce que…'),
-   [Q('', ['une conjonction de coordination', 'une conjonction de subordination'], 'mais, ou, et, donc, or, ni, car : coordination.', '« mais » est…'),
+   [Q('', ['une conjonction de coordination', 'une conjonction de subordination'], 'mais, ou, et, or, ni, car : coordination.', '« mais » est…'),
     Q('', ['une conjonction de subordination', 'une conjonction de coordination'], 'Comme « quand ».', '« lorsque » est…')]))
 
 lecon('G5', ['Le sujet peut être <b>après le verbe</b>, même dans une question : <i>Que disent les élèves ?</i>',
@@ -208,8 +208,8 @@ lecon('H4', ['J’écris aussi <b>donc</b> (vu en G4) : il annonce la conséquen
    [Q('J’ai fini mon travail, ___ je peux jouer.', ['donc', 'ou'], 'Je prouve avec « alors ».', 'Complète.', fill='circ'),
     Q('Le magasin ferme, ___ nous rentrons.', ['donc', 'ou'], 'Je prouve avec « alors ».', 'Complète.', fill='circ')]))
 
-lecon('H5', ['<b>dont</b> remplace un nom précédé de <b>de</b> : <i>le livre dont je parle</i> = je parle de ce livre.'],
- E('mix', 'remplacer', 'dont : de + le nom', 'girl', 'dont remplace un nom avec « de ».',
+lecon('H5', ['<b>dont</b> remplace un groupe nominal précédé de <b>de</b> : <i>le livre dont je parle</i> = je parle de ce livre.'],
+ E('mix', 'remplacer', 'dont : de + le nom', 'girl', 'dont remplace un groupe nominal avec « de ».',
    [('le livre |dont| je te parle', 'Je parle de ce livre.'),
     ('la fille |dont| le chien aboie', 'Le chien de la fille.'),
     ('un jeu |dont| je connais les règles', 'Les règles de ce jeu.')],

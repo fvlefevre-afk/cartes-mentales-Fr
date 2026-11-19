@@ -48,7 +48,7 @@ ecrans = [
     ('chant + §ons§', 'Le radical, puis la terminaison.'),
     ('chanter · finir · prendre', 'L’infinitif est le nom du verbe.')],
    Q('vous jouez', ['-ez', 'jou-', 'vous'], 'La terminaison est à la fin du verbe.', 'Quelle est la terminaison ?'),
-   [Q('ils finissent', ['-issent', 'fin-', 'ils'], 'La terminaison est à la fin du verbe.', 'Quelle est la terminaison ?'),
+   [Q('ils dansent', ['-ent', 'dans-', 'ils'], 'La terminaison est à la fin du verbe.', 'Quelle est la terminaison ?'),
     Q('nous dansons', ['danser', 'dansons', 'danse'], 'L’infinitif est le nom du verbe.', 'Quel est l’infinitif ?')]),
  E('rad', 'sv', 'La terminaison change avec le sujet', 'girl', 'Le radical reste, la terminaison change avec le sujet.',
    ['[je] chant§e§ · [tu] chant§es§',

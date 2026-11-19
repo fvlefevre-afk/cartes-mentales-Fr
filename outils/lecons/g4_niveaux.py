@@ -45,7 +45,7 @@ niv = {
    C('Léa mange une ___ .', '', 'pêche', ['pêchent'], 'Après « une », c’est un nom.', 'circ'), C('Les enfants ___ dans la cour.', '', 'dansent', ['danse'], 'Le sujet est pluriel : un verbe au pluriel.', 'v')],
   [C('À la plage, nous mangeons une ___ juteuse.', '', 'pêche', ['pêchent'], 'Après « une », c’est un nom.', 'circ'), C('Chaque dimanche, mes oncles ___ au bord de la rivière.', '', 'pêchent', ['pêche'], 'Le sujet est pluriel : un verbe au pluriel.', 'v'),
    C('Le vieux marin ___ une chanson de son pays.', '', 'chante', ['chant'], 'Avec le sujet « le vieux marin », c’est un verbe.', 'v'), C('Le ___ des oiseaux réveille tout le quartier.', '', 'chant', ['chante'], 'Après « le », c’est un nom.', 'circ')]),
- 'Le pronom remplace le nom': (
+ 'Le pronom remplace un groupe nominal': (
   [C('Ma sœur lit un livre. ___ est contente.', '', 'Elle', ['Il', 'Ils'], 'Ma sœur : une fille, une seule.', 's'), C('Mes amis arrivent. ___ sont en avance.', '', 'Ils', ['Elles', 'Il'], 'Mes amis : plusieurs garçons ou un groupe mixte.', 's'),
    C('Léa et Inès jouent. ___ rient.', '', 'Elles', ['Ils', 'Elle'], 'Deux filles : elles.', 's'), C('Papa cuisine. ___ prépare un gâteau.', '', 'Il', ['Elle', 'Ils'], 'Papa : un homme, un seul.', 's')],
   [C('Les élèves de la classe partent en voyage. ___ sont très impatients.', '', 'Ils', ['Elles', 'Il'], 'Les élèves : plusieurs, masculin ou groupe mixte.', 's'), C('Ma cousine et ma tante habitent à Lyon. ___ viennent nous voir en été.', '', 'Elles', ['Ils', 'Elle'], 'Deux femmes : elles.', 's'),
@@ -65,9 +65,9 @@ niv = {
    C('Elle a travaillé ___ toute la journée. (courageux)', 'Je forme l’adverbe :', 'courageusement', ['courageuxment', 'courageument'], 'courageux → courageuse → courageusement.', 'circ'), C('Nous avançons ___ dans la nuit. (prudent)', 'Je forme l’adverbe :', 'prudemment', ['prudentment', 'prudentement'], 'Les adjectifs en -ent donnent -emment ou -amment : prudent → prudemment.', 'circ')]),
  'Les mots qui relient': (
   [C('Tu veux du pain ___ du fromage ?', '', 'ou', ['mais', 'car'], 'Il propose un choix.', 'circ'), C('J’aime les pommes ___ les poires.', '', 'et', ['car', 'or'], 'Il ajoute.', 'circ'),
-   C('Il est petit ___ très fort.', '', 'mais', ['donc', 'ou'], 'Il oppose deux idées.', 'circ'), C('Léa a faim ___ elle mange.', '', 'donc', ['mais', 'ni'], 'Il donne la conséquence.', 'circ')],
-  [C('Elle s’est dépêchée ___ elle était en retard.', '', 'car', ['donc', 'mais'], 'Il donne la cause.', 'circ'), C('Il pleuvait fort, ___ nous avons décidé de rester à la maison.', '', 'donc', ['mais', 'car'], 'Il donne la conséquence.', 'circ'),
-   C('Mon frère aime le football ___ ma sœur préfère la natation.', '', 'mais', ['donc', 'car'], 'Il oppose deux idées.', 'circ'), C('Veux-tu partir à pied ___ à vélo ?', '', 'ou', ['et', 'car'], 'Il propose un choix.', 'circ')]),
+   C('Il est petit ___ très fort.', '', 'mais', ['car', 'ou'], 'Il oppose deux idées.', 'circ'), C('Léa mange ___ elle a faim.', '', 'car', ['mais', 'ni'], 'Il donne la cause.', 'circ')],
+  [C('Elle s’est dépêchée ___ elle était en retard.', '', 'car', ['ou', 'mais'], 'Il donne la cause.', 'circ'), C('Nous sommes restés à la maison ___ il pleuvait fort.', '', 'car', ['mais', 'ou'], 'Il donne la cause.', 'circ'),
+   C('Mon frère aime le football ___ ma sœur préfère la natation.', '', 'mais', ['ou', 'car'], 'Il oppose deux idées.', 'circ'), C('Veux-tu partir à pied ___ à vélo ?', '', 'ou', ['et', 'car'], 'Il propose un choix.', 'circ')]),
  'Choisir le bon mot': (
   [C('Il fait beau, ___ nous allons au parc.', '', 'donc', ['mais', 'car'], 'Il donne la conséquence.', 'circ'), C('Je suis fatigué ___ j’ai mal dormi.', '', 'car', ['donc', 'ou'], 'Il donne la cause.', 'circ'),
    C('Il a plu ___ nous avons joué dehors.', '', 'mais', ['donc', 'car'], 'Il oppose deux idées.', 'circ'), C('Tu viens avec nous ___ tu restes ici ?', '', 'ou', ['donc', 'mais'], 'Il propose un choix.', 'circ')],

@@ -26,11 +26,6 @@ niv = {
    v('La porte des toilettes ___ souvent.', 'grince', ['grincent', 'grinces'], 'Le sujet est « la porte » : singulier.'), v('Les livres de la bibliothèque ___ sur l’étagère.', 'restent', ['reste', 'restes'], 'Le sujet est « les livres » : pluriel.')],
   [v('Les élèves de la classe de ma sœur ___ un spectacle chaque année.', 'préparent', ['prépare', 'prépares'], 'Le sujet est « les élèves » : pluriel.'), v('Le stylo de mon meilleur ami ___ depuis ce matin.', 'fuit', ['fuient', 'fuis'], 'Le sujet est « le stylo » : singulier.'),
    v('Les cris des enfants de la cour ___ jusqu’à la maison.', 'résonnent', ['résonne', 'résonnes'], 'Le sujet est « les cris » : pluriel.'), v('La voisine de mes cousins ___ ses fleurs tous les soirs.', 'arrose', ['arrosent', 'arroses'], 'Le sujet est « la voisine » : singulier.')]),
- 'Le sujet est après le verbe': (
-  [v('Dans le pré ___ les vaches.', 'broutent', ['broute'], 'Qui est-ce qui broute ? Les vaches : pluriel.'), v('Sous la table ___ le chat.', 'dort', ['dorment'], 'Qui est-ce qui dort ? Le chat : singulier.'),
-   v('Au loin ___ des cloches.', 'sonnent', ['sonne'], 'Qui est-ce qui sonne ? Des cloches : pluriel.'), v('Où ___ tes parents ?', 'travaillent', ['travaille'], 'Qui est-ce qui travaille ? Tes parents : pluriel.')],
-  [v('Dans le jardin de mes grands-parents ___ de magnifiques rosiers.', 'poussent', ['pousse'], 'Qui est-ce qui pousse ? De magnifiques rosiers : pluriel.'), v('Au fond du couloir ___ les élèves de la classe.', 'attendent', ['attend'], 'Qui est-ce qui attend ? Les élèves : pluriel.'),
-   v('Quand ___ ton frère et ta sœur ?', 'arrivent', ['arrive'], 'Qui est-ce qui arrive ? Ton frère et ta sœur : pluriel.'), v('Sur la colline ___ un vieux moulin.', 'se dresse', ['se dressent'], 'Qui est-ce qui se dresse ? Un vieux moulin : singulier.')]),
  'Le petit mot devant le verbe': (
   [v('Léa les ___.', 'regarde', ['regardent'], 'Le sujet est « Léa », pas « les ».'), v('Mes amis me ___ souvent.', 'téléphonent', ['téléphone'], 'Le sujet est « mes amis », pas « me ».'),
    v('Le maître nous ___ une histoire.', 'raconte', ['racontent'], 'Le sujet est « le maître », pas « nous ».'), v('Papa leur ___ un cadeau.', 'offre', ['offrent'], 'Le sujet est « papa », pas « leur ».')],

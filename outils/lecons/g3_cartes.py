@@ -45,10 +45,11 @@ def carte(lid, chip, niveau, geo=None, cdy=26):
   <li>On ne peut <b>pas l’enlever</b>.</li>{tc_extra}</ul>
   <div class="ex" style="text-align:center;padding:2px 8px;margin-top:4px;font-size:17px;line-height:1.3;white-space:nowrap">une <span class="barre">grande</span> <span class="n">maison</span> <span class="barre">blanche</span> <span class="arrow">→</span> <span class="d">une</span> <span class="n">maison</span></div>'''
     # --- l'adjectif
+    epi = '' if niveau == 'CE2' else '  <ul style="font-size:19.5px;line-height:1.3;margin-top:2px"><li>Dans le GN, il est <b>épithète</b>.</li></ul>'   # épithète : notion du CM1 (idée 329)
     adj = f'''<ul style="padding-right:128px;font-size:19.5px;line-height:1.3;margin-top:-14px">
   <li>Il dit <b>comment est</b> le nom.</li>
   <li>Il se place <b>avant</b> ou <b>après</b> le nom.</li></ul>
-  <ul style="font-size:19.5px;line-height:1.3;margin-top:2px"><li>Dans le GN, il est <b>épithète</b>.</li></ul>
+{epi}
   <div class="exl" style="margin-top:6px;line-height:1.4;font-size:19.5px">un <span class="a">gros</span> ballon <span class="a">rouge</span><br>une souris <span class="arrow">→</span> une <span class="a">petite</span> souris <span class="a">grise</span></div>'''
     if cm2:
         adj = f'''<ul style="padding-right:128px;font-size:18.5px;line-height:1.25;margin-top:-16px">
@@ -67,6 +68,9 @@ def carte(lid, chip, niveau, geo=None, cdy=26):
   <div>J’ajoute souvent un <span class="e">s</span>.</div>
   <div style="margin-top:6px">le chat noir<br>&nbsp;&nbsp;<span class="arrow">→</span> le<span class="e">s</span> chat<span class="e">s</span> noir<span class="e">s</span></div>
   <div style="margin-top:6px">une fleur jaune<br>&nbsp;&nbsp;<span class="arrow">→</span> de<span class="e">s</span> fleur<span class="e">s</span> jaune<span class="e">s</span></div>'''))
+    if niveau == 'CE2':   # au CE2, les féminins qui s'entendent du programme (lecteur → lectrice, joyeux → joyeuse) ; grosse, douce : CM1 (comme les fiches, idée 329)
+        accord = accord.replace('gros <span class="arrow">→</span> gro<span class="e">sse</span> · doux <span class="arrow">→</span> dou<span class="e">ce</span>',
+                                'joyeux <span class="arrow">→</span> joyeu<span class="e">se</span> · lecteur <span class="arrow">→</span> lect<span class="e">rice</span>')
     att_extra = '<li style="margin-top:4px">Le complément du nom <b>ne s’accorde pas</b> : des pots <b>de confiture</b>.</li>' if cm2 else ''
     att = f'''<ul style="font-size:{'18' if cm2 else '19'}px;line-height:1.28;margin-top:-16px">
   <li>Pluriel en <span class="e">x</span> : des gâteau<span class="e">x</span>, des jeu<span class="e">x</span>.</li>

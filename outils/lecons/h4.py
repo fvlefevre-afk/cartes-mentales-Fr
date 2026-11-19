@@ -18,7 +18,7 @@ boxes = [
    f'<span class="exl" style="margin-top:6px">Il paraît petit, {R("mais")} il court vite.</span>'),
  dict(id='inv', col='violet', geom=(18, 568, 560, 350), title='Des mots qui relient', style='padding-top:52px', avatar=('girl', 445, 610), html=f'''
   <p class="txt" style="padding-right:110px">Ce sont des <b>conjonctions de coordination</b> : elles relient, et elles ne changent <b>jamais</b>.</p>
-  <div class="exl" style="font-size:22px;text-align:center;margin-right:110px">{R("et")} · {R("ou")} · {R("mais")}<br><span class="small">et aussi : donc, or, ni, car</span></div>'''),
+  <div class="exl" style="font-size:22px;text-align:center;margin-right:110px">{R("et")} · {R("ou")} · {R("mais")}<br><span class="small">et aussi : or, ni, car</span></div>'''),
  dict(id='att', col='rouge', geom=(612, 568, 770, 350), title='Attention !', style='padding-top:52px', avatar=('boy', 1250, 610), html='''
   <ul style="font-size:22px;line-height:1.5;padding-right:110px">
    <li>Souvent, une <b>virgule</b> avant <b>mais</b> : <i>Il pleut, mais je sors.</i></li>
@@ -58,7 +58,7 @@ ecrans = [
     Q('C’était difficile, ___ j’ai réussi.', W, 'Les deux idées s’opposent.', fill='circ')]),
  E('inv', 'mots', 'Des mots qui ne changent jamais', 'girl', 'Et, ou, mais sont des conjonctions de coordination.',
    [('Léa |et| Tom · Léa |et| ses amies', 'et ne change pas, même au pluriel.'),
-    ('|et| · |ou| · |mais| · donc · or · ni · car', 'La famille des mots qui relient.')],
+    ('|et| · |ou| · |mais| · or · ni · car', 'La famille des mots qui relient.')],
    Q('', ['mais, ou, et', 'très, bien, vite', 'le, la, les'], 'Les mots qui relient.', 'Quelle liste contient des conjonctions de coordination ?'),
    [Q('', ['car', 'chat', 'courir'], 'Un mot qui relie, comme et, ou, mais.', 'Quel autre mot relie, comme et, ou, mais ?')]),
  E('inv', 'liste', 'Je choisis selon le sens', 'girl', 'J’ajoute ? Je choisis ? Je m’oppose ?',

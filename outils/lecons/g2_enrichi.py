@@ -135,13 +135,13 @@ def mot_ex(niv, i):
 
 # -- ordres (M2, M3) --
 VERBES = {
-    1: [('fermer', 'la porte', 'Ferme', 'Fermes', 'Fermons', 'Fermez'), ('ranger', 'ta chambre', 'Range', 'Ranges', 'Rangeons', 'Rangez'), ('écouter', 'la maîtresse', 'Écoute', 'Écoutes', 'Écoutons', 'Écoutez'),
-        ('lire', 'ce livre', 'Lis', 'Lit', 'Lisons', 'Lisez'), ('finir', 'ton assiette', 'Finis', 'Fini', 'Finissons', 'Finissez'), ('prendre', 'ton cahier', 'Prends', 'Prend', 'Prenons', 'Prenez')],
-    2: [('fermer', 'toutes les fenêtres avant de partir', 'Ferme', 'Fermes', 'Fermons', 'Fermez'), ('ranger', 'les crayons dans la trousse', 'Range', 'Ranges', 'Rangeons', 'Rangez'),
-        ('écouter', 'attentivement la consigne', 'Écoute', 'Écoutes', 'Écoutons', 'Écoutez'), ('lire', 'le texte à voix haute', 'Lis', 'Lit', 'Lisons', 'Lisez'),
+    1: [('fermer', 'la porte', 'Ferme', 'Fermons', 'Fermez'), ('ranger', 'ta chambre', 'Range', 'Ranges', 'Rangeons', 'Rangez'), ('écouter', 'la maîtresse', 'Écoute', 'Écoutes', 'Écoutons', 'Écoutez'),
+        ('lire', 'ce livre', 'Lis', 'Lisons', 'Lisez'), ('finir', 'ton assiette', 'Finis', 'Fini', 'Finissons', 'Finissez'), ('prendre', 'ton cahier', 'Prends', 'Prend', 'Prenons', 'Prenez')],
+    2: [('fermer', 'toutes les fenêtres avant de partir', 'Ferme', 'Fermons', 'Fermez'), ('ranger', 'les crayons dans la trousse', 'Range', 'Ranges', 'Rangeons', 'Rangez'),
+        ('écouter', 'attentivement la consigne', 'Écoute', 'Écoutes', 'Écoutons', 'Écoutez'), ('lire', 'le texte à voix haute', 'Lis', 'Lisons', 'Lisez'),
         ('finir', 'l’exercice avant la récréation', 'Finis', 'Fini', 'Finissons', 'Finissez'), ('prendre', 'une feuille et un crayon', 'Prends', 'Prend', 'Prenons', 'Prenez')],
-    3: [('fermer', 'soigneusement la porte de la salle avant de quitter l’école', 'Ferme', 'Fermes', 'Fermons', 'Fermez'), ('ranger', 'ton bureau avant que la cloche ne sonne', 'Range', 'Ranges', 'Rangeons', 'Rangez'),
-        ('écouter', 'sans interrompre les explications du conférencier', 'Écoute', 'Écoutes', 'Écoutons', 'Écoutez'), ('lire', 'lentement le paragraphe qui décrit la forêt', 'Lis', 'Lit', 'Lisons', 'Lisez'),
+    3: [('fermer', 'soigneusement la porte de la salle avant de quitter l’école', 'Ferme', 'Fermons', 'Fermez'), ('ranger', 'ton bureau avant que la cloche ne sonne', 'Range', 'Ranges', 'Rangeons', 'Rangez'),
+        ('écouter', 'sans interrompre les explications du conférencier', 'Écoute', 'Écoutes', 'Écoutons', 'Écoutez'), ('lire', 'lentement le paragraphe qui décrit la forêt', 'Lis', 'Lisons', 'Lisez'),
         ('finir', 'tes devoirs avant de jouer dehors avec tes amis', 'Finis', 'Fini', 'Finissons', 'Finissez'), ('prendre', 'ton manteau avant de sortir dans le froid', 'Prends', 'Prend', 'Prenons', 'Prenez')],
 }
 
@@ -413,11 +413,11 @@ nouv('inter', 'remplacer', 'Je transforme en question', 'boy', 'Je peux changer 
 # --- Impérative ---
 anc_ecran(2, [(M, 0), (PM, 1), (M, 3), (M, 4)], [(M, 0), (PM, 1), (M, 3), (M, 4)])
 nouv('imp', 'doigt', 'Tu, nous, vous', 'boy', 'À l’impératif, je donne un ordre à tu, à nous ou à vous.',
-     [{'p': '(*Ferme*) la porte.', 'c': 'À « tu » : pas de s pour les verbes en -er.'}, {'p': '(*Fermons*) la porte.', 'c': 'À « nous » : on propose de le faire ensemble.'}, {'p': '(*Fermez*) la porte.', 'c': 'À « vous » : terminaison -ez.'}],
+     [{'p': '(*Ferme*) la porte.', 'c': 'À « tu » : Ferme la porte ! Pas de sujet écrit.'}, {'p': '(*Fermons*) la porte.', 'c': 'À « nous » : on propose de le faire ensemble.'}, {'p': '(*Fermez*) la porte.', 'c': 'À « vous » : terminaison -ez.'}],
      [(pers_ex, 0), (pers_ex, 1), (pers_ex, 2)], None,
      [(pers_ex, 0), (pers_ex, 1), (pers_ex, 2), (pers_ex, 3)], [(pers_ex, 0), (pers_ex, 1), (pers_ex, 2), (pers_ex, 3)])
 nouv('imp', 'remplacer', 'Je transforme en ordre', 'girl', 'Pour donner un ordre, je supprime le sujet.',
-     [{'p': '[Tu] (ranges) ta chambre.'}, {'p': '{[Tu]} (ranges) ta chambre.', 'c': 'Je supprime le sujet.'}, {'p': '(*Range*) ta chambre.', 'c': 'Et le verbe : pas de s avec « tu » pour un verbe en -er.'}],
+     [{'p': '[Tu] (ranges) ta chambre.'}, {'p': '{[Tu]} (ranges) ta chambre.', 'c': 'Je supprime le sujet.'}, {'p': '(*Range*) ta chambre.', 'c': 'Le verbe commence la phrase.'}],
      [(ordre_ex, 0), (ordre_ex, 1), (ordre_ex, 2)], None,
      [(ordre_ex, 0), (ordre_ex, 1), (ordre_ex, 2), (ordre_ex, 3)], [(ordre_ex, 0), (ordre_ex, 1), (ordre_ex, 2), (ordre_ex, 3)])
 

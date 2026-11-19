@@ -20,7 +20,7 @@ boxes = [
  dict(id='verbe', col='rouge', geom=TR, title='Verbe et pronom', avatar=('boy', 1250, 122), html='''
   <ul style="padding-right:96px;font-size:20px">
    <li>Le <span class="v">verbe</span> se conjugue : il change avec le temps et le sujet.</li>
-   <li>Le <b>pronom</b> remplace un nom.</li></ul>
+   <li>Le <b>pronom</b> remplace un groupe nominal.</li></ul>
   <div class="ex" style="text-align:center"><span class="n">Léa</span> <span class="v">chante</span> <span class="arrow">→</span> <span class="p">Elle</span> <span class="v">chante</span></div>
   <p class="small" style="margin:6px 0 0;font-size:16px;line-height:1.35"><b>sujets</b> : je, tu, il, elle, on, nous, vous, ils, elles<br><b>compléments</b> : me, te, le, la, les, lui, leur</p>'''),
  dict(id='adv', col='orange', geom=BLx, title='L’adverbe', style='padding-top:50px', html='''
@@ -31,7 +31,7 @@ boxes = [
   <p class="small" style="margin:8px 0 0">hier, souvent, toujours, bien, très, lentement…</p>'''),
  dict(id='conj', col='turquoise', geom=BCx, title='Les mots qui relient', style='padding-top:50px', html='''
   <p class="txt">Les <b>conjonctions de coordination</b> relient deux mots ou deux parties de phrase.</p>
-  <div class="ex big" style="font-size:21px;padding:6px 4px;white-space:nowrap">mais · ou · et · donc · or · ni · car</div>
+  <div class="ex big" style="font-size:21px;padding:6px 4px;white-space:nowrap">mais · ou · et · or · ni · car</div>
   <p class="txt" style="text-align:center">Il pleut <span class="rond">mais</span> je sors.</p>'''),
  dict(id='inv', col='gris', geom=BRx, title='Variable ou invariable ?', style='padding-top:50px', html='''
   <p class="txt"><b>Variables</b> (ils changent) : nom, déterminant, adjectif, verbe, pronom.</p>
@@ -110,9 +110,10 @@ E('verbe', 'loupe', 'Verbe ou nom ?', 'boy', 'Un même mot peut être un verbe o
    [Q('Les ___ écoutent la maîtresse.', ['élèves', 'élèvent'], 'Un déterminant devant : c’est un nom → -s.', fill='circ'),
     Q('J’ai deux ___ dans ma trousse.', ['gommes', 'gomment'], 'Après « deux » : un nom → -s.', fill='circ'),
     Q('Les enfants ___ leurs erreurs.', ['gomment', 'gommes'], 'Les enfants = ils : un verbe → -ent.', fill='v')]),
- E('verbe', 'remplacer', 'Le pronom remplace le nom', 'boy', 'Le pronom évite de répéter le nom.',
-   ['[Léa] (chante).', '[~Léa] (chante).',
-    ('[*Elle*] (chante).', 'Elle remplace Léa : c’est un pronom.'),
+ E('verbe', 'remplacer', 'Le pronom remplace un groupe nominal', 'boy', 'Le pronom évite de répéter tout le groupe nominal.',
+   ['[Le petit chat] (dort).',
+    ('[*Il*] (dort).', 'Il remplace tout le groupe nominal « le petit chat » : c’est un pronom.'),
+    ('[Léa] (chante). → [*Elle*] (chante).', 'Il peut aussi remplacer un nom propre.'),
     ('je · tu · il · elle · on · nous · vous · ils · elles', 'Les pronoms personnels.')],
    Q('Mes cousins arrivent. ___ sont en retard.', ['Ils', 'Elles', 'Il'], 'Mes cousins : plusieurs garçons.', fill='s'),
    [Q('Ma tante téléphone. ___ est contente.', ['Elle', 'Il', 'Ils'], 'Ma tante : une seule femme.', fill='s'),
@@ -135,16 +136,16 @@ E('verbe', 'loupe', 'Verbe ou nom ?', 'boy', 'Un même mot peut être un verbe o
    [C('Elle chante <bien>.', 'Clique sur l’adverbe.', 'Comment chante-t-elle ?'),
     C('<Hier>, il a neigé.', 'Clique sur l’adverbe.', 'Quand a-t-il neigé ?'),
     C('Ce gâteau est <trop> sucré.', 'Clique sur l’adverbe.', 'Quel mot précise « sucré » ?')]),
- E('conj', 'mots', 'Les mots qui relient', 'girl', 'mais, ou, et, donc, or, ni, car relient des mots ou des phrases.',
+ E('conj', 'mots', 'Les mots qui relient', 'girl', 'mais, ou, et, or, ni, car relient des mots ou des phrases : ce sont les conjonctions de coordination.',
    ['Je voulais sortir. Il pleuvait.',
     ('Je voulais sortir |*mais*| il pleuvait.', 'mais relie les deux parties.'),
-    ('mais · ou · et · donc · or · ni · car', 'Les 7 mots qui relient.')],
+    ('mais · ou · et · or · ni · car', 'Les 6 conjonctions de coordination.')],
    Q('Tu veux du lait ___ du jus ?', ['ou', 'mais', 'car'], 'Il faut choisir entre les deux.', fill='circ'),
    [Q('J’ai un chat ___ un chien.', ['et', 'car', 'or'], 'J’ai les deux.', fill='circ'),
     Q('', ['mais, ou, et', 'très, bien, vite', 'le, la, les'], 'mais, ou, et relient des mots ou des phrases.', 'Quelle liste contient seulement des conjonctions ?')]),
  E('conj', 'ampoule', 'Choisir le bon mot', 'girl', 'Chaque mot qui relie a un sens.',
    [('Il est fatigué |car| il a couru.', 'car : la cause (= parce que)'),
-    ('Il a couru, |donc| il est fatigué.', 'donc : la conséquence'),
+    ('Il a couru, |donc| il est fatigué.', 'donc : la conséquence (donc n’est pas une conjonction : c’est un adverbe)'),
     ('Il est petit |mais| il est fort.', 'mais : une opposition')],
    Q('Je mets mon manteau ___ il fait froid.', ['car', 'mais', 'ou'], 'Pourquoi mettre un manteau ?', fill='circ'),
    [Q('Il a beaucoup révisé, ___ il a réussi.', ['donc', 'mais', 'car'], 'Réussir est la conséquence.', fill='circ'),

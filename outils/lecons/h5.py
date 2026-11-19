@@ -10,7 +10,7 @@ boxes = [
    ('la', '<b>déterminant</b>, devant un nom féminin', 'je dis <b>une</b>, ou je mets au pluriel : <b>les</b>', f'{R("la")} porte → une porte, les portes')]) +
    f'<span class="exl" style="margin-top:6px">{R("la")} ~table · {R("la")} fenêtre</span>'.replace('~', '')),
  dict(id='pro', col='vert', geom=TC, title='la devant un verbe', html=rows([
-   ('la', '<b>pronom</b>, remplace un nom féminin', 'avec un nom masculin, je dis <b>le</b>', f'Ma poupée ? Je {R("la")} coiffe.')]) +
+   ('la', '<b>pronom</b>, remplace un groupe nominal féminin', 'avec un nom masculin, je dis <b>le</b>', f'Ma poupée ? Je {R("la")} coiffe.')]) +
    f'<span class="exl" style="margin-top:6px">Mon ballon ? Je le lance.</span>'),
  dict(id='cest', col='orange', geom=TR, title='c’est', avatar=('girl', 1250, 122), html=rows([
    ('c’est', '= cela est', 'je mets au passé : <b>c’était</b>', f'{R("C’est")} mon ami.<br>→ C’était mon ami.')], pr=110) +
@@ -41,7 +41,7 @@ ecrans = [
    Q('Ferme ___ fenêtre.', ['la', 'le', 'les'], 'Fenêtre : féminin singulier.', fill='circ'),
    [Q('Je lave ___ voiture.', ['la', 'le', 'les'], 'Voiture : féminin singulier.', fill='circ'),
     C('Léa ouvre <la> boîte.', 'Clique sur le déterminant.', 'Il est devant le nom « boîte ».')]),
- E('pro', 'remplacer', 'la : un pronom', 'girl', 'Devant un verbe, la remplace un nom féminin.',
+ E('pro', 'remplacer', 'la : un pronom', 'girl', 'Devant un verbe, la remplace un groupe nominal féminin.',
    [('Ma poupée ? Je |la| coiffe.', 'la est devant un verbe : il remplace « ma poupée ».'),
     ('Mon ballon ? Je |*le*| lance.', 'Avec un nom masculin : le.'),
     ('Mes poupées ? Je |*les*| coiffe.', 'Au pluriel : les.')],
@@ -70,7 +70,7 @@ ecrans = [
       ('Premier trou :', ['la', 'le', 'c’est'], 'Une clé.', 'circ'),
       ('Deuxième trou :', ['c’est', 'la', 'le'], 'Cela est celle de la cave.', 'circ'))]),
  E('att', 'attention', 'Les pièges', 'girl', 'La devant un verbe, et l’apostrophe de c’est !',
-   [('Je |la| regarde.', 'la devant un verbe : il remplace un nom féminin.'),
+   [('Je |la| regarde.', 'la devant un verbe : il remplace un groupe nominal féminin.'),
     ('|C’est| · |C’était|', 'Toujours une apostrophe.')],
    Q('', ['Ma lampe, je la répare.', 'Ma lampe, je le répare.'], 'Lampe est féminin : la.', 'Quelle phrase est bien écrite ?'),
    [Q('', ['C’était une belle journée.', 'Cétait une belle journée.'], 'C’était : avec une apostrophe.', 'Quelle phrase est bien écrite ?')]),

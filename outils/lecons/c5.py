@@ -49,7 +49,7 @@ ecrans = [
     ('entrer · sortir · monter · descendre', ''),
     ('tomber · rester · naître', 'Ils se conjuguent avec être.')],
    Q('', ['venir', 'manger', 'chanter'], 'Un verbe de mouvement.', 'Lequel se conjugue avec être ?'),
-   [Q('', ['sortir', 'finir', 'jouer'], 'Un verbe de mouvement.', 'Lequel se conjugue avec être ?'),
+   [Q('', ['sortir', 'manger', 'jouer'], 'Un verbe de mouvement.', 'Lequel se conjugue avec être ?'),
     Q('Nous ___ à la maison.', ['sommes restés', 'avons resté', 'restons'], 'rester se conjugue avec être.', 'Complète avec le passé composé.', fill='v')]),
  E('accord', 'wagon', 'J’accorde avec le sujet', 'girl', 'Avec être, le participe passé s’accorde avec le sujet.',
    ['[Tom] (est) part§i§.',

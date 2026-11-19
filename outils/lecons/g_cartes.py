@@ -15,7 +15,7 @@ def garder_html(sortie, image=None):
     shutil.copy(os.path.join(D, '..', 'sortie', f'{sortie}map.html'), os.path.join(dst, f'{image or sortie}.html'))
 
 
-SCRIPTS = {'G1': 'g1_carte.py', 'V1': 'v1_carte.py', 'V2': 'v2_carte.py', 'H1': 'h1_carte.py', **{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
+SCRIPTS = {'G1': 'g1_carte.py', 'V1': 'v1_carte.py', 'V2': 'v2_carte.py', 'H1': 'h1_carte.py', **{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', 'G7-CE2': 'g7_ce2.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524'),
           'ciel': ('#0b8fd6', '#dff2fc', '#a8daf5', '#0b8fd6'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
 # Code couleur des personnages (17/11/2026, choix de l'enseignante) : déterminant bleu ciel, nom rose, adjectif vert, verbe rouge,
