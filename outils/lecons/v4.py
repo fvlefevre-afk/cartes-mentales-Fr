@@ -63,7 +63,7 @@ ecrans = [
    Q('', ['tapisser', 'taper', 'tapir'], 'Je cherche un mot de la famille de « tapis ».', '« tapis » finit par s, car on dit…'),
    [Q('', ['sportif', 'sporte', 'spore'], 'Je cherche un mot de la famille de « sport ».', '« sport » finit par t, car on dit…'),
     Q('un gran___ arbre', ['d', 't', 's'], 'Pense à « grande ».', 'Quelle lettre muette ?', fill='circ'),
-    Q('un chan___ de blé', ['p', 't', 'd'], 'Pense à « champêtre ».', 'Quelle lettre muette ?', fill='circ')]),
+    Q('un cham___ de blé', ['p', 't', 'd'], 'Pense à « champêtre ».', 'Quelle lettre muette ?', fill='circ')]),
  E('reb', 'ciseaux', 'Des morceaux que je connais', 'girl', 'Dans une famille, je retrouve les préfixes et les suffixes.',
    [('%en%|terr|%er%', 'en- devant, -er derrière.'),
     ('%dé%|terr|%er%', 'dé- : le contraire d’enterrer.'),

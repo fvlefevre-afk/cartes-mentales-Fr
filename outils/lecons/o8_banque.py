@@ -27,8 +27,8 @@ FEMININ = [FEM('une matin___', 'Le nom est féminin : une matinée.'), FEM('la f
 # écran 3 : une qualité ou un état : -té
 QUALITE = [TE('la clar___', 'C’est une qualité : la clarté.'), TE('la sécuri___', 'C’est un état : la sécurité.'), TE('la difficul___', 'C’est un état : la difficulté.'),
            TE('la rapidi___', 'C’est une qualité : la rapidité.'), TE('la pauvre___', 'C’est un état : la pauvreté.'), TE('la propre___', 'C’est une qualité : la propreté.'),
-           TE('la volon___', 'C’est une qualité : la volonté.'), TE('l’égali___', 'C’est un état : l’égalité.'), TE('la cruau___', 'C’est une qualité : la cruauté.'),
-           TE('la fragili___', 'C’est une qualité : la fragilité.'), TE('la timidi___', 'C’est une qualité : la timidité.'), TE('la séréni___', 'C’est un état : la sérénité.')]
+           TE('la volon___', 'C’est une qualité : la volonté.'), TE('l’égali___', 'C’est un état : l’égalité.'), TE('la fier___', 'C’est une qualité : la fierté.'),
+           TE('la fragili___', 'C’est une qualité : la fragilité.'), TE('la timidi___', 'C’est un état : la timidité.'), TE('la séréni___', 'C’est un état : la sérénité.')]
 # écran 4 : -tée (dictée, montée) : pas de mot de plus au CM1 (le programme de la ceinture n'en voit que deux) ; les autres -tée sont au CM2
 TEE_CM1 = []
 # écran 5 : -tié (3 noms seulement) : questions avec de vrais mots
@@ -52,7 +52,7 @@ PROUVE = [
  P('pré', '-é', R_M, R_F, R_Q, 'Regarde le petit mot devant : un.'), P('fumée', '-ée', R_F, R_M, R_Q, 'Regarde le petit mot devant : la.'),
  P('sécurité', '-té', R_Q, R_A, R_M, 'Un état.'), P('montée', '-tée', R_A, R_Q, R_M, 'L’action de monter.'),
  P('lycée', '-ée', R_X, R_F, R_A, 'Un nom masculin qui s’écrit pourtant -ée.'), P('pitié', '-tié', R_T, R_Q, R_A, 'Je mémorise : moitié, amitié, pitié.'),
- P('café', '-é', R_M, R_F, R_Q, 'Regarde le petit mot devant : un.'), P('timidité', '-té', R_Q, R_A, R_F, 'Une qualité.'),
+ P('café', '-é', R_M, R_F, R_Q, 'Regarde le petit mot devant : un.'), P('timidité', '-té', R_Q, R_A, R_F, 'Un état.'),
 ]
 CM2_EXTRA = [TEE('une je___', 'Une jetée : -tée, avec e.'), TEE('une assiet___', 'Un contenu : une assiettée, avec e.'), TEE('une pâ___', 'De la nourriture pour un animal : une pâtée, avec e.'),
              TEE('une nui___', 'Une nuit passée à l’hôtel : une nuitée, avec e.'), TEE('une pelle___', 'Le contenu d’une pelle : une pelletée, avec e.'), TEE('une po___', 'Le contenu d’un pot : une potée, avec e.')]
