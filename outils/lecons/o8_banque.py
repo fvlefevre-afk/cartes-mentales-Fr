@@ -27,7 +27,7 @@ FEMININ = [FEM('une matin___', 'Le nom est féminin : une matinée.'), FEM('la f
 # écran 3 : une qualité ou un état : -té
 QUALITE = [TE('la clar___', 'C’est une qualité : la clarté.'), TE('la sécuri___', 'C’est un état : la sécurité.'), TE('la difficul___', 'C’est un état : la difficulté.'),
            TE('la rapidi___', 'C’est une qualité : la rapidité.'), TE('la pauvre___', 'C’est un état : la pauvreté.'), TE('la propre___', 'C’est une qualité : la propreté.'),
-           TE('la volon___', 'C’est une qualité : la volonté.'), TE('l’égali___', 'C’est un état : l’égalité.'), TE('la fier___', 'C’est une qualité : la fierté.'),
+           TE('la volon___', 'C’est une qualité : la volonté.'), TE('l’égali___', 'C’est un état : l’égalité.'), TE('la générosi___', 'C’est une qualité : la générosité.'),
            TE('la fragili___', 'C’est une qualité : la fragilité.'), TE('la timidi___', 'C’est un état : la timidité.'), TE('la séréni___', 'C’est un état : la sérénité.')]
 # écran 4 : -tée (dictée, montée) : pas de mot de plus au CM1 (le programme de la ceinture n'en voit que deux) ; les autres -tée sont au CM2
 TEE_CM1 = []
