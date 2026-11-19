@@ -30,7 +30,7 @@ H['H1'] = {
   [v('Depuis ce matin, mon père ___ très occupé.', 'est', ['a'], 'Le sens : comment il est, c’est être.'), v('Les voisins ___ un grand jardin derrière leur maison.', 'ont', ['sont'], 'Le sens : ils possèdent, c’est avoir.'),
    v('Ce soir, les élèves de la classe ___ prêts pour la fête.', 'sont', ['ont'], 'Le sens : comment ils sont, c’est être.'), v('Chaque année, ma sœur ___ un cadeau pour chaque anniversaire.', 'a', ['est'], 'Le sens : elle reçoit, c’est avoir.')]),
  'Le sujet se cache': (
-  [v('Où ___ mes lunettes ?', 'sont', ['ont', 'est'], 'Le sujet est « mes lunettes » : pluriel.'), v('Dans la cour, les élèves ___ nombreux.', 'sont', ['ont', 'est'], 'Le sujet est « les élèves » : pluriel.'),
+  [v('Mes lunettes de soleil ___ sur la table.', 'sont', ['ont', 'est'], 'Le sujet est « mes lunettes » : pluriel.'), v('Dans la cour, les élèves ___ nombreux.', 'sont', ['ont', 'est'], 'Le sujet est « les élèves » : pluriel.'),
    v('Les clés de mon frère ___ introuvables.', 'sont', ['ont', 'est'], 'Le sujet est « les clés » : pluriel.'), v('Les chats de mes voisins ___ souvent faim.', 'ont', ['sont', 'a'], 'Le sujet est « les chats » : pluriel ; avoir faim.')],
   [v('Quel âge ___ vos grands-parents ?', 'ont', ['sont', 'est'], 'Le sujet est « vos grands-parents » : pluriel ; avoir un âge.'), v('Dans le fond de la salle ___ les élèves de CM2.', 'sont', ['ont', 'est'], 'Le sujet est « les élèves » : pluriel.'),
    v('Les amis de ma sœur ___ toujours un grand sourire.', 'ont', ['sont', 'est'], 'Le sujet est « les amis » : pluriel ; avoir un sourire.'), v('Les livres que j’ai empruntés hier ___ très intéressants.', 'sont', ['ont', 'est'], 'Le sujet est « les livres » : pluriel.')]),

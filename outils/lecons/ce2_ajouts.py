@@ -61,7 +61,7 @@ lecon('G4', ['Les classes de mots : <b>nom</b> (commun ou propre), <b>détermina
 lecon('G5', ['Le sujet commande le verbe : <i>il chante, ils chantent</i>.', 'Je remplace le sujet par un pronom pour trouver la terminaison.'], [3, 4, 5, 6, 7, 8])
 
 lecon('G6', ['La phrase : le <b>groupe sujet</b> et le <b>groupe verbal</b> (le verbe et ce qui le complète).',
-             'Je peux <b>déplacer</b>, <b>supprimer</b>, <b>ajouter</b> ou <b>remplacer</b> des mots.'], [1, 2, 3, 4, 5, 7, 9],
+             'Je peux <b>déplacer</b>, <b>supprimer</b>, <b>ajouter</b> ou <b>remplacer</b> des mots.'], [1, 2, 3, 4, 'Des précisions en plus', 7, 9],
  E('phrase', 'sv', 'Groupe sujet, groupe verbal', 'girl', 'La phrase a deux groupes : le groupe sujet et le groupe verbal.',
    [('[Le chat] mange sa pâtée.', 'Le groupe sujet : de qui on parle.'),
     ('Le chat %mange sa pâtée%.', 'Le groupe verbal : le verbe et ce qui le complète.')],
@@ -81,7 +81,7 @@ lecon('G6', ['La phrase : le <b>groupe sujet</b> et le <b>groupe verbal</b> (le 
    [Q('Ma sœur chante.', ['Elle chante.', 'Il chante.', 'Elles chantent.'], 'ma sœur → elle.', 'Je remplace le groupe sujet par un pronom :'),
     Q('Le vent souffle.', ['Il souffle.', 'Elle souffle.', 'Ils soufflent.'], 'le vent → il.', 'Je remplace le groupe sujet par un pronom :')]), titre='Groupe sujet, groupe verbal', sous='la phrase en deux groupes', demasquer=['cod', 'cc'])
 
-lecon('G7', ['La chaîne des accords : le <b>groupe nominal</b> s’accorde, puis le <b>verbe</b> s’accorde avec le sujet.'], [2, 3, 4, 5, 6, 7],
+lecon('G7', ['La chaîne des accords : le <b>groupe nominal</b> s’accorde, puis le <b>verbe</b> s’accorde avec le sujet.'], [2, 3, 4, 5, 6, 7, 'Je me corrige'],
  E('chaine', 'liste', 'Toute la chaîne', 'boy', 'Au pluriel, tout change : déterminant, adjectif, nom et verbe.',
    [('^Le^ petit chat (joue).', 'Au singulier.'),
     ('^Les^ petit*s* chat*s* (jouent).', 'Au pluriel : toute la chaîne change.')],
@@ -93,7 +93,7 @@ lecon('G7', ['La chaîne des accords : le <b>groupe nominal</b> s’accorde, pui
     ('Les vieilles maisons brille.', '1. J’accorde le groupe nominal.'),
     ('Les vieilles maisons brillent.', '2. J’accorde le verbe.')],
    Q('Mes cousin joue.', ['Mes cousins jouent.', 'Mes cousins joue.', 'Mes cousin jouent.'], 'Le groupe nominal, puis le verbe.', 'Quelle est la bonne correction ?'),
-   [Q('Les petite souris mange.', ['Les petites souris mangent.', 'Les petites souris mange.', 'Les petite souris mangent.'], 'Le groupe nominal, puis le verbe.', 'Quelle est la bonne correction ?')]))
+   [Q('Les petite souris mange.', ['Les petites souris mangent.', 'Les petites souris mange.', 'Les petite souris mangent.'], 'Le groupe nominal, puis le verbe.', 'Quelle est la bonne correction ?')]), sous='le groupe nominal et l’accord sujet-verbe')
 
 # Pas de ceintures d'homophones au CE2 : le programme du cycle 2 ne les prévoit pas (décision d'octobre 2026).
 
@@ -104,10 +104,10 @@ lecon('C1', ['Le présent d’<b>être</b>, d’<b>avoir</b> et des verbes du <b
    [('il chant§e§ → chanter', 'Je retrouve l’infinitif.'), ('nous jou§ons§ → jouer', ''), ('vous parl§ez§ → parler', '')],
    Q('', ['danser', 'dansent', 'dansez'], 'L’infinitif se termine par -er.', 'Quel est l’infinitif de « ils dansent » ?'),
    [Q('', ['marcher', 'marchons', 'marche'], 'L’infinitif se termine par -er.', 'Quel est l’infinitif de « nous marchons » ?'),
-    Q('', ['être', 'est', 'étais'], 'C’est le verbe être.', 'Quel est l’infinitif de « il est » ?')]))
+    Q('', ['être', 'est', 'étais'], 'C’est le verbe être.', 'Quel est l’infinitif de « il est » ?')]), sous='être, avoir et le 1er groupe')
 
-lecon('C2', ['Le futur d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chanterai, nous chanterons.', 'Les verbes irréguliers au futur : ceinture C7.'], [3, 5, 6, 7, 8])
-lecon('C3', ['L’imparfait d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chantais, nous chantions.', 'Les verbes irréguliers à l’imparfait : ceinture C7.'], [3, 5, 6])
+lecon('C2', ['Le futur d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chanterai, nous chanterons.', 'Les verbes irréguliers au futur : ceinture C7.'], [3, 5, 6, 7, 8], sous='être, avoir et le 1er groupe')
+lecon('C3', ['L’imparfait d’<b>être</b>, d’<b>avoir</b> et du <b>1er groupe</b> : je chantais, nous chantions.', 'Les verbes irréguliers à l’imparfait : ceinture C7.'], [3, 5, 6], sous='être, avoir et le 1er groupe')
 lecon('C4', ['Le passé composé avec <b>avoir</b> : avoir au présent + participe passé (j’ai chanté).'], [4])
 lecon('C5', ['Le passé composé avec <b>être</b> pour les verbes de déplacement : je suis parti, il est arrivé.'], [2, 4])
 
@@ -120,7 +120,7 @@ lecon('V2', ['Pour comprendre un mot inconnu : les indices de la phrase et du mo
     ('fournil, n. m. : pièce où le boulanger cuit le pain.', 'Je vérifie dans le dictionnaire.'),
     ('Les mots sont rangés dans l’ordre alphabétique.', '')],
    Q('', ['ami, bateau, chat', 'chat, ami, bateau', 'bateau, chat, ami'], 'a, b, c…', 'Quel est l’ordre alphabétique ?'),
-   [Q('', ['Je regarde la deuxième lettre.', 'Je prends le premier mot de la page.', 'Je saute la page.'], 'abeille, avion…', 'Deux mots commencent par la même lettre : que fais-je ?')]))
+   [Q('', ['Je regarde la deuxième lettre.', 'Je prends le premier mot de la page.', 'Je saute la page.'], 'abeille, avion…', 'Deux mots commencent par la même lettre : que fais-je ?')]), sous='les indices, puis le dictionnaire')
 
 lecon('V3', ['Les <b>préfixes</b> dé-, mal-, in- (le contraire) et re- (à nouveau).', 'Les <b>suffixes</b> -eur, -ier (une personne, un métier) et -ette (petit).'], [6])
 
@@ -143,7 +143,7 @@ lecon('V5', ['Les <b>synonymes</b> (même sens) et les <b>contraires</b>.', 'Des
    [Q('', ['familier', 'courant', 'soutenu'], 'Entre copains.', '« un bouquin » est du langage…'),
     Q('', ['soutenu', 'courant', 'familier'], 'Dans un livre, un discours.', '« un ouvrage », pour un livre, est du langage…')]))
 
-lecon('V6', ['Les <b>homonymes</b> : des mots qui se disent pareil mais n’ont pas le même sens (<i>un verre, un vert, un ver</i>).', 'Je regarde la phrase pour choisir le bon mot ; un même mot peut aussi avoir plusieurs sens.'], ['Homonyme ou synonyme ?'])
+lecon('V6', ['Les <b>homonymes</b> : des mots qui se disent pareil mais n’ont pas le même sens (<i>un verre, un vert, un ver</i>).', 'Je regarde la phrase pour choisir le bon mot ; un même mot peut aussi avoir plusieurs sens.', 'Un mot a un <b>sens propre</b> (son sens de base) et parfois un <b>sens figuré</b> (une image) : <i>souffler les bougies, souffler une réponse</i>.'], ['Homonyme ou synonyme ?'])
 
 # =============================================================== ORTHOGRAPHE
 lecon('O1', ['Devant <b>m, b, p</b>, j’écris <b>m</b> : une jambe, un pompier.'])

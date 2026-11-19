@@ -279,7 +279,7 @@ PASSE = {
 
 def passe_ex(niv, i):
     aff, neg, b1, b2 = PASSE[niv][i % 6]
-    return ch(aff, 'Je mets cette phrase à la forme négative :', neg, [b1, b2], 'Ne… pas encadre le verbe avoir : n’a pas, n’ont pas…')
+    return ch(aff, 'Je mets cette phrase à la forme négative :', neg, [b1, b2], 'Ne… pas encadre l’auxiliaire avoir : n’a pas, n’ont pas…')
 
 
 # -- exclamation (E1, E2, E3) --
@@ -436,7 +436,7 @@ nouv('neg', 'non', 'Les mots de la négation', 'girl', 'pas, jamais, plus, rien,
       {'p': 'Il n’y a |*rien*| · |*personne*|', 'c': 'rien : aucune chose. personne : aucune personne.'}],
      [(negmot_ex, 0), (negmot_ex, 1), (negmot_ex, 2)], None,
      [(negmot_ex, 0), (negmot_ex, 1), (negmot_ex, 2), (negmot_ex, 3)], [(negmot_ex, 0), (negmot_ex, 1), (negmot_ex, 2), (negmot_ex, 3)])
-nouv('neg', 'horloge', 'La négation au passé', 'boy', 'Au passé composé, la négation encadre le verbe avoir.',
+nouv('neg', 'horloge', 'La négation au passé', 'boy', 'Au passé composé, la négation encadre l’auxiliaire avoir.',
      [{'p': 'Léa (a) mangé.'}, {'p': 'Léa |*n’*|(a) |*pas*| mangé.', 'c': 'La négation encadre « a », pas le participe.'}, {'p': 'Nous |*n’*|(avons) |*pas*| joué.', 'c': 'Avec « avons » aussi.'}],
      [(passe_ex, 0), (passe_ex, 1), (passe_ex, 2)], None,
      [(passe_ex, 0), (passe_ex, 1), (passe_ex, 2), (passe_ex, 3)], [(passe_ex, 0), (passe_ex, 1), (passe_ex, 2), (passe_ex, 3)])

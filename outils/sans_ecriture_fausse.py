@@ -101,6 +101,49 @@ REGLES_FIXES['Regarde : c’est un renard !'] = F('Regarde : ___ un renard !', [
 for b in ['C’était une belle journée.', 'C’était un jour de fête dans tout le village.']:
     REGLES_FIXES[b] = F('___ ' + b[8:], ['C’était', 'S’était'], CPL)
 
+
+# ---- 19/11/2026 (audit des cartes d'après les programmes) : autres consignes qui montraient des phrases mal écrites ----
+# « Je mets cette phrase à la forme négative » (Léa ne a pas mangé), « Je la transforme en ordre » (Fermes la porte),
+# « Quelle est la bonne correction ? » (phrase fausse à corriger), « Avec « hier », je dis » (Hier, Léa était faim).
+ASKS2 = ['Je mets cette phrase à la forme négative :', 'Je la transforme en ordre :', 'Quelle est la bonne correction ?', 'Avec « hier », je dis :']
+MOTS_FAUX = {'une dansée': 'une danse', 'un danser': 'un pas de danse', 'un coiffé': 'un peigne'}   # mots inventés dans les choix
+def _trou(ch, ok):
+    """mots communs au début et à la fin de tous les choix ; le milieu devient un trou (vraies formes)"""
+    fin = ch[ok][-1] if ch[ok][-1] in '.?!' and all(c.endswith(ch[ok][-1]) for c in ch) else ''
+    T = [(c[:-1].rstrip() if fin else c).split(' ') for c in ch]
+    i = 0
+    while all(len(x) > i for x in T) and len(set(x[i] for x in T)) == 1: i += 1
+    j = 0
+    while all(len(x) - j > i for x in T) and len(set(x[len(x) - 1 - j] for x in T)) == 1: j += 1
+    mil = [' '.join(x[i:len(x) - j]) for x in T]
+    choix = [mil[ok]] + [m for k, m in enumerate(mil) if k != ok and m not in (mil[ok],)]
+    pre = ' '.join(T[ok][:i]); suf = ' '.join(T[ok][len(T[ok]) - j:])
+    pp = (pre + ' ' if pre else '') + '___' + (' ' + suf if suf else '') + fin
+    return pp, list(dict.fromkeys(choix))
+def transformer2(p, ask, ch, ok, hint):
+    bon = ch[ok]
+    if ask.startswith('Je mets cette phrase à la forme négative'):
+        m = re.match(r'^(.*?) n[e’] ?(\S+) (pas|jamais|plus|rien)( (\S+))?', bon)
+        if not m: raise ValueError('négation non reconnue : ' + bon)
+        suj, v, neg, _, apres = m.groups()
+        apres = (apres or '').strip('.?!,')
+        if re.fullmatch(r'(ai|as|a|avons|avez|ont|suis|es|est|sommes|êtes|sont)', v) and apres and re.search(r'(é|i|u|s|t|ée|és|ées|ie|is|ies)$', apres):
+            choix = [f'l’auxiliaire « {v} »', f'le participe passé « {apres} »']
+        else:
+            choix = [f'le verbe « {v} »', f'le sujet « {suj} »']
+        return {'p': bon, 'choose': choix, 'ask': f'Dans la phrase à la forme négative, « ne… {neg} » encadre…', 'hint': hint}
+    if ask == 'Quelle est la bonne correction ?':
+        # le dernier mot que la correction change ; jamais la phrase fausse
+        a = bon.rstrip('.?!').split(' '); b = (p or '').rstrip('.?!').split(' ')
+        k = max([n for n in range(min(len(a), len(b))) if a[n] != b[n]] or [len(a) - 1])
+        formes = [a[k]] + [x.rstrip('.?!').split(' ')[k] for x in ch + [p] if len(x.rstrip('.?!').split(' ')) == len(a)]
+        formes = list(dict.fromkeys(f for f in formes if f))
+        pp = ' '.join(a[:k] + ['___'] + a[k + 1:]) + (bon[-1] if bon[-1] in '.?!' else '')
+        return {'p': pp, 'choose': formes, 'ask': 'Je corrige : je complète avec le bon accord.', 'hint': hint}
+    pp, choix = _trou(ch, ok)
+    nouv = {'Je la transforme en ordre :': 'Je donne l’ordre : je complète.', 'Avec « hier », je dis :': 'Avec « hier », je complète :'}[ask]
+    return {'p': (p + ' / ' if p else '') + pp, 'choose': choix, 'ask': nouv, 'hint': hint}
+
 EX = re.compile(r'\{"p": "(?:[^"\\]|\\.)*", "tasks": \[(?:\{[^{}]*\}(?:, )?)+\]\}')
 
 
@@ -111,7 +154,18 @@ def corriger(chemin=None, bavard=True):
 
     def rep(m):
         ex = json.loads(m.group(0))
-        if not any(tk.get('ask') in ASKS for tk in ex['tasks']): return m.group(0)
+        for tk in ex['tasks']:
+            if tk.get('choose') and any(c in MOTS_FAUX for c in tk['choose']):
+                tk['choose'] = [MOTS_FAUX.get(c, c) for c in tk['choose']]; n[0] += 1
+        if any(tk.get('ask') in ASKS2 for tk in ex['tasks']) and len(ex['tasks']) == 1:
+            tk = ex['tasks'][0]
+            try: r = transformer2(ex['p'], tk['ask'], tk['choose'], tk['ok'], tk.get('hint', ''))
+            except ValueError as e: pb.append(str(e)); return m.group(0)
+            n[0] += 1
+            nt = {'choose': r['choose'], 'ok': 0, 'hint': r['hint'], 'ask': r['ask']}
+            if '___' in r['p']: nt['fill'] = 'hl'
+            return json.dumps({'p': r['p'], 'tasks': [nt]}, ensure_ascii=False)
+        if not any(tk.get('ask') in ASKS for tk in ex['tasks']): return json.dumps(ex, ensure_ascii=False)
         if len(ex['tasks']) != 1: pb.append(ex['tasks'][0]['choose'][0]); return m.group(0)
         tk = ex['tasks'][0]
         try:
@@ -125,7 +179,7 @@ def corriger(chemin=None, bavard=True):
     t2 = EX.sub(rep, t)
     if t2 != t: open(chemin, 'w', encoding='utf-8').write(t2)
     import formes_inventees; formes_inventees.corriger(chemin, bavard=False)   # jamais de forme inventée (16/11/2026)
-    reste = sum(t2.count(a) for a in ASKS)
+    reste = sum(t2.count(a) for a in ASKS + ASKS2)
     if bavard or pb or reste:
         print(f'Sans écriture fausse : {n[0]} exercices remplacés, {reste} restants.')
     for x in pb: print('  À traiter à la main :', x)

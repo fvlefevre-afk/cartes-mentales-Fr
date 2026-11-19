@@ -96,13 +96,13 @@ lesson('O7-CE2', 'Violette', 'CE2', 'e, é, è, ê : accent ou pas', 'é, e sans
 
 # ================================================================ O8 : -é, -ée, -té, -tié
 lesson('O8', 'Marron', 'CM1', 'Les noms en [é]', '-é, -ée, -té, -tié', 'Les noms en [é]<br><small>-é, -ée, -té, -tié</small>', [
- ('masc', 'Masculin : -é', txt('Un nom <b>masculin</b> : <b>-é</b>, sans e.', 100) + ex('un caf%é%', 'un bl%é%', 'un march%é%')),
+ ('masc', 'Masculin : -é', txt('Un nom <b>masculin</b> : <b>-é</b>, sans e. Sauf : le mus<b>ée</b>, le lyc<b>ée</b>.', 100) + ex('un caf%é%', 'un bl%é%', 'un march%é%')),
  ('fem', 'Féminin : -ée', txt('Un nom <b>féminin</b> : <b>-ée</b>, avec e.') + ex('une id%ée%', 'une journ%ée%', 'une ann%ée%', size=20)),
  ('te', 'Une qualité : -té', txt('Une <b>qualité</b>, un <b>état</b> : <b>-té</b>, sans e. Sauf un <b>contenu</b>, une <b>action</b> : <b>-tée</b>.') + ex('la san%té% · la liber%té%', 'sauf : la dic%tée% · la mon%tée%', size=19)),
  ('tie', 'Trois noms : -tié', txt('Je <b>mémorise</b> ces trois noms.', 110) + ex('la moi%tié%', 'l’ami%tié%', 'la pi%tié%', size=20)),
  ('prouve', 'Je prouve', txt('Je regarde <b>le genre</b> du nom.') + ex('un caf%é% : masculin → é', 'une id%ée% : féminin → ée', 'la san%té% : un état → té', size=19)),
 ], [
- E('masc', 'point', 'Masculin : -é', 'girl', 'Un nom masculin en [é] s’écrit -é, sans e.',
+ E('masc', 'point', 'Masculin : -é', 'girl', 'Un nom masculin en [é] s’écrit -é, sans e (sauf quelques noms : le musée, le lycée).',
    ['un caf%é%', 'un bl%é%', ('un march%é%', 'Un, le : masculin → -é.')],
    Q('un foss___', ['é', 'ée', 'er'], 'Le nom est masculin : un fossé.', 'Complète avec la bonne fin.', fill=H),
    [Q('un canap___', ['é', 'ée', 'er'], 'Le nom est masculin : un canapé.', 'Complète avec la bonne fin.', fill=H),

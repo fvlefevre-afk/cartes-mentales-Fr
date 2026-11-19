@@ -10,19 +10,20 @@ OUT = {}
 H = 'hl'
 
 
-def lecon(lid, points, *ecrans):
+def lecon(lid, points, *ecrans, sous=None):
     ec = []
     for e in ecrans:
         e = dict(e); e['plus'] = e.pop('_plus'); e['cm2'] = True; ec.append(e)
     html = ('<div class="cm2-box"><h3>En CM2, j’apprends aussi</h3><ul>'
             + ''.join(f'<li>{p}</li>' for p in points) + '</ul></div>')
     OUT[lid] = {'html': html, 'ecrans': ec}
+    if sous: OUT[lid]['sous'] = sous                       # sous-titre propre à la leçon CM2
 
 
 # =============================================================== GRAMMAIRE
 lecon('G1', ['Le <b>sujet inversé</b> : il peut être placé <b>après le verbe</b>. <i>Dans la forêt vivent des loups.</i>',
              'Je le trouve en encadrant : <b>c’est… qui</b>.'],
- E('sujet', 'deplacer', 'Le sujet inversé', 'boy', 'Parfois, le sujet est placé après le verbe.',
+ E('sujet', 'deplacer', 'Dans une question, après des paroles', 'boy', 'Dans une question ou après des paroles, le sujet suit souvent le verbe.',
    [('Dans la forêt (vivent) [des loups].', 'Qui est-ce qui vit dans la forêt ? des loups.'),
     ('Où (vas)-[tu] ?', 'Dans une question, le sujet peut suivre le verbe.'),
     ('« Bonjour ! » (dit) [la maîtresse].', 'Après des paroles, le sujet suit souvent le verbe.')],
@@ -114,7 +115,7 @@ lecon('G4', ['Les <b>prépositions</b> (à, de, sur, sous, dans, avec, pour, san
 
 lecon('G5', ['Le sujet peut être <b>après le verbe</b>, même dans une question : <i>Que disent les élèves ?</i>',
              'L’<b>attribut du sujet</b> s’accorde avec le sujet : <i>Les fleurs sont belles.</i>'],
- E('pieges', 'deplacer', 'Le sujet après le verbe', 'boy', 'Je cherche le sujet, même après le verbe.',
+ E('pieges', 'deplacer', 'J’accorde avec le sujet inversé', 'boy', 'Le sujet est après le verbe : le verbe s’accorde quand même avec lui.',
    [('Que (disent) [les élèves] ?', 'Le sujet est après le verbe : les élèves → ils → -ent.'),
     ('Dans le ciel (volent) [des oiseaux].', 'des oiseaux → ils → -ent.')],
    Q('Que ___ les oiseaux ?', ['chantent', 'chante', 'chantes'], 'Le sujet est « les oiseaux », après le verbe.', 'Complète avec le bon verbe.', fill='v'),
@@ -170,7 +171,8 @@ lecon('G7', ['La chaîne des accords va jusqu’à l’<b>attribut du sujet</b> 
     Q('Les enfants ont ___ une chanson.', ['chanté', 'chantés', 'chantée'], 'Le COD « une chanson » est après le verbe : pas d’accord.', 'Complète avec le participe bien accordé.', fill='pr')]))
 
 # =============================================================== HOMOPHONES (règle des jumeaux : aucun jumeau dans la ceinture)
-lecon('H1', ['Le verbe peut être <b>avant le sujet</b>, dans une question : <i>Quel âge a ton frère ?</i> Je prouve encore avec l’imparfait.'],
+lecon('H1', ['Le verbe peut être <b>avant le sujet</b>, dans une question : <i>Quel âge a ton frère ?</i> Je prouve encore avec l’imparfait.',
+             '<b>l’a</b> = l’ + a, <b>l’as</b> = l’ + as : <i>Ton cahier, Léa l’a rangé.</i> Je prouve : <b>l’avait</b>, <b>tu l’avais</b>.'],
  E('forme', 'loupe', 'Le verbe avant le sujet', 'girl', 'Dans une question, le verbe peut être avant le sujet.',
    [('Quel âge |a| ton frère ?', 'Le sujet « ton frère » est après le verbe.'),
     ('Quel âge |avait| ton frère ?', 'Je prouve : je dis « avait ».'),
@@ -197,7 +199,7 @@ lecon('H3', ['<b>sans</b> : le contraire de « avec ». Je prouve : je remplace 
    [Q('Je suis venu ___ mon frère.', ['sans', 'à'], 'Le contraire de « avec ».', 'Complète.', fill='circ'),
     Q('Elle boit son thé ___ lait.', ['sans', 'à'], 'Le contraire de « avec ».', 'Complète.', fill='circ')]))
 
-lecon('H4', ['<b>donc</b> annonce la conséquence. Je prouve : je remplace par <b>alors</b>.'],
+lecon('H4', ['J’écris aussi <b>donc</b> (vu en G4) : il annonce la conséquence. Je prouve : je remplace par <b>alors</b>.'],
  E('inv', 'wagon', 'donc : la conséquence', 'boy', 'donc annonce ce qui arrive ensuite.',
    [('Il pleut, |donc| je prends mon parapluie.', 'donc : la conséquence.'),
     ('Il pleut, |alors| je prends mon parapluie.', 'Je prouve : je remplace par « alors ».'),
@@ -258,7 +260,7 @@ lecon('V2', ['Quand les indices ne suffisent pas, j’utilise le <b>dictionnaire
    [('feuille : 1. partie d’une plante. 2. morceau de papier.', 'Deux sens numérotés.'),
     ('J’écris sur une |feuille|.', 'Ici, c’est le sens 2.')],
    Q('La feuille du chêne est tombée.', ['le sens 1 : partie d’une plante', 'le sens 2 : morceau de papier'], 'Lis toute la phrase.', 'Quel sens du dictionnaire ?'),
-   [Q('Prends une feuille et un crayon.', ['le sens 2 : morceau de papier', 'le sens 1 : partie d’une plante'], 'Lis toute la phrase.', 'Quel sens du dictionnaire ?')]))
+   [Q('Prends une feuille et un crayon.', ['le sens 2 : morceau de papier', 'le sens 1 : partie d’une plante'], 'Lis toute la phrase.', 'Quel sens du dictionnaire ?')]), sous='les indices, puis le dictionnaire')
 
 lecon('V3', ['Des <b>racines latines et grecques</b> : télé (loin), aqua (l’eau), bio (la vie), géo (la Terre).',
              'Je <b>classe</b> préfixes et suffixes par sens : le contraire (dé-, in-, mal-), à nouveau (re-), la personne (-eur, -iste, -ier), petit (-ette, -on).'],
@@ -296,7 +298,8 @@ lecon('V5', ['Le <b>champ lexical</b> : les mots qui parlent d’un même thème
     Q('', ['sapin', 'dauphin', 'cartable'], 'Pense aux arbres.', 'Quel mot appartient au champ lexical de la forêt ?')]))
 
 lecon('V6', ['Un mot <b>polysémique</b> a plusieurs sens proches : <i>la tête d’une personne, la tête de la course, la tête d’un clou</i>.',
-             'Homonymes : deux mots différents, même son. Polysémie : un seul mot, plusieurs sens.'],
+             'Homonymes : deux mots différents, même son. Polysémie : un seul mot, plusieurs sens.',
+             'Un mot a un <b>sens propre</b> (son sens de base) et parfois un <b>sens figuré</b> (une image) : <i>souffler les bougies, souffler une réponse</i>.'],
  E('pareil', 'etiquette', 'La polysémie', 'girl', 'Un mot qui a plusieurs sens proches est polysémique.',
    [('la |tête| d’une personne', 'une partie du corps'),
     ('la |tête| de la course', 'la première place'),

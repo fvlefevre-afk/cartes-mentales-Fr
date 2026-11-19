@@ -1,13 +1,13 @@
 from niveaux_lib import *
-CO = 'Clique sur le complément d’objet.'; COh = 'Il répond à « quoi ? » ou « à qui ? ».'
+CO = 'Clique sur le complément d’objet.'; COh = 'Il complète le verbe : « qu’est-ce que… ? » ou « à qui… ? ».'
 QO = 'Quel est le complément d’objet ?'
-def cod(p, cmp_, mal, ask=QO): return C(p, ask, cmp_, mal, 'Il est collé au verbe : on ne peut ni le supprimer ni le déplacer.')
-def cc(p, g, bon, mal): return C(p, f'« {g} » répond à la question…', bon, mal, 'Où ? Quand ? Comment ?')
+def cod(p, cmp_, mal, ask=QO): return C(p, ask, cmp_, mal, 'Il est placé après le verbe : on ne peut pas le déplacer.')
+def cc(p, g, bon, mal): return C(p, 'Quel groupe est un complément circonstanciel ?', g, mal, 'Je peux le déplacer ou le supprimer : la phrase garde son sens.')
 def supp(p, bon, mal, ask='Quel groupe peut-on supprimer ?'): return C(p, ask, bon, mal, 'Un complément circonstanciel peut être supprimé.')
 def depl(p, bon, mal): return C(p, 'Quelle phrase déplace bien le complément ?', bon, mal, 'Le complément circonstanciel peut changer de place.')
 def coi(p, g, bon, mal): return C(p, f'« {g} » est…', bon, mal, 'Avec un petit mot (à, de…) entre le verbe et le complément : COI. Sans petit mot : COD.')
 def virg(bon, mal): return C('', 'Quelle phrase est bien écrite ?', bon, mal, 'En début de phrase, le complément circonstanciel est suivi d’une virgule.')
-def nb(p, n, mal): return C(p, 'Combien de compléments circonstanciels ?', n, mal, 'Je cherche les groupes qui disent où, quand ou comment.')
+def nb(p, n, mal): return C(p, 'Combien de compléments circonstanciels ?', n, mal, 'Je cherche les groupes que je peux déplacer ou supprimer.')
 niv = {
  'Plus que sujet + verbe': (
   [SV('Ce soir, [ma sœur] (prépare) un gâteau dans la cuisine.'), SV('Dans le jardin, [les enfants] (jouent) au ballon.'), SV('Hier, [Léa] (a cueilli) des fleurs au bord du chemin.'), SV('Chaque matin, [le facteur] (distribue) le courrier dans le village.')],
@@ -36,11 +36,11 @@ niv = {
    coi('Nous parlons à la maîtresse.', 'à la maîtresse', 'un COI', ['un COD']), coi('Papa lit le journal.', 'le journal', 'un COD', ['un COI'])],
   [coi('Ma tante écrit une longue lettre à son amie d’enfance.', 'une longue lettre', 'un COD', ['un COI']), coi('Mon frère pense à ses prochaines vacances au bord de la mer.', 'à ses prochaines vacances', 'un COI', ['un COD']),
    coi('La maîtresse distribue les cahiers corrigés aux élèves.', 'les cahiers corrigés', 'un COD', ['un COI']), coi('Les voisins s’intéressent à l’histoire de notre village.', 'à l’histoire de notre village', 'un COI', ['un COD'])]),
- 'Où ? Quand ? Comment ?': (
-  [cc('Le train arrive à midi.', 'à midi', 'quand ?', ['où ?', 'comment ?']), cc('Elle chante avec joie.', 'avec joie', 'comment ?', ['où ?', 'quand ?']),
-   cc('Nous mangeons au restaurant.', 'au restaurant', 'où ?', ['quand ?', 'comment ?']), cc('Il parle à voix basse.', 'à voix basse', 'comment ?', ['où ?', 'quand ?'])],
-  [cc('Pendant les vacances, nous irons à la montagne.', 'Pendant les vacances', 'quand ?', ['où ?', 'comment ?']), cc('Les randonneurs avancent lentement sur le sentier escarpé.', 'lentement', 'comment ?', ['où ?', 'quand ?']),
-   cc('Mon grand-père cultive des tomates derrière sa maison.', 'derrière sa maison', 'où ?', ['quand ?', 'comment ?']), cc('Elle a répondu à la question avec beaucoup de calme.', 'avec beaucoup de calme', 'comment ?', ['où ?', 'quand ?'])]),
+ 'Des précisions en plus': (
+  [cc('Le train arrive à midi.', 'à midi', None, ['Le train', 'arrive']), cc('Elle chante avec joie.', 'avec joie', None, ['Elle', 'chante']),
+   cc('Nous mangeons au restaurant.', 'au restaurant', None, ['Nous', 'mangeons']), cc('Il parle à voix basse.', 'à voix basse', None, ['Il', 'parle'])],
+  [cc('Pendant les vacances, nous irons à la montagne.', 'Pendant les vacances', None, ['nous', 'irons']), cc('Les randonneurs avancent lentement sur le sentier escarpé.', 'lentement', None, ['Les randonneurs', 'avancent']),
+   cc('Mon grand-père cultive des tomates derrière sa maison.', 'derrière sa maison', None, ['des tomates', 'Mon grand-père']), cc('Elle a répondu à la question avec beaucoup de calme.', 'avec beaucoup de calme', None, ['à la question', 'Elle'])]),
  'Je supprime': (
   [supp('Les enfants jouent dans la cour.', 'dans la cour', ['Les enfants', 'jouent']), supp('Le facteur arrive demain.', 'demain', ['Le facteur', 'arrive']),
    supp('Le chat dort sous la table ce matin.', 'sous la table', ['Le chat', 'dort']), supp('Ma sœur chante dans la salle de bains.', 'dans la salle de bains', ['Ma sœur', 'chante'])],
