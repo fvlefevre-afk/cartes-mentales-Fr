@@ -613,6 +613,16 @@ body .bar .serie-b{flex:none;width:calc(var(--u)*2.4);height:calc(var(--u)*2.4)}
 html.loupe-ouverte{overflow:hidden}
 @media print{.map .loupe,.loupe-fond{display:none!important}}
 /*PROJECTION*/.cu-cartes{grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}.cu-titre{display:flex;align-items:center;padding-top:.12em;padding-bottom:.2em}/*PROJECTION-FIN*/
+
+/*FENETRES*/ /* 19/11/2026, demande de l'enseignante : les fenêtres (« Je retiens », accès enseignant) grandissent avec l'écran, comme la page */
+#cu-retiens .cu-f{font-size:clamp(18px,1.6vw,34px);width:min(46em,94vw)}
+#cu-retiens .cu-f .cm2-box,#cu-retiens .cu-f .cm2-box ul,#cu-retiens .cu-f .cm2-box li{font-size:1em}
+#cu-retiens .cu-f .cm2-box h3{font-size:1.1em}
+#cu-retiens .cu-x{width:2.2em;height:2.2em}
+#cu-retiens .cu-f li{padding-left:1.7em}#cu-retiens .cu-f li::before{width:1.25em;height:1.25em;font-size:.7em;top:.35em}
+#ensDlg{font-size:clamp(17px,1.5vw,30px);max-width:min(24em,92vw);padding:1em 1.3em}
+#ensDlg h2{font-size:1.25em}#ensDlg input,#ensDlg button{font-size:1em}
+/*FENETRES-FIN*/
 </style>
 </head>
 <body>
@@ -1254,8 +1264,16 @@ window.CartesExo=(()=>{
 })();
 
 /*BIB-JS-FIN*/
-const retiensFr=t=>CartesUI.retiens('Je retiens — '+code(t),(t.html||'')+(CM1_PLUS[t.id]||''));
-const aRetenir=t=>!!(t.html||CM1_PLUS[t.id]);
+/* « Je retiens » d'une leçon CM2 (19/11/2026) : les règles de la leçon (encadré du CM1, titré « Je retiens ») PUIS « En CM2, j'apprends aussi » */
+const contenuRetiens=t=>{
+  if(t.niveau==='CM2'&&t.copieDe&&CM1_PLUS[t.copieDe]){
+    const b=TRACES.find(x=>x.id===t.copieDe)||{}, X=(typeof CM2_PLUS!=='undefined'&&CM2_PLUS[t.copieDe])||{};
+    return (b.html||'')+CM1_PLUS[t.copieDe].replace('En CM1, je retiens','Je retiens')+(X.html||'');
+  }
+  return (t.html||'')+(CM1_PLUS[t.id]||'');
+};
+const retiensFr=t=>CartesUI.retiens('Je retiens — '+code(t),contenuRetiens(t));
+const aRetenir=t=>!!contenuRetiens(t);
 const PARC4=t=>/^[GHVCO]\d/.test(code(t));   /* G1 : parcours en 4 étapes (14/11/2026) : Je regarde, Avec aide, Seul, Je corrige */
 function renderLessonScreen(t,i,direct){
   const L=LESSONS[t.id], e=L.ecrans[i], s=L.sections.find(x=>x.id===e.sec), f=fam(t.f), P=prog(t.id), im=IMG[t.id];
