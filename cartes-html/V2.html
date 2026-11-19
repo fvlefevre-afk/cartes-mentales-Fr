@@ -1,0 +1,84 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:1400px;height:933px;position:relative;background:#fdfcf9;font-family:"Poppins",sans-serif;color:#1f2a44;overflow:hidden}
+svg.bg{position:absolute;inset:0}
+.box{position:absolute;border:3.5px solid var(--c);border-radius:26px;background:var(--bg);padding:58px 22px 14px}
+.box h2{position:absolute;left:50%;top:-4px;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--hb);color:var(--c);border:3px solid var(--c);border-radius:22px;padding:2px 26px;font-size:31px;font-weight:700;line-height:1.35}
+.box ul{margin:0;padding-left:22px;font-size:21px;line-height:1.38}
+.box li{margin:0 0 5px}
+.box li::marker{color:var(--c)}
+.ex{background:#fff;border:2.5px dashed var(--c);border-radius:16px;padding:8px 14px;margin-top:10px;font-size:21px;line-height:1.45}
+.ex b.t{display:block;color:var(--c);font-size:18px;margin-bottom:2px}
+.big{font-size:27px;text-align:center}
+.d{color:#d9730d;font-weight:700}
+.a{color:#23845a;font-weight:700}
+.co{color:#5e35b1;font-weight:700} /* complément d'objet (G6) */
+.cc{color:#8d5524;font-weight:700} /* complément circonstanciel (G6) */
+.n{color:#1f5fc4;font-weight:700;border:3px solid #1f5fc4;border-radius:20px;padding:0 8px}
+.e{color:#c62828;font-weight:700;background:#ffe066;border-radius:5px;padding:0 2px}
+.lab{display:flex;justify-content:center;gap:0;font-size:15px;margin-top:-2px}
+.lab span{display:inline-block;text-align:center}
+.barre{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:#c62828;color:#8a92a6}
+.av{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);object-fit:cover;background:#fff}
+.chip{position:absolute;left:16px;top:12px;border:2.5px solid #3b7dd8;background:#eaf2fd;color:#1f4f9c;border-radius:16px;padding:3px 16px;font-size:20px;font-weight:500}
+.cm1{position:absolute;right:26px;top:10px;font-size:24px;font-weight:700;color:#1f2a44;transform:rotate(-6deg)}
+.title{position:absolute;left:520px;top:340px;width:360px;height:180px;display:grid;place-items:center;text-align:center;font-weight:700;font-size:40px;line-height:1.12;color:#1f3f7a}
+.title small{display:block;font-size:19px;font-weight:500;color:#5b6479;margin-top:6px}
+.sub{position:absolute;border:2.5px solid var(--c);background:#fff;border-radius:18px;padding:40px 16px 10px}
+.sub h3{position:absolute;left:18px;top:-2px;transform:translateY(-50%);margin:0;background:var(--hb);color:var(--c);border:2.5px solid var(--c);border-radius:16px;padding:0 16px;font-size:22px;line-height:1.5}
+.rule{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff6c9;border:2.5px solid #f0c419;border-radius:16px;padding:3px 18px;font-size:20px;font-weight:500}
+.legend{position:absolute;left:470px;top:28px;}
+.arrow{color:#5b6479;font-weight:400;padding:0 4px;font-family:"DejaVu Sans";font-size:1em}
+.avw{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);overflow:hidden;background:#fff}
+.avw img{position:absolute;width:140%;height:140%;left:-28%;top:-12%}
+table.acc{border-collapse:collapse;font-size:20px;line-height:1.5;width:100%}
+table.acc td{padding:2px 0;white-space:nowrap}
+table.acc td.m{color:#5b6479;text-align:center;width:36px;font-family:"DejaVu Sans"}
+.pic{position:absolute}
+
+.s{color:#1a2f8f;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px} /* sujet : bleu marine, toujours souligné (17/11/2026), distinct du bleu ciel du déterminant */
+.v{color:#c62828;font-weight:700}
+.p{color:#7b3fa0;font-weight:700;border:3px solid #7b3fa0;border-radius:20px;padding:0 8px}
+.rond{font-weight:700;border:3px solid var(--c);border-radius:20px;padding:0 8px;color:var(--c)}
+.ex p{margin:0}
+.box p.txt{margin:0 0 6px;font-size:20px;line-height:1.38}
+.small{font-size:18px}
+.hrow{margin:0 0 9px;font-size:20px;line-height:1.3}
+.hrow .rond{font-size:22px}
+.ast{display:block;font-size:17px;color:#4a5368;margin-top:2px}
+.exl{display:block;font-size:19px;background:#fff;border:2px dashed var(--c);border-radius:12px;padding:1px 10px;margin-top:4px}
+table.tr{border-collapse:collapse;font-size:20px;width:100%}
+table.tr td{padding:3px 6px;border-bottom:1.5px dashed #d8dde8}
+.t{color:#7b3fa0;font-weight:700}
+table.cj{border-collapse:collapse;font-size:19px;line-height:1.35}
+table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
+
+.box.tint b{color:#111}
+.box.tint li::marker{color:var(--c)}
+.box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
+.box.tint h2{color:#111}
+.box.tint>ul,.box.tint>p{zoom:1.06}   /* textes un peu plus grands : les cadres sont ensuite ajustés à leur contenu (g2_cartes.py) */
+</style></head><body>
+<svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">
+<g fill="none" stroke-width="7" stroke-linecap="round"><path d="M657 388 Q635 388 613 240" stroke="#23845a"/><path d="M743 389 Q765 389 787 244" stroke="#e67e22"/><path d="M603 498 Q543 498 483 597" stroke="#1f5fc4"/><path d="M795 500 Q850 500 905 597" stroke="#c62828"/></g>
+<g transform="translate(0,18)"><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
+<g fill="#eaf2fd"><circle cx="620" cy="420" r="64"/><circle cx="700" cy="395" r="74"/><circle cx="785" cy="420" r="64"/><circle cx="600" cy="470" r="51"/><circle cx="700" cy="478" r="58"/><circle cx="805" cy="470" r="51"/><rect x="600" y="410" width="205" height="80"/></g>
+<g stroke-width="6" stroke-linecap="round"><path d="M520 400 l-26 -12" stroke="#f5b700"/><path d="M515 440 h-30" stroke="#e67e22"/><path d="M522 482 l-26 12" stroke="#c62828"/><path d="M880 400 l26 -12" stroke="#f5b700"/><path d="M885 440 h30" stroke="#23845a"/><path d="M878 482 l26 12" stroke="#7b3fa0"/></g></g>
+</svg>
+<div class="chip">Vocabulaire — V2 — CM1</div>
+<div class="title" style="font-size:34px;margin-top:18px"><div>Comprendre<br>un mot inconnu<small>avec les indices</small></div></div>
+<div class="box tint" style="--c:#23845a;--k:#16914f;--bg:#dff3e2;--hb:#a9e0b4;left:18px;top:62px;width:600px;height:261px;;padding-top:82px"><h2 style="top:30px;;">Les indices dans la phrase</h2>
+  <p class="txt" style="padding-right:100px">Je lis <b>toute la phrase</b>&nbsp;: les autres mots m’aident.</p>
+  <div class="ex" style="font-size:20px;line-height:1.5">Le boulanger sort le pain du <span class="e">fournil</span> encore brûlant.<br>→ le <b>fournil</b>&nbsp;: la pièce où l’on cuit le pain.</div></div><div class="box tint" style="--c:#e67e22;--k:#e0640a;--bg:#ffeacf;--hb:#fcc78a;left:782px;top:62px;width:600px;height:267px;;padding-top:82px"><h2 style="top:30px;;">Les indices dans le mot</h2>
+  <p class="txt">Je cherche un <b>mot que je connais</b>, caché dans le mot.</p>
+  <div class="ex" style="font-size:20px;line-height:1.55">in<span class="e">cass</span>able → qu’on ne peut pas casser<br><span class="e">chocolat</span>ier → une personne qui fabrique du chocolat</div></div><div class="box tint" style="--c:#1f5fc4;--k:#1f5fc4;--bg:#dcebfb;--hb:#a9cff5;left:18px;top:568px;width:640px;height:353px;;padding-top:76px"><h2 style="top:30px;;">Ma méthode</h2>
+  <ol style="font-size:20px;line-height:1.4;margin:0;padding-left:28px"><li>Je <b>lis</b> toute la phrase.</li><li>Je <b>cherche des indices</b> dans la phrase et dans le mot.</li>
+  <li>Je <b>propose</b> un sens.</li><li>Je <b>vérifie</b>&nbsp;: je remplace le mot par mon explication&nbsp;; la phrase doit garder son sens.</li></ol>
+  <div class="ex" style="font-size:19px;margin-top:8px">Le chat lape son lait. → Le chat boit son lait en tirant la langue.</div></div><div class="box tint" style="--c:#c62828;--k:#c62828;--bg:#fde3e1;--hb:#f6a9a4;left:702px;top:568px;width:680px;height:263px;;padding-top:76px"><h2 style="top:30px;;">Attention&nbsp;!</h2>
+  <p class="txt" style="padding-right:110px">Parfois, <b>la phrase ne suffit pas</b>&nbsp;:</p>
+  <div class="ex" style="font-size:19px;line-height:1.5;margin-right:110px">Le tamanoir est un animal.<br>→ je sais seulement que c’est un animal.</div>
+  <p class="txt" style="margin-top:10px;padding-right:110px">Je lis alors <b>la suite du texte</b>, ou je <b>demande</b>.</p></div><img src="file:///home/user/cartes-mentales-fr/outils/img/g2/girl.png" style="position:absolute;left:522px;top:98px;width:84px"><img src="file:///home/user/cartes-mentales-fr/outils/img/g2/boy.png" style="position:absolute;left:1264px;top:618px;width:112px">
+<style>@font-face{font-family:"Andika";font-weight:400;src:url(file:///home/user/cartes-mentales-fr/polices/andika-400.woff2)}@font-face{font-family:"Andika";font-weight:700 900;src:url(file:///home/user/cartes-mentales-fr/polices/andika-700.woff2)}body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style><style>.box.tint>*:not(h2){zoom:1.05 !important}</style>
+
+</body></html>

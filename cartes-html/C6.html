@@ -1,0 +1,79 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:1400px;height:933px;position:relative;background:#fdfcf9;font-family:"Poppins",sans-serif;color:#1f2a44;overflow:hidden}
+svg.bg{position:absolute;inset:0}
+.box{position:absolute;border:3.5px solid var(--c);border-radius:26px;background:var(--bg);padding:58px 22px 14px}
+.box h2{position:absolute;left:50%;top:-4px;transform:translate(-50%,-50%);margin:0;white-space:nowrap;background:var(--hb);color:var(--c);border:3px solid var(--c);border-radius:22px;padding:2px 26px;font-size:31px;font-weight:700;line-height:1.35}
+.box ul{margin:0;padding-left:22px;font-size:21px;line-height:1.38}
+.box li{margin:0 0 5px}
+.box li::marker{color:var(--c)}
+.ex{background:#fff;border:2.5px dashed var(--c);border-radius:16px;padding:8px 14px;margin-top:10px;font-size:21px;line-height:1.45}
+.ex b.t{display:block;color:var(--c);font-size:18px;margin-bottom:2px}
+.big{font-size:27px;text-align:center}
+.d{color:#d9730d;font-weight:700}
+.a{color:#23845a;font-weight:700}
+.co{color:#5e35b1;font-weight:700} /* complément d'objet (G6) */
+.cc{color:#8d5524;font-weight:700} /* complément circonstanciel (G6) */
+.n{color:#1f5fc4;font-weight:700;border:3px solid #1f5fc4;border-radius:20px;padding:0 8px}
+.e{color:#c62828;font-weight:700;background:#ffe066;border-radius:5px;padding:0 2px}
+.lab{display:flex;justify-content:center;gap:0;font-size:15px;margin-top:-2px}
+.lab span{display:inline-block;text-align:center}
+.barre{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:#c62828;color:#8a92a6}
+.av{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);object-fit:cover;background:#fff}
+.chip{position:absolute;left:16px;top:12px;border:2.5px solid #3b7dd8;background:#eaf2fd;color:#1f4f9c;border-radius:16px;padding:3px 16px;font-size:20px;font-weight:500}
+.cm1{position:absolute;right:26px;top:10px;font-size:24px;font-weight:700;color:#1f2a44;transform:rotate(-6deg)}
+.title{position:absolute;left:520px;top:340px;width:360px;height:180px;display:grid;place-items:center;text-align:center;font-weight:700;font-size:40px;line-height:1.12;color:#1f3f7a}
+.title small{display:block;font-size:19px;font-weight:500;color:#5b6479;margin-top:6px}
+.sub{position:absolute;border:2.5px solid var(--c);background:#fff;border-radius:18px;padding:40px 16px 10px}
+.sub h3{position:absolute;left:18px;top:-2px;transform:translateY(-50%);margin:0;background:var(--hb);color:var(--c);border:2.5px solid var(--c);border-radius:16px;padding:0 16px;font-size:22px;line-height:1.5}
+.rule{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff6c9;border:2.5px solid #f0c419;border-radius:16px;padding:3px 18px;font-size:20px;font-weight:500}
+.legend{position:absolute;left:470px;top:28px;}
+.arrow{color:#5b6479;font-weight:400;padding:0 4px;font-family:"DejaVu Sans";font-size:1em}
+.avw{position:absolute;width:112px;height:112px;border-radius:50%;border:3.5px solid var(--c);overflow:hidden;background:#fff}
+.avw img{position:absolute;width:140%;height:140%;left:-28%;top:-12%}
+table.acc{border-collapse:collapse;font-size:20px;line-height:1.5;width:100%}
+table.acc td{padding:2px 0;white-space:nowrap}
+table.acc td.m{color:#5b6479;text-align:center;width:36px;font-family:"DejaVu Sans"}
+.pic{position:absolute}
+
+.s{color:#1a2f8f;font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px} /* sujet : bleu marine, toujours souligné (17/11/2026), distinct du bleu ciel du déterminant */
+.v{color:#c62828;font-weight:700}
+.p{color:#7b3fa0;font-weight:700;border:3px solid #7b3fa0;border-radius:20px;padding:0 8px}
+.rond{font-weight:700;border:3px solid var(--c);border-radius:20px;padding:0 8px;color:var(--c)}
+.ex p{margin:0}
+.box p.txt{margin:0 0 6px;font-size:20px;line-height:1.38}
+.small{font-size:18px}
+.hrow{margin:0 0 9px;font-size:20px;line-height:1.3}
+.hrow .rond{font-size:22px}
+.ast{display:block;font-size:17px;color:#4a5368;margin-top:2px}
+.exl{display:block;font-size:19px;background:#fff;border:2px dashed var(--c);border-radius:12px;padding:1px 10px;margin-top:4px}
+table.tr{border-collapse:collapse;font-size:20px;width:100%}
+table.tr td{padding:3px 6px;border-bottom:1.5px dashed #d8dde8}
+.t{color:#7b3fa0;font-weight:700}
+table.cj{border-collapse:collapse;font-size:19px;line-height:1.35}
+table.cj td{padding:1px 10px 1px 0;white-space:nowrap}
+
+.box.tint b{color:#111}
+.box.tint li::marker{color:var(--c)}
+.box.tint .ex{background:color-mix(in srgb,var(--c) 8%,#fff)}
+.box.tint h2{color:#111}
+.box.tint>ul,.box.tint>p{zoom:1.06}   /* textes un peu plus grands : les cadres sont ensuite ajustés à leur contenu (g2_cartes.py) */
+</style></head><body>
+<svg class="bg" width="1400" height="933" viewBox="0 0 1400 933">
+<g fill="none" stroke-width="7" stroke-linecap="round"><path d="M609 434 Q526 434 443 280" stroke="#1f5fc4"/><path d="M700 405 Q700 405 700 361" stroke="#23845a"/><path d="M798 440 Q877 440 957 321" stroke="#7b3fa0"/><path d="M598 515 Q528 515 459 606" stroke="#e67e22"/><path d="M794 523 Q836 523 878 606" stroke="#c62828"/></g>
+<g transform="translate(0,40)"><g fill="#3b7dd8"><circle cx="620" cy="420" r="68"/><circle cx="700" cy="395" r="78"/><circle cx="785" cy="420" r="68"/><circle cx="600" cy="470" r="55"/><circle cx="700" cy="478" r="62"/><circle cx="805" cy="470" r="55"/></g>
+<g fill="#eaf2fd"><circle cx="620" cy="420" r="64"/><circle cx="700" cy="395" r="74"/><circle cx="785" cy="420" r="64"/><circle cx="600" cy="470" r="51"/><circle cx="700" cy="478" r="58"/><circle cx="805" cy="470" r="51"/><rect x="600" y="410" width="205" height="80"/></g>
+<g stroke-width="6" stroke-linecap="round"><path d="M520 400 l-26 -12" stroke="#f5b700"/><path d="M515 440 h-30" stroke="#e67e22"/><path d="M522 482 l-26 12" stroke="#c62828"/><path d="M880 400 l26 -12" stroke="#f5b700"/><path d="M885 440 h30" stroke="#23845a"/><path d="M878 482 l26 12" stroke="#7b3fa0"/></g></g>
+</svg>
+<div class="chip">Conjugaison — C6 — CM1</div>
+<div class="title" style="font-size:36px;margin-top:40px"><div>Les verbes<br>irréguliers<small>au présent</small></div></div>
+<div class="box tint" style="--c:#1f5fc4;--k:#1f5fc4;--bg:#dcebfb;--hb:#a9cff5;left:18px;top:62px;width:430px;height:322px;;padding-top:86px"><h2 style="top:30px;;">aller, faire</h2><div class="exl" style="font-size:17.5px;line-height:1.5;margin-top:4px;margin-right:0px"><b style="font-size:20px">aller</b><br>je v<span class="t">ais</span> · tu v<span class="t">as</span> · il v<span class="t">a</span><br>nous all<span class="t">ons</span> · vous all<span class="t">ez</span> · ils v<span class="t">ont</span><br><b style="font-size:20px">faire</b><br>je fai<span class="t">s</span> · tu fai<span class="t">s</span> · il fai<span class="t">t</span><br>nous fais<span class="t">ons</span> · vous fai<span class="t">tes</span> · ils f<span class="t">ont</span></div></div><div class="box tint" style="--c:#23845a;--k:#16914f;--bg:#dff3e2;--hb:#a9e0b4;left:485px;top:20px;width:430px;height:346px;;padding-top:78px"><h2 style="top:30px;;">dire, venir</h2><div class="exl" style="font-size:17.5px;line-height:1.5;margin-top:4px;margin-right:0px"><b style="font-size:20px">dire</b><br>je di<span class="t">s</span> · tu di<span class="t">s</span> · il di<span class="t">t</span><br>nous dis<span class="t">ons</span> · vous di<span class="t">tes</span> · ils dis<span class="t">ent</span><br><b style="font-size:20px">venir</b><br>je vien<span class="t">s</span> · tu vien<span class="t">s</span> · il vien<span class="t">t</span><br>nous ven<span class="t">ons</span> · vous ven<span class="t">ez</span> · ils vienn<span class="t">ent</span></div></div><div class="box tint" style="--c:#7b3fa0;--k:#8a35c0;--bg:#eadcf7;--hb:#cfb0ea;left:952px;top:62px;width:430px;height:385px;;padding-top:86px"><h2 style="top:30px;;">pouvoir, vouloir</h2><div class="exl" style="font-size:17.5px;line-height:1.5;margin-top:4px;margin-right:0px"><b style="font-size:20px">pouvoir</b><br>je peu<span class="t">x</span> · tu peu<span class="t">x</span> · il peu<span class="t">t</span><br>nous pouv<span class="t">ons</span> · vous pouv<span class="t">ez</span> · ils peuv<span class="t">ent</span><br><b style="font-size:20px">vouloir</b><br>je veu<span class="t">x</span> · tu veu<span class="t">x</span> · il veu<span class="t">t</span><br>nous voul<span class="t">ons</span> · vous voul<span class="t">ez</span> · ils veul<span class="t">ent</span></div></div><div class="box tint" style="--c:#e67e22;--k:#e0640a;--bg:#ffeacf;--hb:#fcc78a;left:18px;top:577px;width:560px;height:344px;;padding-top:76px"><h2 style="top:30px;;">voir, prendre</h2><div class="exl" style="font-size:17.5px;line-height:1.5;margin-top:4px;margin-right:100px"><b style="font-size:20px">voir</b><br>je voi<span class="t">s</span> · tu voi<span class="t">s</span> · il voi<span class="t">t</span><br>nous voy<span class="t">ons</span> · vous voy<span class="t">ez</span> · ils voi<span class="t">ent</span><br><b style="font-size:20px">prendre</b><br>je prend<span class="t">s</span> · tu prend<span class="t">s</span> · il prend<br>nous pren<span class="t">ons</span> · vous pren<span class="t">ez</span> · ils prenn<span class="t">ent</span></div></div><div class="box tint" style="--c:#c62828;--k:#c62828;--bg:#fde3e1;--hb:#f6a9a4;left:612px;top:577px;width:770px;height:310px;;padding-top:76px"><h2 style="top:30px;;">Attention&nbsp;!</h2>
+  <ul style="font-size:21px;line-height:1.5;padding-right:20px">
+   <li>Le <b>radical change</b>&nbsp;: je viens, nous venons, ils viennent.</li>
+   <li>tu <b>peux</b>, tu <b>veux</b>&nbsp;: avec un x.</li>
+   <li>vous <b>faites</b>, vous <b>dites</b>&nbsp;; ils <b>vont</b>, ils <b>font</b>&nbsp;: à connaître par cœur.</li>
+   <li>il <b>prend</b>&nbsp;: pas de t.</li></ul></div><img src="file:///home/user/cartes-mentales-fr/outils/img/g2/boy.png" style="position:absolute;left:439px;top:627px;width:112px"><img src="file:///home/user/cartes-mentales-fr/outils/img/g2/girl.png" style="position:absolute;left:1280px;top:799px;width:84px">
+<style>@font-face{font-family:"Andika";font-weight:400;src:url(file:///home/user/cartes-mentales-fr/polices/andika-400.woff2)}@font-face{font-family:"Andika";font-weight:700 900;src:url(file:///home/user/cartes-mentales-fr/polices/andika-700.woff2)}body,.box,.box h2,.title,.ex{font-family:"Andika",sans-serif !important}.box h2{font-size:29px}</style><style>.box.tint>*:not(h2){zoom:1.2 !important}</style>
+<div style="position:absolute;right:18px;top:470px;font-size:17px;background:#fff;border:2px solid #d8dde8;border-radius:14px;padding:2px 12px"><span class="t">terminaison</span></div>
+</body></html>
