@@ -34,8 +34,9 @@ def _ecrire(s, m, obj):
 
 
 def _lecon(s, code):
-    i = s.find('\n%s:{' % code, s.find('const LESSONS=')); assert i > 0, code
-    return s[i:re.search(r'\n[A-Z][A-Za-z0-9_-]*:\{', s[i + 5:]).start() + i + 5]
+    d = s.find('const LESSONS=')
+    i = max(s.find('\n%s:{' % code, d), s.find('\n"%s":{' % code, d)); assert i > 0, code
+    return s[i:re.search(r'\n"?[A-Z][A-Za-z0-9_-]*"?:\{', s[i + 5:]).start() + i + 5]
 
 
 def controler(s, code, banque, ordre, origine, cm2=None):
