@@ -84,8 +84,8 @@ lesson('O1', 'Blanche', 'm devant m, b, p', 'devant m, b, p, j’écris m', 'm d
  E('attention', 'attention', 'Attention !', 'girl', 'Quelques mots ne suivent pas la règle : je les mémorise.',
    ['un bo%n%|b|on', 'une bo%n%|b|onne', ('néa%n%|m|oins', 'Ces mots sont des exceptions : je les mémorise.')],
    Q('un bo___bon', ['n', 'm'], 'C’est une exception : je l’ai mémorisée.', 'Complète : m ou n ?', fill=H),
-   [Q('un ta___bour', ['m', 'n'], 'Après, il y a un b.', 'Complète : m ou n ?', fill=H),
-    Q('e___mener', ['m', 'n'], 'Après, il y a un m.', 'Complète : m ou n ?', fill=H),
+   [Q('une bo___bonne', ['n', 'm'], 'C’est une exception : je la mémorise.', 'Complète : m ou n ?', fill=H),
+    Q('néa___moins', ['n', 'm'], 'C’est une exception : je la mémorise.', 'Complète : m ou n ?', fill=H),
     Q('un po___pier', ['m', 'n'], 'Après, il y a un p.', 'Complète : m ou n ?', fill=H)]),
 ])
 

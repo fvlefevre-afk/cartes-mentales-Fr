@@ -55,3 +55,14 @@ ou une question sur la règle avec la forme juste sous les yeux.
 
 Une banque de phrases écrites et relues, écran par écran et classe par classe, plutôt que des phrases fabriquées par programme (le sens n'est pas garanti).
 Validation par l'enseignante écran par écran. Structures variées (pas toujours sujet, verbe, complément).
+
+## Point du 19/11/2026 (ceintures O)
+
+- **O7 (CE2), O8, O9, O10, O11, O12 : banques d'exercices écrites et intégrées** (`outils/lecons/o7_banque.py` … `o12_banque.py`, contrôles communs `banque_o.py` :
+  mot recomposé cherché au dictionnaire, aucun exercice repris de la leçon, « À toi ! » compris, aucun signe phonétique). 9 à 15 exercices par écran au lieu de 3.
+  Le dictionnaire ne suffit pas : « une ass___tte » donnait « assette » (mot du dictionnaire) au lieu d'« assiette » ; relire chaque mot recomposé (`python3 oN_banque.py`).
+- **Doublons d'O1 à O6 : mesure à corriger.** Les « 13 à 22 % » additionnaient les trois classes. Or, quand une leçon a des séries par classe (`NIV_ATOI`), le CE2 voit
+  l'« À toi ! » + les exercices en plus, le CM1 la série 2, le CM2 la série 3 (index.html, `startAtoi`) : un même exercice dans deux séries n'est jamais vu par le même élève.
+  Recompté classe par classe : un seul cas, O1 au CE2 (« e___mener », « un ta___bour » aux écrans 2 et 6) → écran 6 « Attention ! » : « une bo___bonne », « néa___moins ».
+- **O1, O3, O4, O5 « mêmes exercices en CE2, CM1 et CM2 » : réglé** (séries différentes par classe depuis cec952d).
+- **Reste** : O1 à O6 n'ont que 3 ou 4 exercices par écran et par classe (O7 à O12 : 9 à 15).
