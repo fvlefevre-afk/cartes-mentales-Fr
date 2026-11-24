@@ -613,6 +613,29 @@ body .bar .serie-b{flex:none;width:calc(var(--u)*2.4);height:calc(var(--u)*2.4)}
 html.loupe-ouverte{overflow:hidden}
 @media print{.map .loupe,.loupe-fond{display:none!important}}
 /*PROJECTION*/.cu-cartes{grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}.cu-titre{display:flex;align-items:center;padding-top:.12em;padding-bottom:.2em}/*PROJECTION-FIN*/
+/*ECRAN-SIMPLE*/
+/* 24/11/2026, constat de l'enseignante devant les élèves : trop de boutons, image trop petite. Écrans d'une leçon : on retire la carte 🗺️ et le titre (la bulle dit déjà quoi faire),
+   le personnage et la bulle sont plus grands, la phrase est énorme, et UN seul gros bouton (« La suite ») attire l'œil. */
+.sheet.lesson .cu-hd .cu-map,.sheet.lesson .cu-hd .cu-titre{display:none}
+.sheet.lesson .cu-hd .cu-sp,.sheet.lesson .cu-hd .cu-etapes{flex:1}
+.sheet.lesson .cu-hd .cu-etapes{justify-content:center}
+.sheet.lesson .cu-et{font-size:1.05rem;padding:.3rem .9rem .3rem .35rem}
+.sheet.lesson .guide{gap:1.1rem;margin-bottom:1.2rem}
+.sheet.lesson .guide img:not(.duo){width:9rem;height:10rem;border-radius:50%/40%;object-fit:cover;object-position:top}
+.sheet.lesson .guide img.duo{width:12rem;height:6.5rem}
+.sheet.lesson .bubble{font-size:1.75rem;line-height:1.3;padding:.8rem 1.3rem;border-width:3.5px}
+.sheet.lesson .stage{min-height:14rem;border:3.5px dashed var(--z)}
+.sheet.lesson .phrase{font-size:clamp(2.6rem,5.2vw,4.2rem)}
+.sheet.lesson .sdots span{width:2.4rem;height:.6rem}
+.sheet.lesson .stage-ctl{grid-template-columns:auto 1fr auto;margin-top:1rem}
+.sheet.lesson #nextStep{font-size:1.9rem;padding:.9rem 2.4rem;border-radius:2.5rem;box-shadow:0 6px 0 color-mix(in srgb,var(--z) 55%,#000);animation:suiteBat 1.4s ease-in-out infinite}
+.sheet.lesson #nextStep:active{transform:translateY(4px);box-shadow:none}
+.sheet.lesson .stage-ctl .nb-prec{font-size:1.05rem;opacity:.8;border-width:2.5px}
+@keyframes suiteBat{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@media (prefers-reduced-motion:reduce){.sheet.lesson #nextStep{animation:none}}
+@media (max-width:700px){.sheet.lesson .guide img:not(.duo){width:6rem;height:7rem}.sheet.lesson .bubble{font-size:1.3rem}.sheet.lesson #nextStep{font-size:1.4rem;padding:.7rem 1.4rem}}
+/*ECRAN-SIMPLE-FIN*/
+
 
 /*FENETRES*/ /* 19/11/2026, demande de l'enseignante : les fenêtres (« Je retiens », accès enseignant) grandissent avec l'écran, comme la page */
 #cu-retiens .cu-f{font-size:clamp(18px,1.6vw,34px);width:min(46em,94vw)}
@@ -1291,7 +1314,7 @@ function renderLessonScreen(t,i,direct){
     ${enteteH}
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p><span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
     <div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
-    <div class="stage-ctl">${/^[GHVCO]\d/.test(code(t))?`<a class="nb nb-prec" data-retour href="${i>0?`#t=${t.id}/${i-1}`:`#t=${t.id}`}"><span class="nb-fl">◀</span><span class="nb-t"><b>Retour</b></span></a>`:'<span></span>'}<span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">👀 Voir la suite</button></div>
+    <div class="stage-ctl">${/^[GHVCO]\d/.test(code(t))?`<a class="nb nb-prec" data-retour href="${i>0?`#t=${t.id}/${i-1}`:`#t=${t.id}`}"><span class="nb-fl">◀</span><span class="nb-t"><b>Retour</b></span></a>`:'<span></span>'}<span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">▶ La suite</button></div>
     ${CartesExo.html()}
     ${/^[GHVCO]\d/.test(code(t))?'':navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour',retour:1}:{href:`#t=${t.id}`,top:'Retour',retour:1},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
   </div>`;
@@ -1305,7 +1328,7 @@ function renderLessonScreen(t,i,direct){
       cap.textContent=''; cap.classList.remove('on');
     } else { ph.innerHTML=phraseHTML(x.p); cap.textContent=x.c||''; cap.classList.toggle('on',!!x.c); }
     sd.innerHTML=e.steps.map((_,k)=>`<span class="${k<=st?'on':''}"></span>`).join('');
-    nb.textContent=st===e.steps.length-1?(P4?'🤝 Avec aide':'✏️ À toi !'):'👀 Voir la suite';
+    nb.textContent=st===e.steps.length-1?(P4?'🤝 Avec aide':'✏️ À toi !'):'▶ La suite';
   }
   function next(){ if(!$('#atoi').hidden) return; if(st<e.steps.length-1){st++;show();} else startAtoi(P4?'aide':undefined); }
   nb.addEventListener('click',next);
