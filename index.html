@@ -635,6 +635,18 @@ html.loupe-ouverte{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.sheet.lesson #nextStep{animation:none}}
 @media (max-width:700px){.sheet.lesson .guide img:not(.duo){width:6rem;height:7rem}.sheet.lesson .bubble{font-size:1.3rem}.sheet.lesson #nextStep{font-size:1.4rem;padding:.7rem 1.4rem}}
 /*ECRAN-SIMPLE-FIN*/
+/*SANS-BANDEAU*/
+/* 24/11/2026, demande de l'enseignante : au sommaire, plus de ligne blanche en haut (logo, titre et choix de la classe font doublon avec la page) ; la clé 🔑, l'impression 🖨 et le nombre
+   de leçons ouvertes flottent en haut à droite de la page. Dans une leçon, la barre reste (leçon précédente / suivante, retour au sommaire). */
+body.au-sommaire{--bh:0px}
+body.au-sommaire .bar{position:absolute;top:1.15rem;right:1.7rem;left:auto;z-index:6;padding:0;gap:.45rem;flex-wrap:nowrap;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body.au-sommaire .bar::after,body.au-sommaire .bar h1,body.au-sommaire .bar .bar-niv{display:none}
+body.au-sommaire .bar .bar-centre{flex:none}
+body.au-sommaire .bar :is(button,.bar-etat){box-shadow:0 2px 8px rgba(31,42,68,.18)}
+@media (max-width:760px){body.au-sommaire .bar .bar-centre{display:none}}
+@media print{body.au-sommaire .bar{display:none}}
+/*SANS-BANDEAU-FIN*/
+
 
 
 /*FENETRES*/ /* 19/11/2026, demande de l'enseignante : les fenêtres (« Je retiens », accès enseignant) grandissent avec l'écran, comme la page */
