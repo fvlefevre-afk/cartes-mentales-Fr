@@ -618,6 +618,8 @@ html.loupe-ouverte{overflow:hidden}
    le personnage et la bulle sont plus grands, la phrase est énorme, et UN seul gros bouton (« La suite ») attire l'œil. */
 /* pas de lignes d'écriture (Seyès) ni de marge rouge en fond des pages de carte (24/11/2026) */
 body .sheet.lesson{background-image:none}
+/* cadre « Je retiens » sous l'image de la carte, dans la carte (24/11/2026) : remplace le bouton 📖 et l'encadré du bas */
+.map-retiens{margin-top:.5rem}.map-retiens .cm2-box{margin:0;border-radius:.6rem}
 .sheet.lesson .cu-hd .cu-map,.sheet.lesson .cu-hd .cu-titre,.sheet.lesson .cu-hd [data-cu="retour"]{display:none}   /* « ‹ » en haut = doublon de « ◀ Retour » en bas (24/11/2026) */
 .sheet.lesson .cu-hd .cu-sp,.sheet.lesson .cu-hd .cu-etapes{flex:1}
 .sheet.lesson .cu-hd .cu-etapes{justify-content:center}
@@ -1062,8 +1064,7 @@ function renderLessonMap(t){
       ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
       ${L.sections.map((s,k)=>{const z=s.zone;return `<button type="button" class="loupe" data-loupe="${k}" style="left:${z[0]+z[2]}%;top:${z[1]}%;--z:${s.couleur}" title="Voir ce cadre en grand" aria-label="Voir en grand : ${esc(s.nom)}">🔍</button>`;}).join('')}
     </div>
-    ${t.html?`<div class="body" style="margin-top:1.4rem">${t.html}</div>`:''}
-    ${CM1_PLUS[t.id]||''}
+    ${contenuRetiens(t)?`<div class="map-retiens">${contenuRetiens(t).replace('En CM1, je retiens','Je retiens')}</div>`:''}
   </div>`;
   carteMapCouleurs(main);
   if(t.html) renderConj(main);
@@ -1197,11 +1198,11 @@ window.CartesUI=(()=>{
     const carte=o.carteHref?`<a class="cu-ic cu-map" data-cu="carte" href="${esc(o.carteHref)}" title="Carte de la leçon" aria-label="Carte de la leçon">🗺️</a>`:`<button type="button" class="cu-ic cu-map" data-cu="carte" title="Carte de la leçon" aria-label="Carte de la leçon">🗺️</button>`;
     const retour=o.retour?(o.retour.href?`<a class="cu-ic" data-cu="retour" href="${esc(o.retour.href)}" title="${esc(o.retour.titre||'Revenir aux activités')}" aria-label="${esc(o.retour.titre||'Revenir aux activités')}">‹</a>`:`<button type="button" class="cu-ic" data-cu="retour" title="${esc((o.retour&&o.retour.titre)||'Revenir aux activités')}" aria-label="${esc((o.retour&&o.retour.titre)||'Revenir aux activités')}">‹</button>`):'';
     const et=(o.etapes||[]).length?`<div class="cu-etapes" role="group" aria-label="Les étapes">${o.etapes.map(([em,nom],i)=>`<button type="button" class="cu-et${o.fait&&o.fait[i]?' fait':''}" data-cu="etape" data-i="${i}" aria-pressed="${i===(o.courante||0)}"${o.desactivees&&o.desactivees[i]?' disabled':''}><i>${o.fait&&o.fait[i]&&i!==(o.courante||0)?'✓':i+1}</i><span class="cu-em" aria-hidden="true">${em}</span><span class="cu-nom">${esc(nom)}</span></button>`).join('')}</div>`:'<span class="cu-sp"></span>';
-    return `<div class="cu-hd"${st(o.couleur)}>${retour}${carte}<h2 class="cu-titre">${esc(o.titre)}</h2>${et}${o.retiens?'<button type="button" class="cu-ic" data-cu="retiens" title="Je retiens">📖<span> Je retiens</span></button>':''}${o.enseignante?'<button type="button" class="cu-ic cu-disc" data-cu="enseignante" aria-label="Enseignante" title="Enseignante">⚙</button>':''}</div>`;
+    return `<div class="cu-hd"${st(o.couleur)}>${retour}${carte}<h2 class="cu-titre">${esc(o.titre)}</h2>${et}${o.enseignante?'<button type="button" class="cu-ic cu-disc" data-cu="enseignante" aria-label="Enseignante" title="Enseignante">⚙</button>':''}</div>`;
   }
   function entetePage(o){
     const carte=o.carteHref?`<a class="cu-ic" data-cu="carte" href="${esc(o.carteHref)}">🗺️ Carte de la leçon</a>`:`<button type="button" class="cu-ic" data-cu="carte">🗺️ Carte de la leçon</button>`;
-    return `<div class="cu-hd cu-hd-page"${st(o.couleur)}><span class="cu-pastille">${esc(o.pastille)}</span><span class="cu-pill">${esc(o.titre)}</span>${o.retiens?'<button type="button" class="cu-ic" data-cu="retiens" title="Je retiens">📖<span> Je retiens</span></button>':''}<span class="cu-sp"></span>${carte}</div>`;
+    return `<div class="cu-hd cu-hd-page"${st(o.couleur)}><span class="cu-pastille">${esc(o.pastille)}</span><span class="cu-pill">${esc(o.titre)}</span><span class="cu-sp"></span>${carte}</div>`;
   }
   function accueil(o){
     const tout=o.total>0&&o.faites>=o.total;
@@ -1998,7 +1999,7 @@ load();render();
    const w=main.getBoundingClientRect().width;
    /* page de la carte (idée 330, 19/11/2026, affichage au tableau) : c'est la CARTE qui remplit l'écran ; l'encadré « … je retiens » vient dessous (on fait défiler) */
    const carte=!s.querySelector('.cu-et')&&s.querySelector('.map');
-   const h=carte?carte.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
+   const bas=carte&&(s.querySelector('.map-retiens')||carte), h=carte?bas.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
    const availW=innerWidth, availH=innerHeight-barre();
    /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
    const z=Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
