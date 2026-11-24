@@ -652,13 +652,11 @@ body.au-sommaire .bar .bar-etat{padding:.25rem .7rem .25rem .6rem;border-right:1
 body.au-sommaire :is(.toc-title,.intro){text-align:center}
 @media (max-width:760px){body.au-sommaire .bar .bar-centre{display:none}}
 @media print{body.au-sommaire .bar{display:none}}
-/* dans une leçon : la même capsule claire que sur le sommaire, centrée, à la place de la bande blanche (24/11/2026) */
-body:not(.au-sommaire) .bar{position:relative;top:auto;width:fit-content;max-width:calc(100% - 1rem);margin:.5rem auto 0;padding:.25rem .55rem;gap:.35rem .5rem;flex-wrap:wrap;justify-content:center;background:rgba(255,255,255,.94);border-radius:999px;box-shadow:0 3px 12px rgba(31,42,68,.2);-webkit-backdrop-filter:none;backdrop-filter:none}
+/* dans une leçon : plus de barre, seulement un bouton « Sommaire » en haut à gauche (24/11/2026, demande de l'enseignante) */
+body:not(.au-sommaire) .bar{position:relative;top:auto;width:auto;margin:0;padding:.55rem .9rem 0;background:none;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;justify-content:flex-start}
 body:not(.au-sommaire) .bar::after{display:none}
-body:not(.au-sommaire) .bar h1{margin:0;padding:0}
-body:not(.au-sommaire) .bar .marque-t{display:none}
-body:not(.au-sommaire) .bar .bar-centre{flex:none;border:0;padding:0}
-@media (max-width:760px){body:not(.au-sommaire) .bar{border-radius:1.4rem}body:not(.au-sommaire) .bar .bar-centre{flex-basis:auto}}
+body:not(.au-sommaire) .bar>:not(#tocBtn){display:none!important}
+body:not(.au-sommaire) .bar #tocBtn{box-shadow:0 2px 8px rgba(31,42,68,.18)}
 /*SANS-BANDEAU-FIN*/
 
 
