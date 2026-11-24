@@ -1998,7 +1998,8 @@ load();render();
    const carte=!s.querySelector('.cu-et')&&s.querySelector('.map');
    const h=carte?carte.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
    const availW=innerWidth, availH=innerHeight-barre();
-   const z=Math.max(MIN_LECON,Math.min(availW/w,availH/h,MAX_LECON))*.99;
+   /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
+   const z=Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
    main.style.zoom=z.toFixed(3);
    s.style.minHeight=Math.max(0,availH/z-ph-2)+'px';   /* le papier descend jusqu'en bas de la fenêtre */
   } else {
