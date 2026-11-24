@@ -1063,6 +1063,7 @@ function renderLessonMap(t){
     ${t.html?`<div class="body" style="margin-top:1.4rem">${t.html}</div>`:''}
     ${CM1_PLUS[t.id]||''}
   </div>`;
+  carteMapCouleurs(main);
   if(t.html) renderConj(main);
   LOUPE.carte={src:IMG[t.id].carte, nom:code(t)+' — '+t.titre, secs:L.sections.map(s=>({zone:s.zone, nom:s.nom, couleur:s.couleur, href:'#t='+t.id+'/s:'+s.id}))};
 }
@@ -1081,15 +1082,41 @@ function loupeTaille(){
   const fr=el.querySelector('.loupe-vue iframe');
   if(fr&&!fr.hidden){ const s=lw/(z[2]/100*1400); fr.style.transform=`translate(${-z[0]/100*1400*s}px,${-z[1]/100*933*s}px) scale(${s})`; }
 }
+/* Couleurs choisies dans le tableau de bord (24/11/2026) : les photos des cartes ont leurs couleurs dessinées ; quand l'enseignante en a choisi d'autres
+   (couleurs-classes.js), les cartes de G3, G4 et G7 sont montrées en HTML (CARTE_HTML) avec ces couleurs, dans la carte comme dans la loupe. */
+function carteCouleursCss(){
+  const C=couleursCl(); if(!Object.keys(C).length) return '';
+  const r=[];
+  if(C.det) r.push('.d{color:'+C.det+'!important}');
+  if(C.adj) r.push('.a{color:'+C.adj+'!important}');
+  if(C.nom) r.push('.n{color:'+C.nom+'!important;border-color:'+C.nom+'!important}','b[style*="#e0458f"]{color:'+C.nom+'!important}');
+  if(C.verbe) r.push('.v{color:'+C.verbe+'!important}');
+  return r.join('');
+}
+const CARTES_COUL=/^images\/G(3|4|7)(-|\.)/;
+function htmlCouleurs(h,src){
+  const css=CARTES_COUL.test((LOUPE.nom&&LOUPE.nom.get(src))||src)?carteCouleursCss():'';
+  return css?h.replace('</head>','<style>'+css+'</style></head>'):h;
+}
+function carteMapCouleurs(root){
+  const m=root.querySelector('.map'), img=m&&m.querySelector('img'); if(!img) return;
+  const src=img.getAttribute('src'), h=carteCouleursCss()?loupeHtml(src):null; if(!h) return;
+  if(!CARTES_COUL.test((LOUPE.nom&&LOUPE.nom.get(src))||src)) return;
+  const fr=document.createElement('iframe'); fr.className='map-html'; fr.setAttribute('tabindex','-1'); fr.setAttribute('aria-hidden','true'); fr.srcdoc=h;
+  fr.style.cssText='position:absolute;left:0;top:0;width:1400px;height:933px;border:0;transform-origin:0 0;pointer-events:none';
+  m.insertBefore(fr,img.nextSibling); img.style.visibility='hidden';
+  const t=()=>{const k=m.clientWidth/1400; fr.style.transform='scale('+k+')';};
+  t(); if(window.ResizeObserver) new ResizeObserver(t).observe(m);
+}
 /* Loupe nette (19/11/2026, demande de l'enseignante : « le texte n'est plus très net ») : quand la carte existe en HTML (CARTE_HTML, bloc
    CARTES-HTML posé par outils/integrer_images.py d'après cartes-html/), le cadre est redessiné en vrai texte dans un cadre de page (iframe)
    agrandi, au lieu d'agrandir la photo. Cartes dessinées à la main (H1, V1, V2) : la photo agrandie, comme avant. */
 function loupeHtml(src){
   if(typeof CARTE_HTML==='undefined') return null;
-  if(!LOUPE.html){ LOUPE.html=new Map(); for(const c in CARTE_HTML) LOUPE.html.set((typeof IMG_DATA!=='undefined'&&IMG_DATA[c])||c,CARTE_HTML[c]); }
+  if(!LOUPE.html){ LOUPE.html=new Map(); LOUPE.nom=new Map(); for(const c in CARTE_HTML){ const k=(typeof IMG_DATA!=='undefined'&&IMG_DATA[c])||c; LOUPE.html.set(k,CARTE_HTML[c]); LOUPE.nom.set(k,c); } }
   const h=LOUPE.html.get(src); if(!h) return null;
   if(!LOUPE.pol){ LOUPE.pol={}; document.querySelectorAll('style').forEach(st=>{ for(const m of st.textContent.matchAll(/url\((data:font\/woff2;base64,[A-Za-z0-9+\/=]+)\)\/\*(polices\/[^*]+)\*\//g)) LOUPE.pol[m[2]]=m[1]; }); }
-  return h.replace(/@@([^@]+)@@/g,(m,k)=>CARTE_HTML_IMG[k]||LOUPE.pol[k]||m);
+  return htmlCouleurs(h.replace(/@@([^@]+)@@/g,(m,k)=>CARTE_HTML_IMG[k]||LOUPE.pol[k]||m),src);
 }
 function loupeMontrer(k){
   const c=LOUPE.carte; if(!c||!c.secs.length) return;
