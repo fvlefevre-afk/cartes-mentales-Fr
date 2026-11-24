@@ -616,7 +616,7 @@ html.loupe-ouverte{overflow:hidden}
 /*ECRAN-SIMPLE*/
 /* 24/11/2026, constat de l'enseignante devant les élèves : trop de boutons, image trop petite. Écrans d'une leçon : on retire la carte 🗺️ et le titre (la bulle dit déjà quoi faire),
    le personnage et la bulle sont plus grands, la phrase est énorme, et UN seul gros bouton (« La suite ») attire l'œil. */
-.sheet.lesson .cu-hd .cu-map,.sheet.lesson .cu-hd .cu-titre{display:none}
+.sheet.lesson .cu-hd .cu-map,.sheet.lesson .cu-hd .cu-titre,.sheet.lesson .cu-hd [data-cu="retour"]{display:none}   /* « ‹ » en haut = doublon de « ◀ Retour » en bas (24/11/2026) */
 .sheet.lesson .cu-hd .cu-sp,.sheet.lesson .cu-hd .cu-etapes{flex:1}
 .sheet.lesson .cu-hd .cu-etapes{justify-content:center}
 .sheet.lesson .cu-et{font-size:1.05rem;padding:.3rem .9rem .3rem .35rem}
