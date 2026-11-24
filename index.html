@@ -1094,9 +1094,9 @@ function carteCouleursCss(){
   if(C.pron) r.push('.p{color:'+C.pron+'!important;border-color:'+C.pron+'!important}','[style*="#8e44c9"]{color:'+C.pron+'!important}');
   if(C.adv) r.push('[style*="#e67e22"]{color:'+C.adv+'!important}');
   if(C.det) r.push('[style*="#0b8fd6"]{color:'+C.det+'!important}');
-  /* cadres (--c) des classes de mots ; le rouge (verbe) est aussi celui des cadres « Attention » : laissé */
-  const cad=(x,k)=>{if(k)r.push('[style*="--c:'+x+'"]{--c:'+k+'!important;--k:'+k+'!important;--bg:color-mix(in srgb,'+k+' 12%,#fff)!important;--hb:color-mix(in srgb,'+k+' 35%,#fff)!important}');};
-  cad('#0b8fd6',C.det);cad('#e0458f',C.nom);cad('#23845a',C.adj);cad('#8e44c9',C.pron);cad('#e67e22',C.adv);cad('#00838f',C.conj);
+  /* les cadres (.box) ont la couleur de leur thème, pas d'une classe de mots : laissés ; seuls les ronds (.rond) en prennent une */
+  if(C.adv) r.push('.rond[style*="--c:#e67e22"]{--c:'+C.adv+'!important}');
+  if(C.conj) r.push('.rond[style*="--c:#00838f"]{--c:'+C.conj+'!important}');
   return r.join('');
 }
 const CARTES_COUL=/^images\/[GC]\d/;
