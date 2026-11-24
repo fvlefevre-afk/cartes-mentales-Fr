@@ -22,7 +22,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1300, 'height': 900}, reduced_motion='reduce')   # pas d'animation : sinon Playwright juge les boutons « instables »
     pg.clock.set_system_time(fin_annee)
     errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
-    manquants = []; pg.on('requestfailed', lambda r: manquants.append(r.url.rsplit('/', 1)[-1]))
+    manquants = []; pg.on('requestfailed', lambda r: r.url.endswith('couleurs-classes.js') or manquants.append(r.url.rsplit('/', 1)[-1]))
 
     if args[0] == 'tout':   # leçons du sommaire de chaque classe
         ids = []

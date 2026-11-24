@@ -7,6 +7,7 @@ pages:
     - cp -r images public/
     - cp -r polices public/
     - if [ -f ouvertures.json ]; then cp ouvertures.json public/; fi
+    - if [ -f couleurs-classes.js ]; then cp couleurs-classes.js public/; fi
   artifacts:
     paths:
       - public

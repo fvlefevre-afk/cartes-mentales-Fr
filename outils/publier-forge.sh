@@ -10,6 +10,9 @@ DL=$(ls -t "$HOME"/Téléchargements/ouvertures*.json "$HOME"/Downloads/ouvertur
 if [ -n "$DL" ] && { [ ! -f "$PUB/ouvertures.json" ] || [ "$DL" -nt "$PUB/ouvertures.json" ]; } && python3 -c "import json,sys; j=json.load(open(sys.argv[1])); assert isinstance(j,dict) and 'classes' in j" "$DL" 2>/dev/null; then
   cp "$DL" "$PUB/ouvertures.json" && echo "ouvertures.json repris de : $DL (photo et nom de l'école, classes montrées)"
 fi
+# couleurs-classes.js (couleurs des classes de mots, écrit par le tableau de bord : « Télécharger couleurs-classes.js ») : le plus récent de « Téléchargements » ou du dépôt, repris tel quel
+DC=$(ls -t "$ICI"/couleurs-classes*.js "$HOME"/Téléchargements/couleurs-classes*.js "$HOME"/Downloads/couleurs-classes*.js 2>/dev/null | head -1)
+if [ -n "$DC" ] && grep -q COULEURS_CLASSES "$DC"; then cp "$DC" "$PUB/couleurs-classes.js" && echo "couleurs-classes.js repris de : $DC"; fi
 cp "$ICI/index.html" "$PUB/index.html"
 rm -rf $PUB/images && cp -r $ICI/images $PUB/images
 rm -rf $PUB/polices && cp -r $ICI/polices $PUB/polices      # police Andika (10/11/2026) : sans ce dossier, les cartes s’affichent dans une autre police

@@ -1571,7 +1571,9 @@ const CL_DEF={det:'#0b8fd6',nom:'#e0458f',adj:'#23845a',verbe:'#c62828',pron:'#8
 const CL_NOM={det:'Déterminant',nom:'Nom',adj:'Adjectif',verbe:'Verbe',pron:'Pronom',adv:'Adverbe',conj:'Conjonction',prep:'Préposition'};
 const couleursValides=o=>{const r={};if(o&&typeof o==='object')Object.keys(CL_DEF).forEach(k=>{const v=o[k];if(typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v)&&v.toLowerCase()!==CL_DEF[k])r[k]=v.toLowerCase();});return r;};
 const couleursLocales=()=>{try{const c=JSON.parse(localStorage.getItem("francais-couleurs-locales")||"null");return c&&typeof c==='object'?c:null;}catch(x){return null;}};
-const couleursCl=()=>couleursValides(BROUILLON.couleurs||couleursLocales()||(OUVERTURE_REELLE&&OUVERTURE_REELLE.couleurs)||{});
+const couleursCl=()=>couleursValides(BROUILLON.couleurs||couleursLocales()||window.COULEURS_CLASSES||(OUVERTURE_REELLE&&OUVERTURE_REELLE.couleurs)||{});
+/* 24/11/2026 : le fichier couleurs-classes.js du tableau de bord, posé à côté d'index.html, est repris tout seul (sans passer par ⚙ Réglages) ; absent : sans effet */
+(function(){const sc=document.createElement('script');sc.src='couleurs-classes.js';sc.onload=()=>{try{appliquerCouleursCl();if(typeof render==='function')render();}catch(e){}};sc.onerror=()=>{};document.head.appendChild(sc);})();
 function appliquerCouleursCl(){const C=couleursCl(),r=document.documentElement.style;Object.keys(CL_DEF).forEach(k=>{if(C[k])r.setProperty('--cl-'+k,C[k]);else r.removeProperty('--cl-'+k);});}
 const isoJour=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const AUJ=isoJour(new Date());
