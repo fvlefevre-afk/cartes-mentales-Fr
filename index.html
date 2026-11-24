@@ -1386,6 +1386,9 @@ function renderLessonScreen(t,i,direct){
   let st=0;
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
   const P4=PARC4(t), fait4=[false,false,false,false]; let SESS=null;
+  /* 24/11/2026 : personnage et bulle du haut seulement dans « Avec aide » (où la bulle dit l'aide) ; plus dans Je regarde, Seul, Je corrige */
+  const guideAffiche=v=>{ const g=main.querySelector('.sheet .guide'); if(g) g.style.display=(v||!P4)?'':'none'; };
+  guideAffiche(false);
   function show(){
     const x=e.steps[st];
     if(e.cumul){   /* les étapes déjà vues restent affichées, la nouvelle est mise en avant (13/11/2026) */
@@ -1402,11 +1405,12 @@ function renderLessonScreen(t,i,direct){
   show();
   const majParc=n=>CartesUI.majEtapes(main,n-1,fait4);
   CartesUI.surClic(main.querySelector('.sheet'),{retiens:()=>retiensFr(t),etape:k0=>{ const k=k0+1;
-      if(k===1){ const bu=document.querySelector('.sheet .guide .bubble'); if(bu&&bu.dataset.o!=null) bu.textContent=bu.dataset.o; $('#atoi').hidden=true; $('#stage').style.display=''; $('#sdots').style.display=''; nb.hidden=false; st=0; show(); majParc(1); fait4[0]=true; }
+      if(k===1){ guideAffiche(false); const bu=document.querySelector('.sheet .guide .bubble'); if(bu&&bu.dataset.o!=null) bu.textContent=bu.dataset.o; $('#atoi').hidden=true; $('#stage').style.display=''; $('#sdots').style.display=''; nb.hidden=false; st=0; show(); majParc(1); fait4[0]=true; }
       else startAtoi(['','','aide','seul','corrige'][k]); }});
   if(direct&&e.atoi) startAtoi(P4?'aide':undefined);
 
   function startAtoi(mode){   /* mode (G1 seulement) : 'aide', 'seul' ou 'corrige' */
+    guideAffiche(mode==='aide'||!P4);
     if(SESS) SESS.arreter(); let S,ctx; const box=$('#atoi'); box.hidden=false; nb.hidden=true; if(P4) majParc({aide:2,seul:3,corrige:4}[mode]||2); if(P4){ const h=box.querySelector('.atoi-top h3'); if(h&&h.firstChild) h.firstChild.textContent={aide:'Avec aide ',seul:'Seul ',corrige:'Je corrige '}[mode]||'Avec aide '; }
     $('#stage').style.display='none'; $('#sdots').style.display='none';   /* en mode « À toi ! », seul l'exercice reste affiché (13/11/2026) */
     const base=[e.atoi,...(e.plus||[])], NV=e.niv||null; box.querySelectorAll('.fb-av').forEach(x=>x.remove());
