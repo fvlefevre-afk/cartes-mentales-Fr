@@ -133,6 +133,7 @@ def auto1(lid, a, kw, boxes, silencieux=False):
     centre = [b for b in haut if b['geom'][0] < 840 and b['geom'][0] + b['geom'][2] > 560]
     Bi = max(geo[b['id']][1] + geo[b['id']][3] for b in centre) if centre else min(geo[b['id']][1] + geo[b['id']][3] for b in haut)
     cdy = round((Bi + Tb) / 2 - 431)
+    cdy = min(cdy, Tb - 558)   # 24/11/2026 : le nuage (bas à 540 + cdy) ne passe plus sous le cadre du bas (G1 : « un peu sous le cadre »)
     carte(lid, a, kw, boxes, geo, cdy)
     zones = {k: [round(l / 14, 1), round((t - 24) / 9.33, 1), round(w / 14, 1), round((t + h - (t - 24)) / 9.33, 1)] for k, (l, t, w, h) in geo.items()}
     return (zones, Tb - Bi, Tb - max(g[1] + g[3] for k, g in geo.items() if g[1] < CY)) if silencieux else zones
