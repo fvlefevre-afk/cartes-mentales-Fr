@@ -877,6 +877,9 @@ body.au-sommaire #rail .fam-btns small{font-size:calc(var(--u)*.8)}
 /*FOND-SOMMAIRE*/
 /* fond du sommaire : le rouge très clair de la carte « Français » de la page d'accueil (25/11/2026) */
 body.au-sommaire .sheet{background:linear-gradient(160deg,color-mix(in srgb,#c2412d 9%,#fff) 0%,color-mix(in srgb,#c2412d 4%,#fff) 60%,#fff 100%)}
+/* leçons accessibles : fond de la couleur de la famille, très clair, pour les distinguer des leçons pas encore ouvertes (25/11/2026) */
+body.au-sommaire a.tile:not(.todo){background:color-mix(in srgb,var(--c) 18%,#fff)}
+body.au-sommaire a.tile:not(.todo):hover{background:color-mix(in srgb,var(--c) 26%,#fff)}
 /*FOND-SOMMAIRE-FIN*/
 /*FIT-BANDEAU-CSS*/
 /* le bandeau de gauche ne défile plus : tailles tirées de --u de l'élément (réduit par FIT-BANDEAU si les boutons dépassent la fenêtre) */
