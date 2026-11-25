@@ -712,7 +712,7 @@ body:not(.au-sommaire) .bar #tocBtn{box-shadow:0 2px 8px rgba(31,42,68,.18)}
  :root{--rail-w:200px}
  body.avec-rail{padding-left:var(--rail-w)}   /* fitPage règle la largeur et le zoom du bandeau comme ceux de la carte */
  body.avec-rail #rail:not([hidden]){display:flex;flex-direction:column;gap:.9rem;position:fixed;left:0;top:0;bottom:0;width:var(--rail-w);padding:.8rem .7rem 1rem;background:rgba(255,255,255,.97);border-right:2px solid var(--line);box-shadow:2px 0 12px rgba(31,42,68,.12);overflow:auto;z-index:20;font-size:1rem}
- body.avec-rail .bar,body.avec-rail .map-retiens{display:none}
+ body.avec-rail .map-retiens{display:none}
 }
 #rail .rail-b{display:flex;align-items:center;gap:.5rem;width:100%;min-height:2.8rem;padding:.4rem .8rem;border-radius:999px;border:2.5px solid #c3c8d4;background:#fff;color:var(--ink,#1f2a44);font:inherit;font-weight:700;cursor:pointer;text-align:left;box-shadow:0 2px 8px rgba(31,42,68,.14)}
 #rail .rail-b:hover,#rail .rail-b:focus-visible{background:#eef3fc;outline:0}
@@ -758,6 +758,16 @@ body.avec-rail #rail:not([hidden]){background:var(--paper,#fdfcf9)}
 #rail .rail-code strong{font-size:.95rem;text-align:center}
 #rail .rail-b{border-radius:1.4rem}
 /*RAIL-HAUTEUR-FIN*/
+/*RAIL-SOMMAIRE*/
+/* au sommaire (25/11/2026) : les boutons des familles de ceintures sont dans le bandeau de gauche (en dessous de 761 px, ils restent dans la page) */
+@media (min-width:761px){
+ body.avec-rail:not(.au-sommaire) .bar{display:none}
+ body.avec-rail.au-sommaire main .fam-btns{display:none}
+ #rail .fam-btns{flex-direction:column;flex-wrap:nowrap;gap:.7rem;margin:0}
+ #rail .fam-btns button{width:100%;justify-content:space-between;font-size:1.05rem;border-radius:1.4rem;box-shadow:0 2px 8px rgba(31,42,68,.12)}
+ body.au-sommaire #rail .fam-btns small{font-size:.85rem}
+}
+/*RAIL-SOMMAIRE-FIN*/
 </style>
 </head>
 <body>
@@ -1824,7 +1834,6 @@ function renderToc(){
   const E=ecole();
   main.innerHTML=`${E.photo?`<figure class="hero"><img src="${E.photo}" alt=""><figcaption>${E.nom?`<small>${esc(E.nom)}</small>`:''}<b>Ceintures de français · ${niv}</b></figcaption></figure>`:''}<div class="sheet">
   <h2 class="toc-title">Sommaire</h2>
-  <p class="intro">Les leçons de chaque ceinture, à relire avant l'entraînement ou le test.</p>
   ${NIV_AFF().length<2?'':`<nav class="niveaux" aria-label="Choisir sa classe">${NIV_AFF().map(n=>{const k=TRACES.filter(t=>t.lesson&&niveauDe(t)===n).length;const cache=ENSEIGNANT&&!classesVis().includes(n);return `<a href="#niveau=${n}" class="${n===niv?'on':''}${cache?' masquee':''}"${n===niv?' aria-current="page"':''}${cache?' title="Classe cachée aux élèves (réglages enseignant)"':''}>${n}<small>${cache?'cachée aux élèves':k?k+' leçons':'à venir'}</small></a>`;}).join('')}</nav>`}
   ${!TRACES.some(t=>niveauDe(t)===niv)?`<p class="avenir">Les leçons de ${niv} arrivent bientôt.</p>`:''}
   ${famBoutons(niv)}
@@ -1836,9 +1845,6 @@ function renderToc(){
       const st=t.lesson?'leçon interactive':ok?(edits[t.id]!=null?'modifiée':''):'à venir';
       return `<a class="tile${ok?'':' todo'}" href="#t=${t.id}" style="--c:${f.couleur}">${belt(t)}<span class="name">${esc(t.titre)}${nouvelle(t)?'<span class="nouveau">nouveau</span>':''}<span class="state">${st}</span></span></a>`;
     }).join('')}</div></section>`).join('')}
-  <div class="legend"><strong>Le code couleur</strong>
-    <span><span class="s">sujet</span></span><span><span class="v">verbe</span></span><span>radical + <span class="t">terminaison</span></span>
-    <span><span class="et">mot-étiquette</span></span><span><span class="pr">mots précis</span></span><span><span class="hl">lettres étudiées</span></span><span><span class="circ">lettre qui décide</span></span></div>
   </div>`;
 }
 
@@ -1941,17 +1947,23 @@ const parcours=n=>ordreSommaire(n).filter(visibleTrace);
 /* adresse #G1 (lien du tableau de bord vers une ceinture) : la leçon de ce code pour la classe choisie */
 function leconDuCode(c,n){return TRACES.find(t=>code(t)===c&&niveauDe(t)===n)||TRACES.find(t=>t.id===c);}
 /* bandeau à gauche des leçons (25/11/2026) */
+function choisirFam(id){famChoix=id;try{localStorage.setItem('famille',famChoix);}catch(x){}renderToc();majBandeau(null);}
 function majRail(t){
   let r=document.getElementById('rail');
-  if(!r){r=document.createElement('aside');r.id='rail';r.setAttribute('aria-label','Menu de la leçon');
-    r.innerHTML=`<button type="button" class="rail-b" data-rail="som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
-<button type="button" class="rail-b rail-ret" data-rail="ret"><span aria-hidden="true">📖</span>Je retiens</button>
-<div class="rail-code"><strong>Le code couleur</strong><span><span class="s">sujet</span></span><span><span class="v">verbe</span></span><span>radical + <span class="t">terminaison</span></span><span><span class="et">mot-étiquette</span></span><span><span class="pr">mots précis</span></span><span><span class="hl">lettres étudiées</span></span><span><span class="circ">lettre qui décide</span></span></div>`;
-    r.addEventListener('click',e=>{const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(r._t)retiensFr(r._t);});
+  if(!r){r=document.createElement('aside');r.id='rail';r.setAttribute('aria-label','Menu');
+    r.addEventListener('click',e=>{const f=e.target.closest('[data-fam]');if(f){choisirFam(f.dataset.fam);return;}
+      const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(r._t)retiensFr(r._t);});
     document.body.appendChild(r);}
-  const on=!!(t&&t.lesson);
-  r.hidden=!on;document.body.classList.toggle('avec-rail',on);
-  if(on){r._t=t;r.querySelector('[data-rail="ret"]').hidden=!aRetenir(t);}
+  const lecon=!!(t&&t.lesson), fam=t?'':famBoutons(niveauChoisi());
+  const mode=lecon?'lecon':fam?'som':'';
+  r.hidden=!mode;document.body.classList.toggle('avec-rail',!!mode);
+  if(mode==='lecon'){
+    if(r.dataset.mode!=='lecon'){r.innerHTML=`<button type="button" class="rail-b" data-rail="som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
+<button type="button" class="rail-b rail-ret" data-rail="ret"><span aria-hidden="true">📖</span>Je retiens</button>
+<div class="rail-code"><strong>Le code couleur</strong><span><span class="s">sujet</span></span><span><span class="v">verbe</span></span><span>radical + <span class="t">terminaison</span></span><span><span class="et">mot-étiquette</span></span><span><span class="pr">mots précis</span></span><span><span class="hl">lettres étudiées</span></span><span><span class="circ">lettre qui décide</span></span></div>`;}
+    r._t=t;r.querySelector('[data-rail="ret"]').hidden=!aRetenir(t);
+  }else if(mode==='som'){r.innerHTML=fam;r._t=null;}
+  r.dataset.mode=mode;
 }
 function majBandeau(t){majRail(t);majBarNiv();majMarque();const n=t?niveauDe(t):niveauChoisi(),som=!t;
   document.body.classList.toggle('au-sommaire',som);$('#tocBtn').disabled=som&&!location.hash.startsWith('#t=');
