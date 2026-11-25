@@ -830,6 +830,20 @@ body.au-sommaire #rail .fam-btns small{font-size:calc(var(--u)*.8)}
  body.avec-rail:not(.au-sommaire) #rail .rail-b{width:calc(var(--u)*3.4);height:calc(var(--u)*3.4);min-height:0;padding:0;gap:0;justify-content:center;border-radius:50%}
 }
 /*RAIL-ECHELLE-FIN*/
+/*RAIL-ETROIT*/
+/* écran étroit (< 761 px, téléphone, tablette tenue droite) : le bandeau devient une barre horizontale en haut (défile sur le côté) ; plus de capsule clé / imprimer / leçons ouvertes (25/11/2026) */
+@media (max-width:760px){
+ body.avec-rail{padding-left:0}
+ body.avec-rail .bar,body.avec-rail main .fam-btns,body.avec-rail .map-retiens{display:none}
+ body.avec-rail #rail:not([hidden]){display:flex;flex-direction:row;align-items:center;gap:.45rem;position:sticky;top:0;left:auto;bottom:auto;width:auto;height:auto;overflow-x:auto;overflow-y:hidden;padding:.4rem .5rem;background:rgba(255,255,255,.97);border-right:0;border-bottom:2px solid var(--line);box-shadow:0 3px 10px rgba(31,42,68,.12);z-index:30;font-size:1rem}
+ #rail .fam-btns{display:flex;flex-direction:row;flex-wrap:nowrap;gap:.45rem;margin:0}
+ #rail .fam-btns button,#rail .fam-btns a.fam-accueil,#rail .rail-b{flex:none;width:auto;white-space:nowrap;min-height:2.6rem;padding:.3rem .8rem;font-size:.95rem;border-radius:999px;margin:0}
+ #rail .rail-ens{margin-top:0;margin-left:auto}
+ body.avec-rail:not(.au-sommaire) #rail .rb-t,body.avec-rail:not(.au-sommaire) #rail .rc-t{display:none}
+ body.avec-rail:not(.au-sommaire) #rail .rail-b{width:2.7rem;height:2.7rem;min-height:0;padding:0;gap:0;justify-content:center;border-radius:50%}
+ body.au-sommaire.avec-rail main{padding-top:.4rem}
+}
+/*RAIL-ETROIT-FIN*/
 </style>
 </head>
 <body>
@@ -2047,7 +2061,7 @@ function majRail(t){
   if(!r){r=document.createElement('aside');r.id='rail';r.setAttribute('aria-label','Menu');
     r.addEventListener('click',e=>{const f=e.target.closest('[data-fam]');if(f){choisirFam(f.dataset.fam);return;}
       const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(b.dataset.rail==='ens'){menuEnseignant();return;}else if(b.dataset.rail==='code'){if(r._t)codeCouleurFr(r._t);}else if(b.dataset.rail==='cadre'){if(r._t)retiensCadreFr(r._t,+b.dataset.k);}else if(r._t)retiensFr(r._t);});
-    document.body.appendChild(r);}
+    document.body.insertBefore(r,document.body.firstChild);}   /* avant le contenu : en écran étroit c'est une barre collée en haut */
   const lecon=!!(t&&t.lesson), fam=t?'':famBoutons(niveauChoisi());
   const mode=lecon?'lecon':!t?'som':'';
   r.hidden=!mode;document.body.classList.toggle('avec-rail',!!mode);
