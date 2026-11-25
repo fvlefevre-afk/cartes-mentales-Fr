@@ -477,12 +477,13 @@ body.mode-plein{background:var(--paper)}body.mode-plein main{padding:0}body.mode
 .sm-ex{padding:.45rem 1rem}
 @media (max-width:600px){body{font-size:18px}}
 /* zones de la carte : contour pointillé toujours visible (au doigt il n'y a pas de survol), plein au survol ; partie finie en vert ; la suivante respire */
-.zone:hover,.zone:focus-visible{border-style:solid}
+/* 25/11/2026, demande de l'enseignante : le contour reste POINTILLÉ au survol (il devenait plein, peu joli) ; le cadre « respire » comme le prochain à faire, seulement pendant le passage de la souris */
+.zone:hover,.zone:focus-visible{animation:zoneSuiv 1.2s ease-in-out infinite}
 .zone.fait{border-color:color-mix(in srgb,#23845a 55%,transparent);background:transparent}
 .zone.suivant{border-style:solid;border-color:var(--z);animation:zoneSuiv 1.8s ease-in-out infinite}
 @keyframes zoneSuiv{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--z) 30%,transparent);background:color-mix(in srgb,var(--z) 10%,transparent)}}
 .num{width:2.6rem;height:2.6rem;font-size:1.25rem}
-@media (prefers-reduced-motion:reduce){.zone.suivant{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}}
+@media (prefers-reduced-motion:reduce){.zone:hover,.zone:focus-visible{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}.zone.suivant{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}}
 @media print{.zone{border-color:transparent;background:transparent;animation:none;box-shadow:none}}
 /* juste / faux : un signe en plus du vert et du rouge */
 .fb.good:not(:empty)::before{content:"✓ ";font-weight:800}
