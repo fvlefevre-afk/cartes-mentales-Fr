@@ -64,3 +64,4 @@ Répondre à l'enseignante en français, avec des mots simples. Dépôt public :
 ## En attente (détail dans `IDEES-EN-ATTENTE.md`)
 - Un fichier de référence unique des ceintures (comme en maths). Vu le 23/10/2026 : dans le tableau de bord, les fiches de conjugaison
   CE2 et CM2 (`C_FICHES`, `17d-suivi-evaluations.js`) suivent encore l'ancienne numérotation.
+- 26/11/2026 : **O8 à O12 : exercices propres à chaque classe** (demande de l'enseignante). `NIV_ATOI['O8'…'O12']` : 4 exercices par écran et par classe (CM1 = mots seuls, CM2 = phrases ou questions plus fines), jamais le même mot au CM1 et au CM2 (sauf les petites listes fermées : -tié, œur, heure/beurre…). Fabriqués par `outils/lecons/o8_o12_niveaux.py` (contrôles : dictionnaire, le trou redonne bien le mot, aucun doublon avec la leçon ; `--integrer`, relançable). Test : `python3 outils/tester.py O8 O9 O10 O11 O12 O8-CM2 … O12-CM2` = TOUT EST BON.
