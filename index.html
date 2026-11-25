@@ -708,8 +708,8 @@ body:not(.au-sommaire) .bar #tocBtn{box-shadow:0 2px 8px rgba(31,42,68,.18)}
 /* 25/11/2026, demande de l'enseignante : un bandeau à gauche des leçons réunit « Sommaire », « Je retiens » (fenêtre plein écran, comme la loupe) et le code couleur ; il remplace le bouton Sommaire du haut et l'encadré « Je retiens » sous la carte */
 #rail{display:none}
 @media (min-width:761px){
- :root{--rail-w:12.5rem}
- body.avec-rail{padding-left:var(--rail-w)}
+ :root{--rail-w:200px}
+ body.avec-rail{padding-left:var(--rail-w)}   /* fitPage règle la largeur et le zoom du bandeau comme ceux de la carte */
  body.avec-rail #rail:not([hidden]){display:flex;flex-direction:column;gap:.9rem;position:fixed;left:0;top:0;bottom:0;width:var(--rail-w);padding:.8rem .7rem 1rem;background:rgba(255,255,255,.97);border-right:2px solid var(--line);box-shadow:2px 0 12px rgba(31,42,68,.12);overflow:auto;z-index:20;font-size:1rem}
  body.avec-rail .bar,body.avec-rail .map-retiens{display:none}
 }
@@ -2054,7 +2054,7 @@ load();render();
  let raf=0;
  const barre=()=>(document.querySelector('.bar')||{offsetHeight:0}).offsetHeight;
  function remettre(){
-  main.style.zoom='';main.style.width='';
+  main.style.zoom='';main.style.width='';document.body.style.paddingLeft='';{const r=document.getElementById('rail');if(r){r.style.zoom='';r.style.height='';}}
   const s=main.querySelector('.sheet');if(s)s.style.minHeight='';
   document.body.classList.remove('mode-plein');
   document.documentElement.style.setProperty('--bh',barre()+'px');
@@ -2072,12 +2072,13 @@ load();render();
    /* page de la carte (idée 330, 19/11/2026, affichage au tableau) : c'est la CARTE qui remplit l'écran ; l'encadré « … je retiens » vient dessous (on fait défiler) */
    const carte=!s.querySelector('.cu-et')&&s.querySelector('.map');
    const bas=carte&&(s.querySelector('.map-retiens')||carte), h=carte?bas.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
-   const rail=document.getElementById('rail'), availW=innerWidth-(document.body.classList.contains('avec-rail')&&rail&&rail.offsetWidth?rail.offsetWidth:0), availH=innerHeight-barre();
+   const rail=document.getElementById('rail'), RB=document.body.classList.contains('avec-rail')&&rail&&rail.offsetWidth?200:0, availW=innerWidth, availH=innerHeight-barre();   /* le bandeau fait partie de la largeur à faire tenir : il grandit et rétrécit avec la carte */
    /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
    /* page de la carte : elle remplit la fenêtre (largeur ou hauteur, la carte entière reste visible) ; l'encadré « Je retiens » se lit en faisant défiler */
    const hc=carte?((s.querySelector('.map-retiens>summary')||carte).getBoundingClientRect().bottom)-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
-   const z=carte?Math.min(availW/w,availH/hc,MAX_LECON)*.995:Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
+   const z=carte?Math.min(availW/(w+RB),availH/hc,MAX_LECON)*.995:Math.min(availW/(w+RB),Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
    main.style.zoom=z.toFixed(3);
+   if(RB){rail.style.zoom=z.toFixed(3);rail.style.height=(innerHeight/z)+'px';document.body.style.paddingLeft=(RB*z).toFixed(1)+'px';}
    s.style.minHeight=Math.max(0,availH/z-ph-2)+'px';   /* le papier descend jusqu'en bas de la fenêtre */
   } else {
    const w=main.getBoundingClientRect().width;
