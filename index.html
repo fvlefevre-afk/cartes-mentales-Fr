@@ -878,6 +878,15 @@ body.au-sommaire #rail .fam-btns small{font-size:calc(var(--u)*.8)}
 /* fond du sommaire : le rouge très clair de la carte « Français » de la page d'accueil (25/11/2026) */
 body.au-sommaire .sheet{background:linear-gradient(160deg,color-mix(in srgb,#c2412d 9%,#fff) 0%,color-mix(in srgb,#c2412d 4%,#fff) 60%,#fff 100%)}
 /*FOND-SOMMAIRE-FIN*/
+/*FIT-BANDEAU-CSS*/
+/* le bandeau de gauche ne défile plus : tailles tirées de --u de l'élément (réduit par FIT-BANDEAU si les boutons dépassent la fenêtre) */
+@media (min-width:761px){
+ #rail,#domBtns{--s1:var(--u);--s2:calc(var(--u)*1.2);overflow:hidden}
+ #rail>*,#rail .fam-btns,#rail .fam-btns>*,#domBtns>*{flex:none}
+ body.avec-rail #rail:not([hidden]){gap:calc(var(--u)*.55);padding-block:calc(var(--u)*.5)}
+ body.au-sommaire #domBtns{gap:calc(var(--u)*.5);padding-block:calc(var(--u)*.5)}
+}
+/*FIT-BANDEAU-CSS-FIN*/
 </style>
 </head>
 <body>
@@ -2351,6 +2360,36 @@ load();render();
  addEventListener('beforeprint',remettre);
  addEventListener('afterprint',later);
  later();
+})();
+</script>
+<script>/* FIT-BANDEAU (25/11/2026) : le bandeau de gauche ne défile plus ; si ses boutons dépassent la hauteur de la fenêtre, la taille des caractères et des boutons est réduite (variable --u de l'élément) jusqu'à ce que tout tienne */
+(function(){
+ var obs=null,att=null;
+ function unite(){var s=document.createElement("div");s.style.cssText="position:absolute;visibility:hidden;width:var(--u)";document.body.appendChild(s);var w=s.getBoundingClientRect().width;s.remove();return w||16;}
+ function ajuster(){
+  var els=document.querySelectorAll("#rail,#domBtns");
+  if(innerWidth<761){els.forEach(function(e){e.style.removeProperty("--u");});return;}
+  var base=unite();
+  els.forEach(function(e){
+   e.style.removeProperty("--u");
+   if(getComputedStyle(e).display==="none")return;
+   if(e.scrollHeight<=e.clientHeight+1)return;
+   var lo=.4,hi=1,i,m;
+   for(i=0;i<8;i++){m=(lo+hi)/2;e.style.setProperty("--u",(base*m)+"px");if(e.scrollHeight<=e.clientHeight+1)lo=m;else hi=m;}
+   e.style.setProperty("--u",(base*lo)+"px");
+  });
+ }
+ function planifier(){cancelAnimationFrame(att);att=requestAnimationFrame(function(){brancher();ajuster();});}
+ function brancher(){
+  if(!obs)obs=new MutationObserver(planifier);
+  ["rail","domBtns"].forEach(function(id){var e=document.getElementById(id);if(e&&!e._fit){e._fit=1;obs.observe(e,{childList:true});}});
+ }
+ window.addEventListener("resize",planifier);
+ window.addEventListener("hashchange",function(){setTimeout(planifier,60);setTimeout(planifier,400);});
+ window.addEventListener("load",planifier);
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(planifier);
+ new MutationObserver(planifier).observe(document.body,{attributes:true,attributeFilter:["class"]});
+ setTimeout(planifier,300);setTimeout(planifier,1200);
 })();
 </script>
 </body>
