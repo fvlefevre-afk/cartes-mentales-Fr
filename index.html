@@ -890,6 +890,13 @@ body.au-sommaire a.tile:not(.todo):hover{background:color-mix(in srgb,var(--c) 2
  body.au-sommaire #domBtns{gap:calc(var(--u)*.5);padding-block:calc(var(--u)*.5)}
 }
 /*FIT-BANDEAU-CSS-FIN*/
+/*RETOUR-BAS*/
+/* « Retour » et les 4 petits rectangles sont sous le cadre, sur la même ligne que « La suite », à gauche (25/11/2026) */
+.stage-ctl-bas{display:flex!important;align-items:center;justify-content:space-between;gap:1rem;margin:.6rem 0 1.2rem}
+.stage-ctl-bas .ctl-g{display:flex;align-items:center;gap:1rem;min-width:0}
+.stage-ctl-bas .btn{justify-self:auto;margin-left:auto}
+.stage-ctl-bas:has(>#nextStep[hidden]) .sdots{display:none}
+/*RETOUR-BAS-FIN*/
 </style>
 </head>
 <body>
@@ -1624,9 +1631,8 @@ function renderLessonScreen(t,i,direct){
     <div class="crumbs"><a href="#">Sommaire</a> › <a href="#t=${t.id}">${esc(code(t))} — la carte</a> › <a href="#t=${t.id}/s:${s.id}">${esc(s.nom)}</a></div>
     ${enteteH}
     <div class="guide">${avatar}<p class="bubble">${esc(e.bulle)}</p><span class="dots" aria-label="Écran ${inSec.findIndex(([,k])=>k===i)+1} sur ${inSec.length}">${inSec.map(([,k])=>`<a href="#t=${t.id}/${k}" class="${k===i?'cur':''}${P[k]?' ok':''}"></a>`).join('')}</span></div>
-    ${/^[GHVCO]\d/.test(code(t))?`<div class="stage-ctl stage-ctl-haut"><a class="nb nb-prec" data-retour href="${i>0?`#t=${t.id}/${i-1}`:`#t=${t.id}`}"><span class="nb-fl">◀</span><span class="nb-t"><b>Retour</b></span></a><span class="sdots" id="sdots"></span><span></span></div>
-    <div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
-    <div class="stage-suite"><button class="btn go" id="nextStep" type="button">▶ La suite</button></div>`:`<div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
+    ${/^[GHVCO]\d/.test(code(t))?`<div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
+    <div class="stage-ctl stage-ctl-bas"><span class="ctl-g"><a class="nb nb-prec" data-retour href="${i>0?`#t=${t.id}/${i-1}`:`#t=${t.id}`}"><span class="nb-fl">◀</span><span class="nb-t"><b>Retour</b></span></a><span class="sdots" id="sdots"></span></span><button class="btn go" id="nextStep" type="button">▶ La suite</button></div>`:`<div class="stage" id="stage" tabindex="0" aria-live="polite"><p class="phrase" id="ph"></p><p class="cap" id="cap"></p></div>
     <div class="stage-ctl"><span></span><span class="sdots" id="sdots"></span><button class="btn go" id="nextStep" type="button">▶ La suite</button></div>`}
     ${CartesExo.html()}
     ${/^[GHVCO]\d/.test(code(t))?'':navBar(i>0?{href:`#t=${t.id}/${i-1}`,top:'Retour',retour:1}:{href:`#t=${t.id}`,top:'Retour',retour:1},null,i<L.ecrans.length-1?{href:`#t=${t.id}/${i+1}`,top:'Suivant'}:{href:`#t=${t.id}`,top:'Terminer'})}
