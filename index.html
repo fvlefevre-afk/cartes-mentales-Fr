@@ -467,7 +467,7 @@ body.au-sommaire .tile .belt{width:calc(var(--u)*2.7);height:calc(var(--u)*2.7);
 body.au-sommaire .nouveau{font-size:var(--s1)}
 body.au-sommaire .legend{font-size:var(--s1)}
 /* leçon : le papier remplit la fenêtre (la mise à l'échelle est faite par fitPage) */
-body.mode-plein .sheet.lesson{border-radius:12px}
+body.mode-plein{background:var(--paper)}body.mode-plein main{padding:0}body.mode-plein .sheet.lesson{border-radius:0;box-shadow:none}body.mode-plein .sheet.lesson:has(.map){padding:4px 6px 8px}body.mode-plein main:has(.map){margin-bottom:0}
 
 /* ===== Lisibilité CM1 (10/11/2026) : textes lus par l'élève à 16 px au moins, zones visibles au doigt, pas d'information portée par la seule couleur ===== */
 .head .meta,.tile .state,.nouveau,.tag-cm2,.nb-t small,.fam h3 small,.legend,.legend strong,.intro,
