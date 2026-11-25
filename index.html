@@ -773,6 +773,27 @@ body.avec-rail #rail:not([hidden]){background:var(--paper,#fdfcf9)}
 #cu-retiens.code-couleur .cc-liste li{margin:0;padding:.7rem 1.2rem;border:2.5px solid #c9d6ea;border-radius:1.2rem;background:#fff;font-size:1.25em}
 #cu-retiens.code-couleur .cc-liste li::before{display:none}
 /*CODE-COULEUR-FIN*/
+/*MENU-ENSEIGNANT*/
+/* bandeau de gauche : le menu enseignant remplace la clé, l'impression et le nombre de leçons ouvertes d'en haut à droite (25/11/2026) */
+@media (min-width:761px){
+ body.avec-rail .bar{display:none}
+ #rail .rail-ens{margin-top:auto}
+}
+body.au-sommaire{--rail-w:calc(var(--u)*13.5)}
+body.au-sommaire #rail{font-size:var(--s1)}
+body.au-sommaire #rail .rail-b{min-height:calc(var(--u)*2.8);padding:.4em .8em;font-size:var(--s1)}
+body.au-sommaire #rail .fam-btns{gap:calc(var(--u)*.6)}
+body.au-sommaire #rail .fam-btns button{font-size:var(--s1);padding:.45em .9em}
+body.au-sommaire #rail .fam-btns small{font-size:calc(var(--u)*.8)}
+#menuEns{border:0;border-radius:14px;padding:1.2em 1.5em;max-width:min(26em,92vw);box-shadow:0 18px 50px rgba(20,30,60,.3);font-size:clamp(17px,1.5vw,30px);color:var(--ink)}
+#menuEns::backdrop{background:rgba(20,30,60,.45)}
+#menuEns h2{margin:0 0 .5em;font-size:1.25em}
+#menuEns .me-etat{margin:0 0 1em;font-weight:700;color:var(--soft)}
+#menuEns .me-btns{display:flex;flex-direction:column;gap:.6em}
+#menuEns .me-btns button{font:inherit;font-weight:700;padding:.55em 1em;border-radius:999px;border:2.5px solid #c3c8d4;background:#fff;cursor:pointer;text-align:left}
+#menuEns .me-btns button:hover{background:#eef3fc}
+@media print{#menuEns{display:none}}
+/*MENU-ENSEIGNANT-FIN*/
 </style>
 </head>
 <body>
@@ -790,13 +811,6 @@ body.avec-rail #rail:not([hidden]){background:var(--paper,#fdfcf9)}
     <button type="button" data-classe="CE2">CE2</button><button type="button" data-classe="CM1">CM1</button><button type="button" data-classe="CM2">CM2</button>
   </div>
   <button id="ensBtn" type="button" title="Accès enseignant" aria-label="Accès enseignant">🔑</button>
-  <div class="menu">
-    <button id="menuBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Imprimer" aria-label="Imprimer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6M7 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/></svg></button>
-    <div class="menu-list" id="menuList" role="menu">
-      <button type="button" data-act="print" role="menuitem">Imprimer cette page</button>
-      <button type="button" data-act="printall" role="menuitem">Imprimer toutes les leçons ouvertes</button>
-    </div>
-  </div>
 </header>
 <main id="main"></main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1959,22 +1973,33 @@ function codeCouleurFr(t){
   const o=document.getElementById('cu-retiens'); if(!o)return;
   o.classList.add('code-couleur','lecon-'+code(t)); o.setAttribute('aria-label','Le code couleur'); o.querySelector('h2').textContent='🎨 Le code couleur';
 }
+/* menu enseignant (25/11/2026) : remplace la clé, l'impression et le nombre de leçons ouvertes qui flottaient en haut à droite */
+function menuEnseignant(){
+  let d=document.getElementById('menuEns');
+  if(!d){d=document.createElement('dialog');d.id='menuEns';document.body.appendChild(d);
+    d.addEventListener('click',e=>{if(e.target===d||e.target.closest('[data-me="fermer"]'))d.close();else{const b=e.target.closest('[data-me]');if(!b)return;d.close();
+      if(b.dataset.me==='reg')$('#regBtn').click();else if(b.dataset.me==='cle')$('#ensBtn').click();}});}
+  const n=niveauChoisi(),C=TRACES.filter(x=>hasTrace(x)&&niveauDe(x)===n),k=C.filter(ouverte).length;
+  const etat=ENSEIGNANT?`Accès enseignant : les ${C.length} leçons de ${n} sont ouvertes`:`🔓 ${k} leçon${k>1?'s':''} ouverte${k>1?'s':''} sur ${C.length}`;
+  d.innerHTML=`<h2>Menu enseignant</h2><p class="me-etat" role="status">${etat}</p><div class="me-btns">${ENS_REEL?'<button type="button" data-me="reg">⚙ Réglages</button><button type="button" data-me="cle">Quitter le mode enseignant</button>':'<button type="button" data-me="cle">🔑 Ouvrir toutes les leçons (mot de passe)</button>'}<button type="button" data-me="fermer">Fermer</button></div>`;
+  d.showModal();
+}
 function choisirFam(id){famChoix=id;try{localStorage.setItem('famille',famChoix);}catch(x){}renderToc();majBandeau(null);}
 function majRail(t){
   let r=document.getElementById('rail');
   if(!r){r=document.createElement('aside');r.id='rail';r.setAttribute('aria-label','Menu');
     r.addEventListener('click',e=>{const f=e.target.closest('[data-fam]');if(f){choisirFam(f.dataset.fam);return;}
-      const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(b.dataset.rail==='code'){if(r._t)codeCouleurFr(r._t);}else if(r._t)retiensFr(r._t);});
+      const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(b.dataset.rail==='ens'){menuEnseignant();return;}else if(b.dataset.rail==='code'){if(r._t)codeCouleurFr(r._t);}else if(r._t)retiensFr(r._t);});
     document.body.appendChild(r);}
   const lecon=!!(t&&t.lesson), fam=t?'':famBoutons(niveauChoisi());
-  const mode=lecon?'lecon':fam?'som':'';
+  const mode=lecon?'lecon':!t?'som':'';
   r.hidden=!mode;document.body.classList.toggle('avec-rail',!!mode);
   if(mode==='lecon'){
     if(r.dataset.mode!=='lecon'){r.innerHTML=`<button type="button" class="rail-b" data-rail="som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
 <button type="button" class="rail-b rail-ret" data-rail="ret"><span aria-hidden="true">📖</span>Je retiens</button>
-<button type="button" class="rail-b rail-cc" data-rail="code"><span aria-hidden="true">🎨</span>Code couleur</button>`;}
+<button type="button" class="rail-b rail-cc" data-rail="code"><span aria-hidden="true">🎨</span>Code couleur</button>${ENS_REEL?`<button type="button" class="rail-b rail-ens" data-rail="ens"><span aria-hidden="true">🔑</span>Enseignant</button>`:''}`;}
     r._t=t;r.querySelector('[data-rail="ret"]').hidden=!aRetenir(t);
-  }else if(mode==='som'){r.innerHTML=fam;r._t=null;}
+  }else if(mode==='som'){r.innerHTML=fam+`<button type="button" class="rail-b rail-ens" data-rail="ens"><span aria-hidden="true">🔑</span>Enseignant</button>`;r._t=null;}
   r.dataset.mode=mode;
 }
 function majBandeau(t){majRail(t);majBarNiv();majMarque();const n=t?niveauDe(t):niveauChoisi(),som=!t;
@@ -2100,7 +2125,7 @@ if(ENS_REEL){(()=>{
 appliquerCouleursCl();
 if(location.protocol!=='file:')fetch('ouvertures.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j==='object'){OUVERTURE_REELLE=j;appliquerCouleursCl();render();}}).catch(()=>{});
 $('#tocBtn').addEventListener('click',()=>go('#'));
-const menuBtn=$('#menuBtn'),menuList=$('#menuList');
+const menuBtn=$('#menuBtn')||document.createElement('button'),menuList=$('#menuList')||document.createElement('div');   /* plus de bouton « Imprimer » (25/11/2026) */
 menuBtn.addEventListener('click',e=>{e.stopPropagation();const o=menuList.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o);});
 document.addEventListener('click',()=>{menuList.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');});
 menuList.addEventListener('click',e=>{
