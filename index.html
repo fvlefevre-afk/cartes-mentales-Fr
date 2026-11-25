@@ -2036,7 +2036,9 @@ load();render();
    const bas=carte&&(s.querySelector('.map-retiens')||carte), h=carte?bas.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
    const availW=innerWidth, availH=innerHeight-barre();
    /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
-   const z=Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
+   /* page de la carte : elle remplit la fenêtre (largeur ou hauteur, la carte entière reste visible) ; l'encadré « Je retiens » se lit en faisant défiler */
+   const hc=carte?carte.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
+   const z=carte?Math.min(availW/w,availH/hc,MAX_LECON)*.995:Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
    main.style.zoom=z.toFixed(3);
    s.style.minHeight=Math.max(0,availH/z-ph-2)+'px';   /* le papier descend jusqu'en bas de la fenêtre */
   } else {
