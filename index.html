@@ -1507,7 +1507,7 @@ window.CartesExo=(()=>{
     const box=o.box,mode=o.mode,q=s=>box.querySelector(s);
     const ask=q('#ask'),tok=q('#tok'),ch=q('#choices'),fb=q('#fb'),indRow=q('#indRow'),prog=q('#exProg');
     const reduit=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const file=o.serie.map(a=>Object.assign({erreurs:0,fait:false,revu:false},a));
+    const base=o.serie.map(a=>Object.assign({},a)),file=o.serie.map(a=>Object.assign({erreurs:0,fait:false,revu:false},a));
     let idx=0,cur=null,errT=0,errEx=0,ok1=0,vivant=true;
     /* voix, sons, personnage */
     if(o.guide){const im=document.createElement('img');im.className='fb-av';im.alt='';im.src=o.guide;q('.fb-row').prepend(im);}
@@ -1560,7 +1560,7 @@ window.CartesExo=(()=>{
       majProg();o.charger(cur,ctx);
     }
     function autre(){
-      if(file.every(x=>x.fait)){for(let k=file.length-1;k>=0;k--)if(file[k].revu)file.splice(k,1);file.forEach(x=>{x.fait=false;x.erreurs=0;});ok1=0;idx=0;}
+      if(file.every(x=>x.fait)){/* Refaire une serie (25/11/2026) : une NOUVELLE serie (o.renouveler, facultatif), sinon la liste d origine sans rien de ce qui a ete fabrique pour l exercice precedent */const neuf=(o.renouveler&&o.renouveler())||base;file.length=0;neuf.forEach(a=>file.push(Object.assign({erreurs:0,fait:false,revu:false},a)));ok1=0;idx=0;}
       else{let n=idx+1;while(n<file.length&&file[n].fait)n++;if(n>=file.length)n=file.findIndex(x=>!x.fait);idx=n<0?0:n;}
       charger();
     }
@@ -2268,7 +2268,7 @@ if(ENS_REEL){(()=>{
   <h3>Dates d'ouverture des leçons</h3>
   <div class="rg-charge"><button type="button" data-rgld>📂 Charger ouvertures.json</button><input type="file" id="rgFic" accept=".json,application/json" hidden><span>Reprend le fichier fabriqué par le tableau de bord (ou un ancien fichier d'ici) : ses dates, le nom et la photo de l'école, les classes montrées. Sans fichier, les leçons suivent les dates prévues.</span></div>
   <div class="rg-tabs">${NIVEAUX.map(n=>`<button type="button" data-rgniv="${n}" aria-pressed="${n===nivReg}">${n}</button>`).join('')}</div>
-  <div class="rg-lst">${ordreSommaire(nivReg).filter(hasTrace).map(t=>{const d=dateOuverture(t),ouv=!!d&&d<=AUJ,c=esc(code(t));return `<div class="rg-l"><b>${c}</b><span>${esc(t.titre)}</span><input type="date" value="${d}" data-rgd="${c}" aria-label="Date d'ouverture de ${c}"><em class="${ouv?'ok':''}">${ouv?'ouverte':d?'ouvre le '+dateCourte(d):'fermée'}</em><button type="button" data-rgo="${c}">Ouvrir</button><button type="button" data-rgf="${c}">Fermer</button></div>`;}).join('')}</div>
+  <div class="rg-lst">${ordreSommaire(nivReg).filter(hasTrace).map(t=>{const d=dateOuverture(t),ouv=!!d&&d<=AUJ,c=esc(code(t));return `<div class="rg-l"><b>${c}</b><span>${esc(t.titre)}</span><input type="date" value="${d}" data-rgd="${c}" aria-label="Date d'ouverture de ${c}"><em class="${ouv?'ok':''}">${ouv?'ouverte':d?'ouvre le '+dateCourte(d):'fermée'}</em><button type="button" data-rgo="${c}">Ouvrir</button><button type="button" data-rgf="${c}">Fermer</button><button type="button" data-rgp="${c}" title="Remettre la date prévue (début de la période de la ceinture)">Prévue</button></div>`;}).join('')}</div>
   <h3>Envoyer l'école, les classes et les couleurs aux élèves</h3>
   <ol class="rg-etapes"><li>Téléchargez le fichier ci-dessous (<b>ouvertures.json</b>, il va dans « Téléchargements » ; il porte aussi les couleurs).</li><li>Lancez la publication habituelle (<b>bash outils/publier-forge.sh</b>) : elle prend ce fichier toute seule et l'envoie avec le site. <i>Sans la publication, la photo ne s'affiche que chez vous.</i></li><li>Les cartes se mettent à jour en 1 à 2 minutes.</li></ol>
   <div class="rg-act"><button type="button" data-rgdl>⬇ Télécharger ouvertures.json</button><button type="button" data-rgcp>Copier le contenu</button><button type="button" data-rgap>👁 Voir comme un élève</button></div>
@@ -2279,6 +2279,7 @@ if(ENS_REEL){(()=>{
  dlg.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;
   if('rgniv' in d){nivReg=d.rgniv;dessiner();}
   else if('rgo' in d||'rgf' in d){const c=d.rgo||d.rgf;BROUILLON.dates=BROUILLON.dates||{};(BROUILLON.dates[nivReg]=BROUILLON.dates[nivReg]||{})[c]='rgo' in d?AUJ:'';apres();}
+  else if('rgp' in d){BROUILLON.dates=BROUILLON.dates||{};(BROUILLON.dates[nivReg]=BROUILLON.dates[nivReg]||{})[d.rgp]=(OUVERTURE_PREVUE[nivReg]||{})[d.rgp]||'';apres();}
   else if('rgld' in d){$('#rgFic').click();}
   else if('rgph' in d){$('#rgPhoto').click();}
   else if('rgphx' in d){BROUILLON.ecole={...ecole(),photo:''};apres();}
