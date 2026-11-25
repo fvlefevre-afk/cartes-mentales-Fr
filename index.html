@@ -768,6 +768,13 @@ body.avec-rail #rail:not([hidden]){background:var(--paper,#fdfcf9)}
  body.au-sommaire #rail .fam-btns small{font-size:.85rem}
 }
 /*RAIL-SOMMAIRE-FIN*/
+/*CODE-COULEUR*/
+#rail .rail-cc{background:#fff}
+#cu-retiens.code-couleur .cu-f{background:#fdfcf9;width:min(30em,94vw)}
+#cu-retiens.code-couleur ul.cc-liste{display:flex;flex-direction:column;gap:1rem;margin:0;padding:0;list-style:none}
+#cu-retiens.code-couleur .cc-liste li{margin:0;padding:.7rem 1.2rem;border:2.5px solid #c9d6ea;border-radius:1.2rem;background:#fff;font-size:1.25em}
+#cu-retiens.code-couleur .cc-liste li::before{display:none}
+/*CODE-COULEUR-FIN*/
 </style>
 </head>
 <body>
@@ -1947,12 +1954,19 @@ const parcours=n=>ordreSommaire(n).filter(visibleTrace);
 /* adresse #G1 (lien du tableau de bord vers une ceinture) : la leçon de ce code pour la classe choisie */
 function leconDuCode(c,n){return TRACES.find(t=>code(t)===c&&niveauDe(t)===n)||TRACES.find(t=>t.id===c);}
 /* bandeau à gauche des leçons (25/11/2026) */
+/* code couleur de la leçon : fenêtre plein écran, comme « Je retiens » (25/11/2026, demande de l'enseignante : un bouton comme Sommaire et Je retiens) */
+function codeCouleurFr(t){
+  const L=['<span class="s">sujet</span>','<span class="v">verbe</span>','radical + <span class="t">terminaison</span>','<span class="et">mot-étiquette</span>','<span class="pr">mots précis</span>','<span class="hl">lettres étudiées</span>','<span class="circ">lettre qui décide</span>'];
+  CartesUI.retiens('Le code couleur',`<ul class="cc-liste">${L.map(x=>`<li>${x}</li>`).join('')}</ul>`);
+  const o=document.getElementById('cu-retiens'); if(!o)return;
+  o.classList.add('code-couleur','lecon-'+code(t)); o.setAttribute('aria-label','Le code couleur'); o.querySelector('h2').textContent='🎨 Le code couleur';
+}
 function choisirFam(id){famChoix=id;try{localStorage.setItem('famille',famChoix);}catch(x){}renderToc();majBandeau(null);}
 function majRail(t){
   let r=document.getElementById('rail');
   if(!r){r=document.createElement('aside');r.id='rail';r.setAttribute('aria-label','Menu');
     r.addEventListener('click',e=>{const f=e.target.closest('[data-fam]');if(f){choisirFam(f.dataset.fam);return;}
-      const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(r._t)retiensFr(r._t);});
+      const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(b.dataset.rail==='code'){if(r._t)codeCouleurFr(r._t);}else if(r._t)retiensFr(r._t);});
     document.body.appendChild(r);}
   const lecon=!!(t&&t.lesson), fam=t?'':famBoutons(niveauChoisi());
   const mode=lecon?'lecon':fam?'som':'';
@@ -1960,7 +1974,7 @@ function majRail(t){
   if(mode==='lecon'){
     if(r.dataset.mode!=='lecon'){r.innerHTML=`<button type="button" class="rail-b" data-rail="som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
 <button type="button" class="rail-b rail-ret" data-rail="ret"><span aria-hidden="true">📖</span>Je retiens</button>
-<div class="rail-code"><strong>Le code couleur</strong><span><span class="s">sujet</span></span><span><span class="v">verbe</span></span><span>radical + <span class="t">terminaison</span></span><span><span class="et">mot-étiquette</span></span><span><span class="pr">mots précis</span></span><span><span class="hl">lettres étudiées</span></span><span><span class="circ">lettre qui décide</span></span></div>`;}
+<button type="button" class="rail-b rail-cc" data-rail="code"><span aria-hidden="true">🎨</span>Code couleur</button>`;}
     r._t=t;r.querySelector('[data-rail="ret"]').hidden=!aRetenir(t);
   }else if(mode==='som'){r.innerHTML=fam;r._t=null;}
   r.dataset.mode=mode;
