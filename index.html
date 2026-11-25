@@ -704,6 +704,25 @@ body:not(.au-sommaire) .bar #tocBtn{box-shadow:0 2px 8px rgba(31,42,68,.18)}
 #ensDlg{font-size:clamp(17px,1.5vw,30px);max-width:min(24em,92vw);padding:1em 1.3em}
 #ensDlg h2{font-size:1.25em}#ensDlg input,#ensDlg button{font-size:1em}
 /*FENETRES-FIN*/
+/*RAIL*/
+/* 25/11/2026, demande de l'enseignante : un bandeau à gauche des leçons réunit « Sommaire », « Je retiens » (fenêtre plein écran, comme la loupe) et le code couleur ; il remplace le bouton Sommaire du haut et l'encadré « Je retiens » sous la carte */
+#rail{display:none}
+@media (min-width:761px){
+ :root{--rail-w:12.5rem}
+ body.avec-rail{padding-left:var(--rail-w)}
+ body.avec-rail #rail:not([hidden]){display:flex;flex-direction:column;gap:.9rem;position:fixed;left:0;top:0;bottom:0;width:var(--rail-w);padding:.8rem .7rem 1rem;background:rgba(255,255,255,.97);border-right:2px solid var(--line);box-shadow:2px 0 12px rgba(31,42,68,.12);overflow:auto;z-index:20;font-size:1rem}
+ body.avec-rail .bar,body.avec-rail .map-retiens{display:none}
+}
+#rail .rail-b{display:flex;align-items:center;gap:.5rem;width:100%;min-height:2.8rem;padding:.4rem .8rem;border-radius:999px;border:2.5px solid #c3c8d4;background:#fff;color:var(--ink,#1f2a44);font:inherit;font-weight:700;cursor:pointer;text-align:left;box-shadow:0 2px 8px rgba(31,42,68,.14)}
+#rail .rail-b:hover,#rail .rail-b:focus-visible{background:#eef3fc;outline:0}
+#rail .rail-b svg{width:1.2rem;height:1.2rem;flex:none}
+#rail [hidden]{display:none!important}
+#rail .rail-ret{background:#fff4e6;color:#b45309;border-color:#d9730d}#rail .rail-ret:hover,#rail .rail-ret:focus-visible{background:#ffe8cc}
+#rail .rail-code{border:2px solid var(--line);border-radius:.8rem;padding:.55rem .7rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.3}
+#rail .rail-code strong{color:var(--soft);font-size:.85rem}
+#rail .rail-code>span{display:block}
+@media print{#rail{display:none!important}body.avec-rail{padding-left:0}}
+/*RAIL-FIN*/
 </style>
 </head>
 <body>
@@ -1864,7 +1883,20 @@ const ordreSommaire=n=>FAMILLES.flatMap(f=>TRACES.filter(t=>t.f===f.id&&niveauDe
 const parcours=n=>ordreSommaire(n).filter(visibleTrace);
 /* adresse #G1 (lien du tableau de bord vers une ceinture) : la leçon de ce code pour la classe choisie */
 function leconDuCode(c,n){return TRACES.find(t=>code(t)===c&&niveauDe(t)===n)||TRACES.find(t=>t.id===c);}
-function majBandeau(t){majBarNiv();majMarque();const n=t?niveauDe(t):niveauChoisi(),som=!t;
+/* bandeau à gauche des leçons (25/11/2026) */
+function majRail(t){
+  let r=document.getElementById('rail');
+  if(!r){r=document.createElement('aside');r.id='rail';r.setAttribute('aria-label','Menu de la leçon');
+    r.innerHTML=`<button type="button" class="rail-b" data-rail="som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Sommaire</button>
+<button type="button" class="rail-b rail-ret" data-rail="ret"><span aria-hidden="true">📖</span>Je retiens</button>
+<div class="rail-code"><strong>Le code couleur</strong><span><span class="s">sujet</span></span><span><span class="v">verbe</span></span><span>radical + <span class="t">terminaison</span></span><span><span class="et">mot-étiquette</span></span><span><span class="pr">mots précis</span></span><span><span class="hl">lettres étudiées</span></span><span><span class="circ">lettre qui décide</span></span></div>`;
+    r.addEventListener('click',e=>{const b=e.target.closest('[data-rail]');if(!b)return;if(b.dataset.rail==='som')go('#');else if(r._t)retiensFr(r._t);});
+    document.body.appendChild(r);}
+  const on=!!(t&&t.lesson);
+  r.hidden=!on;document.body.classList.toggle('avec-rail',on);
+  if(on){r._t=t;r.querySelector('[data-rail="ret"]').hidden=!aRetenir(t);}
+}
+function majBandeau(t){majRail(t);majBarNiv();majMarque();const n=t?niveauDe(t):niveauChoisi(),som=!t;
   document.body.classList.toggle('au-sommaire',som);$('#tocBtn').disabled=som&&!location.hash.startsWith('#t=');
   document.querySelectorAll('.bar-niv [data-classe]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.classe===n)));
   if(som){const C=TRACES.filter(x=>hasTrace(x)&&niveauDe(x)===n),k=C.filter(ouverte).length;
@@ -2040,7 +2072,7 @@ load();render();
    /* page de la carte (idée 330, 19/11/2026, affichage au tableau) : c'est la CARTE qui remplit l'écran ; l'encadré « … je retiens » vient dessous (on fait défiler) */
    const carte=!s.querySelector('.cu-et')&&s.querySelector('.map');
    const bas=carte&&(s.querySelector('.map-retiens')||carte), h=carte?bas.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:main.getBoundingClientRect().height;
-   const availW=innerWidth, availH=innerHeight-barre();
+   const rail=document.getElementById('rail'), availW=innerWidth-(document.body.classList.contains('avec-rail')&&rail&&rail.offsetWidth?rail.offsetWidth:0), availH=innerHeight-barre();
    /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
    /* page de la carte : elle remplit la fenêtre (largeur ou hauteur, la carte entière reste visible) ; l'encadré « Je retiens » se lit en faisant défiler */
    const hc=carte?((s.querySelector('.map-retiens>summary')||carte).getBoundingClientRect().bottom)-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
