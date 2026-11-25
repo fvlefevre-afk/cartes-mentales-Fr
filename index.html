@@ -723,6 +723,17 @@ body:not(.au-sommaire) .bar #tocBtn{box-shadow:0 2px 8px rgba(31,42,68,.18)}
 #rail .rail-code>span{display:block}
 @media print{#rail{display:none!important}body.avec-rail{padding-left:0}}
 /*RAIL-FIN*/
+/*RETIENS-CARTE*/
+#cu-retiens.retiens-carte .cu-f{background:#fdfcf9;border-color:#c9d6ea;line-height:1.65}
+#cu-retiens.retiens-carte h2{margin-bottom:1rem}
+#cu-retiens.retiens-carte .cm2-box{background:none;border:0;padding:0;margin:0}
+#cu-retiens.retiens-carte .cm2-box>h3{display:none}
+#cu-retiens.retiens-carte ul{display:flex;flex-direction:column;gap:1.3rem;counter-reset:idee}
+#cu-retiens.retiens-carte li{counter-increment:idee;margin:0;padding:.9rem 1.2rem .9rem 4rem;border:3px solid var(--z,#1c7ed6);border-radius:1.2rem;background:color-mix(in srgb,var(--z,#1c7ed6) 9%,#fff);position:relative}
+#cu-retiens.retiens-carte li::before{content:counter(idee);left:.8rem;top:.8rem;width:2.3rem;height:2.3rem;font-size:1.1rem;font-weight:800;background:var(--z,#1c7ed6);border-radius:50%}
+#cu-retiens.retiens-carte li b{color:color-mix(in srgb,var(--z,#1c7ed6) 78%,#000)}
+#cu-retiens.retiens-carte li i{font-style:normal;background:#fff;border:2px dashed color-mix(in srgb,var(--z,#1c7ed6) 55%,#fff);border-radius:.6rem;padding:0 .4rem}
+/*RETIENS-CARTE-FIN*/
 </style>
 </head>
 <body>
@@ -1408,7 +1419,26 @@ const contenuRetiens=t=>{
   }
   return (t.html||'')+(CM1_PLUS[t.id]||'');
 };
-const retiensFr=t=>CartesUI.retiens('Je retiens — '+code(t),contenuRetiens(t));
+/* « Je retiens » aux couleurs de la carte mentale (25/11/2026, demande de l'enseignante : « trop austère, reprends le codage et les couleurs de la carte, espace chaque idée ») :
+   chaque idée est un cadre espacé, de la couleur d'un cadre de la carte (dans l'ordre) ; sujet, verbe, terminaison, déterminant, adjectif… reprennent le code couleur de la leçon */
+const MOTS_CODE=[[/\b(sujets?)\b/gi,'s'],[/\b(verbes?)\b/gi,'v'],[/\b(terminaisons?)\b/gi,'t'],[/\b(déterminants?)\b/gi,'et'],[/\b(adjectifs?)\b/gi,'pr']];
+function retiensCodes(html,t){
+  const L=LESSONS[t.id], cols=(L&&L.sections||[]).map(x=>x.couleur).filter(Boolean), tpl=document.createElement('template'); tpl.innerHTML=html;
+  const lecon=code(t), codes=/^G[1-9]/.test(lecon)||/^C\d/.test(lecon);
+  tpl.content.querySelectorAll('li').forEach((li,k)=>{
+    if(cols.length) li.style.setProperty('--z',cols[k%cols.length]);
+    if(!codes) return;
+    const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT), A=[]; while(w.nextNode()) A.push(w.currentNode);
+    A.forEach(nd=>{ if(nd.parentElement.closest('i')) return; let h=nd.nodeValue.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])), ch=false;
+      MOTS_CODE.forEach(([re,c])=>{ h=h.replace(re,m=>{ch=true;return `<span class="${c}">${m}</span>`;}); });
+      if(ch){ const sp=document.createElement('span'); sp.innerHTML=h; nd.replaceWith(...sp.childNodes); } });
+  });
+  return tpl.innerHTML;
+}
+const retiensFr=t=>{
+  CartesUI.retiens('Je retiens — '+code(t),retiensCodes(contenuRetiens(t),t));
+  const o=document.getElementById('cu-retiens'); if(o){o.classList.add('retiens-carte','lecon-'+code(t));}
+};
 const aRetenir=t=>!!contenuRetiens(t);
 const PARC4=t=>/^[GHVCO]\d/.test(code(t));   /* G1 : parcours en 4 étapes (14/11/2026) : Je regarde, Avec aide, Seul, Je corrige */
 function renderLessonScreen(t,i,direct){
