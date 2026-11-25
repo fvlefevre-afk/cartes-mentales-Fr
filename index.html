@@ -743,6 +743,21 @@ body:not(.au-sommaire) .bar #tocBtn{box-shadow:0 2px 8px rgba(31,42,68,.18)}
 #cu-retiens.retiens-carte li .exs{margin-top:.6rem}
 #cu-retiens.retiens-carte li .exs i{display:block;margin:.4rem 0;padding:.1rem .6rem;line-height:1.5}
 /*RETIENS-EXEMPLES-FIN*/
+/*PERSO-HAUT*/
+/* l'exercice n'a plus de cadre de réponse en bas : la bulle du personnage du haut dit l'aide et réagit */
+.sheet.lesson .atoi .fb-row{height:0;margin:0;overflow:visible}
+.sheet.lesson .atoi .fb,.sheet.lesson .atoi .fb-av{display:none!important}
+.sheet.lesson .guide .bubble.good,.sheet.lesson .guide .bubble.bad{font-weight:700}
+.sheet.lesson .guide .bubble.good{color:#23845a;border-color:#23845a}
+.sheet.lesson .guide .bubble.bad{color:#b3261e;border-color:#e0a39e}
+/*PERSO-HAUT-FIN*/
+/*RAIL-HAUTEUR*/
+/* bandeau de gauche : trois cartes de même style, la dernière (code couleur) occupe toute la hauteur restante */
+body.avec-rail #rail:not([hidden]){background:var(--paper,#fdfcf9)}
+#rail .rail-code{flex:1 1 auto;justify-content:space-around;border:2.5px solid #c3c8d4;border-radius:1.4rem;background:#fff;box-shadow:0 2px 8px rgba(31,42,68,.14);padding:.8rem .9rem;font-size:1.05rem}
+#rail .rail-code strong{font-size:.95rem;text-align:center}
+#rail .rail-b{border-radius:1.4rem}
+/*RAIL-HAUTEUR-FIN*/
 </style>
 </head>
 <body>
@@ -1362,7 +1377,10 @@ window.CartesExo=(()=>{
     let idx=0,cur=null,errT=0,errEx=0,ok1=0,vivant=true;
     /* voix, sons, personnage */
     if(o.guide){const im=document.createElement('img');im.className='fb-av';im.alt='';im.src=o.guide;q('.fb-row').prepend(im);}
-    const say=(m,cls)=>{fb.className='fb'+(cls?' '+cls:'');fb.textContent=m;};
+    /* 25/11/2026, demande de l'enseignante : plus de personnage ni de cadre en bas de l'exercice ; le personnage du haut apparaît pour aider et réagit à ce que fait l'élève (sa bulle dit la réaction) */
+    const say=(m,cls)=>{const bu=box.closest('.sheet')&&box.closest('.sheet').querySelector('.guide .bubble');
+      if(bu){const g=bu.closest('.guide');if(g)g.style.display='';if(bu.dataset.o==null)bu.dataset.o=bu.textContent;bu.className='bubble'+(cls?' '+cls:'');bu.textContent=(cls==='good'?'✓ ':cls==='bad'?'✗ ':'')+m;}
+      else{fb.className='fb'+(cls?' '+cls:'');fb.textContent=m;}};
     let son=true;try{son=localStorage.getItem('atoi-son')!=='0';}catch(_){}
     const sonBtn=q('#sonBtn'),majSon=()=>{sonBtn.textContent=son?'🔔':'🔕';sonBtn.setAttribute('aria-pressed',String(son));};majSon();
     sonBtn.onclick=()=>{son=!son;try{localStorage.setItem('atoi-son',son?'1':'0');}catch(_){}majSon();};
@@ -1377,7 +1395,7 @@ window.CartesExo=(()=>{
       tache(p){errT=0;indRow.innerHTML='';
         /* « Avec aide » (24/11/2026) : l'aide est dite par le personnage du haut (sa bulle), plus par une ligne en bas de l'exercice */
         const bu=document.querySelector('.sheet .guide .bubble');
-        if(bu){ if(bu.dataset.o==null) bu.dataset.o=bu.textContent; bu.textContent=(mode==='aide'&&p&&p.indice)?'💡 Aide : '+p.indice:bu.dataset.o; }
+        if(bu){ if(bu.dataset.o==null) bu.dataset.o=bu.textContent; bu.className='bubble'; bu.textContent=(mode==='aide'&&p&&p.indice)?'💡 Aide : '+p.indice:bu.dataset.o; const g=bu.closest('.guide'); if(g&&g.dataset.p4==='1'&&mode!=='aide') g.style.display='none'; }
         if(mode==='aide'&&p&&p.indice&&!bu)say('💡 Aide : '+p.indice,'');},
       bonne(p){p=p||{};say(errT>0?'Oui, c’est ça ! '+(p.indice?'Je retiens : '+p.indice:''):(p.derniere?'Oui !':pick(BRAVO)),'good');bip('ok');if(p.derniere)fini();},
       faux(p){p=p||{};errT++;errEx++;bip('ko');
@@ -1476,7 +1494,7 @@ function renderLessonScreen(t,i,direct){
   const ph=$('#ph'),cap=$('#cap'),sd=$('#sdots'),nb=$('#nextStep');
   const P4=PARC4(t), fait4=[false,false,false,false]; let SESS=null;
   /* 24/11/2026 : personnage et bulle du haut seulement dans « Avec aide » (où la bulle dit l'aide) ; plus dans Je regarde, Seul, Je corrige */
-  const guideAffiche=v=>{ const g=main.querySelector('.sheet .guide'); if(g) g.style.display=(v||!P4)?'':'none'; };
+  const guideAffiche=v=>{ const g=main.querySelector('.sheet .guide'); if(g){ g.dataset.p4=P4?'1':''; g.style.display=(v||!P4)?'':'none'; } };
   guideAffiche(false);
   function show(){
     const x=e.steps[st];
