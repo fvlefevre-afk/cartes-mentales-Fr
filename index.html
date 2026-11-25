@@ -621,7 +621,13 @@ html.loupe-ouverte{overflow:hidden}
 /* pas de lignes d'écriture (Seyès) ni de marge rouge en fond des pages de carte (24/11/2026) */
 body .sheet.lesson{background-image:none}
 /* cadre « Je retiens » sous l'image de la carte, dans la carte (24/11/2026) : remplace le bouton 📖 et l'encadré du bas */
-.map-retiens{margin-top:.5rem}.map-retiens .cm2-box{margin:0;border-radius:.6rem}
+.map-retiens{margin-top:.6rem}.map-retiens .cm2-box{margin:.5rem 0 0;border-radius:.6rem}
+.map-retiens>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;background:#fff4e6;color:#b45309;border:2.5px solid #d9730d;border-radius:999px;padding:.45rem 1.3rem;font-weight:700;font-size:1.15rem;min-height:2.8rem;user-select:none}
+.map-retiens>summary::-webkit-details-marker{display:none}
+.map-retiens>summary::before{content:"▸";transition:transform .15s}
+.map-retiens[open]>summary::before{transform:rotate(90deg)}
+.map-retiens>summary:hover,.map-retiens>summary:focus-visible{background:#ffe8cc}
+.map-retiens[open]>.cm2-box>h3:first-child{display:none}
 .sheet.lesson .cu-hd .cu-map,.sheet.lesson .cu-hd .cu-titre,.sheet.lesson .cu-hd [data-cu="retour"]{display:none}   /* « ‹ » en haut = doublon de « ◀ Retour » en bas (24/11/2026) */
 .sheet.lesson .cu-hd .cu-sp,.sheet.lesson .cu-hd .cu-etapes{flex:1}
 .sheet.lesson .cu-hd .cu-etapes{justify-content:center}
@@ -1088,7 +1094,7 @@ function renderLessonMap(t){
       ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
       ${L.sections.map((s,k)=>{const z=s.zone;return `<button type="button" class="loupe" data-loupe="${k}" style="left:${z[0]+z[2]}%;top:${z[1]}%;--z:${s.couleur}" title="Voir ce cadre en grand" aria-label="Voir en grand : ${esc(s.nom)}">🔍</button>`;}).join('')}
     </div>
-    ${contenuRetiens(t)?`<div class="map-retiens">${contenuRetiens(t).replace('En CM1, je retiens','Je retiens')}</div>`:''}
+    ${contenuRetiens(t)?`<details class="map-retiens"><summary>Je retiens</summary>${contenuRetiens(t).replace('En CM1, je retiens','Je retiens')}</details>`:''}
   </div>`;
   carteMapCouleurs(main);
   if(t.html) renderConj(main);
@@ -2037,7 +2043,7 @@ load();render();
    const availW=innerWidth, availH=innerHeight-barre();
    /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
    /* page de la carte : elle remplit la fenêtre (largeur ou hauteur, la carte entière reste visible) ; l'encadré « Je retiens » se lit en faisant défiler */
-   const hc=carte?carte.getBoundingClientRect().bottom-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
+   const hc=carte?((s.querySelector('.map-retiens>summary')||carte).getBoundingClientRect().bottom)-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
    const z=carte?Math.min(availW/w,availH/hc,MAX_LECON)*.995:Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
    main.style.zoom=z.toFixed(3);
    s.style.minHeight=Math.max(0,availH/z-ph-2)+'px';   /* le papier descend jusqu'en bas de la fenêtre */
