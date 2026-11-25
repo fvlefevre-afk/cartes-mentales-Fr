@@ -809,6 +809,13 @@ body.au-sommaire #rail .fam-btns small{font-size:calc(var(--u)*.8)}
 #rail .rail-cadre .rc-n{flex:none;display:grid;place-items:center;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--z);color:#fff;font-size:.95rem;font-weight:800}
 #rail .rail-cadre .rc-t{font-size:.92rem;line-height:1.15;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 /*RAIL-CADRES-FIN*/
+/*RETOUR-ACCUEIL*/
+/* bouton « Retour à l'accueil » au sommaire (25/11/2026) : page d'accueil du projet voisin « cartes-interactives » ; absent quand le fichier est ouvert depuis une clé USB */
+.fam-btns a.fam-accueil{font:inherit;font-weight:700;font-size:1.02rem;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:999px;border:2.5px solid #c3c8d4;color:#1f2a44;background:#fff;text-decoration:none}
+.fam-btns a.fam-accueil:hover,.fam-btns a.fam-accueil:focus-visible{background:#eef3fc;outline:0}
+@media (min-width:761px){#rail .fam-btns a.fam-accueil{width:100%;font-size:1.05rem;border-radius:1.4rem;box-shadow:0 2px 8px rgba(31,42,68,.12);margin-bottom:.4rem}body.au-sommaire #rail .fam-btns a.fam-accueil{font-size:var(--s1);padding:.45em .9em}}
+@media print{.fam-btns a.fam-accueil{display:none}}
+/*RETOUR-ACCUEIL-FIN*/
 </style>
 </head>
 <body>
@@ -1876,7 +1883,7 @@ function niveauChoisi(){const A=NIV_AFF(),m=location.hash.match(/^#niveau=(CE2|C
 let famChoix=(()=>{try{return localStorage.getItem('famille')||'tout';}catch(e){return 'tout';}})();
 function famBoutons(niv){const F=FAMILLES.filter(f=>TRACES.some(t=>t.f===f.id&&niveauDe(t)===niv));if(F.length<2)return '';
   if(famChoix!=='tout'&&!F.some(f=>f.id===famChoix))famChoix='tout';
-  return `<nav class="fam-btns" aria-label="Choisir une famille de ceintures"><button type="button" data-fam="tout" aria-pressed="${famChoix==='tout'}" style="--c:#1f2a44">Toutes</button>${F.map(f=>{const L=TRACES.filter(t=>t.f===f.id&&niveauDe(t)===niv&&hasTrace(t)),k=L.filter(ouverte).length;return `<button type="button" data-fam="${f.id}" aria-pressed="${famChoix===f.id}" style="--c:${f.couleur}">${esc(f.nom)}<small>${k}/${L.length}</small></button>`;}).join('')}</nav>`;}
+  return `<nav class="fam-btns" aria-label="Choisir une famille de ceintures">${location.protocol==='file:'?'':'<a class="fam-accueil" href="../cartes-interactives/">🏠 Retour à l’accueil</a>'}<button type="button" data-fam="tout" aria-pressed="${famChoix==='tout'}" style="--c:#1f2a44">Toutes</button>${F.map(f=>{const L=TRACES.filter(t=>t.f===f.id&&niveauDe(t)===niv&&hasTrace(t)),k=L.filter(ouverte).length;return `<button type="button" data-fam="${f.id}" aria-pressed="${famChoix===f.id}" style="--c:${f.couleur}">${esc(f.nom)}<small>${k}/${L.length}</small></button>`;}).join('')}</nav>`;}
 function renderToc(){
   const niv=niveauChoisi();
   document.title='Leçons interactives — ceintures de français '+niv;
