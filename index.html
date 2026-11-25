@@ -243,7 +243,7 @@ body.editing .body[contenteditable]{outline:2px dashed var(--etiq);outline-offse
 .cm2-box.ce2{border-color:#1e8a5a;background:#ecf7f1}.cm2-box.ce2 h3{color:#1e8a5a}.tag-cm2.ce2{background:#1e8a5a}
 .tag-cm2{display:inline-block;vertical-align:middle;margin-left:.6rem;font-size:.8rem;font-weight:700;color:#fff;background:#2456a6;border-radius:.5rem;padding:.1rem .5rem}
 .chip2.nu{border:0;border-radius:.3cqw;background:rgb(208,237,251);color:#1f2a44}
-.zone{position:absolute;border-radius:max(8px,1.86cqw);border:max(2px,.25cqw) dashed color-mix(in srgb,var(--z) 55%,transparent);background:color-mix(in srgb,var(--z) 4%,transparent);transition:border-color .2s,background .2s}
+.zone{position:absolute;border-radius:max(8px,1.86cqw);border:max(2px,.25cqw) solid transparent;background:transparent;transition:border-color .2s,background .2s}   /* 25/11/2026 : plus de contour pointillé ni de cadre qui clignote au repos : tout se passe au survol */
 .zone:hover,.zone:focus-visible{border-color:var(--z);background:color-mix(in srgb,var(--z) 8%,transparent);outline:0}
 .num{display:inline-grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--z);color:#fff;font-weight:700;font-size:1.05rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .zone .num{position:absolute;left:max(.4rem,1.3cqw);top:max(.35rem,.8cqw);right:auto;width:max(1.8rem,3.4cqw);height:max(1.8rem,3.4cqw);font-size:max(1rem,1.7cqw)}   /* numéro dans le cadre, à l'écart des bords (13/11/2026) */
@@ -479,11 +479,9 @@ body.mode-plein{background:var(--paper)}body.mode-plein main{padding:0}body.mode
 /* zones de la carte : contour pointillé toujours visible (au doigt il n'y a pas de survol), plein au survol ; partie finie en vert ; la suivante respire */
 /* 25/11/2026, demande de l'enseignante : le contour reste POINTILLÉ au survol (il devenait plein, peu joli) ; le cadre « respire » comme le prochain à faire, seulement pendant le passage de la souris */
 .zone:hover,.zone:focus-visible{animation:zoneSuiv 1.2s ease-in-out infinite}
-.zone.fait{border-color:color-mix(in srgb,#23845a 55%,transparent);background:transparent}
-.zone.suivant{border-style:solid;border-color:var(--z);animation:zoneSuiv 1.8s ease-in-out infinite}
 @keyframes zoneSuiv{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--z) 30%,transparent);background:color-mix(in srgb,var(--z) 10%,transparent)}}
 .num{width:2.6rem;height:2.6rem;font-size:1.25rem}
-@media (prefers-reduced-motion:reduce){.zone:hover,.zone:focus-visible{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}.zone.suivant{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}}
+@media (prefers-reduced-motion:reduce){.zone:hover,.zone:focus-visible{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--z) 30%,transparent)}}
 @media print{.zone{border-color:transparent;background:transparent;animation:none;box-shadow:none}}
 /* juste / faux : un signe en plus du vert et du rouge */
 .fb.good:not(:empty)::before{content:"✓ ";font-weight:800}
