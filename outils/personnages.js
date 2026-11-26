@@ -1,7 +1,11 @@
 /* Personnages des classes de mots (26/11/2026, demande de l'enseignante : « mes personnages sur la nature des mots apparaissent sous les mots travaillés dans la ceinture »).
    Source du bloc PERSOS-JS d'index.html : modifier ICI puis lancer  python3 outils/personnages.py  (qui recopie aussi les dessins d'origine d'outils/img/persos/).
-   G3 pour commencer : « Je regarde », puis « Avec aide » et « Je corrige » une fois l'exercice réussi ; JAMAIS dans « Seul » (cela donnerait la réponse). */
-const PERSO_CEINT=['G3'];
+   G3, G4 et G7 : « Je regarde », puis « Avec aide » et « Je corrige » une fois l'exercice réussi ; JAMAIS dans « Seul » (cela donnerait la réponse).
+   G3 : natures calculées (natures) ; G4 et G7 : écrites phrase par phrase dans outils/personnages_phrases.txt (bloc PERSOS_PHRASES) : une phrase absente n'a pas de personnage. */
+const PERSO_CEINT=['G3','G4','G7'];
+const PERSO_TAGS={d:'det',n:'nom',np:'nompropre',nc:'nomcommun',a:'adj',v:'verbe',p:'pron',adv:'adv',c:'conj',pr:'prep'};
+/* G4 : classes de mots montrées selon la classe de la leçon (CE2 : sans conjonction ni préposition ; CM1 : sans préposition) */
+const PERSO_HORS={CE2:['conj','prep'],CM1:['prep']};
 const PERSO_CL=['det','nom','adj','verbe','pron','adv','conj','prep','prel','nompropre','nomcommun'];
 const PERSO_NOMS={det:'Déterminant',nom:'Nom',adj:'Adjectif',verbe:'Verbe',pron:'Pronom personnel',adv:'Adverbe',conj:'Conjonction de coordination',prep:'Préposition',prel:'Pronom relatif',nompropre:'Nom propre',nomcommun:'Nom commun'};
 const persoOk=v=>typeof v==='string'&&/^data:image\/(webp|png);base64,[A-Za-z0-9+/=]+$/.test(v)&&v.length<=200000;
@@ -46,6 +50,18 @@ function natures(txt){
   return T.map((x,i)=>({mot:x.brut,d:x.d,f:x.f,n:x.mot?R[i]:''}));
 }
 
+/* G4, G7 : place de chaque mot d'après la phrase écrite dans la table */
+const lettre_=c=>!!c&&/[A-Za-zÀ-ÖØ-öø-ÿœŒ]/.test(c);
+function naturesEcrites(txt,ceinture,niveau){
+  const plat=txt.replace(/\s/g,' '), ligne=(PERSOS_PHRASES[ceinture]||{})[plat.replace(/ +/g,' ').trim()]; if(!ligne) return [];
+  const hors=ceinture==='G4'?(PERSO_HORS[niveau]||[]):[], r=[]; let pos=0;
+  ligne.split(' ').forEach(item=>{ const k=item.lastIndexOf(':'); let m=item.slice(0,k); const n=PERSO_TAGS[item.slice(k+1)], libre=m[0]==='~'; m=m.replace('~','').replace(/_/g,' ');
+    let d=plat.indexOf(m,pos);
+    while(d>=0&&!libre&&(lettre_(plat[d-1])||(!m.endsWith('’')&&lettre_(plat[d+m.length])))) d=plat.indexOf(m,d+1);
+    if(d<0) return; pos=d+m.length; if(n&&!hors.includes(n)) r.push({d,f:d+m.length,n}); });
+  return r;
+}
+
 /* ---- affichage : chaque mot reconnu prend la couleur de sa classe et son personnage dessous ---- */
 function persoEmballer(racine,noeudD,offD,noeudF,offF,cl,img){
   let a=noeudD,b=noeudF;
@@ -61,14 +77,14 @@ function persoEmballer(racine,noeudD,offD,noeudF,offF,cl,img){
   w.className='mp mp-'+cl; t.className='mp-t'; i.src=img; i.alt=PERSO_NOMS[cl]; i.title=PERSO_NOMS[cl];
   C.insertBefore(w,a); for(let n=a;n;){const s=n===b?null:n.nextSibling;t.appendChild(n);n=s;} w.append(t,i);
 }
-function persosPoser(el,ceinture){
+function persosPoser(el,ceinture,niveau){
   if(!el||!PERSO_CEINT.includes(ceinture)||el.querySelector('.mp')) return;
   const blocs=el.querySelector('.cumul')?[...el.querySelectorAll('.cumul.cur')]:[el];
   blocs.forEach(bloc=>{
     const w=document.createTreeWalker(bloc,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('small,.sr-only')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
     let txt='';const P=[];while(w.nextNode()){const n=w.currentNode;P.push([txt.length,n]);txt+=n.data;}
     const ou=(pos,fin)=>{for(let k=P.length-1;k>=0;k--){const [d,n]=P[k];if(fin?d<pos:d<=pos)return [n,pos-d];}return null;};
-    natures(txt).filter(x=>x.n&&persoImg(x.n)).reverse().forEach(x=>{const d=ou(x.d),f=ou(x.f,true);if(d&&f)persoEmballer(bloc,d[0],d[1],f[0],f[1],x.n,persoImg(x.n));});
+    (ceinture==='G3'?natures(txt):naturesEcrites(txt,ceinture,niveau||'CM1')).filter(x=>x.n&&persoImg(x.n)).reverse().forEach(x=>{const d=ou(x.d),f=ou(x.f,true);if(d&&f)persoEmballer(bloc,d[0],d[1],f[0],f[1],x.n,persoImg(x.n));});
   });
   if(el.querySelector('.mp')) el.classList.add('avec-persos');
 }

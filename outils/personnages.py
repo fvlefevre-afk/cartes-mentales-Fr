@@ -9,7 +9,16 @@ def dessin(nom):
     im = Image.open(ICI/"img"/"persos"/(nom+".png")).convert("RGBA"); im = im.crop(im.getbbox()); im.thumbnail((400, 240), Image.LANCZOS)
     b = io.BytesIO(); im.save(b, "WEBP", quality=85, method=6)
     return "data:image/webp;base64," + base64.b64encode(b.getvalue()).decode()
+def phrases():
+    """{ceinture: {phrase affichée: « mot:nature … »}} d'après personnages_phrases.txt"""
+    t = {}
+    for l in (ICI/"personnages_phrases.txt").read_text(encoding="utf-8").split("\n"):
+        if l.strip() and not l.startswith("#"):
+            c, ph, mots = l.split(" | ")
+            t.setdefault(c, {})[ph] = " ".join(x for x in mots.split() if ":" in x)
+    return t
 bloc = ("/*PERSOS-JS*/\nconst PERSOS_DEF=" + json.dumps({k: dessin(v) for k, v in FICHIERS.items()}, separators=(",", ":")) + ";\n"
+        + "const PERSOS_PHRASES=" + json.dumps(phrases(), ensure_ascii=False, separators=(",", ":")) + ";\n"
         + (ICI/"personnages.js").read_text(encoding="utf-8") + "/*PERSOS-JS-FIN*/\n")
 p = ICI.parent/"index.html"; s = p.read_text(encoding="utf-8")
 s = re.sub(r"/\*PERSOS-JS\*/\n.*?/\*PERSOS-JS-FIN\*/\n", "", s, flags=re.S)

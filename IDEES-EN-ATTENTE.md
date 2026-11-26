@@ -6,8 +6,6 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## Personnages sous les mots (26/11/2026)
 
-- [ ] **Personnages sur les écrans de G4 et G7** (fait pour G3 ; demande d'origine : « les ceintures de grammaire »). G4 demande de repérer toutes les natures sur toutes ses phrases ; nom propre / nom commun montrés quand l'exercice les distingue.
-- [ ] **Mêmes couleurs ailleurs** : pages d'observation de G3, G4, G7 (dépôt `edl`) et couleurs d'origine du tableau de bord (17ya).
 - [ ] **Téléphone : « La suite » / « Avec aide » chevauche « Retour »** et la barre d'avancement (défaut présent avant les personnages).
 
 ## Code couleur des personnages (17/11/2026)

@@ -1,0 +1,341 @@
+# Nature des mots des phrases de G4 et G7 (personnages sous les mots). Une ligne : ceinture | phrase telle qu'affichée | mot:nature …
+# natures : d déterminant, n nom, np nom propre, nc nom commun, a adjectif, v verbe, p pronom personnel, adv adverbe, c conjonction de coordination, pr préposition ;
+# ~mot : mot collé au précédent à l'écran ; de_l’ : deux mots pour un seul personnage. Après une phrase changée : python3 outils/personnages.py puis tester_personnages.py
+G4 | Léa · un chien · une table · la joie | Léa:n un:d chien:n une:d table:n la:d joie:n
+G4 | un chien · la joie | un:d chien:n la:d joie:n
+G4 | Dans la cour, le maître surveille les enfants. | Dans:pr la:d cour:n le:d maître:n surveille:v les:d enfants:n
+G4 | Ce matin, ma sœur a préparé un gâteau. | Ce:d matin:n ma:d sœur:n a:v préparé:v un:d gâteau:n
+G4 | Sur la table, le chat dort. | Sur:pr la:d table:n le:d chat:n dort:v
+G4 | Pendant la récréation, les élèves jouent aux billes. | Pendant:pr la:d récréation:n les:d élèves:n jouent:v aux:d billes:n
+G4 | Le petit chat dort. | Le:d petit:a chat:n dort:v
+G4 | Mon petit frère dort. | Mon:d petit:a frère:n dort:v
+G4 | Les oiseaux chantent le matin. | Les:d oiseaux:n chantent:v le:d matin:n
+G4 | Le grand arbre perd ses feuilles. | Le:d grand:a arbre:n perd:v ses:d feuilles:n
+G4 | Ces fleurs sentent bon. | Ces:d fleurs:n sentent:v
+G4 | Le chat dort. | Le:d chat:n dort:v
+G4 | Léa caresse le chat. | Léa:n caresse:v le:d chat:n
+G4 | Tom lit un livre. | Tom:n lit:v un:d livre:n
+G4 | Le chien aboie. | Le:d chien:n aboie:v
+G4 | Papa répare la voiture. | Papa:n répare:v la:d voiture:n
+G4 | Maman cuisine un gâteau. | Maman:n cuisine:v un:d gâteau:n
+G4 | le chien · la table · l’arbre · les fleurs | le:d chien:n la:d table:n l’:d arbre:n les:d fleurs:n
+G4 | un chien · une table · des fleurs | un:d chien:n une:d table:n des:d fleurs:n
+G4 | le cartable | le:d cartable:n
+G4 | mon cartable · ton cartable · son cartable | mon:d cartable:n ton:d cartable:n son:d cartable:n
+G4 | notre classe · leurs cahiers | notre:d classe:n leurs:d cahiers:n
+G4 | Léa range ses jouets. | Léa:n range:v ses:d jouets:n
+G4 | Nous rangeons nos affaires. | Nous:p rangeons:v nos:d affaires:n
+G4 | Tom a oublié son cahier. | Tom:n a:v oublié:v son:d cahier:n
+G4 | Les enfants cherchent leur ballon. | Les:d enfants:n cherchent:v leur:d ballon:n
+G4 | ce chien · cette maison | ce:d chien:n cette:d maison:n
+G4 | cet arbre · cet homme | cet:d arbre:n cet:d homme:n
+G4 | ces fleurs | ces:d fleurs:n
+G4 | Ce garçon est grand. | Ce:d garçon:n est:v grand:a
+G4 | Cette école est ancienne. | Cette:d école:n est:v ancienne:a
+G4 | J’aime cet arbre. | J’:p aime:v cet:d arbre:n
+G4 | Regarde ces fleurs ! | Regarde:v ces:d fleurs:n
+G4 | Léa chante. | Léa:n chante:v
+G4 | Hier, Léa chantait. | Hier:adv Léa:n chantait:v
+G4 | Nous chantons. | Nous:p chantons:v
+G4 | Mes cousins arrivent demain. | Mes:d cousins:n arrivent:v demain:adv
+G4 | Le train part à midi. | Le:d train:n part:v à:pr midi:n
+G4 | Hier, nous avons mangé des crêpes. | Hier:adv nous:p avons:v mangé:v des:d crêpes:n
+G4 | Tu liras ce livre. | Tu:p liras:v ce:d livre:n
+G4 | Tom élève des lapins. | Tom:n élève:v des:d lapins:n
+G4 | Une élève lit. | Une:d élève:n lit:v
+G4 | tu élèves · elles élèventdes élèves | tu:p élèves:v elles:p ~élèvent:v ~des:d élèves:n
+G4 | Le chant des oiseaux est joli. | Le:d chant:n des:d oiseaux:n est:v joli:a
+G4 | Mon frère chante sous la douche. | Mon:d frère:n chante:v sous:pr la:d douche:n
+G4 | Léa mange une pêche . | Léa:n mange:v une:d pêche:n
+G4 | Les enfants dansent dans la cour. | Les:d enfants:n dansent:v dans:pr la:d cour:n
+G4 | Il dort. | Il:p dort:v
+G4 | Léa chante. → Elle chante. | Léa:n chante:v Elle:p chante:v
+G4 | je · tu · il · elle · on · nous · vous · ils · elles | je:p tu:p il:p elle:p on:p nous:p vous:p ils:p elles:p
+G4 | Ma sœur lit un livre. Elle est contente. | Ma:d sœur:n lit:v un:d livre:n Elle:p est:v contente:a
+G4 | Mes amis arrivent. Ils sont en avance. | Mes:d amis:n arrivent:v Ils:p sont:v en:pr avance:n
+G4 | Léa et Inès jouent. Elles rient. | Léa:n et:c Inès:n jouent:v Elles:p rient:v
+G4 | Papa cuisine. Il prépare un gâteau. | Papa:n cuisine:v Il:p prépare:v un:d gâteau:n
+G4 | Léa regarde les oiseaux. | Léa:n regarde:v les:d oiseaux:n
+G4 | Elle regarde les oiseaux. | Elle:p regarde:v les:d oiseaux:n
+G4 | Elle les regarde. | Elle:p les:p regarde:v
+G4 | me · te · le · la · les · lui · leur | me:p te:p le:p la:p les:p lui:p leur:p
+G4 | Je regarde mes amis. Je les regarde. | Je:p regarde:v mes:d amis:n Je:p les:p regarde:v
+G4 | Tom mange une pomme. Tom la mange. | Tom:n mange:v une:d pomme:n Tom:n la:p mange:v
+G4 | Je téléphone à Léa. Je lui téléphone. | Je:p téléphone:v à:pr Léa:n Je:p lui:p téléphone:v
+G4 | Nous aidons nos voisins. Nous les aidons. | Nous:p aidons:v nos:d voisins:n Nous:p les:p aidons:v
+G4 | Le lapin court. | Le:d lapin:n court:v
+G4 | Le lapin court vite. | Le:d lapin:n court:v vite:adv
+G4 | Le lapin court très vite. | Le:d lapin:n court:v très:adv vite:adv
+G4 | Il est très grand. | Il:p est:v très:adv grand:a
+G4 | Il parle doucement. | Il:p parle:v doucement:adv
+G4 | Elle marche vite. | Elle:p marche:v vite:adv
+G4 | Demain, nous partons. | Demain:adv nous:p partons:v
+G4 | Il court rapidement. | Il:p court:v rapidement:adv
+G4 | lent → lente → lentement | lent:a lente:a lentement:adv
+G4 | doux → douce → doucement | doux:a douce:a doucement:adv
+G4 | joyeux → joyeuse → joyeusement | joyeux:a joyeuse:a joyeusement:adv
+G4 | lent → lentement | lent:a lentement:adv
+G4 | doux → doucement | doux:a doucement:adv
+G4 | joyeux → joyeusement | joyeux:a joyeusement:adv
+G4 | rapide → rapidement | rapide:a rapidement:adv
+G4 | Je voulais sortir. Il pleuvait. | Je:p voulais:v sortir:v Il:p pleuvait:v
+G4 | Je voulais sortir mais il pleuvait. | Je:p voulais:v sortir:v mais:c il:p pleuvait:v
+G4 | mais · ou · et · or · ni · car | mais:c ou:c et:c or:c ni:c car:c
+G4 | Tu veux du pain ou du fromage ? | Tu:p veux:v du:d pain:n ou:c du:d fromage:n
+G4 | J’aime les pommes et les poires. | J’:p aime:v les:d pommes:n et:c les:d poires:n
+G4 | Il est petit mais très fort. | Il:p est:v petit:a mais:c très:adv fort:a
+G4 | Léa mange car elle a faim. | Léa:n mange:v car:c elle:p a:v faim:n
+G4 | Il est fatigué car il a couru. | Il:p est:v fatigué:a car:c il:p a:v couru:v
+G4 | Il a couru, donc il est fatigué. | Il:p a:v couru:v donc:adv il:p est:v fatigué:a
+G4 | Il est petit mais il est fort. | Il:p est:v petit:a mais:c il:p est:v fort:a
+G4 | Il fait beau, donc nous allons au parc. | Il:p fait:v donc:adv nous:p allons:v au:d parc:n
+G4 | Je suis fatigué car j’ai mal dormi. | Je:p suis:v fatigué:a car:c j’:p ai:v mal:adv dormi:v
+G4 | Il a plu mais nous avons joué dehors. | Il:p a:v plu:v mais:c nous:p avons:v joué:v dehors:adv
+G4 | Tu viens avec nous ou tu restes ici ? | Tu:p viens:v avec:pr nous:p ou:c tu:p restes:v ici:adv
+G4 | le chat noir · les chats noirs | le:d chat:n noir:a les:d chats:n noirs:a
+G4 | Il parle doucement. Elles parlent doucement. | Il:p parle:v doucement:adv Elles:p parlent:v doucement:adv
+G4 | lent → lentement · doux → doucement | lent:a lentement:adv doux:a doucement:adv
+G4 | une fleur → des fleurs | une:d fleur:n des:d fleurs:n
+G4 | très · bien · souvent · mais · aujourd’hui | très:adv bien:adv souvent:adv mais:c aujourd’hui:adv
+G4 | Au bord du lac, un jeune pêcheur surveille patiemment sa ligne. | Au:d bord:n du:d lac:n un:d jeune:a pêcheur:n surveille:v patiemment:adv sa:d ligne:n
+G4 | Dans le grenier, une vieille malle cachait des lettres jaunies. | Dans:pr le:d grenier:n une:d vieille:a malle:n cachait:v des:d lettres:n jaunies:a
+G4 | Depuis ce matin, la pluie mouille les rues du village. | Depuis:pr ce:d matin:n la:d pluie:n mouille:v les:d rues:n du:d village:n
+G4 | Devant la porte, le facteur dépose le courrier du matin. | Devant:pr la:d porte:n le:d facteur:n dépose:v le:d courrier:n du:d matin:n
+G4 | Le vieux marin raconte une histoire passionnante. | Le:d vieux:a marin:n raconte:v une:d histoire:n passionnante:a
+G4 | Pendant la nuit, la tempête a ravagé la côte. | Pendant:pr la:d nuit:n la:d tempête:n a:v ravagé:v la:d côte:n
+G4 | Mes voisins cultivent de beaux légumes dans leur jardin. | Mes:d voisins:n cultivent:v de:d beaux:a légumes:n dans:pr leur:d jardin:n
+G4 | Chaque dimanche, nous rendons visite à nos grands-parents. | Chaque:d dimanche:n nous:p rendons:v visite:n à:pr nos:d grands-parents:n
+G4 | Ma voisine arrose les fleurs du jardin. | Ma:d voisine:n arrose:v les:d fleurs:n du:d jardin:n
+G4 | Les élèves rangent leurs affaires dans le casier. | Les:d élèves:n rangent:v leurs:d affaires:n dans:pr le:d casier:n
+G4 | Le vent froid secoue les branches. | Le:d vent:n froid:a secoue:v les:d branches:n
+G4 | Mon grand-père répare la vieille barrière. | Mon:d grand-père:n répare:v la:d vieille:a barrière:n
+G4 | Mes cousins ont oublié leurs valises à la gare. | Mes:d cousins:n ont:v oublié:v leurs:d valises:n à:pr la:d gare:n
+G4 | Vous devez ranger vos affaires avant de partir. | Vous:p devez:v ranger:v vos:d affaires:n avant:pr de:pr partir:v
+G4 | Ma tante a perdu ses lunettes dans le jardin. | Ma:d tante:n a:v perdu:v ses:d lunettes:n dans:pr le:d jardin:n
+G4 | Nous avons invité nos voisins à notre fête. | Nous:p avons:v invité:v nos:d voisins:n à:pr notre:d fête:n
+G4 | Dans le jardin, cet arbre centenaire donne de l’ombre. | Dans:pr le:d jardin:n cet:d arbre:n centenaire:a donne:v de_l’:d ombre:n
+G4 | Pendant ces vacances, nous visiterons la Bretagne. | Pendant:pr ces:d vacances:n nous:p visiterons:v la:d Bretagne:n
+G4 | Cette histoire m’a beaucoup ému. | Cette:d histoire:n m’:p a:v beaucoup:adv ému:v
+G4 | Tu as vu cet immense bateau ? | Tu:p as:v vu:v cet:d immense:a bateau:n
+G4 | Pendant la récréation, les élèves se rangent dans la cour. | Pendant:pr la:d récréation:n les:d élèves:n se:p rangent:v dans:pr la:d cour:n
+G4 | Demain, ma sœur partira en voyage avec ses amis. | Demain:adv ma:d sœur:n partira:v en:pr voyage:n avec:pr ses:d amis:n
+G4 | Hier soir, mes parents ont regardé un film. | Hier:adv soir:n mes:d parents:n ont:v regardé:v un:d film:n
+G4 | Chaque matin, le boulanger prépare du pain frais. | Chaque:d matin:n le:d boulanger:n prépare:v du:d pain:n frais:a
+G4 | À la plage, nous mangeons une pêche juteuse. | À:pr la:d plage:n nous:p mangeons:v une:d pêche:n juteuse:a
+G4 | Chaque dimanche, mes oncles pêchent au bord de la rivière. | Chaque:d dimanche:n mes:d oncles:n pêchent:v au:d bord:n de:pr la:d rivière:n
+G4 | Le vieux marin chante une chanson de son pays. | Le:d vieux:a marin:n chante:v une:d chanson:n de:pr son:d pays:n
+G4 | Le chant des oiseaux réveille tout le quartier. | Le:d chant:n des:d oiseaux:n réveille:v le:d quartier:n
+G4 | Les élèves de la classe partent en voyage. Ils sont très impatients. | Les:d élèves:n de:pr la:d classe:n partent:v en:pr voyage:n Ils:p sont:v très:adv impatients:a
+G4 | Ma cousine et ma tante habitent à Lyon. Elles viennent nous voir en été. | Ma:d cousine:n et:c ma:d tante:n habitent:v à:pr Lyon:n Elles:p viennent:v nous:p voir:v en:pr été:n
+G4 | Le directeur ouvre la porte de l’école. Il salue chaque enfant. | Le:d directeur:n ouvre:v la:d porte:n de:pr l’:d école:n Il:p salue:v chaque:d enfant:n
+G4 | Mon frère et moi construisons une cabane. Nous travaillons depuis ce matin. | Mon:d frère:n et:c moi:p construisons:v une:d cabane:n Nous:p travaillons:v depuis:pr ce:d matin:n
+G4 | Mes parents prêtent leur voiture à mon oncle. Ils lui prêtent leur voiture. | Mes:d parents:n prêtent:v leur:d voiture:n à:pr mon:d oncle:n Ils:p lui:p prêtent:v leur:d voiture:n
+G4 | La maîtresse corrige les cahiers. Elle les corrige. | La:d maîtresse:n corrige:v les:d cahiers:n Elle:p les:p corrige:v
+G4 | Nous écrivons à nos grands-parents. Nous leur écrivons. | Nous:p écrivons:v à:pr nos:d grands-parents:n Nous:p leur:p écrivons:v
+G4 | Mon frère prépare le repas. Il le prépare. | Mon:d frère:n prépare:v le:d repas:n Il:p le:p prépare:v
+G4 | les pommes | les:d pommes:n
+G4 | Je les mange. | Je:p les:p mange:v
+G4 | Je vois la mer. Je la regarde. | Je:p vois:v la:d mer:n Je:p la:p regarde:v
+G4 | Je la vois. | Je:p la:p vois:v
+G4 | la fenêtre | la:d fenêtre:n
+G4 | Mes clés ? Je les cherche. | Mes:d clés:n Je:p les:p cherche:v
+G4 | Tu me parles. Je te parle. | Tu:p me:p parles:v Je:p te:p parle:v
+G4 | Je le vois. Je la vois. Je les vois. | Je:p le:p vois:v Je:p la:p vois:v Je:p les:p vois:v
+G4 | Je lui parle. Je leur parle. | Je:p lui:p parle:v Je:p leur:p parle:v
+G4 | Je donne un livre à Paul. → Je lui donne un livre. | Je:p donne:v un:d livre:n à:pr Paul:n Je:p lui:p donne:v un:d livre:n
+G4 | Je vois mes amis. → Je les vois. | Je:p vois:v mes:d amis:n Je:p les:p vois:v
+G4 | Je parle à mes parents. → Je leur parle. | Je:p parle:v à:pr mes:d parents:n Je:p leur:p parle:v
+G4 | Le facteur apporte une lettre. Maman la lit. | Le:d facteur:n apporte:v une:d lettre:n Maman:n la:p lit:v
+G4 | Tom a cueilli des fraises. Il les mange. | Tom:n a:v cueilli:v des:d fraises:n Il:p les:p mange:v
+G4 | Nina voit sa grand-mère. Elle lui donne un dessin. | Nina:n voit:v sa:d grand-mère:n Elle:p lui:p donne:v un:d dessin:n
+G4 | Papa lave la voiture. Il la sèche. | Papa:n lave:v la:d voiture:n Il:p la:p sèche:v
+G4 | La maîtresse rend les cahiers. Les élèves les rangent. | La:d maîtresse:n rend:v les:d cahiers:n Les:d élèves:n les:p rangent:v
+G4 | Sami écrit à ses cousins. Il leur raconte ses vacances. | Sami:n écrit:v à:pr ses:d cousins:n Il:p leur:p raconte:v ses:d vacances:n
+G4 | Le cycliste monte lentement la côte. | Le:d cycliste:n monte:v lentement:adv la:d côte:n
+G4 | Mon frère se lève tôt chaque matin. | Mon:d frère:n se:p lève:v tôt:adv chaque:d matin:n
+G4 | Les enfants sont très contents. | Les:d enfants:n sont:v très:adv contents:a
+G4 | Nous irons bientôt au bord de la mer. | Nous:p irons:v bientôt:adv au:d bord:n de:pr la:d mer:n
+G4 | Le chat marche silencieusement sur le toit. silencieux | Le:d chat:n marche:v silencieusement:adv sur:pr le:d toit:n silencieux:a
+G4 | Ils ont répondu poliment à la question. poli | Ils:p ont:v répondu:v poliment:adv à:pr la:d question:n poli:a
+G4 | Elle a travaillé courageusement toute la journée. courageux | Elle:p a:v travaillé:v courageusement:adv la:d journée:n courageux:a
+G4 | Nous avançons prudemment dans la nuit. prudent | Nous:p avançons:v prudemment:adv dans:pr la:d nuit:n prudent:a
+G4 | Elle s’est dépêchée car elle était en retard. | Elle:p s’:p est:v dépêchée:v car:c elle:p était:v en:pr retard:n
+G4 | Nous sommes restés à la maison car il pleuvait fort. | Nous:p sommes:v restés:v à:pr la:d maison:n car:c il:p pleuvait:v fort:adv
+G4 | Mon frère aime le football mais ma sœur préfère la natation. | Mon:d frère:n aime:v le:d football:n mais:c ma:d sœur:n préfère:v la:d natation:n
+G4 | Veux-tu partir à pied ou à vélo ? | Veux:v tu:p partir:v à:pr pied:n ou:c à:pr vélo:n
+G4 | Le randonneur s’est arrêté car ses chaussures lui faisaient mal. | Le:d randonneur:n s’:p est:v arrêté:v car:c ses:d chaussures:n lui:p faisaient:v mal:adv
+G4 | Il avait beaucoup travaillé, donc il a réussi son examen. | Il:p avait:v beaucoup:adv travaillé:v donc:adv il:p a:v réussi:v son:d examen:n
+G4 | Nous voulions aller à la plage, mais la mer était trop agitée. | Nous:p voulions:v aller:v à:pr la:d plage:n mais:c la:d mer:n était:v trop:adv agitée:a
+G4 | Tu peux choisir un gâteau ou une glace pour le dessert. | Tu:p peux:v choisir:v un:d gâteau:n ou:c une:d glace:n pour:pr le:d dessert:n
+G4 | Le livre est sur la table. | Le:d livre:n est:v sur:pr la:d table:n
+G4 | Je vais à l’école avec mon frère. | Je:p vais:v à:pr l’:d école:n avec:pr mon:d frère:n
+G4 | Elles ne changent jamais. | Elles:p changent:v jamais:adv
+G4 | Le chat dort sous le lit. | Le:d chat:n dort:v sous:pr le:d lit:n
+G4 | Je joue avec mes amis. | Je:p joue:v avec:pr mes:d amis:n
+G4 | Il part chez sa grand-mère. | Il:p part:v chez:pr sa:d grand-mère:n
+G4 | Je reste parce qu’il pleut. | Je:p reste:v il:p pleut:v
+G4 | Je sortirai quand j’aurai fini. | Je:p sortirai:v j’:p aurai:v fini:v
+G4 | Viens si tu veux. | Viens:v tu:p veux:v
+G4 | Je souris quand je te vois. | Je:p souris:v je:p te:p vois:v
+G4 | Le boulanger sourit. | Le:d boulanger:n sourit:v
+G4 | Ma sœur rit. | Ma:d sœur:n rit:v
+G4 | Il a beaucoup de courage. | Il:p a:v courage:n
+G4 | une jolie robe | une:d jolie:a robe:n
+G4 | Mon chien aboie. | Mon:d chien:n aboie:v
+G4 | des fleurs rouges | des:d fleurs:n rouges:a
+G4 | un gros ballon | un:d gros:a ballon:n
+G4 | une ville · Paris | une:d ville:nc Paris:np
+G4 | un chien · Médor | un:d chien:nc Médor:np
+G4 | Mon chien s’appelle Rex. | Mon:d chien:nc s’:p appelle:v Rex:np
+G4 | Nous visitons Lyon en été. | Nous:p visitons:v Lyon:np en:pr été:nc
+G4 | Les enfants jouent dans la cour. | Les:d enfants:n jouent:v dans:pr la:d cour:n
+G4 | Le vent souffle fort. | Le:d vent:n souffle:v fort:adv
+G4 | Demain, nous irons au cinéma. | Demain:adv nous:p irons:v au:d cinéma:n
+G4 | Mes cousins arrivent. Ils sont en retard. | Mes:d cousins:n arrivent:v Ils:p sont:v en:pr retard:n
+G4 | Ma tante téléphone. Elle est contente. | Ma:d tante:n téléphone:v Elle:p est:v contente:a
+G4 | Tom et moi jouons. Nous sommes dehors. | Tom:n et:c moi:p jouons:v Nous:p sommes:v dehors:adv
+G4 | Tom marche lentement. | Tom:n marche:v lentement:adv
+G4 | Elle chante bien. | Elle:p chante:v bien:adv
+G4 | Hier, il a neigé. | Hier:adv il:p a:v neigé:v
+G4 | Ce gâteau est trop sucré. | Ce:d gâteau:n est:v trop:adv sucré:a
+G7 | un chat noir | un:d chat:n noir:a
+G7 | des chats noirs | des:d chats:n noirs:a
+G7 | une chatte noire | une:d chatte:n noire:a
+G7 | des belles fleurs | des:d belles:a fleurs:n
+G7 | une longue histoire | une:d longue:a histoire:n
+G7 | des maisons blanches | des:d maisons:n blanches:a
+G7 | un petit chat | un:d petit:a chat:n
+G7 | une grande maison blanche | une:d grande:a maison:n blanche:a
+G7 | des grandes maisons blanches | des:d grandes:a maisons:n blanches:a
+G7 | un grand chat blanc | un:d grand:a chat:n blanc:a
+G7 | des chats noirs et blancs | des:d chats:n noirs:a blancs:a
+G7 | un garçon gentil et poli | un:d garçon:n gentil:a poli:a
+G7 | des filles fortes et rapides | des:d filles:n fortes:a rapides:a
+G7 | La fille chante. | La:d fille:n chante:v
+G7 | Les filles chantent. | Les:d filles:n chantent:v
+G7 | Les filles du voisin chantent. | Les:d filles:n du:d voisin:n chantent:v
+G7 | Les chiens du voisin aboient la nuit. | Les:d chiens:n du:d voisin:n aboient:v la:d nuit:n
+G7 | Mes cousines partent en vacances. | Mes:d cousines:n partent:v vacances:n
+G7 | Le frère de mes amis habite loin. | Le:d frère:n mes:d amis:n habite:v
+G7 | Les fleurs du jardin poussent vite. | Les:d fleurs:n du:d jardin:n poussent:v
+G7 | Le chat joue. | Le:d chat:n joue:v
+G7 | Le chat et le chien jouent. | Le:d chat:n le:d chien:n jouent:v
+G7 | Ma sœur et moi jouons. | Ma:d sœur:n jouons:v
+G7 | Le chat et le chien jouent ensemble. | Le:d chat:n le:d chien:n jouent:v
+G7 | Ma sœur et moi allons au parc. | Ma:d sœur:n allons:v au:d parc:n
+G7 | Tom et Léa sont contents. | Tom:n Léa:n sont:v contents:a
+G7 | Toi et lui êtes en retard. | êtes:v retard:n
+G7 | Tom est parti. | Tom:n est:v parti:v
+G7 | Léa est partie. | Léa:n est:v partie:v
+G7 | Les garçons sont partis. | Les:d garçons:n sont:v partis:v
+G7 | Les filles sont parties. | Les:d filles:n sont:v parties:v
+G7 | Tom est arrivé tôt. | Tom:n est:v arrivé:v
+G7 | Mes cousines sont arrivées hier soir. | Mes:d cousines:n sont:v arrivées:v soir:n
+G7 | Léa est allée à l’école. | Léa:n est:v allée:v l’:d école:n
+G7 | Mes amis sont venus hier. | Mes:d amis:n sont:v venus:v
+G7 | Léa est contente. | Léa:n est:v contente:a
+G7 | Léa est arrivée. | Léa:n est:v arrivée:v
+G7 | Mes amies sont arrivées. | Mes:d amies:n sont:v arrivées:v
+G7 | Les fleurs sont fanées . | Les:d fleurs:n sont:v fanées:v
+G7 | La porte est fermée . | La:d porte:n est:v fermée:v
+G7 | Les fenêtres sont ouvertes . | Les:d fenêtres:n sont:v ouvertes:v
+G7 | Mes amies sont arrivées trop tard. | Mes:d amies:n sont:v arrivées:v
+G7 | Léa a mangé. | Léa:n a:v mangé:v
+G7 | Léa est tombée. | Léa:n est:v tombée:v
+G7 | Léa a préparé un gâteau. | Léa:n a:v préparé:v un:d gâteau:n
+G7 | Mes amis ont regardé un film. | Mes:d amis:n ont:v regardé:v un:d film:n
+G7 | Nous avons chanté une chanson. | avons:v chanté:v une:d chanson:n
+G7 | Les filles ont fini leurs devoirs. | Les:d filles:n ont:v fini:v leurs:d devoirs:n
+G7 | Les petites filles sont arrivées. | Les:d petites:a filles:n sont:v arrivées:v
+G7 | Mes petites sœurs sont arrivées. | Mes:d petites:a sœurs:n sont:v arrivées:v
+G7 | Les vieilles maisons sont tombées. | Les:d vieilles:a maisons:n sont:v tombées:v
+G7 | La grande fille est partie. | La:d grande:a fille:n est:v partie:v
+G7 | Les petits chats sont rentrés. | Les:d petits:a chats:n sont:v rentrés:v
+G7 | Le petit chat est rentré. | Le:d petit:a chat:n est:v rentré:v
+G7 | La petite chatte est rentrée. | La:d petite:a chatte:n est:v rentrée:v
+G7 | Le chat est rentré. → Les chats sont rentrés. | Le:d chat:n est:v rentré:v Les:d chats:n sont:v rentrés:v
+G7 | La fille est venue. → Les filles sont venues . | La:d fille:n est:v venue:v Les:d filles:n sont:v venues:v
+G7 | Le garçon est tombé. → Les garçons sont tombés . | Le:d garçon:n est:v tombé:v Les:d garçons:n sont:v tombés:v
+G7 | La voisine est arrivée. → Les voisines sont arrivées. | La:d voisine:n est:v arrivée:v Les:d voisines:n sont:v arrivées:v
+G7 | Les vieille maisons est fermé. | Les:d vieille:a maisons:n est:v fermé:v
+G7 | Les vieilles maisons est fermé. | Les:d vieilles:a maisons:n est:v fermé:v
+G7 | Les vieilles maisons sont fermées. | Les:d vieilles:a maisons:n sont:v fermées:v
+G7 | La grande fille est arrivée. | La:d grande:a fille:n est:v arrivée:v
+G7 | Mes amis sont venus. | Mes:d amis:n sont:v venus:v
+G7 | Les fleurs sont tombées. | Les:d fleurs:n sont:v tombées:v
+G7 | Les élèves joue dans la cour. | Les:d élèves:n joue:v la:d cour:n
+G7 | Les élèves jouent dans la cour. | Les:d élèves:n jouent:v la:d cour:n
+G7 | Mes cousines sont partie ; mes cousines sont parties. | Mes:d cousines:n sont:v partie:v mes:d cousines:n sont:v parties:v
+G7 | Ma sœur est partie. | Ma:d sœur:n est:v partie:v
+G7 | Mes amis sont arrivés. | Mes:d amis:n sont:v arrivés:v
+G7 | Les belles fleurs poussent. | Les:d belles:a fleurs:n poussent:v
+G7 | Dans la vallée, de hautes montagnes se dressent. | la:d vallée:n de:d hautes:a montagnes:n dressent:v
+G7 | Les vieux arbres du parc donnent de l’ombre. | Les:d vieux:a arbres:n du:d parc:n donnent:v de_l’:d ombre:n
+G7 | Elle a reçu de bonnes nouvelles de son amie. | a:v reçu:v de:d bonnes:a nouvelles:n son:d amie:n
+G7 | Nous admirons ces anciennes statues de marbre blanc. | admirons:v ces:d anciennes:a statues:n marbre:n blanc:a
+G7 | La cuisine est pleine de bonnes odeurs sucrées. | La:d cuisine:n est:v pleine:a de:d bonnes:a odeurs:n sucrées:a
+G7 | Mes cousines sont grandes, blondes et souriantes . | Mes:d cousines:n sont:v grandes:a blondes:a souriantes:a
+G7 | Ce vieux château est grand, froid et sombre . | Ce:d vieux:a château:n est:v grand:a froid:a sombre:a
+G7 | Les rues sont étroites et sinueuses . | Les:d rues:n sont:v étroites:a sinueuses:a
+G7 | Les enfants de la voisine vont chaque mercredi à la piscine. | Les:d enfants:n la:d voisine:n vont:v chaque:d mercredi:n la:d piscine:n
+G7 | Le facteur du village distribue le courrier avant midi. | Le:d facteur:n du:d village:n distribue:v le:d courrier:n midi:n
+G7 | Mes deux sœurs jouent souvent au bord de la mer. | Mes:d deux:d sœurs:n jouent:v au:d bord:n la:d mer:n
+G7 | La voisine de mes grands-parents cultive des fleurs. | La:d voisine:n mes:d grands-parents:n cultive:v des:d fleurs:n
+G7 | Mon père et ma mère sont toujours à l’heure pour le dîner. | Mon:d père:n ma:d mère:n sont:v l’:d heure:n le:d dîner:n
+G7 | Les élèves de la classe et leur maîtresse sont partis en sortie. | Les:d élèves:n la:d classe:n leur:d maîtresse:n sont:v partis:v sortie:n
+G7 | Ma cousine et moi avons la même passion pour la musique. | Ma:d cousine:n avons:v la:d même:a passion:n la:d musique:n
+G7 | Toi et tes amis êtes invités à la fête. | tes:d amis:n êtes:v invités:v la:d fête:n
+G7 | Les enfants de la voisine sont partis très tôt ce matin. | Les:d enfants:n la:d voisine:n sont:v partis:v ce:d matin:n
+G7 | Ma grand-mère est sortie de l’hôpital hier soir. | Ma:d grand-mère:n est:v sortie:v l’:d hôpital:n soir:n
+G7 | Nos voisines sont allées au marché ce matin. | Nos:d voisines:n sont:v allées:v au:d marché:n ce:d matin:n
+G7 | Le facteur est passé pendant la tempête. | Le:d facteur:n est:v passé:v la:d tempête:n
+G7 | Dans la cour, les feuilles mortes sont emportées par le vent. | la:d cour:n les:d feuilles:n mortes:a sont:v emportées:v le:d vent:n
+G7 | La maison est abandonnée depuis dix ans. | La:d maison:n est:v abandonnée:v dix:d ans:n
+G7 | Les deux frères sont descendus à la gare. | Les:d deux:d frères:n sont:v descendus:v la:d gare:n
+G7 | Ma tante est restée en Italie pour les vacances. | Ma:d tante:n est:v restée:v Italie:n les:d vacances:n
+G7 | Hier soir, mes cousines ont fait une longue promenade. | soir:n mes:d cousines:n ont:v fait:v une:d longue:a promenade:n
+G7 | Les élèves ont écouté la leçon avec beaucoup d’attention. | Les:d élèves:n ont:v écouté:v la:d leçon:n attention:n
+G7 | Ma sœur et moi avons passé toute la soirée devant la télévision. | Ma:d sœur:n avons:v passé:v la:d soirée:n la:d télévision:n
+G7 | Les voisines ont planté leurs fleurs au printemps. | Les:d voisines:n ont:v planté:v leurs:d fleurs:n au:d printemps:n
+G7 | Les deux jeunes voisines de ma cousine sont arrivées hier. | Les:d deux:d jeunes:a voisines:n ma:d cousine:n sont:v arrivées:v
+G7 | Mes vieux amis du village sont venus me voir. | Mes:d vieux:a amis:n du:d village:n sont:v venus:v voir:v
+G7 | Les petites filles de la voisine sont allées au parc. | Les:d petites:a filles:n la:d voisine:n sont:v allées:v au:d parc:n
+G7 | Ma grande sœur et sa meilleure amie sont parties ensemble. | Ma:d grande:a sœur:n sa:d meilleure:a amie:n sont:v parties:v
+G7 | Le petit garçon est parti hier. → Les petits garçons sont partis hier. | Le:d petit:a garçon:n est:v parti:v Les:d petits:a garçons:n sont:v partis:v
+G7 | Ma cousine est restée à la maison. → Mes cousines sont restées à la maison. | Ma:d cousine:n est:v restée:v la:d maison:n Mes:d cousines:n sont:v restées:v la:d maison:n
+G7 | Le vieux chat est rentré tard. → Les vieux chats sont rentrés tard. | Le:d vieux:a chat:n est:v rentré:v Les:d vieux:a chats:n sont:v rentrés:v
+G7 | La grande fenêtre est restée ouverte. → Les grandes fenêtres sont restées ouvertes. | La:d grande:a fenêtre:n est:v restée:v ouverte:a Les:d grandes:a fenêtres:n sont:v restées:v ouvertes:a
+G7 | La petite fille est contente. | La:d petite:a fille:n est:v contente:a
+G7 | Les petites filles sont contentes. | Les:d petites:a filles:n sont:v contentes:a
+G7 | Les chemins sont étroits. | Les:d chemins:n sont:v étroits:a
+G7 | Mes cousines semblent ravies. | Mes:d cousines:n semblent:v ravies:a
+G7 | Ces gâteaux paraissent délicieux. | Ces:d gâteaux:n paraissent:v délicieux:a
+G7 | Léa a mangé les pommes. | Léa:n a:v mangé:v les:d pommes:n
+G7 | Les pommes, Léa les a mangées. | Les:d pommes:n Léa:n a:v mangées:v
+G7 | Les filles ont mangé une tarte. | Les:d filles:n ont:v mangé:v une:d tarte:n
+G7 | La lettre, Tom l’a écrite. | La:d lettre:n Tom:n a:v écrite:v
+G7 | Mes livres, je les ai rangés. | Mes:d livres:n ai:v rangés:v
+G7 | Les enfants ont chanté une chanson. | Les:d enfants:n ont:v chanté:v une:d chanson:n
+G7 | Mes deux petites cousines sont parties hier. | Mes:d deux:d petites:a cousines:n sont:v parties:v
+G7 | La vieille voisine et son chat sont sortis. | La:d vieille:a voisine:n son:d chat:n sont:v sortis:v
+G7 | Les grands arbres du parc sont tombés. | Les:d grands:a arbres:n du:d parc:n sont:v tombés:v
+G7 | Les enfants de la voisine jouent dehors. | Les:d enfants:n la:d voisine:n jouent:v
+G7 | Mes cousines sont parties hier soir. | Mes:d cousines:n sont:v parties:v soir:n
+G7 | Les petites filles ont mangé une glace. | Les:d petites:a filles:n ont:v mangé:v une:d glace:n
+G7 | Toi et ton frère êtes en retard. | ton:d frère:n êtes:v retard:n
+G7 | les petites voitures | les:d petites:a voitures:n
+G7 | des ballons ronds | des:d ballons:n ronds:a
+G7 | une grande maison | une:d grande:a maison:n
+G7 | de jolies fleurs | de:d jolies:a fleurs:n
+G7 | Les chiens du voisin aboient. | Les:d chiens:n du:d voisin:n aboient:v
+G7 | Tes cousines partent en vacances. | Tes:d cousines:n partent:v vacances:n
+G7 | Le petit chat joue. | Le:d petit:a chat:n joue:v
+G7 | Les petits chats jouent. | Les:d petits:a chats:n jouent:v
+G7 | Les petits chiens aboient. | Les:d petits:a chiens:n aboient:v
+G7 | Les grandes filles dansent. | Les:d grandes:a filles:n dansent:v
+G7 | Mes jolies fleurs poussent. | Mes:d jolies:a fleurs:n poussent:v
+G7 | Les vieille maison brille. | Les:d vieille:a maison:n brille:v
+G7 | Les vieilles maisons brille. | Les:d vieilles:a maisons:n brille:v
+G7 | Les vieilles maisons brillent. | Les:d vieilles:a maisons:n brillent:v
+G7 | Mes cousins jouent. | Mes:d cousins:n jouent:v
+G7 | Les petites souris mangent. | Les:d petites:a souris:n mangent:v
