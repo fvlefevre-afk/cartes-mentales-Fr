@@ -2523,7 +2523,9 @@ load();render();
    const rail=document.getElementById('rail'), RB=document.body.classList.contains('avec-rail')&&rail&&rail.offsetWidth?rail.offsetWidth:0, availW=innerWidth-RB, availH=innerHeight-barre();   /* le bandeau garde sa taille (comme au sommaire) ; la carte prend la place qui reste */
    /* la largeur de la fenêtre passe avant le minimum (fenêtre étroite ou basse : la carte ne déborde plus) */
    /* page de la carte : elle remplit la fenêtre (largeur ou hauteur, la carte entière reste visible) ; l'encadré « Je retiens » se lit en faisant défiler */
-   const hc=carte?((s.querySelector('.map-retiens>summary')||carte).getBoundingClientRect().bottom)-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
+   /* le bouton « Je retiens » n'est compté que s'il est affiché (26/11/2026 : caché quand il est dans le bandeau de gauche, la hauteur n'était plus prise en compte et la carte dépassait en bas) */
+   const sm=carte&&s.querySelector('.map-retiens>summary'), pied=sm&&sm.getClientRects().length?sm:carte;
+   const hc=carte?(pied.getBoundingClientRect().bottom)-main.getBoundingClientRect().top+parseFloat(cs.paddingBottom)+8:0;
    const z=carte?Math.min(availW/w,availH/hc,MAX_LECON)*.995:Math.min(availW/w,Math.max(MIN_LECON,Math.min(availH/h,MAX_LECON)))*.99;
    main.style.zoom=z.toFixed(3);
    s.style.minHeight=Math.max(0,availH/z-ph-2)+'px';   /* le papier descend jusqu'en bas de la fenêtre */
