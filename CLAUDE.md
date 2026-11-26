@@ -66,6 +66,12 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   plus de verbes du 2e groupe dans les exercices de conjugaison du CE2 (C1, C2, C4, C5 ; démonstrations de C1, C4 par `mots`). G2 : plus de choix « Fermes / Lit » (le s de « tu » à l'impératif : conjugaison de 6e).
   G6 CE2 : « complément » au lieu de « complément circonstanciel » (`mots`) ; G6 CM1 : plus de « où ? quand ? » dans « Plusieurs compléments » ni dans les indices. O11 : titre « Les noms en -tion, -sion, -ssion », plus de signes phonétiques ([sjɔ̃], [s], [z] → « sion », « s », « z »).
   Les programmes `lecons/*.py` ne sont plus tous d'accord avec `index.html` (ex. relancer `g6.py` ajoute un écran en double) : corriger `index.html` directement, et reporter le texte dans le programme.
+- **Personnages des classes de mots sous les mots (26/11/2026, demande de l'enseignante)** : ses dessins (outils/img/persos/, 11 PNG qu'iel a faits) s'affichent sous les mots dont la nature est travaillée. G3 pour l'instant
+  (`PERSO_CEINT`) : « Je regarde », puis « Avec aide » et « Je corrige » après réussite, JAMAIS dans « Seul ». Code : `outils/personnages.js` puis `python3 outils/personnages.py` (bloc `/*PERSOS-JS*/` d'index.html, ne pas le modifier à la main).
+  Natures des mots : `natures(txt)` d'après des listes relues sur toutes les phrases de G3 ; après un changement de phrase ou une nouvelle phrase, vérifier le repérage et lancer `python3 outils/tester_personnages.py`.
+  Option A choisie : les couleurs d'origine (`CL_DEF`) suivent les personnages, en teintes foncées lisibles (cela remplace le code du 17/11). Dessins modifiables : ⚙ Réglages › Personnages des classes de mots (publiés dans ouvertures.json `{persos:{…}}`).
+  Cartes mentales G3, G4, G7 (et variantes) redessinées à ces couleurs (`g3_cartes.py`, `g_cartes.py G4 G7 G7-CE2`). Recoloration des cartes en HTML (`carteCouleursCss`) : seulement les mots (`b`, `span`) et les ronds, jamais les cadres.
+  Reste à faire : personnages sur les écrans de G4 et G7, pages d'observation (`edl`), couleurs d'origine du tableau de bord (17ya).
 - G6 : compléments d’objet en indigo (#5e35b1), compléments circonstanciels en marron (#8d5524), sur la carte et dans les écrans
   (classe `lecon-G6`), pour ne pas reprendre le vert de l’adjectif ni l’orange du déterminant (choix de l’enseignante, 23/10/2026).
 - Une leçon peut garder un champ `html` (ex. tableau des verbes de C1) : il s’affiche sous la carte et à l’impression.

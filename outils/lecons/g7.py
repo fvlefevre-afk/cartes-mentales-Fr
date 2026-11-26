@@ -6,7 +6,7 @@ from lhelp import *
 e = lambda t: f'<span class="e">{t}</span>'
 boxes = [
  dict(id='gn', col='orange', geom=TL, title='Dans le GN', avatar=('girl', 322, 122), html=f'''
-  <p class="txt" style="padding-right:100px">Le <span class="d">déterminant</span> et l’<span class="a">adjectif</span> s’accordent avec le <b style="color:#e0458f">nom noyau</b>.</p>
+  <p class="txt" style="padding-right:100px">Le <span class="d">déterminant</span> et l’<span class="a">adjectif</span> s’accordent avec le <b style="color:#0a7d1c">nom noyau</b>.</p>
   <div class="ex big" style="margin-top:16px"><span class="d">les</span> <span class="a">petit{e('es')}</span> <span class="n">fille{e('s')}</span></div>
   <p class="small" style="margin:8px 0 0">féminin <span class="arrow">→</span> souvent <b>e</b> · pluriel <span class="arrow">→</span> souvent <b>s</b></p>'''),
  dict(id='sv', col='rouge', geom=TC, title='Sujet → verbe', html=f'''
@@ -19,7 +19,7 @@ boxes = [
  dict(id='chaine', col='bleu', geom=(18, 568, 700, 350), title='La chaîne complète', style='padding-top:52px', html=f'''
   <p class="txt">Le nom noyau du sujet commande toute la chaîne.</p>
   <div class="ex" style="text-align:center;font-size:25px;padding:12px 8px"><span class="d">Les</span> <span class="a">petit{e('es')}</span> <span class="n">fille{e('s')}</span> <span class="v">sont</span> <span class="v">arrivé{e('es')}</span>.</div>
-  <p class="txt" style="text-align:center;margin-top:10px"><b style="color:#e0458f">filles</b> <span class="arrow">→</span> féminin pluriel</p>
+  <p class="txt" style="text-align:center;margin-top:10px"><b style="color:#0a7d1c">filles</b> <span class="arrow">→</span> féminin pluriel</p>
   <p class="txt" style="text-align:center;margin:0 0 10px">les · petites · sont · arrivées : tout s’accorde !</p>
   <div class="ex" style="text-align:center;font-size:20px;line-height:1.5">Le petit chat est rentré.<br><span class="arrow">→</span> Les petit<span class="e">s</span> chat<span class="e">s</span> <span class="v">sont</span> rentré<span class="e">s</span>.</div>'''),
  dict(id='methode', col='vert', geom=(752, 568, 630, 350), title='Je vérifie', style='padding-top:52px', avatar=('boy', 1250, 610), html='''
@@ -29,7 +29,7 @@ boxes = [
    <li>J’accorde le <span class="v">verbe</span>.</li>
    <li>Avec <b>être</b>, j’accorde le participe passé.</li></ol>'''),
 ]
-legend = '<span class="d">dét.</span> · <span class="a">adj.</span> · <b style="color:#e0458f">nom</b> · <span class="s">sujet</span> · <span class="v">verbe</span>'
+legend = '<span class="d">dét.</span> · <span class="a">adj.</span> · <b style="color:#0a7d1c">nom</b> · <span class="s">sujet</span> · <span class="v">verbe</span>'
 out, zones = build('G7', 'La chaîne<br>des accords', 'Grammaire — G7 — CM1', legend, boxes, title_size=38, legend_pos='right:18px;top:470px')
 
 sections = [

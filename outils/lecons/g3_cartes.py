@@ -19,7 +19,7 @@ def carte(lid, chip, niveau, geo=None, cdy=26):
     titre_tc = 'Le nom noyau' if niveau != 'CE2' else 'Le nom'
     cm2 = niveau == 'CM2'
     # --- le GN, c'est…
-    gn_li2 = '<span class="d">déterminant</span> + <b style="color:#e0458f">nom</b> (+ <span class="a">adjectif</span>)' + (' (+ <b style="color:#5e35b1">complément du nom</b>)' if cm2 else '')
+    gn_li2 = '<span class="d">déterminant</span> + <b style="color:#0a7d1c">nom</b> (+ <span class="a">adjectif</span>)' + (' (+ <b style="color:#5e35b1">complément du nom</b>)' if cm2 else '')
     gn = f'''<ul style="padding-right:128px;font-size:20px;margin-top:-14px">
   <li>un groupe de mots organisé autour d’un <b>nom</b>.</li>
   <li>{gn_li2}</li></ul>
@@ -79,19 +79,19 @@ def carte(lid, chip, niveau, geo=None, cdy=26):
   <li>Déjà <b>-e</b> au masculin : pas de changement.<br><span class="small" style="font-size:16px">un vélo rouge <span class="arrow">→</span> une moto rouge</span></li>{att_extra}</ul>'''
     boxes = [
      dict(id='gn', col='gris', pal=PAL_PERSO['gris'], geom=geo.get('gn', TL), ext=24, hstyle='top:30px', title='Le GN, c’est…', figs=[('girl', 352, 98, 84)], html=gn),
-     dict(id='noyau', col='rose', pal=PAL_PERSO['nom'], geom=geo.get('noyau', TC), ext=24, hstyle='top:30px', title=titre_tc, html=tc),
-     dict(id='adj', col='vert', pal=PALG['vert'], geom=geo.get('adj', TR), ext=24, hstyle='top:30px', title='L’adjectif', figs=[('boy', 1244, 106, 112)], html=adj),
+     dict(id='noyau', col='vert', pal=PAL_PERSO['nom'], geom=geo.get('noyau', TC), ext=24, hstyle='top:30px', title=titre_tc, html=tc),
+     dict(id='adj', col='prune', pal=PAL_PERSO['adj'], geom=geo.get('adj', TR), ext=24, hstyle='top:30px', title='L’adjectif', figs=[('boy', 1244, 106, 112)], html=adj),
      dict(id='accord', col='orange', pal=PALG['orange'], geom=geo.get('accord', BL), ext=24, hstyle='top:30px', title='Les accords dans le GN', html=accord, style='padding-top:48px'),
      dict(id='att', col='rouge', pal=PALG['rouge'], geom=geo.get('att', BR), ext=24, hstyle='top:30px', title='Attention !', style='padding-top:58px', html=att),
     ]
-    legend = f'<span class="d">dét.</span> · <b style="color:#e0458f">{nom}</b> · <span class="a">adjectif</span>'
+    legend = f'<span class="d">dét.</span> · <b style="color:#0a7d1c">{nom}</b> · <span class="a">adjectif</span>'
     return build(lid, 'Le groupe<br>nominal', chip, legend, boxes, extra_html=police() + CSS_PERSO, sub='le GN', title_size=40, legend_pos='right:26px;top:14px', cloud_dy=cdy)
 
 
 IDS = ('gn', 'noyau', 'adj', 'accord', 'att')
-# Code couleur des personnages (18/11/2026, choix de l'enseignante, comme G4) : déterminant bleu ciel, nom rose, adjectif vert ; cadre du nom noyau rose, de l'adjectif vert, du GN gris.
-PAL_PERSO = {'nom': ('#e0458f', '#fde4ef', '#f7b3d2', '#d6337f'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
-CSS_PERSO = '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}</style>'
+# Couleurs des personnages (26/11/2026, choix de l'enseignante, comme G4) : déterminant or foncé, nom vert, adjectif prune ; cadre du nom noyau vert, de l'adjectif prune, du GN gris.
+PAL_PERSO = {'nom': ('#0a7d1c', '#e3f5e5', '#b3e3ba', '#0a7d1c'), 'adj': ('#9c128f', '#fbe6f9', '#f0bdea', '#9c128f'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
+CSS_PERSO = '<style>.d{color:#7d6b00}.a{color:#9c128f}.n{color:#0a7d1c;border-color:#0a7d1c}</style>'
 MARGE = 24
 
 

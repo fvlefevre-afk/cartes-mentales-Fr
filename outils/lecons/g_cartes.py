@@ -17,11 +17,11 @@ def garder_html(sortie, image=None):
 
 SCRIPTS = {'G1': 'g1_carte.py', 'V1': 'v1_carte.py', 'V2': 'v2_carte.py', 'H1': 'h1_carte.py', **{f'O{k}': 'o1_a_o6.py' for k in range(1, 7)}, 'O7-CE2': 'o7_o12.py', **{f'O{k}': 'o7_o12.py' for k in range(8, 13)}, 'G4': 'g4.py', 'G5': 'g5.py', 'G6': 'g6.py', 'G6-CE2': 'g6_ce2.py', 'G7': 'g7.py', 'G7-CE2': 'g7_ce2.py', **{f'H{k}': f'h{k}.py' for k in range(2, 8)}, **{f'V{k}': f'v{k}.py' for k in range(3, 7)}, **{f'C{k}': f'c{k}.py' for k in range(1, 6)}, 'C6': 'ce2_seulement.py', 'C6-CE2': 'ce2_seulement.py', 'C7': 'ce2_seulement.py', 'C7-CE2': 'ce2_seulement.py', 'C8-CM2': 'c8_c9_cm2.py', 'C9-CM2': 'c8_c9_cm2.py'}
 PAL_DE = {'indigo': ('#5e35b1', '#ece6fa', '#cdbff0', '#5e35b1'), 'marron': ('#8d5524', '#f6e9dc', '#e5c9a8', '#8d5524'),
-          'ciel': ('#0b8fd6', '#dff2fc', '#a8daf5', '#0b8fd6'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
-# Code couleur des personnages (17/11/2026, choix de l'enseignante) : déterminant bleu ciel, nom rose, adjectif vert, verbe rouge,
-# pronom violet, adverbe orange, conjonction turquoise. Mis en place d'abord sur G4 ; même code dans index.html (.lecon-G4).
-CSS_CARTE = {'G4': '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}.p{color:#8e44c9;border-color:#8e44c9}</style>',
-             'G7': '<style>.d{color:#0b8fd6}.n{color:#e0458f;border-color:#e0458f}</style>'}   # G7 : 18/11/2026 ; G3 : CSS_PERSO de g3_cartes.py
+          'ciel': ('#0b8fd6', '#dff2fc', '#a8daf5', '#0b8fd6'), 'or': ('#9a8400', '#f9f0b8', '#efdd6a', '#9a8400'), 'gris': ('#5f6b7a', '#eef0f3', '#cfd5dd', '#4b5563')}
+# Couleurs des personnages des classes de mots (26/11/2026, choix de l'enseignante, en teintes foncées lisibles) : déterminant or foncé, nom vert, adjectif prune,
+# verbe rouge, pronom bleu canard, adverbe rose, conjonction orange. Mêmes valeurs que CL_DEF d'index.html ; G3 : CSS_PERSO de g3_cartes.py.
+CODE_PERSOS = '<style>.d{color:#7d6b00}.a{color:#9c128f}.n{color:#0a7d1c;border-color:#0a7d1c}.p{color:#00708a;border-color:#00708a}</style>'
+CSS_CARTE = {'G4': CODE_PERSOS, 'G7': CODE_PERSOS, 'G7-CE2': CODE_PERSOS}
 MARGE = 24
 ZMAX = {'C2': 1.0, 'C8-CM2': 1.1, 'C3': 1.1}   # cartes dont un tableau déborderait du cadre si le texte était plus grand
 ZOOM = [1]   # agrandissement du texte des cadres (cartes aux petits caractères : H) ; choisi par auto()
