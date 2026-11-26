@@ -6,7 +6,7 @@ Rayer ou supprimer une ligne une fois la décision prise.
 
 ## Personnages sous les mots (26/11/2026)
 
-- [ ] **Téléphone : « La suite » / « Avec aide » chevauche « Retour »** et la barre d'avancement (défaut présent avant les personnages).
+- [ ] **Très petit téléphone (320 px) : un point final peut passer seul à la ligne** sous les personnages (déjà corrigé dans les observations et les ardoises d'`edl`).
 
 ## Code couleur des personnages (17/11/2026)
 

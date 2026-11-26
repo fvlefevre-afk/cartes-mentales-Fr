@@ -896,6 +896,15 @@ body.au-sommaire a.tile:not(.todo):hover{background:color-mix(in srgb,var(--c) 2
 .stage-ctl-bas .ctl-g{display:flex;align-items:center;gap:1rem;min-width:0}
 .stage-ctl-bas .btn{justify-self:auto;margin-left:auto}
 .stage-ctl-bas:has(>#nextStep[hidden]) .sdots{display:none}
+/* téléphone (26/11/2026, « fais 1 et 2 ») : la barre d'avancement sur sa ligne, « Retour » entier, le gros bouton sur une ligne à côté ; avant, ils se chevauchaient */
+@media (max-width:600px){
+.stage-ctl-bas{flex-wrap:wrap;row-gap:.7rem;column-gap:.6rem}
+.stage-ctl-bas .ctl-g{display:contents}
+.stage-ctl.stage-ctl-bas .sdots{order:-1;flex:0 0 100%;justify-content:center}
+.stage-ctl.stage-ctl-bas .sdots span{flex:0 1 2.4rem;min-width:.5rem}
+.stage-ctl.stage-ctl-bas .nb-prec{flex:0 0 auto;white-space:nowrap}
+.stage-ctl.stage-ctl-bas>#nextStep{flex:1 1 9rem;min-width:0;white-space:nowrap;font-size:1.15rem;padding:.7rem .6rem}
+}
 /*RETOUR-BAS-FIN*/
 /* Personnages des classes de mots sous les mots (26/11/2026) : mot sur un léger fond de la couleur de sa classe, personnage dessous */
 .mp{display:inline-flex;flex-direction:column;align-items:center;vertical-align:top;gap:.1em;margin:0 .06em}
