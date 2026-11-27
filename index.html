@@ -795,13 +795,10 @@ body.au-sommaire #rail .fam-btns small{font-size:calc(var(--u)*.8)}
 @media print{#menuEns{display:none}}
 /*MENU-ENSEIGNANT-FIN*/
 /*RETIENS-CADRE*/
-/* petit « 📖 » en bas à droite de chaque cadre de la carte + fenêtre de ce cadre sur le fond de sa couleur */
-.map .rcadre{position:absolute;z-index:3;transform:translate(-62%,-62%);width:max(2rem,3.4cqw);height:max(2rem,3.4cqw);border-radius:50%;border:max(2px,.25cqw) solid color-mix(in srgb,var(--z) 55%,#fff);background:#fff;font-size:max(.9rem,1.7cqw);line-height:1;padding:0;cursor:pointer;opacity:.9;transition:transform .15s,border-color .15s}
-.map .rcadre:hover,.map .rcadre:focus-visible{opacity:1;border-color:var(--z);transform:translate(-62%,-62%) scale(1.12);outline:0}
+/* fenêtre « Je retiens » d'un cadre de la carte, sur le fond de sa couleur (ouverte par le bouton du cadre dans le bandeau) */
 #cu-retiens.retiens-cadre .cu-f{background:color-mix(in srgb,var(--z) 14%,#fff);border-color:var(--z)}
 #cu-retiens.retiens-cadre h2{color:color-mix(in srgb,var(--z) 75%,#000)}
 #cu-retiens.retiens-cadre li{background:#fff}
-@media print{.map .rcadre{display:none!important}}
 /*RETIENS-CADRE-FIN*/
 /*RAIL-CADRES*/
 #rail .rail-cadre{border-color:var(--z);background:color-mix(in srgb,var(--z) 12%,#fff);color:#1f2a44;padding:.3rem .6rem;gap:.55rem;min-height:2.6rem}
@@ -1305,12 +1302,10 @@ function renderLessonMap(t){
     <div class="map"><img src="${IMG[t.id].carte}" alt="Carte mentale ${esc(code(t))} : ${esc(t.titre)}">${chipCM2(t)}${(L.masque||[]).map(z=>`<span class="masque" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%" title="Pas au programme du CE2"></span>`).join('')}
       ${L.sections.map((s,k,a)=>{const z=s.zone,d=secDone(L,t.id,s.id),suiv=!d&&a.findIndex(x=>!secDone(L,t.id,x.id))===k;return `<a class="zone${d?' fait':suiv?' suivant':''}" href="#t=${t.id}/s:${s.id}" style="left:${z[0]}%;top:${z[1]}%;width:${z[2]}%;height:${z[3]}%;--z:${s.couleur}" aria-label="${esc(s.nom)}"><span class="num${d?' done':''}">${d?'✓':k+1}</span></a>`;}).join('')}
       ${L.sections.map((s,k)=>{const z=s.zone;return `<button type="button" class="loupe" data-loupe="${k}" style="left:${z[0]+z[2]}%;top:${z[1]}%;--z:${s.couleur}" title="Voir ce cadre en grand" aria-label="Voir en grand : ${esc(s.nom)}">🔍</button>`;}).join('')}
-      ${L.sections.map((s,k)=>{if(!htmlCadre(t,s.id))return '';const z=s.zone;return `<button type="button" class="rcadre" data-rcadre="${k}" style="left:${z[0]+z[2]}%;top:${z[1]+z[3]}%;--z:${s.couleur}" title="Je retiens : ${esc(s.nom)}" aria-label="Je retiens : ${esc(s.nom)}">📖</button>`;}).join('')}
     </div>
     ${contenuRetiens(t)?`<details class="map-retiens"><summary>Je retiens</summary>${contenuRetiens(t).replace('En CM1, je retiens','Je retiens')}</details>`:''}
   </div>`;
   carteMapCouleurs(main);
-  main.querySelectorAll('[data-rcadre]').forEach(b=>b.addEventListener('click',()=>retiensCadreFr(t,+b.dataset.rcadre)));
   if(t.html) renderConj(main);
   LOUPE.carte={src:IMG[t.id].carte, nom:code(t)+' — '+t.titre, secs:L.sections.map(s=>({zone:s.zone, nom:s.nom, couleur:s.couleur, href:'#t='+t.id+'/s:'+s.id}))};
 }
