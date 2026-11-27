@@ -93,6 +93,8 @@ Site des leçons interactives (ceintures de français CM1) publié avec GitHub P
   pastille « nouveau » pendant 7 jours. Plus de codes de période ni de `?enseignant`.
   Accès enseignant : bouton 🔑 du bandeau et mot de passe, le même que sur le site de maths (connu de l'enseignante, jamais écrit dans le dépôt ;
   empreinte `MDP_ENS`, à recalculer avec `empreinteEns("…")` sur les deux sites pour le changer) : tout s'ouvre jusqu'à la fermeture de l'onglet.
+  **Depuis le 27/11/2026 (demande de l'enseignante) : plus aucun bouton enseignant dans les cartes.** Un seul, discret, sur la photo de la page d'accueil « Mes ceintures » (dépôt `publication-accueil`) : mot de passe, puis fenêtre « Réglages enseignant » ouverte aussitôt
+  (la page est chargée avec `?reglages=1`). Bloc `ACCES-ACCUEIL` en fin d'`index.html`, posé par `outils/acces_accueil.py` (à relancer s'il disparaît) ; il cache aussi le bouton « Enseignante » des activités tant que l'accès n'est pas ouvert. `empreinteEns` / `MDP_ENS` : à changer aussi dans l'accueil.
 - Photo / nom de l’école (13/11/2026) : ils ne sont vus des élèves qu’une fois `ouvertures.json` publié ; `outils/publier-forge.sh` reprend tout seul le fichier téléchargé depuis ⚙ Réglages (le plus récent de ~/Téléchargements, s’il est plus récent que celui de La Forge) et la fenêtre Réglages avertit tant que le brouillon diffère du publié (`nonPublie`).
 - Bandeau (comme le site de maths) : Sommaire et titre à gauche ; ◀ ceinture de la leçon ▶ au centre (sur le sommaire : nombre de leçons ouvertes) ;
   classe (CE2 / CM1 / CM2, `data-classe` : sur une leçon, ouvre la leçon du même code dans cette classe) et impression à droite.
